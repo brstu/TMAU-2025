@@ -2,7 +2,7 @@
 #include <cmath>
 using namespace std;
 //константы
-const int n = 10;// такты времени
+const int n = 10; // такты времени
 const double a = 0.99;
 const double b = 0.01;
 const double c = 0.5;
