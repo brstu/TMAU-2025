@@ -20,7 +20,10 @@ double nonlinear(double yt, double yt_1, double ut, double ut_1) {
 }
 
 int main() {
-    setlocale(LC_ALL,"RU");
+    // Try to set Russian locale in a portable way, with error handling
+    if (!setlocale(LC_ALL, "ru_RU.UTF-8")) {
+        cerr << "Warning: Russian locale 'ru_RU.UTF-8' not available. Using default locale." << endl;
+    }
     cout << "Linear model" << endl;
     cout << "y0 = " << Y0 << endl;
     double u[n] = {5,7,6,5,7,6,5,7,6,5};
