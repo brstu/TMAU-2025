@@ -34,9 +34,11 @@ int main() {
     yt = Y0;
     cout << "Нелинейная модель" << endl;
     cout << "y0 = " << Y0 << endl;
-    for (int i = 0; i < n-1; i++) {
-        yt_1=yt;
-        yt = nonlinear(yt, yt_1, u[i+1], u[i]);
+    for (int i = 0; i < n; i++) {
+        yt_1 = yt;
+        double ut = u[i];
+        double ut_1 = (i == 0) ? u[0] : u[i-1];
+        yt = nonlinear(yt, yt_1, ut, ut_1);
         cout << "y" << i+1 << " = " << yt << endl;
     }
     cin.get();
