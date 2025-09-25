@@ -23,7 +23,7 @@ int main() {
     setlocale(LC_ALL,"RU");
     cout << "Линейная модель"<<endl;
     cout << "y0 = " << Y0<<endl;
-    double u[10] = {5,7,6,5,7,6,5,7,6,5};
+    double u[n] = {5,7,6,5,7,6,5,7,6,5};
     double yt = Y0;
     for (int i=0;i<n;i++){
         yt = linear(yt, u[i]);
