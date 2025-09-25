@@ -38,11 +38,12 @@ int main() {
     cout << "Nonlinear model" << endl;
     cout << "y0 = " << Y0 << endl;
     for (int i = 0; i < n; i++) {
-        yt_1 = yt;
         double ut = u[i];
         double ut_1 = (i == 0) ? u[0] : u[i-1];
-        yt = nonlinear(yt, yt_1, ut, ut_1);
-        cout << "y" << i+1 << " = " << yt << endl;
+        double yt_new = nonlinear(yt, yt_1, ut, ut_1);
+        cout << "y" << i+1 << " = " << yt_new << endl;
+        yt_1 = yt;
+        yt = yt_new;
     }
     cin.get();
     return 0;
