@@ -33,7 +33,7 @@ int main() {
         cout << "y" << i+1 << " = " << yt << endl;
     }
     cout << "\n";
-    double yt_1;
+    double yt_1 = Y0;
     yt = Y0;
     cout << "Nonlinear model" << endl;
     cout << "y0 = " << Y0 << endl;
