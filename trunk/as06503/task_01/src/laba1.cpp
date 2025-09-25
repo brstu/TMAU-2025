@@ -30,9 +30,8 @@ int main() {
         cout << "y" << i+1 << " = " << yt<<endl;
     }
     cout << "\n";
-    double yt_1;
+    double yt_1 = Y0;
     yt = Y0;
-    yt_1 = yt;
     cout << "Нелинейная модель" << endl;
     cout << "y0 = " << Y0 << endl;
     for (int i = 0; i < n-1; i++) {
