@@ -40,6 +40,6 @@ int main() {
         yt = nonlinear(yt, yt_1, u[i+1], u[i]);
         cout << "y" << i+1 << " = " << yt << endl;
     }
-    system("pause");
+    cin.get();
     return 0;
 }
