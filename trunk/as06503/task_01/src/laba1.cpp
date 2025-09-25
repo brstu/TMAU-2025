@@ -45,6 +45,5 @@ int main() {
         yt_1 = yt;
         yt = yt_new;
     }
-    cin.get();
     return 0;
 }
