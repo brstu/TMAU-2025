@@ -28,7 +28,7 @@ int main() {
     cout << "y0 = " << Y0 << endl;
     double u[n] = {5,7,6,5,7,6,5,7,6,5};
     double yt = Y0;
-    for (int i=0;i<n;i++){
+    for (int i = 0; i < n; i++) {
         yt = linear(yt, u[i]);
         cout << "y" << i+1 << " = " << yt << endl;
     }
