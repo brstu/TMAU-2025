@@ -31,7 +31,8 @@ int main() {
     }
     cout << "\n";
     double yt_1;
-    yt_1=yt = Y0;
+    yt = Y0;
+    yt_1 = yt;
     cout << "Нелинейная модель" << endl;
     cout << "y0 = " << Y0 << endl;
     for (int i = 0; i < n-1; i++) {
