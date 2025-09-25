@@ -43,7 +43,7 @@ const double a = 0.99;
 const double b = 0.01;
 const double c = 0.5;
 const double d = 0.1;
-double Y0 = 18;
+const double Y0 = 18;
 double u[10] = {5,7,6,5,7,6,5,7,6,5};
 ```
 Имея данные параметры получим результат работы программы:
