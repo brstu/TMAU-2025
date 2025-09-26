@@ -8,7 +8,7 @@ const double a = 0.99;
 const double b = 0.01;
 const double c = 0.5;
 const double d = 0.1;
-const double Y0 = 16;
+const double Y0 = 18;
 
 // linear model
 double linear(double yt, double ut) {
