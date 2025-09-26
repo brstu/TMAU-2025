@@ -36,7 +36,6 @@ void Nonlinear(Constants &con, vector<double> &u) {
         y[t + 1] = con.a * y[t] - con.b * pow(y[t - 1], 2) + con.c * u[t] + con.d * sin(u[t - 1]);
     }
 
-
     cout << "\nNonlinear:\n";
     for (int t = 0; t <= con.n; ++t) {
         cout << "y" << t << ": " << y[t] << endl;
