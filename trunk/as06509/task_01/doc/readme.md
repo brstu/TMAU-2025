@@ -39,15 +39,14 @@ Task is to write program (**С++**), which simulates this object temperature.
 Константы  
 ```
 
-int n = 10;  
+struct Constants{
+    int n = 10;  
 
-float a = 1.2;
-float b = 0.01;
-float c = 0.75;
-float d = 0.03;
-
-float y0 = 25;
-vector<float> u = {4,4,4,4,4,4,4,4,4,4};
+    const double a = 1.2;
+    const double b = 0.01;
+    const double c = 0.75;
+    const double d = 0.03;
+};
 ```
 Результат работы программы:
 ```Linear:
