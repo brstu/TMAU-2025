@@ -5,6 +5,7 @@
 using namespace std;
 
 
+// Implements the linear model equation: y[τ+1] = a * y[τ] + b * u[τ]
 double linear_model(double y_t, double u_t, double a, double b) {
     return a * y_t + b * u_t;
 }
