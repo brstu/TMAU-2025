@@ -10,6 +10,14 @@ double linear_model(double y_t, double u_t, double a, double b) {
     return a * y_t + b * u_t;
 }
 
+// Nonlinear model:
+//   y[τ+1] = a*y[τ] - b*y[τ-1]^2 + c*u[τ] + d*sin(u[τ-1])
+// where:
+//   y[τ]     = current output
+//   y[τ-1]   = previous output
+//   u[τ]     = current input
+//   u[τ-1]   = previous input
+//   a, b, c, d = model parameters
 double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev,
     double a, double b, double c, double d) {
     return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);
