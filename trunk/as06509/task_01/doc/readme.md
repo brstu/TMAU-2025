@@ -40,7 +40,7 @@ Task is to write program (**С++**), which simulates this object temperature.
 ```
 
 struct Constants{
-    int n = 10;  
+    const int n = 10;  
 
     const double a = 1.2;
     const double b = 0.01;

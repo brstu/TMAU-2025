@@ -5,7 +5,7 @@
 using namespace std;
 
 struct Constants{
-    int n = 10;  
+    const int n = 10;  
 
     const double a = 1.2;
     const double b = 0.01;
@@ -44,7 +44,7 @@ void Nonlinear(Constants &con, vector<double> &u) {
 
 int main() {
     Constants con;
-    vector<double> u(con.n + 1, 4.0);
+    vector<double> u(10, 4.0); 
 
     linear(con, u);
     Nonlinear(con, u);
