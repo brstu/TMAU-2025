@@ -4,6 +4,7 @@
 using std::cout;
 using std::endl;
 
+///constants
 const int n = 10;
 const double a = 0.98;
 const double b = 0.02;
@@ -12,20 +13,19 @@ const double d = 0.15;
 const double Y0 = 20.0;
 const double u = 8.0;
 
-///Линейная математическая модель yₖ₊₁ = a * yₖ + b * u
+///Linear mathematical model yₖ₊₁ = a * yₖ + b * u
 double linear(double y, double u_val) {
     return a * y + b * u_val;
 }
 
-///Нелинейная математическая модель yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
+///Nonlinear mathematical model yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
 double nonlinear(double yt, double yt1, double ut, double ut1) {
     return a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1);
 }
 
-/** Основная функция программы, выводит результаты моделирования обеих моделей
- Программа выполняет:
-1. Моделирование линейной системы: yₖ₊₁ = a * yₖ + b * u
-2. Моделирование нелинейной системы: yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
+/** The program's main function displays the simulation results of both models and performs:
+1. Simulation of a linear system: yₖ₊₁ = a * yₖ + b * u
+2. Modeling of a nonlinear system: yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
     */
 int main() {
     double y;
