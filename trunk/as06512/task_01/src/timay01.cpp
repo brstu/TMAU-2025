@@ -12,14 +12,17 @@ const double d = 0.15;
 const double Y0 = 20.0;
 const double u = 8.0;
 
+///Линейная математическая модель
 double linear(double y, double u_val) {
     return a * y + b * u_val;
 }
 
+///Нелинейная математическая модель
 double nonlinear(double yt, double yt1, double ut, double ut1) {
     return a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1);
 }
 
+///Основная функция программы, выводит результаты моделирования обеих моделей
 int main() {
     double y;
     
