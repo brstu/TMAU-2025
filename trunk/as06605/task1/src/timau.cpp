@@ -27,6 +27,8 @@ vector <double> nonlinear(double u)
 {
 	vector <double> temps(iterations);
 	temps[0] = InpTemp;
+	// Initialize temps[1] separately to avoid out-of-bounds access for temps[i-1]
+	temps[1] = a * temps[0] + c * u + d * sin(u - 1);
 	for (int i = 1; i < iterations - 1; ++i)
 	{
 		temps[i + 1] = a * temps[i] - b * temps[i - 1] * temps[i - 1] + c * u + d * sin(u - 1);
