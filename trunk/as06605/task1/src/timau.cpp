@@ -31,7 +31,7 @@ vector <double> nonlinear(double u)
 	temps[1] = a * temps[0] + c * u + d * sin(u - 1);
 	for (int i = 1; i < iterations - 1; ++i)
 	{
-		temps[i + 1] = a * temps[i] - b * temps[i - 1] * temps[i - 1] + c * u + d * sin(u - 1);
+		temps[i + 1] = a * temps[i] - b * temps[i - 1] * temps[i - 1] + c * u + d * sin(u);
 	}
 	return temps;
 }
