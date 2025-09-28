@@ -38,7 +38,6 @@ vector <double> nonlinear(double u)
 
 int main()
 {
-	setlocale(0, "");
 	vector <double> linearT = linear(20);
 	vector <double> nonlinearT = nonlinear(20);
 	cout << "i" << "\t" << "Линейная" << "\t" << "Нелинейная" << endl;
