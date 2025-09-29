@@ -39,7 +39,10 @@ int main() {
 
     std::cout << "Enter number of steps n: ";
     std::cin >> n;
-    if (n < 0) return 0;
+    if (n <= 0) {
+        std::cout << "Number of steps must be positive.\n";
+        return 0;
+    }
 
     std::cout << "Enter initial temperature y0: ";
     std::cin >> y0;
