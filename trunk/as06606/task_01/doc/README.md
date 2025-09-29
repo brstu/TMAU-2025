@@ -28,17 +28,14 @@ After transformation we get these linear (2) and nonlinear (3) models:
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 
-$$\Large y_{\tau+1}=ay_{\tau}-by_{\tau}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
+$$\Large y_{\tau+1}=ay_{\tau}-b_{nl}y_{\tau}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
+where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants for the linear model; $a,b_{nl},c,d$ – constants for the nonlinear model.
 
-Task is to write program (**С++**), which simulates this object temperature.
+> **Note:** In the nonlinear model, the quadratic term uses a separate parameter $b_{nl}$, which may differ from $b$ in the linear model.
 
 ## Выполнение работы
 Инициализация параметров  
-```
-double a = 0.9;
-double b = 0.2;
 double c = 0.15;
 double d = 0.05;
 
