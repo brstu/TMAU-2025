@@ -5,7 +5,7 @@ project(task_01 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-file(GLOB SOURCES "*.cpp")
+file(GLOB CONFIGURE_DEPENDS SOURCES "*.cpp")
 
 add_executable(task_01 ${SOURCES})
 
