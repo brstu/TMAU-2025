@@ -37,10 +37,13 @@ int main() {
     cout << "y0 = " << Y_START << endl;
 
     y = y_prev = Y_START;
-    for (int i = 0; i < N - 1; i++) {
-        y = nonlinearModel(y, y_prev, u[i + 1], u[i]);
+    double u_prev = u[0];
+    for (int i = 0; i < N; i++) {
+        double u_curr = u[i];
+        y = nonlinearModel(y, y_prev, u_curr, u_prev);
         cout << "y" << i + 1 << " = " << y << endl;
         y_prev = y;
+        u_prev = u_curr;
     }
 
     cin.get();
