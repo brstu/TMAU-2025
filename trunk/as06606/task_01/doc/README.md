@@ -38,8 +38,8 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants fo
 Инициализация параметров  
 ```cpp
 // Linear model parameters
-double a = 0.92;
-double b_lin = 0.8;
+double a = 0.9;
+double b_lin = 0.2;
 // Nonlinear model parameters
 double b_nonlin = 0.03;
 double c = 0.15;
