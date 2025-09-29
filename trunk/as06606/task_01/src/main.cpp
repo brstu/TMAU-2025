@@ -11,9 +11,9 @@ struct LinearModel {
 };
 
 struct NonlinearModel {
-    double a, b_nl, c, d;
+    double a, b, c, d;
     double step(double y, double u, double prev_u) const {
-        return a * y - b_nl * y * y + c * u + d * std::sin(prev_u);
+        return a * y - b * y * y + c * u + d * std::sin(prev_u);
     }
 };
 
@@ -22,12 +22,11 @@ int main() {
     double y0;
     double u_val;
 
-    double a = 0.9;
-    double b = 0.2;
-    double b_nl = 0.01;
-    double c = 0.15;
-    // d: Amplitude of the nonlinear input effect (weight of the sinusoidal term modeling actuator dynamics), chosen as 0.05 for moderate nonlinearity
-    double d = 0.05;
+    const double a = 0.9;
+    const double b_lin = 0.2;
+    const double b_nonlin = 0.01;
+    const double c = 0.15;
+    const double d = 0.05;
 
     std::cout << "Enter number of steps n: ";
     std::cin >> n;
@@ -36,12 +35,12 @@ int main() {
     std::cout << "Enter constant heating u: ";
     std::cin >> u_val;
 
-    LinearModel linear{a, b};
-    NonlinearModel nonlinear{a, b_nl, c, d};
+    LinearModel linear{a, b_lin};
+    NonlinearModel nonlinear{a, b_nonlin, c, d};
 
     std::vector<double> y_lin(n + 1, 0.0);
     std::vector<double> y_nonlin(n + 1, 0.0);
-    // Removed unnecessary vector u; use scalar u_val directly.
+    std::vector<double> u(n + 1, u_val);
 
     y_lin[0] = y0;
     y_nonlin[0] = y0;
@@ -51,9 +50,6 @@ int main() {
         double prev_u = (t > 0) ? u[t - 1] : 0.0;
         y_nonlin[t + 1] = nonlinear.step(y_nonlin[t], u[t], prev_u);
     }
-
-
-
 
     std::cout << "\nSimulation results:\n";
     std::cout << "Step\tLinear\t\tNonlinear\n";
