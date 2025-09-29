@@ -39,8 +39,6 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants fo
 double c = 0.15;
 double d = 0.05;
 
-```
-Имея данные параметры получим результат работы программы:
 ```bash
 Enter number of steps n: 20
 Enter initial temperature y0: 20   
