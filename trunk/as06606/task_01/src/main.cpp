@@ -3,7 +3,6 @@
 #include <cmath>
 #include <iomanip>
 
-// Конфигурация модели (вместо magic numbers)
 struct ModelConfig {
     static constexpr double a = 0.9;
     static constexpr double b_lin = 0.2;
@@ -13,16 +12,23 @@ struct ModelConfig {
 };
 
 struct LinearModel {
-    double a, b;
+    double a;
+    double b;
+    LinearModel(double a_, double b_) : a(a_), b(b_) {}
     double step(double y, double u) const {
         return a * y + b * u;
     }
 };
 
 struct NonlinearModel {
-    double a, b, c, d;
+    double a;
+    double b_nonlin; // clearly named member
+    double c;
+    double d;
+    NonlinearModel(double a_, double b_nonlin_, double c_, double d_)
+        : a(a_), b_nonlin(b_nonlin_), c(c_), d(d_) {}
     double step(double y, double u, double prev_u) const {
-        return a * y - b * y * y + c * u + d * std::sin(prev_u);
+        return a * y - b_nonlin * y * y + c * u + d * std::sin(prev_u);
     }
 };
 
@@ -33,26 +39,27 @@ int main() {
 
     std::cout << "Enter number of steps n: ";
     std::cin >> n;
+    if (n < 0) return 0;
+
     std::cout << "Enter initial temperature y0: ";
     std::cin >> y0;
+
     std::cout << "Enter constant heating u: ";
     std::cin >> u_val;
 
-    // Инициализация моделей с использованием конфигурации
     LinearModel linear{ModelConfig::a, ModelConfig::b_lin};
-    NonlinearModel nonlinear{ModelConfig::a, ModelConfig::b_nonlin,
-                             ModelConfig::c, ModelConfig::d};
+    NonlinearModel nonlinear{ModelConfig::a, ModelConfig::b_nonlin, ModelConfig::c, ModelConfig::d};
 
     std::vector<double> y_lin(n + 1, 0.0);
     std::vector<double> y_nonlin(n + 1, 0.0);
-    std::vector<double> u(n + 1, u_val);
+    std::vector<double> u(n + 1, u_val); // if you want time-varying u, fill this differently
 
     y_lin[0] = y0;
     y_nonlin[0] = y0;
 
     for (int t = 0; t < n; ++t) {
         y_lin[t + 1] = linear.step(y_lin[t], u[t]);
-        double prev_u = (t > 0) ? u[t - 1] : u[0];
+        double prev_u = (t > 0) ? u[t - 1] : 0.0;
         y_nonlin[t + 1] = nonlinear.step(y_nonlin[t], u[t], prev_u);
     }
 
@@ -60,7 +67,7 @@ int main() {
     std::cout << "Step\tLinear\t\tNonlinear\n";
     std::cout << "---------------------------------\n";
     for (int t = 0; t <= n; ++t) {
-        std::cout << t << "\t" 
+        std::cout << t << "\t"
                   << std::fixed << std::setprecision(4) << y_lin[t] << "\t\t"
                   << y_nonlin[t] << "\n";
     }
