@@ -46,6 +46,7 @@ int main() {
 
     for (int t = 0; t < n; ++t) {
         y_lin[t + 1] = linear.step(y_lin[t], u[t]);
+        // For the first step (t == 0), there is no previous u value, so use 0.0 as the default.
         double prev_u = (t > 0) ? u[t - 1] : 0.0;
         y_nonlin[t + 1] = nonlinear.step(y_nonlin[t], u[t], prev_u);
     }
