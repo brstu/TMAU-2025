@@ -23,7 +23,7 @@ int main() {
     double u_val;
 
     double a = 0.9;
-    double b = 0.2;     
+    double b = 0.2;
     double b_nl = 0.01;
     double c = 0.15;
     // d: Amplitude of the nonlinear input effect (weight of the sinusoidal term modeling actuator dynamics), chosen as 0.05 for moderate nonlinearity
