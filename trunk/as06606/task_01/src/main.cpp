@@ -3,6 +3,15 @@
 #include <cmath>
 #include <iomanip>
 
+// Конфигурация модели (вместо magic numbers)
+struct ModelConfig {
+    static constexpr double a = 0.9;
+    static constexpr double b_lin = 0.2;
+    static constexpr double b_nonlin = 0.01;
+    static constexpr double c = 0.15;
+    static constexpr double d = 0.05;
+};
+
 struct LinearModel {
     double a, b;
     double step(double y, double u) const {
@@ -22,12 +31,6 @@ int main() {
     double y0;
     double u_val;
 
-    const double a = 0.9;
-    const double b_lin = 0.2;
-    const double b_nonlin = 0.01;
-    const double c = 0.15;
-    const double d = 0.05;
-
     std::cout << "Enter number of steps n: ";
     std::cin >> n;
     std::cout << "Enter initial temperature y0: ";
@@ -35,8 +38,10 @@ int main() {
     std::cout << "Enter constant heating u: ";
     std::cin >> u_val;
 
-    LinearModel linear{a, b_lin};
-    NonlinearModel nonlinear{a, b_nonlin, c, d};
+    // Инициализация моделей с использованием конфигурации
+    LinearModel linear{ModelConfig::a, ModelConfig::b_lin};
+    NonlinearModel nonlinear{ModelConfig::a, ModelConfig::b_nonlin,
+                             ModelConfig::c, ModelConfig::d};
 
     std::vector<double> y_lin(n + 1, 0.0);
     std::vector<double> y_nonlin(n + 1, 0.0);
