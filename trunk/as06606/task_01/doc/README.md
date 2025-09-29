@@ -41,7 +41,7 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants fo
 double a = 0.9;
 double b_lin = 0.2;
 // Nonlinear model parameters
-double b_nonlin = 0.03;
+double b_nonlin = 0.01;
 double c = 0.15;
 double d = 0.05;
 Enter initial temperature y0: 20   
