@@ -26,6 +26,7 @@ int main() {
     double b = 0.2;     
     double b_nl = 0.01;
     double c = 0.15;
+    // d: Amplitude of the nonlinear input effect (weight of the sinusoidal term modeling actuator dynamics), chosen as 0.05 for moderate nonlinearity
     double d = 0.05;
 
     std::cout << "Enter number of steps n: ";
