@@ -36,11 +36,9 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants fo
 
 ## Выполнение работы
 Инициализация параметров  
+```cpp
 double c = 0.15;
 double d = 0.05;
-
-```bash
-Enter number of steps n: 20
 Enter initial temperature y0: 20   
 Enter constant heating u: 2
 
