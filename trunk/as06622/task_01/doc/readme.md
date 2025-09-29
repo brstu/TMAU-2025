@@ -38,7 +38,7 @@ Task is to write program (**С++**), which simulates this object temperature.
 ## Выполнение работы
 Константы  
 ```
-const int STEPS = 10; \\ такты времени
+const int STEPS = 10; // такты времени
 const double K1 = 0.99;
 const double K2 = 0.01;
 const double K3 = 0.5;
