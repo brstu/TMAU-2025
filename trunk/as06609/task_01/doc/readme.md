@@ -43,7 +43,7 @@ const double A = 0.99;
 const double B = 0.01;
 const double C = 0.5;
 const double D = 0.1;
-const double Y_START = 18.0
+const double Y_START = 18.0;
 ```
 Имея данные параметры получим результат работы программы:
 ```Линейная модель
