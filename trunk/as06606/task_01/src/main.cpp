@@ -9,6 +9,9 @@ struct ModelConfig {
     static constexpr double b_nonlin = 0.01;
     static constexpr double c = 0.15;
     static constexpr double d = 0.05;
+
+    // Special constants
+    static constexpr double INITIAL_PREV_U = 0.0; // no previous input at t=0
 };
 
 struct LinearModel {
@@ -22,7 +25,7 @@ struct LinearModel {
 
 struct NonlinearModel {
     double a;
-    double b_nonlin; // clearly named member
+    double b_nonlin;
     double c;
     double d;
     NonlinearModel(double a_, double b_nonlin_, double c_, double d_)
@@ -55,15 +58,15 @@ int main() {
 
     std::vector<double> y_lin(n + 1, 0.0);
     std::vector<double> y_nonlin(n + 1, 0.0);
-    // Using constant heating input u for all time steps; fill 'u' differently for time-varying input.
-    std::vector<double> u(n + 1, u_val);
+    std::vector<double> u(n + 1, u_val); // constant input, but expandable for varying input
 
     y_lin[0] = y0;
     y_nonlin[0] = y0;
 
     for (int t = 0; t < n; ++t) {
         y_lin[t + 1] = linear.step(y_lin[t], u[t]);
-        double prev_u = (t > 0) ? u[t - 1] : 0.0;
+        // At t == 0, no previous input exists → INITIAL_PREV_U
+        double prev_u = (t > 0) ? u[t - 1] : ModelConfig::INITIAL_PREV_U;
         y_nonlin[t + 1] = nonlinear.step(y_nonlin[t], u[t], prev_u);
     }
 
