@@ -11,9 +11,9 @@ struct LinearModel {
 };
 
 struct NonlinearModel {
-    double a, b, c, d;
+    double a, b_nl, c, d;
     double step(double y, double u, double prev_u) const {
-        return a * y - b * y * y + c * u + d * std::sin(prev_u);
+        return a * y - b_nl * y * y + c * u + d * std::sin(prev_u);
     }
 };
 
@@ -23,7 +23,8 @@ int main() {
     double u_val;
 
     double a = 0.9;
-    double b = 0.2;
+    double b = 0.2;     
+    double b_nl = 0.01;
     double c = 0.15;
     double d = 0.05;
 
@@ -35,7 +36,7 @@ int main() {
     std::cin >> u_val;
 
     LinearModel linear{a, b};
-    NonlinearModel nonlinear{a, 0.01, c, d};
+    NonlinearModel nonlinear{a, b_nl, c, d};
 
     std::vector<double> y_lin(n + 1, 0.0);
     std::vector<double> y_nonlin(n + 1, 0.0);
