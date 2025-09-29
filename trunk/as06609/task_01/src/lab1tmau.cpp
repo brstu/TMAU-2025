@@ -40,6 +40,7 @@ int main() {
     for (int i = 0; i < N - 1; i++) {
         y = nonlinearModel(y, y_prev, u[i + 1], u[i]);
         cout << "y" << i + 1 << " = " << y << endl;
+        y_prev = y;
     }
 
     cin.get();
