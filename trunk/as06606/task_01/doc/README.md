@@ -37,6 +37,11 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants fo
 ## Выполнение работы
 Инициализация параметров  
 ```cpp
+// Linear model parameters
+double a = 0.92;
+double b_lin = 0.8;
+// Nonlinear model parameters
+double b_nonlin = 0.03;
 double c = 0.15;
 double d = 0.05;
 Enter initial temperature y0: 20   
