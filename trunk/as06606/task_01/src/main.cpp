@@ -52,7 +52,10 @@ int main() {
 
     std::vector<double> y_lin(n + 1, 0.0);
     std::vector<double> y_nonlin(n + 1, 0.0);
-    std::vector<double> u(n + 1, u_val); // if you want time-varying u, fill this differently
+    // For simplicity, we use a constant heating input u for all time steps.
+    // If you want to simulate a time-varying input, fill the vector 'u' with different values for each time step,
+    // e.g., by reading them from input or generating them programmatically.
+    std::vector<double> u(n + 1, u_val);
 
     y_lin[0] = y0;
     y_nonlin[0] = y0;
