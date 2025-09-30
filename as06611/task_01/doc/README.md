@@ -22,7 +22,7 @@ Let's get some object to be controlled. We want to control its temperature, whic
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input heat; $Y_0$ – room temperature; $C,RC$ – some constants.
+where $\tau$ – time; $y(\tau)$ – output temperature; $u(\tau)$ – input heat; $Y_0$ – room temperature; $C,RC$ – some constants.
 
 After transformation we get these linear (2) and nonlinear (3) models:
 
@@ -44,31 +44,5 @@ double d = 0.1;
 vector<double> u = { 1.0, 1.2, 0.8, 1.5, 1.0, 0.7, 1.3, 0.9, 1.1, 0.6 };
 ```
 Результат работы программы:
-```bash
-Linear model:
-t=1, u=1, y=0.5
-t=2, u=1.2, y=1
-t=3, u=0.8, y=1.2
-t=4, u=1.5, y=1.71
-t=5, u=1, y=1.868
-t=6, u=0.7, y=1.8444
-t=7, u=1.3, y=2.12552
-t=8, u=0.9, y=2.15042
-t=9, u=1.1, y=2.27033
-t=10, u=0.6, y=2.11627
-
-Nonlinear model:
-t=1, u=1, y=0.3
-t=2, u=1.2, y=0.684147
-t=3, u=0.8, y=0.835522
-t=4, u=1.5, y=0.956124
-t=5, u=1, y=0.815601
-t=6, u=0.7, y=0.489541
-t=7, u=1.3, y=0.513452
-t=8, u=0.9, y=0.657292
-t=9, u=1.1, y=0.80235
-t=10, u=0.6, y=0.694984
-
-
 ```
 **Вывод:** зная функцию отражающую систему, можно моделировать параметры модели в зависимости от времени или других параметров.

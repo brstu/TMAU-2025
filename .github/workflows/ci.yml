@@ -24,9 +24,13 @@ jobs:
 
     - name: Compile program
       run: |
+<<<<<<< HEAD
         # Компилируем из корня репозитория
         g++ -std=c++11 -o temperature_model LAB1.cpp
         ls -la temperature_model  # Проверяем что файл создан
+=======
+        g++ -std=c++11 -o temperature_model as06611/task_01/src/LAB1.cpp
+>>>>>>> bdeb7773b31346c6ebc277aaff81f78d4addd430
 
     - name: Run program
       run: |
@@ -37,8 +41,13 @@ jobs:
       run: |
         echo '[{
           "directory": "${{ github.workspace }}",
+<<<<<<< HEAD
           "command": "g++ -std=c++11 -o temperature_model LAB1.cpp", 
           "file": "LAB1t3.cpp",
+=======
+          "command": "g++ -std=c++11 -o temperature_model as06611/task_01/src/LAB1.cpp", 
+          "file": "as06611/task_01/src/LAB1.cpp",
+>>>>>>> bdeb7773b31346c6ebc277aaff81f78d4addd430
           "output": "temperature_model"
         }]' > compile_commands.json
         
