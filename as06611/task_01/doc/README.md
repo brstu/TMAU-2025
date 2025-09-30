@@ -22,7 +22,7 @@ Let's get some object to be controlled. We want to control its temperature, whic
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input heat; $Y_0$ – room temperature; $C,RC$ – some constants.
+where $\tau$ – time; $y(\tau)$ – output temperature; $u(\tau)$ – input heat; $Y_0$ – room temperature; $C,RC$ – some constants.
 
 After transformation we get these linear (2) and nonlinear (3) models:
 
