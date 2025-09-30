@@ -1,96 +1,47 @@
 ﻿#include <iostream>
-#include <cmath>
 #include <vector>
-#include <stdexcept>
+#include <cmath>
 
-using namespace std;
-
-struct ModelParams {
-    double a;
-    double b;
-    double c;
-    double d;
-};
-
-// --- Linear model: y(t+1) = a*y(t) + b*u(t)
-vector<double> simulateLinear(int steps, double y0, const ModelParams& params, const vector<double>& u) {
-    if (steps <= 0 || u.empty()) {
-        throw invalid_argument("Steps must be positive and input vector u must not be empty.");
-    }
-
-    vector<double> y(steps + 1, 0.0);
-    y[0] = y0;
-
-    for (int t = 0; t < steps; t++) {
-        y[t + 1] = params.a * y[t] + params.b * u[t];
-    }
-    return y;
+// Линейная модель: y[k+1] = alpha * y[k] + beta * u[k]
+double modelLinear(double y_curr, double u_curr, double alpha, double beta) {
+    return alpha * y_curr + beta * u_curr;
 }
 
-// --- Nonlinear model: y(t+1) = a*y(t) - b*y(t-1)^2 + c*u(t) + d*sin(u(t-1))
-vector<double> simulateNonlinear(int steps, double y0, const ModelParams& params, const vector<double>& u) {
-    if (steps <= 0 || u.empty()) {
-        throw invalid_argument("Steps must be positive and input vector u must not be empty.");
-    }
-
-    vector<double> y(steps + 1, 0.0);
-    y[0] = y0;
-
-    for (int t = 0; t < steps; t++) {
-        double prevY = (t > 0) ? y[t - 1] : 0.0;
-        double prevU = (t > 0) ? u[t - 1] : 0.0;
-
-        y[t + 1] = params.a * y[t]
-            - params.b * prevY * prevY
-            + params.c * u[t]
-            + params.d * sin(prevU);
-    }
-    return y;
-}
-
-// --- Output results
-void printResults(const vector<double>& u, const vector<double>& yLinear, const vector<double>& yNonlinear) {
-    cout << "Step\tu(t)\ty_linear(t)\ty_nonlinear(t)" << endl;
-
-    int steps = static_cast<int>(yLinear.size()) - 1;
-    for (int t = 0; t <= steps; t++) {
-        cout << t << "\t";
-        if (t < static_cast<int>(u.size())) {
-            cout << u[t] << "\t";
-        }
-        else {
-            cout << "-\t";
-        }
-        cout << yLinear[t] << "\t\t" << yNonlinear[t] << endl;
-    }
+// Нелинейная модель:
+// y[k+1] = alpha*y[k] - beta*(y[k-1]^2) + gamma*u[k] + delta*sin(u[k-1])
+double modelNonlinear(double y_curr, double y_prev, double u_curr, double u_prev,
+    double alpha, double beta, double gamma, double delta) {
+    return alpha * y_curr - beta * y_prev * y_prev + gamma * u_curr + delta * std::sin(u_prev);
 }
 
 int main() {
-    try {
-        // Simulation constants
-        const int steps = 20;
-        const double y0 = 20.0;
+    const double alpha = 0.9;
+    const double beta = 0.15;
+    const double gamma = 0.05;
+    const double delta = 0.02;
 
-        // Parameters for models
-        const ModelParams params{ 0.8, 0.5, 0.3, 0.2 };
+    const int steps = 25;
 
-        // Input signal u(t)
-        vector<double> u(steps, 0.0);
-        for (int t = 0; t < steps; t++) {
-            u[t] = 5.0 + 2.0 * sin(0.3 * static_cast<double>(t));
-        }
+    std::vector<double> y(steps + 1, 0.0);
+    std::vector<double> u(steps + 1, 0.0);
 
-        // Run simulations
-        vector<double> yLinear = simulateLinear(steps, y0, params, u);
-        vector<double> yNonlinear = simulateNonlinear(steps, y0, params, u);
-
-        // Print results
-        printResults(u, yLinear, yNonlinear);
-
+    // Формируем входное воздействие: до шага 7 = 0, затем = 1
+    for (int k = 0; k <= steps; ++k) {
+        u[k] = (k < 7 ? 0.0 : 1.0);
     }
-    catch (const exception& e) {
-        cerr << "Error: " << e.what() << endl;
-        return 1;
+
+    std::cout << "=== Linear model ===\n";
+    for (int k = 0; k < steps; ++k) {
+        y[k + 1] = modelLinear(y[k], u[k], alpha, beta);
+        std::cout << "step " << k + 1 << ": y = " << y[k + 1] << "\n";
+    }
+
+    std::fill(y.begin(), y.end(), 0.0);
+
+    std::cout << "\n=== Nonlinear model ===\n";
+    for (int k = 1; k < steps; ++k) {
+        y[k + 1] = modelNonlinear(y[k], y[k - 1], u[k], u[k - 1], alpha, beta, gamma, delta);
+        std::cout << "step " << k + 1 << ": y = " << y[k + 1] << "\n";
     }
 
     return 0;
