@@ -33,7 +33,7 @@ $$\Large y_{\tau+1}=ay_{\tau}-b_{nl}y_{\tau}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants for the linear model; $a,b_{nl},c,d$ – constants for the nonlinear model.
 
 ## Выполнение работы
-Инициализация параметров:
+**Инициализация параметров:**
 ```cpp
 int n = 30;
 double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
@@ -43,7 +43,7 @@ std::vector<double> y_lin(n, 0.0);
 std::vector<double> y_nonlin(n, 0.0);
 ```
 
-Результат работы программы:
+**Результат работы программы:**
 ```
 Simulation results:
 Step    Linear model    Nonlinear model
