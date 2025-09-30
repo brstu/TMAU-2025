@@ -20,7 +20,7 @@ double nonlinearModel(double y_curr, double y_prev, double u_curr, double u_prev
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    double U[N] = { 4, 6, 5, 4, 6, 5, 4, 6, 5, 4 };
+    double U[N] = { 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 5, 6 };
 
     cout << "Линейная модель:" << endl;
     cout << "y0 = " << Y_start << endl;
