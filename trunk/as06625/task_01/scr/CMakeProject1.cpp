@@ -42,8 +42,10 @@ int main() {
 
     cout << "\nResults of the Nonlinear Model:" << endl;
     // Вычисление нелинейной модели
-    for (int time = 1; time < steps; ++time) {
-        temperature[time + 1] = computeNonlinear(temperature[time], temperature[time - 1], input[time], input[time - 1],
+    for (int time = 0; time < steps; ++time) {
+        double prev_temp = (time == 0) ? temperature[0] : temperature[time - 1];
+        double prev_input = (time == 0) ? input[0] : input[time - 1];
+        temperature[time + 1] = computeNonlinear(temperature[time], prev_temp, input[time], prev_input,
             factor_a, factor_b, factor_c, factor_d);
         cout << "Time=" << time + 1 << "  Temperature=" << temperature[time + 1] << endl;
     }
