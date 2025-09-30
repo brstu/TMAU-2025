@@ -37,18 +37,14 @@ Task is to write program (**С++**), which simulates this object temperature.
 ## Выполнение работы
 Инициализация параметров  
 ```
-double a = 1.9;
-double b = 0.5;
-double c = 0.3;
-double d = 0.1;
+double a = 0.6;
+double b = 0.3;
+double c = 0.15;
+double d = 0.08;
 
 ```
 Имея данные параметры получим результат работы программы:
 ```bash
-Enter number of steps n: 10
-Enter initial temperature y0: 20   
-Enter constant heating u: 5
-
 Simulation results:
 Step    Linear          Nonlinear
 ---------------------------------
