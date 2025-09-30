@@ -34,8 +34,8 @@ jobs:
       run: |
         echo '[{
           "directory": "${{ github.workspace }}",
-          "command": "g++ -std=c++11 -o temperature_model LAB1.cpp", 
-          "file": "LAB1.cpp",
+          "command": "g++ -std=c++11 -o temperature_model as06611/task_01/src/LAB1.cpp", 
+          "file": "as06611/task_01/src/LAB1.cpp",
           "output": "temperature_model"
         }]' > compile_commands.json
 
