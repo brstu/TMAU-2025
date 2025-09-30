@@ -1,77 +1,52 @@
 ﻿#include <iostream>
 #include <vector>
 #include <cmath>
-#include <iomanip>
 
 using namespace std;
 
-struct LinearModel {
-    double a, b;
+// Функция для линейной модели
+double computeLinear(double current_y, double current_u, double factor_a, double factor_b) {
+    return factor_a * current_y + factor_b * current_u;
+}
 
-    double compute(double y, double u) const {
-        return a * y + b * u;
-    }
-};
-
-struct NonlinearModel {
-    double a, b, c, d;
-
-    double compute(double y, double u, double prev_u) const {
-        return a * y - b * y * y + c * u + d * sin(prev_u);
-    }
-};
-
-void simulate(int n, double y0, double u_val, const LinearModel& linear, const NonlinearModel& nonlinear) {
-    vector<double> y_lin(n + 1);
-    vector<double> y_nonlin(n + 1);
-    vector<double> u(n + 1, u_val);
-
-    // Set initial value
-    y_lin[0] = y0;
-    y_nonlin[0] = y0;
-
-    // Simulation
-    for (int t = 0; t < n; ++t) {
-        y_lin[t + 1] = linear.compute(y_lin[t], u[t]);
-        double prev_u = (t > 0) ? u[t - 1] : 0.0;
-        y_nonlin[t + 1] = nonlinear.compute(y_nonlin[t], u[t], prev_u);
-    }
-
-    // Output simulation results
-    cout << "\nSimulation results:\n";
-    cout << "Step\tLinear\t\tNonlinear\n";
-    cout << "---------------------------------\n";
-
-    for (int t = 0; t <= n; ++t) {
-        cout << t << "\t"
-            << fixed << setprecision(4) << y_lin[t] << "\t\t"
-            << fixed << setprecision(4) << y_nonlin[t] << "\n";
-    }
+// Функция для нелинейной модели
+double computeNonlinear(double current_y, double previous_y, double current_u, double previous_u,
+    double factor_a, double factor_b, double factor_c, double factor_d) {
+    return factor_a * current_y - factor_b * previous_y * previous_y + factor_c * current_u + factor_d * sin(previous_u);
 }
 
 int main() {
-    int n;
-    double y0;
-    double u_val;
+    const double factor_a = 0.6; 
+    const double factor_b = 0.3;
+    const double factor_c = 0.15; 
+    const double factor_d = 0.08; 
 
-    // Model parameters with new values
-    double a = 1.2;
-    double b = 0.5;
-    double c = 0.3;
-    double d = 0.1;
+    const int steps = 20;
 
-    cout << "Enter the number of steps n: ";
-    cin >> n;
-    cout << "Enter the initial temperature y0: ";
-    cin >> y0;
-    cout << "Enter the constant heating u: ";
-    cin >> u_val;
+    vector<double> temperature(steps + 1, 0.0); // Вектор для температуры
+    vector<double> input(steps + 1, 0.0); // Вектор для входных значений
 
-    LinearModel linear{ a, b };
-    NonlinearModel nonlinear{ a, 0.01, c, d };
+    // Инициализация входных значений
+    for (int time = 0; time <= steps; ++time) {
+        input[time] = (time < 5) ? 0.0 : 1.0; // Установка значений на основе времени
+    }
 
-    // Start simulation
-    simulate(n, y0, u_val, linear, nonlinear);
+    cout << "Results of the Linear Model:" << endl;
+    // Вычисление линейной модели
+    for (int time = 0; time < steps; ++time) {
+        temperature[time + 1] = computeLinear(temperature[time], input[time], factor_a, factor_b);
+        cout << "Time=" << time + 1 << "  Temperature=" << temperature[time + 1] << endl;
+    }
+
+    fill(temperature.begin(), temperature.end(), 0.0); // Очистка вектора температуры для следующей модели
+
+    cout << "\nResults of the Nonlinear Model:" << endl;
+    // Вычисление нелинейной модели
+    for (int time = 1; time < steps; ++time) {
+        temperature[time + 1] = computeNonlinear(temperature[time], temperature[time - 1], input[time], input[time - 1],
+            factor_a, factor_b, factor_c, factor_d);
+        cout << "Time=" << time + 1 << "  Temperature=" << temperature[time + 1] << endl;
+    }
 
     return 0;
 }

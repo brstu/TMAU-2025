@@ -1,14 +1,8 @@
-﻿cmake_minimum_required(VERSION 3.10)
+﻿
+add_executable (CMakeProject1 "CMakeProject1.cpp" "CMakeProject1.h")
 
-project(task_01 LANGUAGES CXX)
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET CMakeProject1 PROPERTY CXX_STANDARD 20)
+endif()
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-file(GLOB SOURCES "*.cpp")
-
-add_executable(task_01 ${SOURCES})
-
-set_target_properties(task_01 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
-)
