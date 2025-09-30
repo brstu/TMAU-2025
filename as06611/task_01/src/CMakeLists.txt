@@ -1,5 +1,10 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
+project(LAB1)
 
-project(TMAU)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(TMAU_LAB1 LAB1.cpp)
+# Генерация compile_commands.json для SonarQube
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+add_executable(LAB1 LAB1t3.cpp)
