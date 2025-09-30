@@ -1,6 +1,12 @@
-﻿cmake_minimum_required(VERSION 3.12)
-project(CMakeProject1)
+﻿cmake_minimum_required(VERSION 3.10)
 
-set(CMAKE_CXX_STANDARD 20)
+project(task_01 LANGUAGES CXX)
 
-add_executable(CMakeProject1 CMakeProject1.cpp)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable(task_01 CMakeProject1.cpp)
+
+set_target_properties(task_01 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+)
