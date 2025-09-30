@@ -24,7 +24,7 @@ jobs:
 
     - name: Compile program
       run: |
-        g++ -std=c++11 -o temperature_model LAB1.cpp
+        g++ -std=c++11 -o temperature_model as06611/task_01/src/LAB1.cpp
 
     - name: Run program
       run: |
