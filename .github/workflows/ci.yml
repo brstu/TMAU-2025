@@ -2,7 +2,7 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ task_03/** ]
+    branches: [ task_01/** ]
   pull_request:
     branches: [ main ]
     types: [opened, synchronize, reopened]
@@ -24,7 +24,7 @@ jobs:
 
     - name: Compile program
       run: |
-        g++ -std=c++11 -o temperature_model LAB1t3.cpp
+        g++ -std=c++11 -o temperature_model LAB1.cpp
 
     - name: Run program
       run: |
@@ -34,7 +34,7 @@ jobs:
       run: |
         echo '[{
           "directory": "${{ github.workspace }}",
-          "command": "g++ -std=c++11 -o temperature_model LAB1t3.cpp", 
+          "command": "g++ -std=c++11 -o temperature_model LAB1.cpp", 
           "file": "LAB1t3.cpp",
           "output": "temperature_model"
         }]' > compile_commands.json
