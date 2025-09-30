@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <cmath>
 
@@ -41,7 +41,7 @@ public:
 
     /**
      * Nonlinear temperature model with squared and sinusoidal terms
-     * y(k+1) = a*y(k) - b*y(k-1)? + c*u(k) + d*sin(u(k-1))
+     * y(k+1) = a*y(k) - b*y(k-1)² + c*u(k) + d*sin(u(k-1))
      * Includes nonlinear effects and periodic disturbances
      * where k - discrete time step
      * @param u Heat input at current time step
@@ -94,25 +94,25 @@ int main() {
 
     // Linear model simulation
     std::cout << "Linear temperature model simulation:" << std::endl;
-    std::cout << "Time (k)\tHeat Input u(k)\tTemperature y(k)" << std::endl;
-    std::cout << "------------------------------------------------" << std::endl;
+    std::cout << "Time k\tHeat Input u(k)\tTemperature y(k)" << std::endl;
+    std::cout << "--------------------------------------------" << std::endl;
     model.reset();
 
     for (size_t k = 0; k < heat_input.size(); ++k) {
         double temperature = model.linearModel(heat_input[k]);
-        std::cout << k + 1 << "\t\t" << heat_input[k] << "\t\t" << temperature << std::endl;
+        std::cout << k + 1 << "\t" << heat_input[k] << "\t\t" << temperature << std::endl;
     }
 
     // Nonlinear model simulation  
     std::cout << "\nNonlinear temperature model simulation:" << std::endl;
-    std::cout << "Time (k)\tHeat Input u(k)\tTemperature y(k)" << std::endl;
-    std::cout << "------------------------------------------------" << std::endl;
+    std::cout << "Time k\tHeat Input u(k)\tTemperature y(k)" << std::endl;
+    std::cout << "--------------------------------------------" << std::endl;
     model.reset();
 
     for (size_t k = 0; k < heat_input.size(); ++k) {
         double previous_heat_input = (k == 0) ? 0.0 : heat_input[k - 1];
         double temperature = model.nonlinearModel(heat_input[k], previous_heat_input);
-        std::cout << k + 1 << "\t\t" << heat_input[k] << "\t\t" << temperature << std::endl;
+        std::cout << k + 1 << "\t" << heat_input[k] << "\t\t" << temperature << std::endl;
     }
 
     return 0;
