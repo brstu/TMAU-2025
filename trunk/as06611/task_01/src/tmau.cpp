@@ -1,5 +1,6 @@
-п»їп»ї#include <iostream>
+#include <iostream>
 #include <cmath>
+#include <locale>
 using namespace std;
 
 const int N = 15;
@@ -22,7 +23,7 @@ int main() {
 
     double U[N] = { 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 5, 6 };
 
-    cout << "Р›РёРЅРµР№РЅР°СЏ РјРѕРґРµР»СЊ:" << endl;
+    cout << "Линейная модель:" << endl;
     cout << "y0 = " << Y_start << endl;
 
     double y = Y_start;
@@ -31,14 +32,23 @@ int main() {
         cout << "y" << i + 1 << " = " << y << endl;
     }
 
-    cout << "\nРќРµР»РёРЅРµР№РЅР°СЏ РјРѕРґРµР»СЊ:" << endl;
+    cout << "\nНелинейная модель:" << endl;
     cout << "y0 = " << Y_start << endl;
 
-    double y_prev = Y_start;
-    double y_curr = Y_start;
+    // Для нелинейной модели нужны два предыдущих значения y
+    double y_prev = Y_start;  // y_{?-1}
+    double y_curr = Y_start;  // y_?
 
-    for (int i = 0; i < N - 1; i++) {
-        double y_next = nonlinearModel(y_curr, y_prev, U[i + 1], U[i]);
+    // Первое значение (y1)
+    double y_next = nonlinearModel(y_curr, y_prev, U[0], 0); // u_{?-1} = 0 для первого шага
+    cout << "y1 = " << y_next << endl;
+
+    y_prev = y_curr;
+    y_curr = y_next;
+
+    // Остальные значения
+    for (int i = 1; i < N; i++) {
+        y_next = nonlinearModel(y_curr, y_prev, U[i], U[i - 1]);
         cout << "y" << i + 1 << " = " << y_next << endl;
         y_prev = y_curr;
         y_curr = y_next;
