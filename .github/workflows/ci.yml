@@ -24,10 +24,13 @@ jobs:
 
     - name: Compile program
       run: |
+        # Компилируем из корня репозитория
         g++ -std=c++11 -o temperature_model LAB1.cpp
+        ls -la temperature_model  # Проверяем что файл создан
 
     - name: Run program
       run: |
+        # Запускаем из корня репозитория
         ./temperature_model
 
     - name: Create compile_commands.json
@@ -35,9 +38,12 @@ jobs:
         echo '[{
           "directory": "${{ github.workspace }}",
           "command": "g++ -std=c++11 -o temperature_model LAB1.cpp", 
-          "file": "LAB1.cpp",
+          "file": "LAB1t3.cpp",
           "output": "temperature_model"
         }]' > compile_commands.json
+        
+        # Проверяем что файл создан
+        cat compile_commands.json
 
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v6
