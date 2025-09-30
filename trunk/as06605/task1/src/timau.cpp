@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//constants
+//Constants
 const double a = 0.1;
 const double b = 0.2;
 const double c = 0.3;
