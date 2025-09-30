@@ -38,7 +38,7 @@ Task is to write program (**С++**), which simulates this object temperature.
 Константы
 
 ```
-int N = 15;
+int N = 10;
 const double A = 0.9;
 const double B = 0.01;
 const double C = 0.4;
