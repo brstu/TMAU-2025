@@ -40,7 +40,7 @@ Task is to write program (**С++**), which simulates this object temperature.
 double a = 0.8;  
 double b = 0.5;  
 double c = 0.3;  
-double d = 0.1;  
+double d = 0.2;  
 vector<double> u = { 1.0, 1.2, 0.8, 1.5, 1.0, 0.7, 1.3, 0.9, 1.1, 0.6 };
 ```
 Результат работы программы:
