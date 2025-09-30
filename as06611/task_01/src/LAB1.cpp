@@ -26,8 +26,9 @@ public:
     }
 
     /**
-     * Linear temperature model: y(?+1) = a*y(?) + b*u(?)
+     * Linear temperature model: y(k+1) = a*y(k) + b*u(k)
      * Represents first-order linear difference equation
+     * where k - discrete time step
      * @param u Heat input at current time step
      * @return Temperature at next time step
      */
@@ -40,8 +41,9 @@ public:
 
     /**
      * Nonlinear temperature model with squared and sinusoidal terms
-     * y(?+1) = a*y(?) - b*y(?-1)? + c*u(?) + d*sin(u(?-1))
+     * y(k+1) = a*y(k) - b*y(k-1)? + c*u(k) + d*sin(u(k-1))
      * Includes nonlinear effects and periodic disturbances
+     * where k - discrete time step
      * @param u Heat input at current time step
      * @param u_prev Heat input at previous time step
      * @return Temperature at next time step
@@ -92,25 +94,25 @@ int main() {
 
     // Linear model simulation
     std::cout << "Linear temperature model simulation:" << std::endl;
-    std::cout << "Time\tHeat Input\tTemperature" << std::endl;
-    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "Time (k)\tHeat Input u(k)\tTemperature y(k)" << std::endl;
+    std::cout << "------------------------------------------------" << std::endl;
     model.reset();
 
-    for (size_t i = 0; i < heat_input.size(); ++i) {
-        double temperature = model.linearModel(heat_input[i]);
-        std::cout << i + 1 << "\t" << heat_input[i] << "\t\t" << temperature << std::endl;
+    for (size_t k = 0; k < heat_input.size(); ++k) {
+        double temperature = model.linearModel(heat_input[k]);
+        std::cout << k + 1 << "\t\t" << heat_input[k] << "\t\t" << temperature << std::endl;
     }
 
     // Nonlinear model simulation  
     std::cout << "\nNonlinear temperature model simulation:" << std::endl;
-    std::cout << "Time\tHeat Input\tTemperature" << std::endl;
-    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "Time (k)\tHeat Input u(k)\tTemperature y(k)" << std::endl;
+    std::cout << "------------------------------------------------" << std::endl;
     model.reset();
 
-    for (size_t i = 0; i < heat_input.size(); ++i) {
-        double previous_heat_input = (i == 0) ? 0.0 : heat_input[i - 1];
-        double temperature = model.nonlinearModel(heat_input[i], previous_heat_input);
-        std::cout << i + 1 << "\t" << heat_input[i] << "\t\t" << temperature << std::endl;
+    for (size_t k = 0; k < heat_input.size(); ++k) {
+        double previous_heat_input = (k == 0) ? 0.0 : heat_input[k - 1];
+        double temperature = model.nonlinearModel(heat_input[k], previous_heat_input);
+        std::cout << k + 1 << "\t\t" << heat_input[k] << "\t\t" << temperature << std::endl;
     }
 
     return 0;
