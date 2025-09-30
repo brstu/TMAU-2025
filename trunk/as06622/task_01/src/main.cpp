@@ -67,8 +67,8 @@ int main() {
 
     for (int t = 0; t < steps; ++t) {
         y_l[t + 1] = lin.next(y_l[t], u[t]);
-        double prev = (t > 0 ? u[t - 1] : Config::ZERO_PREV_INPUT);
-        y_nl[t + 1] = nonlin.next(y_nl[t], u[t], prev);
+        double prev_u = (t > 0 ? u[t - 1] : Config::ZERO_PREV_INPUT);
+        y_nl[t + 1] = nonlin.next(y_nl[t], u[t], prev_u);
     }
 
     std::cout << "\nРезультаты моделирования:\n";
