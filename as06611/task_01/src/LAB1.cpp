@@ -1,48 +1,61 @@
 ﻿#include <iostream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
-// Линейная модель: y[k+1] = alpha * y[k] + beta * u[k]
-double modelLinear(double y_curr, double u_curr, double alpha, double beta) {
-    return alpha * y_curr + beta * u_curr;
+constexpr double ALPHA = 0.9;
+constexpr double BETA = 0.15;
+constexpr double GAMMA = 0.05;
+constexpr double DELTA = 0.02;
+
+constexpr int STEPS = 25;
+constexpr int STEP_THRESHOLD = 7;
+
+// Линейная модель: y[k+1] = α*y[k] + β*u[k]
+double linearModel(double yCurr, double uCurr) {
+    return ALPHA * yCurr + BETA * uCurr;
 }
 
 // Нелинейная модель:
-// y[k+1] = alpha*y[k] - beta*(y[k-1]^2) + gamma*u[k] + delta*sin(u[k-1])
-double modelNonlinear(double y_curr, double y_prev, double u_curr, double u_prev,
-    double alpha, double beta, double gamma, double delta) {
-    return alpha * y_curr - beta * y_prev * y_prev + gamma * u_curr + delta * std::sin(u_prev);
+// y[k+1] = α*y[k] - β*(y[k-1]^2) + γ*u[k] + δ*sin(u[k-1])
+double nonlinearModel(double yCurr, double yPrev, double uCurr, double uPrev) {
+    return ALPHA * yCurr
+        - BETA * yPrev * yPrev
+        + GAMMA * uCurr
+        + DELTA * std::sin(uPrev);
+}
+
+void printSimulation(const std::vector<double>& y, const std::string& title) {
+    std::cout << title << '\n';
+    for (size_t k = 1; k < y.size(); ++k) {
+        std::cout << "step " << k << ": y = " << y[k] << '\n';
+    }
+    std::cout << '\n';
 }
 
 int main() {
-    const double alpha = 0.9;
-    const double beta = 0.15;
-    const double gamma = 0.05;
-    const double delta = 0.02;
+    std::vector<double> y(STEPS + 1, 0.0);
+    std::vector<double> u(STEPS + 1, 0.0);
 
-    const int steps = 25;
+    // Входное воздействие: до шага 7 = 0, затем = 1
+    std::generate(u.begin(), u.end(), [n = 0]() mutable {
+        return (n++ < STEP_THRESHOLD) ? 0.0 : 1.0;
+        });
 
-    std::vector<double> y(steps + 1, 0.0);
-    std::vector<double> u(steps + 1, 0.0);
-
-    // Формируем входное воздействие: до шага 7 = 0, затем = 1
-    for (int k = 0; k <= steps; ++k) {
-        u[k] = (k < 7 ? 0.0 : 1.0);
+    // Линейная модель
+    for (int k = 0; k < STEPS; ++k) {
+        y[k + 1] = linearModel(y[k], u[k]);
     }
+    printSimulation(y, "=== Linear model ===");
 
-    std::cout << "=== Linear model ===\n";
-    for (int k = 0; k < steps; ++k) {
-        y[k + 1] = modelLinear(y[k], u[k], alpha, beta);
-        std::cout << "step " << k + 1 << ": y = " << y[k + 1] << "\n";
-    }
-
+    // Обнуляем для нелинейной
     std::fill(y.begin(), y.end(), 0.0);
 
-    std::cout << "\n=== Nonlinear model ===\n";
-    for (int k = 1; k < steps; ++k) {
-        y[k + 1] = modelNonlinear(y[k], y[k - 1], u[k], u[k - 1], alpha, beta, gamma, delta);
-        std::cout << "step " << k + 1 << ": y = " << y[k + 1] << "\n";
+    // Нелинейная модель
+    for (int k = 1; k < STEPS; ++k) {
+        y[k + 1] = nonlinearModel(y[k], y[k - 1], u[k], u[k - 1]);
     }
+    printSimulation(y, "=== Nonlinear model ===");
 
     return 0;
 }
