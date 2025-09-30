@@ -45,4 +45,5 @@ int main()
 	{
 		cout << i << "\t" << linearT[i] << "\t\t" << nonlinearT[i] << endl;
 	}
+	return 0;
 }
