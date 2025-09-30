@@ -45,10 +45,6 @@ double d = 0.08;
 ```
 Имея данные параметры получим результат работы программы:
 ```bash
-Enter number of steps n: 10
-Enter initial temperature y0: 20   
-Enter constant heating u: 5
-
 Simulation results:
 Step    Linear          Nonlinear
 ---------------------------------
