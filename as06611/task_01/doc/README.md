@@ -9,8 +9,8 @@
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
-<p align="right">Группы АС-65</p>
-<p align="right">Зинчук М.С.</p>
+<p align="right">Группы АС-66</p>
+<p align="right">Лысюк Р.А.</p>
 <p align="right">Проверил:</p>
 <p align="right">Иванюк Д.С.</p>
 <br><br><br><br><br><br><br><br>
