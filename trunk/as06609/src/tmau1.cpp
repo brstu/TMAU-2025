@@ -23,7 +23,7 @@ int main() {
     cout << "=== Линейная модель ===" << endl;
     cout << "Начальное значение y0 = " << INITIAL_VALUE << endl;
 
-    double inputSequence[10] = { 12, 9, 14, 11, 13, 10, 8, 15, 12, 11 };
+    double inputSequence[N] = { 12, 9, 14, 11, 13, 10, 8, 15, 12, 11 };
     double currentY = INITIAL_VALUE;
     double previousY = INITIAL_VALUE;
 
