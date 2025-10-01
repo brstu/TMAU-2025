@@ -57,7 +57,7 @@ int main() {
 
         out << t * dt << ","
             << x1_next_lin << "," << x2_next_lin << "," << u_t_lin << ","
-            << x1_next_non << "," << x2_next_non << "," << u_t_non << "\n";
+        double u_t_non = kp * e_non + d * de_non + c * (u_prev * u_prev) + s * std::sin(u_prev);
     }
 
     out.close();
