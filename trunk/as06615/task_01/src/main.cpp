@@ -10,13 +10,12 @@ int main() {
     const double d = 0.5;          // дифференциальный коэффициент
     const double c = 0.0001;       // нелинейный коэффициент u^2
     const double s = 0.01;         // коэффициент sin(u_prev)
-
     const int steps = 100;
 
     // Линейная модель
     std::vector<double> x1_lin = {0.0};
     std::vector<double> x2_lin = {0.0};
-    std::vector<double> u_lin = {0.0};         
+    std::vector<double> u_lin = {0.0};
     std::vector<double> err_lin = {x_ref};
 
     // Нелинейная модель
@@ -26,13 +25,18 @@ int main() {
     std::vector<double> err_non = {x_ref};
 
     std::ofstream out("trajectory.csv");
+    if (!out.is_open()) {
+        std::cerr << "Ошибка: не удалось открыть файл trajectory.csv\n";
+        return 1;
+    }
+
     out << "t,x1_linear,x2_linear,u_linear,x1_nonlinear,x2_nonlinear,u_nonlinear\n";
 
     for (int t = 0; t < steps; ++t) {
         // Линейное управление
         double e_lin = x_ref - x1_lin.back();
         err_lin.push_back(e_lin);
-        double de_lin = (err_lin[t + 1] - err_lin[t]) / dt;
+        double de_lin = (t == 0) ? 0.0 : (err_lin.back() - err_lin[err_lin.size() - 2]) / dt;
         double u_t_lin = kp * e_lin + d * de_lin;
         u_lin.push_back(u_t_lin);
 
@@ -44,8 +48,8 @@ int main() {
         // Нелинейное управление
         double e_non = x_ref - x1_non.back();
         err_non.push_back(e_non);
-        double de_non = (err_non[t + 1] - err_non[t]) / dt;
-        double u_prev = (t == 0) ? 0.0 : u_non.back(); 
+        double de_non = (t == 0) ? 0.0 : (err_non.back() - err_non[err_non.size() - 2]) / dt;
+        double u_prev = u_non.back();
         double u_t_non = kp * e_non + d * de_non + c * std::pow(u_prev, 2) + s * std::sin(u_prev);
         u_non.push_back(u_t_non);
 
