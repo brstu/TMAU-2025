@@ -29,7 +29,7 @@ int main() {
 
     std::ofstream out("trajectory.csv");
     if (!out.is_open()) {
-        std::cerr << "Ошибка: не удалось открыть файл trajectory.csv\n";
+        std::cerr << "Error: failed to open file trajectory.csv\n";
         return 1;
     }
 
