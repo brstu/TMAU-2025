@@ -1,9 +1,7 @@
-cmake_minimum_required (VERSION 3.5)
-project (TMAU)
+cmake_minimum_required(VERSION 3.5)
+project(TMAU)
 
-# Search for directories simular to "trunk/as0xxyy/task_0x/src/"
-file(GLOB V_GLOB RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "trunk/as06615/task_01/src/")
-foreach(item ${V_GLOB})
-	message( "Find \"${item}\"" )
-	add_subdirectory(${item})
-endforeach()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+add_executable(TMAU src/main.cpp)
