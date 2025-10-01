@@ -3,6 +3,13 @@
 #include <fstream>
 #include <iostream>
 
+// Вспомогательная функция для расчёта производной ошибки
+double compute_derivative(const std::vector<double>& errors, double current_error, double dt, double fallback = 0.0) {
+    if (errors.size() < 2) return 0.0;
+    double previous_error = *(errors.end() - 2);
+    return (current_error - previous_error) / dt;
+}
+
 int main() {
     const double dt = 0.1;         // шаг дискретизации
     const double x_ref = 10.0;     // целевое положение
@@ -36,8 +43,7 @@ int main() {
         // Линейное управление
         double e_lin = x_ref - x1_lin.back();
         err_lin.push_back(e_lin);
-        double err_lin_prev = (err_lin.size() >= 2) ? *(err_lin.end() - 2) : x_ref;
-        double de_lin = (t == 0) ? 0.0 : (e_lin - err_lin_prev) / dt;
+        double de_lin = compute_derivative(err_lin, e_lin, dt);
         double u_t_lin = kp * e_lin + d * de_lin;
         u_lin.push_back(u_t_lin);
 
@@ -49,8 +55,7 @@ int main() {
         // Нелинейное управление
         double e_non = x_ref - x1_non.back();
         err_non.push_back(e_non);
-        double err_non_prev = (err_non.size() >= 2) ? *(err_non.end() - 2) : x_ref;
-        double de_non = (t == 0) ? 0.0 : (e_non - err_non_prev) / dt;
+        double de_non = compute_derivative(err_non, e_non, dt);
         double u_prev = u_non.back();
         double u_t_non = kp * e_non + d * de_non + c * std::pow(u_prev, 2) + s * std::sin(u_prev);
         u_non.push_back(u_t_non);
