@@ -5,7 +5,7 @@
 
 // Безопасный расчёт производной ошибки
 double compute_derivative(const std::vector<double>& errors, double dt) {
-    if (errors.size() < 2) return fallback;
+    if (errors.size() < 2 || dt == 0.0) return 0.0;
     return (errors.back() - *(errors.end() - 2)) / dt;
 }
 
@@ -57,7 +57,7 @@ int main() {
 
         out << t * dt << ","
             << x1_next_lin << "," << x2_next_lin << "," << u_t_lin << ","
-        double u_t_non = kp * e_non + d * de_non + c * (u_prev * u_prev) + s * std::sin(u_prev);
+            << x1_next_non << "," << x2_next_non << "," << u_t_non << "\n";
     }
 
     out.close();
