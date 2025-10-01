@@ -17,7 +17,7 @@ int main() {
     // Линейная модель
     vector<double> x1_lin = {0.0};
     vector<double> x2_lin = {0.0};
-    vector<double> u_lin;
+    vector<double> u_lin = {0.0};           
     vector<double> err_lin = {x_ref};
 
     // Нелинейная модель
@@ -46,7 +46,7 @@ int main() {
         double e_non = x_ref - x1_non.back();
         err_non.push_back(e_non);
         double de_non = (err_non[t+1] - err_non[t]) / dt;
-        double u_prev = (t == 0) ? 0.0 : u_non[t];
+        double u_prev = (t == 0) ? 0.0 : u_non[t - 1];   // Исправлено
         double u_t_non = kp * e_non + d * de_non + c * std::pow(u_prev, 2) + s * std::sin(u_prev);
         u_non.push_back(u_t_non);
 
@@ -62,6 +62,6 @@ int main() {
     }
 
     out.close();
-    std::cout << "Simulation complete. Data saved to trajectory.csv\n";
+    cout << "Simulation complete. Data saved to trajectory.csv\n";
     return 0;
 }
