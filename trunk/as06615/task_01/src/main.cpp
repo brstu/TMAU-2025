@@ -3,7 +3,6 @@
 #include <fstream>
 #include <iostream>
 
-// Безопасный расчёт производной ошибки
 double compute_derivative(const std::vector<double>& errors, double dt) {
     if (errors.size() < 2 || dt == 0.0) return 0.0;
     return (errors.back() - *(errors.end() - 2)) / dt;
@@ -18,8 +17,15 @@ int main() {
     const double s = 0.01;
     const int steps = 100;
 
-    std::vector<double> x1_lin = {0.0}, x2_lin = {0.0}, u_lin = {0.0}, err_lin = {x_ref};
-    std::vector<double> x1_non = {0.0}, x2_non = {0.0}, u_non = {0.0}, err_non = {x_ref};
+    std::vector<double> x1_lin = {0.0};
+    std::vector<double> x2_lin = {0.0};
+    std::vector<double> u_lin = {0.0};
+    std::vector<double> err_lin = {x_ref};
+
+    std::vector<double> x1_non = {0.0};
+    std::vector<double> x2_non = {0.0};
+    std::vector<double> u_non = {0.0};
+    std::vector<double> err_non = {x_ref};
 
     std::ofstream out("trajectory.csv");
     if (!out.is_open()) {
