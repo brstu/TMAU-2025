@@ -36,7 +36,8 @@ int main() {
         // Линейное управление
         double e_lin = x_ref - x1_lin.back();
         err_lin.push_back(e_lin);
-        double de_lin = (t == 0) ? 0.0 : (err_lin.back() - err_lin[err_lin.size() - 2]) / dt;
+        double err_lin_prev = (err_lin.size() >= 2) ? *(err_lin.end() - 2) : x_ref;
+        double de_lin = (t == 0) ? 0.0 : (e_lin - err_lin_prev) / dt;
         double u_t_lin = kp * e_lin + d * de_lin;
         u_lin.push_back(u_t_lin);
 
@@ -48,7 +49,8 @@ int main() {
         // Нелинейное управление
         double e_non = x_ref - x1_non.back();
         err_non.push_back(e_non);
-        double de_non = (t == 0) ? 0.0 : (err_non.back() - err_non[err_non.size() - 2]) / dt;
+        double err_non_prev = (err_non.size() >= 2) ? *(err_non.end() - 2) : x_ref;
+        double de_non = (t == 0) ? 0.0 : (e_non - err_non_prev) / dt;
         double u_prev = u_non.back();
         double u_t_non = kp * e_non + d * de_non + c * std::pow(u_prev, 2) + s * std::sin(u_prev);
         u_non.push_back(u_t_non);
