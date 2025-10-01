@@ -16,7 +16,7 @@ int main() {
     // Линейная модель
     std::vector<double> x1_lin = {0.0};
     std::vector<double> x2_lin = {0.0};
-    std::vector<double> u_lin = {0.0};         
+    std::vector<double> u_lin = {0.0};
     std::vector<double> err_lin = {x_ref};
 
     // Нелинейная модель
