@@ -20,7 +20,7 @@ int main() {
     double inputtemperature;
     double inputwarm;
 
-    cout << "Enter simulation time steps, initial temperature y0, and initial warm input u0: ";
+    cout << "Enter simulation time steps, initial temperature y0, and constant warm input u: ";
     cin >> time >> inputtemperature >> inputwarm;
     if (cin.fail()) {
         cerr << "Invalid input. Please enter an integer for time and two numbers for temperature and warm input." << endl;
