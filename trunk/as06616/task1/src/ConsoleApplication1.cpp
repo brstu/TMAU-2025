@@ -2,17 +2,17 @@
 #include <cmath>
 using namespace std;
 
-const double a = 0.6;
-const double b = 0.3;
-const double c = 0.8;
-const double d = 0.5;
+const double LINEAR_COEFF_A = 0.6;
+const double LINEAR_COEFF_B = 0.3;
+const double NONLINEAR_COEFF_C = 0.8;
+const double NONLINEAR_COEFF_D = 0.5;
 
 double linearmodel(double inputtemperature, double inputwarm) {
-    return a * inputtemperature + b * inputwarm;
+    return LINEAR_COEFF_A * inputtemperature + LINEAR_COEFF_B * inputwarm;
 }
 
 double nonlinearmodel(double inputtemperature, double prevtemperature, double inputwarm, double prevwarm) {
-    return a * inputtemperature - b * pow(prevtemperature, 2) + c * inputwarm + d * sin(prevwarm);
+    return LINEAR_COEFF_A * inputtemperature - LINEAR_COEFF_B * pow(prevtemperature, 2) + NONLINEAR_COEFF_C * inputwarm + NONLINEAR_COEFF_D * sin(prevwarm);
 }
 
 int main() {
