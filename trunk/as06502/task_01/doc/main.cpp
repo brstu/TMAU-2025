@@ -4,7 +4,6 @@
 using namespace std;
 
 struct Constants{
-const int STEPS = 10;
 const double A = 0.2;
 const double B = 0.02;
 const double C = 0.03;
@@ -25,10 +24,11 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
+    const int STEPS = 10;
     double temperatureInitial = 20.0;
     const Constants c = Constants();
 
-    double inputs[c.STEPS] = {
+    double inputs[STEPS] = {
         15.0, 16.5, 18.0, 20.0, 22.5, 25.0, 24.0, 21.0, 18.0, 16.0
     };
 
@@ -36,7 +36,7 @@ int main() {
 
     double prevTemperature = temperatureInitial;
 
-    for (int t = 0; t < c.STEPS; ++t) {
+    for (int t = 0; t < STEPS; ++t) {
         double newTemperature = calcLinear(prevTemperature, inputs[t]);
         cout << "y[" << t + 1 << "] = " << newTemperature << endl;
         prevTemperature = newTemperature;
@@ -47,7 +47,7 @@ int main() {
     double currentY = temperatureInitial;
     double previousY = temperatureInitial;
 
-    for (int t = 1; t < c.STEPS; ++t) {
+    for (int t = 1; t < STEPS; ++t) {
         double uCurr = inputs[t];
         double uPrev = inputs[t-1];
 
