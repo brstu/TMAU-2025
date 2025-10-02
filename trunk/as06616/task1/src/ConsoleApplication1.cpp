@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <cmath>
-using namespace std;
+
 
 const double a = 0.6;
 const double b = 0.3;
@@ -27,25 +27,25 @@ int main() {
     double inputtemperature;
     double inputwarm;
 
-    cout << "Введите количество шагов моделирования, начальную температуру y0 и начальный тепловой вход u0: ";
-    cin >> time >> inputtemperature >> inputwarm;
+    std::cout << "Введите количество шагов моделирования, начальную температуру y0 и начальный тепловой вход u0: ";
+    std::cin >> time >> inputtemperature >> inputwarm;
 
     double prevtemperature = inputtemperature;
     double prevwarm = inputwarm;
 
-    cout << "\nМоделирование линейной модели:\n";
+    std::cout << "\nМоделирование линейной модели:\n";
     double y_linear = inputtemperature;
     for (int t = 1; t <= time; t++) {
         y_linear = linearmodel(y_linear, inputwarm);
-        cout << "Шаг " << t << ": y = " << y_linear << endl;
+        std::cout << "Шаг " << t << ": y = " << y_linear << std::endl;
     }
 
-    cout << "\nМоделирование нелинейной модели:\n";
+    std::cout << "\nМоделирование нелинейной модели:\n";
     double y_nl = inputtemperature;
     for (int t = 1; t <= time; t++) {
         double currentWarm = updateWarm(inputwarm, t);
         double next = nonlinearmodel(y_nl, prevtemperature, currentWarm, prevwarm);
-        cout << "Шаг " << t << ": y = " << next << endl;
+        std::cout << "Шаг " << t << ": y = " << next << std::endl;
         prevtemperature = y_nl;
         y_nl = next;
         prevwarm = currentWarm;
