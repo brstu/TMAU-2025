@@ -44,7 +44,6 @@ int main() {
         cout << "Step " << t << ": y = " << next << endl;
         prevtemperature = y_nl;
         y_nl = next;
-        prevwarm = inputwarm;
     }
 
     return 0;
