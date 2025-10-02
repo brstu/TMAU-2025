@@ -17,7 +17,8 @@ double nonlinearmodel(double inputtemperature, double prevtemperature, double in
 
 int main() {
     int time;
-    double inputtemperature, inputwarm;
+    double inputtemperature;
+    double inputwarm;
 
     cout << "Enter simulation time steps, initial temperature y0, and initial warm input u0: ";
     cin >> time >> inputtemperature >> inputwarm;
