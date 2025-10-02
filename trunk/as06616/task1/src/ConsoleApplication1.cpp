@@ -2,61 +2,53 @@
 #include <cmath>
 using namespace std;
 
-const double LINEAR_COEFF_A = 0.6;
-const double LINEAR_COEFF_B = 0.3;
-const double NONLINEAR_COEFF_C = 0.8;
-const double NONLINEAR_COEFF_D = 0.5;
+const double a = 0.6;
+const double b = 0.3;
+const double c = 0.8;
+const double d = 0.5;
 
 
 double linearmodel(double inputtemperature, double inputwarm) {
-    return LINEAR_COEFF_A * inputtemperature + LINEAR_COEFF_B * inputwarm;
+    return a * inputtemperature + b * inputwarm;
 }
 
 
 double nonlinearmodel(double inputtemperature, double prevtemperature, double inputwarm, double prevwarm) {
-    return LINEAR_COEFF_A * inputtemperature - LINEAR_COEFF_B * pow(prevtemperature, 2) + NONLINEAR_COEFF_C * inputwarm + NONLINEAR_COEFF_D * sin(prevwarm);
+    return a * inputtemperature - b * pow(prevtemperature, 2) + c * inputwarm + d * sin(prevwarm);
 }
 
 
 double updateWarm(double baseWarm, int t) {
-    return baseWarm + 0.1 * sin(t); 
+    return baseWarm + 0.1 * sin(t);
 }
 
 int main() {
-
     int time;
     double inputtemperature;
     double inputwarm;
 
-    cout << "Enter simulation time steps, initial temperature y0, and constant warm input u: ";
+    cout << "Введите количество шагов моделирования, начальную температуру y0 и начальный тепловой вход u0: ";
     cin >> time >> inputtemperature >> inputwarm;
-    if (cin.fail()) {
-        cerr << "Invalid input. Please enter an integer for time and two numbers for temperature and warm input." << endl;
-        return 1;
-    }
 
     double prevtemperature = inputtemperature;
     double prevwarm = inputwarm;
 
-    cout << "\nLinear Model Simulation:\n";
+    cout << "\nМоделирование линейной модели:\n";
     double y_linear = inputtemperature;
     for (int t = 1; t <= time; t++) {
         y_linear = linearmodel(y_linear, inputwarm);
         cout << "Шаг " << t << ": y = " << y_linear << endl;
     }
 
-    cout << "\nNonlinear Model Simulation:\n";
+    cout << "\nМоделирование нелинейной модели:\n";
     double y_nl = inputtemperature;
     for (int t = 1; t <= time; t++) {
-        double currentWarm = updateWarm(inputwarm, t); 
+        double currentWarm = updateWarm(inputwarm, t);
         double next = nonlinearmodel(y_nl, prevtemperature, currentWarm, prevwarm);
-        cout << "Step " << t << ": y = " << next << endl;
+        cout << "Шаг " << t << ": y = " << next << endl;
         prevtemperature = y_nl;
         y_nl = next;
-<<<<<<< HEAD
         prevwarm = currentWarm;
-=======
->>>>>>> a9125c50b10997e8a713837f129fe62d4ec9cdea
     }
 
     return 0;
