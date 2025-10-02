@@ -5,12 +5,18 @@
 
 class TemperatureModel {
 private:
-    double a, b, c, d;
-    double y_prev, y_prev2, u_prev;
+    double a;
+    double b;
+    double c;
+    double d;
+
+    double y_prev = 0.0;
+    double y_prev2 = 0.0;
+    double u_prev = 0.0;
 
 public:
-    TemperatureModel(double a_val, double b_val, double c_val = 0, double d_val = 0)
-        : a(a_val), b(b_val), c(c_val), d(d_val), y_prev(0), y_prev2(0), u_prev(0) {}
+    TemperatureModel(double a_val, double b_val, double c_val = 0.0, double d_val = 0.0)
+        : a(a_val), b(b_val), c(c_val), d(d_val) {}
 
     double linearModel(double u_current) {
         double y_next = a * y_prev + b * u_current;
@@ -26,13 +32,15 @@ public:
         return y_next;
     }
 
-    void reset(double initial_temp = 0) {
-        y_prev = y_prev2 = initial_temp;
-        u_prev = 0;
+    void reset(double initial_temp = 0.0) {
+        y_prev = initial_temp;
+        y_prev2 = initial_temp;
+        u_prev = 0.0;
     }
 
     void setInitialTemperature(double temp) {
-        y_prev = y_prev2 = temp;
+        y_prev = temp;
+        y_prev2 = temp;
     }
 };
 
@@ -42,8 +50,14 @@ void printHeader() {
 }
 
 void testModel() {
-    constexpr double a_linear = 0.8, b_linear = 0.2;
-    constexpr double a_nonlinear = 0.7, b_nonlinear = 0.1, c_nonlinear = 0.3, d_nonlinear = 0.05;
+    constexpr double a_linear = 0.8;
+    constexpr double b_linear = 0.2;
+
+    constexpr double a_nonlinear = 0.7;
+    constexpr double b_nonlinear = 0.1;
+    constexpr double c_nonlinear = 0.3;
+    constexpr double d_nonlinear = 0.05;
+
     constexpr double initial_temp = 20.0;
     constexpr int time_steps = 50;
 
@@ -54,10 +68,19 @@ void testModel() {
     nonlinearModel.setInitialTemperature(initial_temp);
 
     std::vector<double> u_input(time_steps);
-    for (int t = 0; t < time_steps; ++t)
-        u_input[t] = (t < 10) ? 0.0 : (t < 30) ? 5.0 : 2.0;
+    for (int t = 0; t < time_steps; ++t) {
+        if (t < 10) {
+            u_input[t] = 0.0;
+        } else if (t < 30) {
+            u_input[t] = 5.0;
+        } else {
+            u_input[t] = 2.0;
+        }
+    }
 
-    std::vector<double> y_linear(time_steps), y_nonlinear(time_steps);
+    std::vector<double> y_linear(time_steps);
+    std::vector<double> y_nonlinear(time_steps);
+
     for (int t = 0; t < time_steps; ++t) {
         y_linear[t] = linearModel.linearModel(u_input[t]);
         y_nonlinear[t] = nonlinearModel.nonlinearModel(u_input[t]);
@@ -79,6 +102,7 @@ void testModel() {
 
 void stepResponseDemo() {
     std::cout << "\n=== Step Response Demonstration ===\n";
+
     TemperatureModel model(0.9, 0.1);
     constexpr int steps = 20;
 
