@@ -18,7 +18,7 @@ double calcNonlinear(double currentY, double prevY, double inputU, double prevU)
 }
 
 int main() {
-    setlocale(LC_ALL, "RU");
+    setlocale(LC_ALL, "ru_RU.UTF-8");
     if (!setlocale(LC_ALL, "ru_RU.UTF-8")) {
         std::cerr << "Warning: Unable to set Russian locale. Output may not display correctly." << std::endl;
     }
@@ -43,17 +43,13 @@ int main() {
     double currentY = temperatureInitial;
     double previousY = temperatureInitial;
 
-    for (size_t t = 1; t < inputs.size(); ++t) {
+    for (size_t t = 0; t < inputs.size(); ++t) {
         double uCurr = inputs[t];
-        double uPrev = inputs[t-1];
-
+        double uPrev = (t == 0) ? inputs[0] : inputs[t-1];
         double newY = calcNonlinear(currentY, previousY, uCurr, uPrev);
-        std::cout << "y[" << t << "] = " << newY << std::endl;
-
-        previousY = currentY;
-        currentY = newY;
+        std::cout << "y[" << t + 1 << "] = " << newY << std::endl;
     }
-    
+
     std::cout << "Press Enter to continue...";
     std::cin.get();
     return 0;
