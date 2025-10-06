@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <windows.h>
 using namespace std;
 
 struct Constants{
@@ -21,8 +20,7 @@ double calcNonlinear(double currentY, double prevY, double inputU, double prevU)
 }
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    setlocale(LC_ALL, "RU");
 
     const int STEPS = 10;
     double temperatureInitial = 20.0;
