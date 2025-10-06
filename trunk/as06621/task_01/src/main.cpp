@@ -65,15 +65,15 @@ int main() {
 
     std::vector<double> y_l(steps + 1, 0.0);
     std::vector<double> y_nl(steps + 1, 0.0);
-    std::vector<double> u(steps + 1, u_const);
+    // Используем u_const напрямую, вместо вектора u
 
     y_l[0] = y_init;
     y_nl[0] = y_init;
 
     for (int t = 0; t < steps; ++t) {
-        y_l[t + 1] = lin.next(y_l[t], u[t]);
-        double prev_u = (t > 0 ? u[t - 1] : Config::ZERO_PREV_INPUT);
-        y_nl[t + 1] = nonlin.next(y_nl[t], u[t], prev_u);
+        y_l[t + 1] = lin.next(y_l[t], u_const);
+        double prev_u = (t > 0 ? u_const : Config::ZERO_PREV_INPUT);
+        y_nl[t + 1] = nonlin.next(y_nl[t], u_const, prev_u);
     }
 
     std::cout << "\nРезультаты моделирования:\n";
