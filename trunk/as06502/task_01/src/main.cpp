@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-using namespace std;
 
 namespace Constants {
     const double A = 0.2;
@@ -20,40 +19,42 @@ double calcNonlinear(double currentY, double prevY, double inputU, double prevU)
 
 int main() {
     setlocale(LC_ALL, "RU");
+    if (!setlocale(LC_ALL, "ru_RU.UTF-8")) {
+        std::cerr << "Warning: Unable to set Russian locale. Output may not display correctly." << std::endl;
+    }
 
     double temperatureInitial = 20.0;
-
-    // Поменял на вектор и просто сделал еще один коммит для того чтобы заработал копилот
-    vector<double> inputs = {
+    std::vector<double> inputs = {
         15.0, 16.5, 18.0, 20.0, 22.5, 25.0, 24.0, 21.0, 18.0, 16.0
     };
 
-    cout << "Линейная модель\nНачальное значение: " << temperatureInitial << "\n";
+    std::cout << "Линейная модель\nНачальное значение: " << temperatureInitial << "\n";
 
     double prevTemperature = temperatureInitial;
 
-    for (int t = 0; t < inputs.size(); ++t) {
+    for (size_t t = 0; t < inputs.size(); ++t) {
         double newTemperature = calcLinear(prevTemperature, inputs[t]);
-        cout << "y[" << t + 1 << "] = " << newTemperature << endl;
+        std::cout << "y[" << t + 1 << "] = " << newTemperature << std::endl;
         prevTemperature = newTemperature;
     }
 
-    cout << "\nНелинейная модель\nНачальное значение: " << temperatureInitial << "\n";
+    std::cout << "\nНелинейная модель\nНачальное значение: " << temperatureInitial << "\n";
 
     double currentY = temperatureInitial;
     double previousY = temperatureInitial;
 
-    for (int t = 1; t < inputs.size(); ++t) {
+    for (size_t t = 1; t < inputs.size(); ++t) {
         double uCurr = inputs[t];
         double uPrev = inputs[t-1];
 
         double newY = calcNonlinear(currentY, previousY, uCurr, uPrev);
-        cout << "y[" << t << "] = " << newY << endl;
+        std::cout << "y[" << t << "] = " << newY << std::endl;
 
         previousY = currentY;
         currentY = newY;
     }
-
-    system("pause");
+    
+    std::cout << "Press Enter to continue...";
+    std::cin.get();
     return 0;
 }
