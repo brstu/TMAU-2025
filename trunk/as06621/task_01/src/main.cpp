@@ -22,7 +22,8 @@ public:
         return a_ * y + b_ * u;
     }
 private:
-    double a_, b_;
+    double a_;
+    double b_;
 };
 
 // Нелинейная модель
@@ -35,12 +36,16 @@ public:
         return a_ * y - b_ * y * y + c_ * u + d_ * std::sin(prev_u);
     }
 private:
-    double a_, b_, c_, d_;
+    double a_;
+    double b_;
+    double c_;
+    double d_;
 };
 
 int main() {
     int steps;
-    double y_init, u_const;
+    double y_init;
+    double u_const;
 
     std::cout << "Введите количество шагов моделирования: ";
     std::cin >> steps;
