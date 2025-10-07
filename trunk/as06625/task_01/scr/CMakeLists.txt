@@ -1,12 +1,9 @@
-﻿cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5)
 
-project(task_01 LANGUAGES CXX)
+project(tmau)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-add_executable(task_01 CMakeProject1.cpp)
-
-set_target_properties(task_01 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
-)
+add_executable (TMAU1 tmau.cpp)
+if (WIN32)
+    add_compile_options(/utf-8)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+endif()
