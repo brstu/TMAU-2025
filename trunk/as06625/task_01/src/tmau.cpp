@@ -30,6 +30,8 @@ int main() {
     cout << "Линейная модель" << endl;
     cout << "y0 = " << INITIAL_Y << endl;
 
+    // Вектор входных значений (inputs) моделирует подачу тепла на каждом временном шаге.
+    // Значения выбраны для демонстрации работы модели с переменным тепловым воздействием.
     double current_y = INITIAL_Y;
 
     for (int i = 0; i < TIME_STEPS; i++) {
@@ -48,7 +50,7 @@ int main() {
 
     for (int i = 0; i < TIME_STEPS; i++) {
         double current_u = INPUTS[i];
-        double previous_u = (i == 0) ? INPUTS[0] : INPUTS[i - 1]; // первый previous_u равен INPUTS[0]
+        double previous_u = (i == 0) ? 0.0 : INPUTS[i - 1]; // для первого шага previous_u = 0.0
 
         double new_y = compute_nonlinear(current_y, previous_y, current_u, previous_u);
         cout << "y" << i + 1 << " = " << new_y << endl;

@@ -37,13 +37,13 @@ Task is to write program (**С++**), which simulates this object temperature.
 ## Выполнение работы
 Константы  
 ```
-const int TIME_STEPS = 10; // количество временных шагов
-const double COEFF_A = 0.99;
-const double COEFF_B = 0.01;
-const double COEFF_C = 0.5;
-const double COEFF_D = 0.1;
-const double INITIAL_Y = 18;
-const double INPUTS[10] = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
+constexpr int TIME_STEPS = 10; // количество временных шагов
+constexpr double COEFF_A = 0.99;
+constexpr double COEFF_B = 0.01;
+constexpr double COEFF_C = 0.5;
+constexpr double COEFF_D = 0.1;
+constexpr double INITIAL_Y = 18;
+constexpr std::vector<double> INPUTS = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
 
 ```
 Имея данные параметры получим результат работы программы:
@@ -72,4 +72,6 @@ y7 = 16.4607
 y8 = 16.821
 y9 = 17.0089
 y10 = 16.4814
-``` 
+
+## Вывод
+Зная функцию, можно моделировать параметры модели в зависимости от времени.
