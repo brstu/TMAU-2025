@@ -5,9 +5,12 @@
 using namespace std;
 
 struct ModelParams {
-    double a = 0.8, b = 0.001, c = 0.5, d = 0.02;
+    const double a = 0.85;
+    const double b = 0.002;
+    const double c = 0.6;
+    const double d = 0.025;
     int time_steps = 10;
-    double initial_temp = 25.0;
+    double initial_temp = 24.0;
 };
 
 void simulateAndPrint(const ModelParams& params, const vector<double>& u, bool isLinear) {
@@ -30,7 +33,7 @@ void simulateAndPrint(const ModelParams& params, const vector<double>& u, bool i
 
     cout << "Time\tTemperature\n----------------\n";
     for (int t = 0; t <= params.time_steps; ++t) {
-        cout << t << "\t" << y[t] << endl;  // Simple output without formatting
+        cout << t << "\t" << y[t] << endl; 
     }
     cout << endl;
 }
