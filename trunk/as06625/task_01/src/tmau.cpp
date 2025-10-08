@@ -13,7 +13,7 @@ const double COEFF_D = 0.1;
 const double INITIAL_Y = 18;
 
 // Входные значения вынесены в константу для удобства и поддерживаемости
-const std::vector<double> INPUTS = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+constexpr double INPUTS[10] = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
 
 // Линейная модель
 double compute_linear(double current_y, double input_u) {
