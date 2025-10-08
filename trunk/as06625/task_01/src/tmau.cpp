@@ -5,12 +5,15 @@ using std::cout;
 using std::endl;
 
 // Константы
-const int TIME_STEPS = 10; // количество временных шагов
+const int TIME_STEPS = 10;        // количество временных шагов
 const double COEFF_A = 0.99;
 const double COEFF_B = 0.01;
 const double COEFF_C = 0.5;
 const double COEFF_D = 0.1;
 const double INITIAL_Y = 18;
+
+// Входные значения вынесены в константу для удобства и поддерживаемости
+const std::vector<double> INPUTS = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
 
 // Линейная модель
 double compute_linear(double current_y, double input_u) {
@@ -23,20 +26,20 @@ double compute_nonlinear(double current_y, double previous_y, double input_u, do
 }
 
 int main() {
+    // ----------------- Линейная модель -----------------
     cout << "Линейная модель" << endl;
     cout << "y0 = " << INITIAL_Y << endl;
-    // Вектор входных значений (inputs) моделирует подачу тепла на каждом временном шаге.
-    // Значения выбраны для демонстрации работы модели с переменным тепловым воздействием.
-    std::vector<double> inputs = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+
     double current_y = INITIAL_Y;
 
     for (int i = 0; i < TIME_STEPS; i++) {
-        current_y = compute_linear(current_y, inputs[i]);
+        current_y = compute_linear(current_y, INPUTS[i]);
         cout << "y" << i + 1 << " = " << current_y << endl;
     }
 
     cout << "\n";
 
+    // ----------------- Нелинейная модель -----------------
     double previous_y = INITIAL_Y;
     current_y = INITIAL_Y;
 
@@ -44,8 +47,8 @@ int main() {
     cout << "y0 = " << INITIAL_Y << endl;
 
     for (int i = 0; i < TIME_STEPS; i++) {
-        double current_u = inputs[i];
-        double previous_u = (i == 0) ? inputs[0] : inputs[i - 1]; // используем первый вход как предыдущий
+        double current_u = INPUTS[i];
+        double previous_u = (i == 0) ? INPUTS[0] : INPUTS[i - 1]; // первый previous_u равен INPUTS[0]
 
         double new_y = compute_nonlinear(current_y, previous_y, current_u, previous_u);
         cout << "y" << i + 1 << " = " << new_y << endl;
