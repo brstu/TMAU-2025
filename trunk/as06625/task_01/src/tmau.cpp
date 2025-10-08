@@ -23,7 +23,6 @@ double compute_nonlinear(double current_y, double previous_y, double input_u, do
 }
 
 int main() {
-    system("chcp 65001");
     cout << "Линейная модель" << endl;
     cout << "y0 = " << INITIAL_Y << endl;
 
