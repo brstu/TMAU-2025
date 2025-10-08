@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <cmath>
+#include <vector>
 using std::cout;
 using std::endl;
 
@@ -26,7 +27,7 @@ int main() {
     cout << "Линейная модель" << endl;
     cout << "y0 = " << INITIAL_Y << endl;
 
-    double inputs[TIME_STEPS] = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+    std::vector<double> inputs = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
     double current_y = INITIAL_Y;
 
     for (int i = 0; i < TIME_STEPS; i++) {
