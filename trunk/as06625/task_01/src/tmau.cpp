@@ -1,19 +1,19 @@
 #include <iostream>
 #include <cmath>
-#include <vector>
+#include <array>
 using std::cout;
 using std::endl;
 
 // Константы
-const int TIME_STEPS = 10;        // количество временных шагов
-const double COEFF_A = 0.99;
-const double COEFF_B = 0.01;
-const double COEFF_C = 0.5;
-const double COEFF_D = 0.1;
-const double INITIAL_Y = 18;
+constexpr int TIME_STEPS = 10;        // количество временных шагов
+constexpr double COEFF_A = 0.99;
+constexpr double COEFF_B = 0.01;
+constexpr double COEFF_C = 0.5;
+constexpr double COEFF_D = 0.1;
+constexpr double INITIAL_Y = 18;
 
 // Входные значения вынесены в константу для удобства и поддерживаемости
-const std::vector<double> INPUTS = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+constexpr std::array<double, 10> INPUTS = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
 
 // Линейная модель
 double compute_linear(double current_y, double input_u) {
