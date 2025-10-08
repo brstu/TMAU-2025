@@ -30,7 +30,7 @@ void simulateAndPrint(const ModelParams& params, const vector<double>& u, bool i
 
     cout << "Time\tTemperature\n----------------\n";
     for (int t = 0; t <= params.time_steps; ++t) {
-        cout << t << "\t" << y[t] << endl;  // Простой вывод без форматирования
+        cout << t << "\t" << y[t] << endl;  // Simple output without formatting
     }
     cout << endl;
 }
