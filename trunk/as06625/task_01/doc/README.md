@@ -43,7 +43,7 @@ const double COEFF_B = 0.01;
 const double COEFF_C = 0.5;
 const double COEFF_D = 0.1;
 const double INITIAL_Y = 18;
-double INPUT_U[TIME_STEPS + 1] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // значения управляющего воздействия
+double INPUT_U[TIME_STEPS] = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
 
 ```
 Имея данные параметры получим результат работы программы:
