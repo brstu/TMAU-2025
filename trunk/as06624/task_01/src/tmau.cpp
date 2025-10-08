@@ -34,7 +34,6 @@ int main() {
     vector<double> y(N + 1, 0.0); 
     vector<double> u(N + 1, 0.0); 
 
-    
     for (int t = 0; t <= N; t++) {
         if (t < 5) u[t] = 0.0;
         else u[t] = 1.0; 
