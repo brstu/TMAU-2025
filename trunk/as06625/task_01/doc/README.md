@@ -43,7 +43,7 @@ constexpr double COEFF_B = 0.01;
 constexpr double COEFF_C = 0.5;
 constexpr double COEFF_D = 0.1;
 constexpr double INITIAL_Y = 18;
-const std::vector<double> INPUTS = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
+constexpr std::vector<double> INPUTS = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
 
 ```
 Имея данные параметры получим результат работы программы:
