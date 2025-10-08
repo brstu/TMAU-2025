@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(main)
+project(task_01)
 
-add_executable(main main.cpp)
+add_executable(task_01 main.cpp)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

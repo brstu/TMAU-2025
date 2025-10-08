@@ -2,47 +2,42 @@
 #include <vector>
 #include <cmath>
 #include <iomanip>
-using namespace std;
 
-struct Coeffs {
-    double a, b, c, d;
-};
-
-double linear_model(double y_t, double u_t, double a, double b) {
-    return a * y_t + b * u_t;
+double linear_model(double y, double u, double a, double b) {
+    return a * y + b * u;
 }
 
-double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, const Coeffs& coeffs) {
-    return coeffs.a * y_t - coeffs.b * y_prev * y_prev + coeffs.c * u_t + coeffs.d * sin(u_prev);
-}
-
-void simulate_and_print(const string& model_name, bool is_linear, const Coeffs& coeffs, int N) {
-    vector<double> y(N + 1, 0.0);
-    vector<double> u(N + 1, 1.0); // Ступенчатое воздействие
-    
-    cout << model_name << endl;
-    
-    if (is_linear) {
-        for (int t = 0; t < N; t++) {
-            y[t + 1] = linear_model(y[t], u[t], coeffs.a, coeffs.b);
-            cout << "t=" << t + 1 << "  y=" << fixed << setprecision(4) << y[t + 1] << endl;
-        }
-    } else {
-        for (int t = 1; t < N; t++) {
-            y[t + 1] = nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], coeffs);
-            cout << "t=" << t + 1 << "  y=" << fixed << setprecision(4) << y[t + 1] << endl;
-        }
-    }
-    cout << endl;
+double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, double a, double b, double c, double d) {
+    return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);
 }
 
 int main() {
-    Coeffs coeffs = {0.8, 0.2, 0.1, 0.05};
-    int N = 20;
+    int n = 30;
+    double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
 
-    simulate_and_print("Linear model:", true, coeffs, N);
-    simulate_and_print("Nonlinear model:", false, coeffs, N);
+    std::vector<double> u(n, 1.0);
+    std::vector<double> y_lin(n, 0.0);
+    std::vector<double> y_nonlin(n, 0.0);
+
+    y_lin[0] = 0.0;
+    y_nonlin[0] = 0.0;
+
+    for (int t = 1; t < n; ++t) {
+        y_lin[t] = linear_model(y_lin[t-1], u[t-1], a, b);
+
+        if (t > 1) {
+            y_nonlin[t] = nonlinear_model(y_nonlin[t-1], y_nonlin[t-2], u[t-1], u[t-2], a, b, c, d);
+        } else {
+            y_nonlin[t] = linear_model(y_nonlin[t-1], u[t-1], a, b);
+        }
+    }
+
+    std::cout << "\nTime\tLinear\t\tNonlinear\n";
+    std::cout << "----\t------\t\t---------\n";
+    for (int t = 0; t < n; ++t) {
+        std::cout << t << "\t" << std::fixed << std::setprecision(5) 
+                  << y_lin[t] << "\t\t" << y_nonlin[t] << "\n";
+    }
 
     return 0;
 }
-

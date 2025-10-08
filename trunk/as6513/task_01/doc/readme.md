@@ -52,92 +52,78 @@ Task is to write program (**C++**), which simulates this object temperature.
 #include <vector>
 #include <cmath>
 #include <iomanip>
-using namespace std;
 
-struct Coeffs {
-    double a, b, c, d;
-};
-
-double linear_model(double y_t, double u_t, double a, double b) {
-    return a * y_t + b * u_t;
+double linear_model(double y, double u, double a, double b) {
+    return a * y + b * u;
 }
 
-double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, const Coeffs& coeffs) {
-    return coeffs.a * y_t - coeffs.b * y_prev * y_prev + coeffs.c * u_t + coeffs.d * sin(u_prev);
-}
-
-void simulate_and_print(const string& model_name, bool is_linear, const Coeffs& coeffs, int N) {
-    vector<double> y(N + 1, 0.0);
-    vector<double> u(N + 1, 1.0); // Ступенчатое воздействие
-
-    cout << model_name << endl;
-
-    if (is_linear) {
-        for (int t = 0; t < N; t++) {
-            y[t + 1] = linear_model(y[t], u[t], coeffs.a, coeffs.b);
-            cout << "t=" << t + 1 << "  y=" << fixed << setprecision(4) << y[t + 1] << endl;
-        }
-    } else {
-        for (int t = 1; t < N; t++) {
-            y[t + 1] = nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], coeffs);
-            cout << "t=" << t + 1 << "  y=" << fixed << setprecision(4) << y[t + 1] << endl;
-        }
-    }
-    cout << endl;
+double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, double a, double b, double c, double d) {
+    return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);
 }
 
 int main() {
-    Coeffs coeffs = {0.8, 0.2, 0.1, 0.05};
-    int N = 20;
+    int n = 30;
+    double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
 
-    simulate_and_print("Linear model:", true, coeffs, N);
-    simulate_and_print("Nonlinear model:", false, coeffs, N);
+    std::vector<double> u(n, 1.0);
+    std::vector<double> y_lin(n, 0.0);
+    std::vector<double> y_nonlin(n, 0.0);
+
+    y_lin[0] = 0.0;
+    y_nonlin[0] = 0.0;
+
+    for (int t = 1; t < n; ++t) {
+        y_lin[t] = linear_model(y_lin[t-1], u[t-1], a, b);
+
+        if (t > 1) {
+            y_nonlin[t] = nonlinear_model(y_nonlin[t-1], y_nonlin[t-2], u[t-1], u[t-2], a, b, c, d);
+        } else {
+            y_nonlin[t] = linear_model(y_nonlin[t-1], u[t-1], a, b);
+        }
+    }
+
+    std::cout << "\nTime\tLinear\t\tNonlinear\n";
+    std::cout << "----\t------\t\t---------\n";
+    for (int t = 0; t < n; ++t) {
+        std::cout << t << "\t" << std::fixed << std::setprecision(5) 
+                  << y_lin[t] << "\t\t" << y_nonlin[t] << "\n";
+    }
 
     return 0;
 }
-
 '''
-=== Linear model ===
-t=1  y=0
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.2
-t=7  y=0.36
-t=8  y=0.488
-t=9  y=0.5904
-t=10  y=0.67232
-t=11  y=0.737856
-t=12  y=0.790285
-t=13  y=0.832228
-t=14  y=0.865782
-t=15  y=0.892626
-t=16  y=0.914101
-t=17  y=0.931281
-t=18  y=0.945024
-t=19  y=0.95602
-t=20  y=0.964816
 
-=== Nonlinear model ===
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.1
-t=7  y=0.222074
-t=8  y=0.317732
-t=9  y=0.386396
-t=10  y=0.431
-t=11  y=0.457013
-t=12  y=0.470532
-t=13  y=0.476727
-t=14  y=0.479175
-t=15  y=0.47996
-t=16  y=0.48012
-t=17  y=0.480097
-t=18  y=0.480048
-t=19  y=0.480013
-t=20  y=0.479995
-
+Time    Linear          Nonlinear
+----    ------          ---------
+0       0.00000         0.00000
+1       0.15000         0.15000
+2       0.27000         0.25415
+3       0.36600         0.33409
+4       0.44280         0.39173
+5       0.50424         0.43079
+6       0.55339         0.45576
+7       0.59271         0.47092
+8       0.62417         0.47972
+9       0.64934         0.48466
+10      0.66947         0.48736
+11      0.68558         0.48880
+12      0.69846         0.48956
+13      0.70877         0.48995
+14      0.71701         0.49016
+15      0.72361         0.49027
+16      0.72889         0.49032
+17      0.73311         0.49035
+18      0.73649         0.49037
+19      0.73919         0.49037
+20      0.74135         0.49038
+21      0.74308         0.49038
+22      0.74447         0.49038
+23      0.74557         0.49038
+24      0.74646         0.49038
+25      0.74717         0.49038
+26      0.74773         0.49038
+27      0.74819         0.49038
+28      0.74855         0.49038
+29      0.74884         0.49038
+'''
 Вывод: разработанная программа позволяет анализировать динамику объекта во времени и сравнивать свойства линейной и нелинейной моделей.
