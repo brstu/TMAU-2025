@@ -54,6 +54,5 @@ int main() {
         current_y = new_y;
     }
 
-
     return 0;
 }
