@@ -37,7 +37,7 @@ Task is to write program (**С++**), which simulates this object temperature.
 ## Выполнение работы
 Инициализация параметров  
 ```
-constexpr int TIME_STEPS = 10; // количество временных шагов
+const int TIME_STEPS = 10; // количество временных шагов
 constexpr double COEFF_A = 0.99;
 constexpr double COEFF_B = 0.01;
 constexpr double COEFF_C = 0.5;
