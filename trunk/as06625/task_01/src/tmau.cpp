@@ -10,7 +10,7 @@ const double COEFF_A = 0.99;
 const double COEFF_B = 0.01;
 const double COEFF_C = 0.5;
 const double COEFF_D = 0.1;
-const double INITIAL_Y = 18;
+constexpr double INITIAL_Y = 18;
 
 // Входные значения вынесены в константу для удобства и поддерживаемости
 constexpr double INPUTS[10] = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
