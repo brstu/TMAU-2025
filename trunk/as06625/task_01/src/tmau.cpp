@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include <array>
+#include <vector>
 using std::cout;
 using std::endl;
 
@@ -13,7 +13,7 @@ constexpr double COEFF_D = 0.1;
 constexpr double INITIAL_Y = 18;
 
 // Входные значения вынесены в константу для удобства и поддерживаемости
-constexpr std::array<double, 10> INPUTS = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+const std::vector<double> INPUTS = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
 
 // Линейная модель
 double compute_linear(double current_y, double input_u) {

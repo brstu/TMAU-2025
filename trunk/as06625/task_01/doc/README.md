@@ -35,7 +35,7 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some con
 Task is to write program (**С++**), which simulates this object temperature.
 
 ## Выполнение работы
-Инициализация параметров  
+Константы  
 ```
 const int TIME_STEPS = 10; // количество временных шагов
 const double COEFF_A = 0.99;
@@ -43,6 +43,7 @@ const double COEFF_B = 0.01;
 const double COEFF_C = 0.5;
 const double COEFF_D = 0.1;
 const double INITIAL_Y = 18;
+const double INPUTS[10] = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
 
 ```
 Имея данные параметры получим результат работы программы:
