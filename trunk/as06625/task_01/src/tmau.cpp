@@ -11,6 +11,7 @@ const double COEFF_B = 0.01;
 const double COEFF_C = 0.5;
 const double COEFF_D = 0.1;
 const double INITIAL_Y = 18;
+const double initial_u = 0.0;
 
 // Линейная модель
 double compute_linear(double current_y, double input_u) {
@@ -25,7 +26,8 @@ double compute_nonlinear(double current_y, double previous_y, double input_u, do
 int main() {
     cout << "Линейная модель" << endl;
     cout << "y0 = " << INITIAL_Y << endl;
-
+    // Вектор входных значений (inputs) моделирует подачу тепла на каждом временном шаге.
+    // Значения выбраны для демонстрации работы модели с переменным тепловым воздействием.
     std::vector<double> inputs = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
     double current_y = INITIAL_Y;
 
@@ -44,9 +46,9 @@ int main() {
 
     for (int i = 0; i < TIME_STEPS; i++) {
         double current_u = inputs[i];
-        double previous_u = (i == 0) ? inputs[0] : inputs[i - 1];
-        double new_y = compute_nonlinear(current_y, previous_y, current_u, previous_u);
+        double previous_u = (i == 0) ? initial_u : inputs[i - 1]; // безопасное начальное значение
 
+        double new_y = compute_nonlinear(current_y, previous_y, current_u, previous_u);
         cout << "y" << i + 1 << " = " << new_y << endl;
 
         previous_y = current_y;
