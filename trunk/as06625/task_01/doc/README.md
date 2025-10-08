@@ -38,12 +38,12 @@ Task is to write program (**С++**), which simulates this object temperature.
 Инициализация параметров  
 ```
 const int TIME_STEPS = 10; // количество временных шагов
-constexpr double COEFF_A = 0.99;
-constexpr double COEFF_B = 0.01;
-constexpr double COEFF_C = 0.5;
-constexpr double COEFF_D = 0.1;
-constexpr double INITIAL_Y = 18;
-constexpr double INPUTS[10] = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
+const double COEFF_A = 0.99;
+const double COEFF_B = 0.01;
+const double COEFF_C = 0.5;
+const double COEFF_D = 0.1;
+const double INITIAL_Y = 18;
+const double INPUTS[10] = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
 
 ```
 Имея данные параметры получим результат работы программы:
