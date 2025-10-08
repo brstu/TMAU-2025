@@ -29,14 +29,14 @@ int main() {
     double c = 0.1;
     double d = 0.05;
 
-    int N = 20; 
+    int N = 20;
 
-    vector<double> y(N + 1, 0.0); 
-    vector<double> u(N + 1, 0.0); 
+    vector<double> y(N + 1, 0.0);
+    vector<double> u(N + 1, 0.0);
 
     for (int t = 0; t <= N; t++) {
         if (t < 5) u[t] = 0.0;
-        else u[t] = 1.0; 
+        else u[t] = 1.0;
     }
 
     cout << "linear model" << endl;
