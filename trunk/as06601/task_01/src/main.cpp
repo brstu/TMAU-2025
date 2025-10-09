@@ -67,7 +67,6 @@ int main() {
         cout << "t=" << t + 1 << "  y=" << y_nonlinear[t + 1] << '\n';
     }
 
-    cout.flush(); // единичный flush в конце, если нужно
 
     return 0;
 }
