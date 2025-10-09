@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <array>
 
 int main() {
     // --- Константы модели ---
@@ -11,16 +12,16 @@ int main() {
     constexpr double Y0 = 18.0;
 
     // --- Функции модели ---
-    auto linearModel = [](double y, double u) -> double {
+    auto linearModel = [](double y, double u) {
         return A * y + B * u;
     };
 
-    auto nonlinearModel = [](double y_now, double y_prev, double u_now, double u_prev) -> double {
+    auto nonlinearModel = [](double y_now, double y_prev, double u_now, double u_prev) {
         return A * y_now - B * std::pow(y_prev, 2.0) + C * u_now + D * std::sin(u_prev);
     };
 
     // --- Управляющее воздействие ---
-    double u[N] = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5};
+    std::array<double, N> u = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5};
 
     // --- Линейная модель ---
     std::cout << "=== Linear model ===" << std::endl;
