@@ -67,6 +67,5 @@ int main() {
         cout << "t=" << t + 1 << "  y=" << y_nonlinear[t + 1] << '\n';
     }
 
-
     return 0;
 }
