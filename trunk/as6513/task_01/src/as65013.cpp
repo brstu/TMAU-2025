@@ -16,7 +16,7 @@ int main() {
     int n = 30;
     double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
 
-    std::vector<double> u(n, 1.0);
+    std::vector<double> u(n, 1.0)
     std::vector<double> y_lin(n, 0.0);
     std::vector<double> y_nonlin(n, 0.0);
 
