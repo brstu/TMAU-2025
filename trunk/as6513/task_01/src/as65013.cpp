@@ -8,15 +8,16 @@ double linear_model(double y, double u, double a, double b) {
 }
 
 
+
 double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, double a, double b, double c, double d) {
     return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);
 }
 
-int main() 
+int main() {
     int n = 30;
     double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
 
-    std::vector<double> u(n, 1.0)
+    std::vector<double> u(n, 1.0);
     std::vector<double> y_lin(n, 0.0);
     std::vector<double> y_nonlin(n, 0.0);
 
