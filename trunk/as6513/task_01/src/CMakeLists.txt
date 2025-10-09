@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(task_01)
+project(firsttask)
 
-add_executable(task_01 as65013.cpp)
+add_executable(firsttask as65013.cpp)
 
