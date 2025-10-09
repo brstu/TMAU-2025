@@ -1,4 +1,3 @@
-
 <p align="center"> Министерство образования Республики Беларусь</p>
 <p align="center">Учреждение образования</p>
 <p align="center">“Брестский Государственный Технический университет”</p>
@@ -10,8 +9,8 @@
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
-<p align="right">Группы АС-65</p>
-<p align="right">Гуща И.В.</p>
+<p align="right">Группы АС-66</p>
+<p align="right">Ярома А.И.</p>
 <p align="right">Проверил:</p>
 <p align="right">Иванюк Д.С.</p>
 <br><br><br><br><br><br><br><br>
@@ -38,13 +37,14 @@ Task is to write program (**С++**), which simulates this object temperature.
 ## Выполнение работы
 Константы  
 ```
-const int n = 10; // такты времени
-const double a = 0.99;
-const double b = 0.01;
-const double c = 0.5;
-const double d = 0.1;
-const double Y0 = 18;
-double u[n] = {5,7,6,5,7,6,5,7,6,5};
+constexpr int TIME_STEPS = 10; // количество временных шагов
+constexpr double COEFF_A = 0.99;
+constexpr double COEFF_B = 0.01;
+constexpr double COEFF_C = 0.5;
+constexpr double COEFF_D = 0.1;
+constexpr double INITIAL_Y = 18;
+constexpr std::array<double, 10> INPUTS = {5, 7, 6, 5, 7, 6, 5, 7, 6, 5}; // значения управляющего воздействия
+
 ```
 Имея данные параметры получим результат работы программы:
 ```bash
@@ -60,18 +60,18 @@ y7 = 17.175
 y8 = 17.0732
 y9 = 16.9625
 y10 = 16.8429
-
 Нелинейная модель
 y0 = 18
-y1 = 17.9841
-y2 = 17.63
-y3 = 16.6857
-y4 = 16.683
-y5 = 16.3418
-y6 = 15.4105
-y7 = 15.4205
-y8 = 15.092
-y9 = 14.1731
-```
-**Вывод:** зная функцию, можно моделировать параметры модели в зависимости от времени.
+y1 = 16.9841
+y2 = 16.9784
+y3 = 16.9897
+y4 = 16.4092
+y5 = 16.7627
+y6 = 16.9682
+y7 = 16.4607
+y8 = 16.821
+y9 = 17.0089
+y10 = 16.4814
 
+## Вывод
+Зная функцию, можно моделировать параметры модели в зависимости от времени.
