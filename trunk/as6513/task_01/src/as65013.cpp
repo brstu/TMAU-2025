@@ -12,7 +12,7 @@ double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, dou
     return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);
 }
 
-int main() {
+int main() 
     int n = 30;
     double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
 
