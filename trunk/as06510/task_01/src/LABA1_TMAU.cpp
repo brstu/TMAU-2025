@@ -2,12 +2,12 @@
 #include <cmath>
 using namespace std;
 
-int steps = 10; 
+const int steps = 10; 
 const double kA = 0.95;
 const double kB = 0.02;
 const double kC = 0.45;
 const double kD = 0.15;
-double yStart = 18; 
+const double yStart = 18; 
 
 double linearModel(double y, double u) {
     return kA * y + kB * u;
