@@ -1,5 +1,7 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
+#include <array>
+
 using namespace std;
 
 const int steps = 10; 
@@ -14,34 +16,35 @@ double linearModel(double y, double u) {
 }
 
 double nonlinearModel(double y, double yPrev, double u, double uPrev) {
-    return kA * y + kB * pow(yPrev, 2) + kC * u + kD * sin(uPrev); // плюс!
+    return kA * y + kB * pow(yPrev, 2) + kC * u + kD * sin(uPrev);
 }
 
 int main() {
     setlocale(LC_ALL, "RU");
-
+    
     cout << "Линейная модель" << endl;
     cout << "y0 = " << yStart << endl;
+    
 
-    const double control[10] = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+    const array<double, steps> control = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+    
     double y = yStart, yPrev = yStart;
-
     for (int i = 0; i < steps; i++) {
         y = linearModel(y, control[i]);
         cout << "y" << i + 1 << " = " << y << endl;
     }
-
+    
     cout << "\n";
     y = yPrev = yStart;
-
+    
     cout << "Нелинейная модель" << endl;
     cout << "y0 = " << yStart << endl;
-
+    
     for (int i = 0; i < steps - 1; i++) {
         y = nonlinearModel(y, yPrev, control[i + 1], control[i]);
         cout << "y" << i + 1 << " = " << y << endl;
     }
-
+    
     system("pause");
     return 0;
 }
