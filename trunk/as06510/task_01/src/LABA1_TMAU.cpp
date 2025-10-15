@@ -23,7 +23,7 @@ int main() {
     cout << "Линейная модель" << endl;
     cout << "y0 = " << yStart << endl;
 
-    double control[10] = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+    const double control[10] = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
     double y = yStart, yPrev = yStart;
 
     for (int i = 0; i < steps; i++) {
