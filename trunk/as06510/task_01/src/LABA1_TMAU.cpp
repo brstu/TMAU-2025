@@ -25,17 +25,22 @@ int main() {
     cout << "Линейная модель" << endl;
     cout << "y0 = " << yStart << endl;
     
-
     const array<double, steps> control = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
     
-    double y = yStart, yPrev = yStart;
+    // Каждый идентификатор в отдельном операторе
+    double y = yStart;
+    double yPrev = yStart;
+    
     for (int i = 0; i < steps; i++) {
         y = linearModel(y, control[i]);
         cout << "y" << i + 1 << " = " << y << endl;
     }
     
     cout << "\n";
-    y = yPrev = yStart;
+    
+    // Сбрасываем значения для нелинейной модели
+    y = yStart;
+    yPrev = yStart;
     
     cout << "Нелинейная модель" << endl;
     cout << "y0 = " << yStart << endl;
