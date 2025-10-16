@@ -4,47 +4,46 @@
 
 using namespace std;
 
-// Функция симуляции линейной модели: yₜ₊₁ = a * yₜ + b * uₜ
-void simulateLinearModel(double a, double b, double y0, double u[], int steps) {
+// Функция симуляции линейной модели: temp_next = coeffA * temp_curr + coeffB * heat_input
+void simulateLinearModel(double coeffA, double coeffB, double initialTemp, double heatFlow[], int totalSteps) {
     cout << "\nСимуляция линейной модели:\n";
-    cout << "Начальная температура (y₀): " << y0 << endl;
-    double y = y0;
-    for (int t = 0; t < steps; ++t) {
-        y = a * y + b * u[t];
-        cout << "Шаг " << t + 1 << ": температура = " << y << endl;
+    cout << "Начальная температура: " << initialTemp << endl;
+    double currentTemp = initialTemp;
+    for (int step = 0; step < totalSteps; ++step) {
+        currentTemp = coeffA * currentTemp + coeffB * heatFlow[step];
+        cout << "Шаг " << step + 1 << ": температура = " << currentTemp << endl;
     }
 }
 
-// Функция симуляции нелинейной модели: yₜ₊₁ = a * yₜ + b * yₜ₋₁ + c * uₜ + d * sin(uₜ₋₁)
-void simulateNonlinearModel(double a, double b, double c, double d, double y0, double u[], int steps) {
+// Функция симуляции нелинейной модели: temp_next = coeffA * temp_curr + coeffB * temp_prev + coeffC * heat_input + coeffD * sin(prev_heat_input)
+void simulateNonlinearModel(double coeffA, double coeffB, double coeffC, double coeffD, double initialTemp, double heatFlow[], int totalSteps) {
     cout << "\nСимуляция нелинейной модели:\n";
-    cout << "Начальная температура (y₀): " << y0 << endl;
-    double y_prev = y0;
-    double y = y0;
-    for (int t = 0; t < steps; ++t) {
-        double u_prev = (t > 0) ? u[t - 1] : 0;
-        double y_next = a * y + b * y_prev + c * u[t] + d * sin(u_prev);
-        cout << "Шаг " << t + 1 << ": температура = " << y_next << endl;
-        y_prev = y;
-        y = y_next;
+    cout << "Начальная температура: " << initialTemp << endl;
+    double previousTemp = initialTemp;
+    double currentTemp = initialTemp;
+    for (int step = 0; step < totalSteps; ++step) {
+        double previousHeat = (step > 0) ? heatFlow[step - 1] : 0;
+        double nextTemp = coeffA * currentTemp + coeffB * previousTemp + coeffC * heatFlow[step] + coeffD * sin(previousHeat);
+        cout << "Шаг " << step + 1 << ": температура = " << nextTemp << endl;
+        previousTemp = currentTemp;
+        currentTemp = nextTemp;
     }
 }
 
 int main() {
-    // Установка русской локали для корректного отображения текста
     setlocale(LC_ALL, "ru_RU.UTF-8");
 
-    // Исходные параметры модели
-    double a = 0.8, b = 0.1, c = 0.05, d = 0.02;
-    double y0 = 20.0; // Начальная температура
-    int steps = 10;   // Количество шагов симуляции
+    // Параметры модели
+    double coeffA = 0.8, coeffB = 0.1, coeffC = 0.05, coeffD = 0.02;
+    double initialTemp = 20.0;
+    int totalSteps = 10;
 
-    // Массив значений входного тепла (uₜ)
-    double u[] = { 5, 6, 7, 8, 9, 10, 9, 8, 7, 6 };
+    // Массив входного тепла
+    double heatFlow[] = { 3, 4, 5, 6, 7, 8, 9, 10, 9, 8 };
 
-    // Вызов функций симуляции
-    simulateLinearModel(a, b, y0, u, steps);
-    simulateNonlinearModel(a, b, c, d, y0, u, steps);
+    // Запуск симуляций
+    simulateLinearModel(coeffA, coeffB, initialTemp, heatFlow, totalSteps);
+    simulateNonlinearModel(coeffA, coeffB, coeffC, coeffD, initialTemp, heatFlow, totalSteps);
 
     return 0;
 }
