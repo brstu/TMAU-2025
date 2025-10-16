@@ -1,4 +1,3 @@
-
 <p align="center"> Министерство образования Республики Беларусь</p>
 <p align="center">Учреждение образования</p>
 <p align="center">“Брестский Государственный Технический университет”</p>
@@ -35,10 +34,10 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some con
 
 Task is to write program (**С++**), which simulates this object temperature.
 
-## Выполнение работы
+## Ход работы
 Константы  
 ```
-int n = 10;// такты времени
+int n = 10;
 const double a = 0.8;
 const double b = 0.1;
 const double c = 0.05;
@@ -46,7 +45,7 @@ const double d = 0.02;
 double Y0 = 20;
 double u[10] = {3, 4, 5, 6, 7, 8, 9, 10, 9, 8};
 ```
-Имея данные параметры получим результат работы программы:
+Имея данные параметры получили результат выполнения работы программы:
 ```Линейная модель
 y0 = 20
 y1 = 16.5
