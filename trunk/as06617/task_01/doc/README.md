@@ -72,7 +72,8 @@ t=18  y=0.9450
 t=19  y=0.9560
 t=20  y=0.9648
 
- non linear model
+Nonlinear model
+<!-- Note: The output for t=1 is omitted because the initial condition y(1) is zero and not shown in the results. -->
 t=2  y=0.0000
 t=3  y=0.0000
 t=4  y=0.0000
