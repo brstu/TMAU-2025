@@ -21,7 +21,8 @@ double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, con
 
 int main() {
     Coeffs coeffs = {0.8, 0.2, 0.1, 0.05};
-    int N = 20; 
+    const int SIMULATION_STEPS = 20;
+    int N = SIMULATION_STEPS;
     vector<double> y(N + 1, 0.0); 
     vector<double> u(N + 1, 0.0); 
 
