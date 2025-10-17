@@ -37,6 +37,10 @@ Task is to write program (**С++**), which simulates this object temperature.
 ## Выполнение работы
 Константы  
 ```
+const double INPUT_OFFSET = 10.0;
+const double INPUT_AMPLITUDE = 2.0;
+const double INPUT_FREQUENCY = 0.5;
+const double INPUT_E = 0.95;
 const double a = 0.85;
 const double b = 0.002;
 const double c = 0.6;
@@ -44,9 +48,9 @@ const double d = 0.025;
 int time_steps = 10;
 double initial_temp = 24.0;
 ```
-Имея данные параметры получим результат работы программы:
-```bash
-Линейная модель
+Имея такие константы мы сможем получить такой результат работы программы:
+
+Linear Model Results:
 y0 = 24
 y1 = 20.42
 y2 = 17.3789
@@ -59,7 +63,7 @@ y8 = 6.64411
 y9 = 5.66447
 y10 = 4.83089
 
-Нелинейная модель
+Nonlinear Model Results:
 y0 = 24
 y1 = 22.8
 y2 = 24.7897
@@ -72,4 +76,4 @@ y8 = 29.5255
 y9 = 28.342
 y10 = 27.194
 ```
-**Вывод:** зная функцию, можно моделировать параметры модели в зависимости от времени.
+**Вывод:** Если мы знаем функцию, ты мы можем моделировать параметры модели в зависимости от времени.
