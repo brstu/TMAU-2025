@@ -16,7 +16,6 @@ int main() {
     // Начальные условия для обеих моделей
     double y_linear = 20.0;      // Линейная модель
     double y_nonlinear = 20.0;   // Нелинейная модель
-    double y_prev = 19.5;        // Для нелинейной модели
     double u_t = 1.0;
     double u_prev = 0.8;
     
@@ -31,7 +30,7 @@ int main() {
         // Линейная модель
         double linear_next = a_linear * y_linear + b_linear * u_t;
         
-        // Нелинейная модель 
+        // Нелинейная модель
         double nonlinear_next = a_nonlinear * y_nonlinear - 
                               b_nonlinear * y_nonlinear * y_nonlinear + 
                               c_nonlinear * u_t + 
@@ -40,7 +39,7 @@ int main() {
         std::cout << std::setw(5) << t << std::setw(15) << std::fixed << std::setprecision(2) 
                   << y_linear << std::setw(15) << y_nonlinear << std::setw(15) << u_t << std::endl;
         
-        y_prev = y_linear;
+        // Обновляем значения
         y_linear = linear_next;
         y_nonlinear = nonlinear_next;
         u_prev = u_t;
