@@ -1,49 +1,59 @@
 #include <iostream>
-#include <cmath>      // Для функции sin()
-#include <locale>     // Для установки русской локали
+#include <cmath>
+#include <vector>
 
 using namespace std;
 
-// Функция симуляции линейной модели: temp_next = coeffA * temp_curr + coeffB * heat_input
-void simulateLinearModel(double coeffA, double coeffB, double initialTemp, double heatFlow[], int totalSteps) {
-    cout << "\nСимуляция линейной модели:\n";
-    cout << "Начальная температура: " << initialTemp << endl;
-    double currentTemp = initialTemp;
-    for (int step = 0; step < totalSteps; ++step) {
-        currentTemp = coeffA * currentTemp + coeffB * heatFlow[step];
-        cout << "Шаг " << step + 1 << ": температура = " << currentTemp << endl;
-    }
-}
+class TemperatureModel {
+private:
+    double a, b, c, d;          
+    double startTemp;           
+    vector<double> heatInput;   
 
-// Функция симуляции нелинейной модели: temp_next = coeffA * temp_curr + coeffB * temp_prev + coeffC * heat_input + coeffD * sin(prev_heat_input)
-void simulateNonlinearModel(double coeffA, double coeffB, double coeffC, double coeffD, double initialTemp, double heatFlow[], int totalSteps) {
-    cout << "\nСимуляция нелинейной модели:\n";
-    cout << "Начальная температура: " << initialTemp << endl;
-    double previousTemp = initialTemp;
-    double currentTemp = initialTemp;
-    for (int step = 0; step < totalSteps; ++step) {
-        double previousHeat = (step > 0) ? heatFlow[step - 1] : 0;
-        double nextTemp = coeffA * currentTemp + coeffB * previousTemp + coeffC * heatFlow[step] + coeffD * sin(previousHeat);
-        cout << "Шаг " << step + 1 << ": температура = " << nextTemp << endl;
-        previousTemp = currentTemp;
-        currentTemp = nextTemp;
+public:
+    TemperatureModel(double a_val, double b_val, double c_val, double d_val, 
+                    double temp, vector<double> inputs) 
+        : a(a_val), b(b_val), c(c_val), d(d_val), 
+          startTemp(temp), heatInput(inputs) {}
+
+    // Method for running a linear model
+    void runLinear() {
+        cout << "Linear model results:" << endl;
+        double current = startTemp;  
+        
+        for (int i = 0; i < heatInput.size(); i++) {
+            current = a * current + b * heatInput[i];
+            cout << "Y" << i + 1 << ": " << current << endl;
+        }
     }
-}
+
+    // Method for running a nonlinear model
+    void runNonlinear() {
+        cout << "\nResults of the nonlinear model:" << endl;
+        double prev = startTemp;     
+        double current = startTemp;  
+        
+        for (int i = 0; i < heatInput.size(); i++) {
+            double prevHeat = (i > 0) ? heatInput[i - 1] : 0;
+
+            double next = a * current + b * prev + c * heatInput[i] + d * sin(prevHeat);
+            cout << "Y" << i + 1 << ": " << next << endl;
+
+            prev = current;     
+            current = next;     
+        }
+    }
+};
 
 int main() {
-    setlocale(LC_ALL, "ru_RU.UTF-8");
+    setlocale(LC_ALL, "Russian");
+    vector<double> inputs = {3, 4, 5, 6, 7, 8, 9, 10, 9, 8};
 
-    // Параметры модели
-    double coeffA = 0.8, coeffB = 0.1, coeffC = 0.05, coeffD = 0.02;
-    double initialTemp = 20.0;
-    int totalSteps = 10;
+    TemperatureModel model(0.7, 0.3, 0.05, 0.01, 20.0, inputs);
+  
+    model.runLinear();
 
-    // Массив входного тепла
-    double heatFlow[] = { 3, 4, 5, 6, 7, 8, 9, 10, 9, 8 };
-
-    // Запуск симуляций
-    simulateLinearModel(coeffA, coeffB, initialTemp, heatFlow, totalSteps);
-    simulateNonlinearModel(coeffA, coeffB, coeffC, coeffD, initialTemp, heatFlow, totalSteps);
-
+    model.runNonlinear();
+    
     return 0;
 }
