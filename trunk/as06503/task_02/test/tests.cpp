@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include "func.h"
-
+#include <cmath>
 TEST(Linear, test_zero) {
     EXPECT_EQ(linear(0,0), 0);
 }
