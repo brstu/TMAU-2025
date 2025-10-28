@@ -1,5 +1,6 @@
 #include <iostream>
 #include "func.h"
+#include <array>
 using std::cout;
 using std::endl;
 
@@ -8,7 +9,7 @@ using std::endl;
 int main() {
     cout << "Linear model" << endl;
     cout << "y0 = " << Y0 << endl;
-    double u[n] = { 5,7,6,5,7,6,5,7,6,5 };
+    std::array<double, n> u = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
     double yt = Y0;
     for (int i = 0; i < n; i++) {
         yt = linear(yt, u[i]);
