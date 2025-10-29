@@ -11,7 +11,7 @@ TEST(LinearStepTest, BasicBehavior) {
 TEST(NonlinearStepTest, IncludesSinAndSquareTerms) {
     ModelParams p;
     double result = nonlinearStep(10.0, 8.0, 5.0, 2.0, p);
-    double expected = p.a * 10.0 - p.b * pow(8.0, 2) + p.c * 5.0 + p.d * sin(2.0);
+    double expected = p.a * 10.0 - p.b * std::pow(8.0, 2) + p.c * 5.0 + p.d * sin(2.0);
     EXPECT_NEAR(result, expected, 1e-9);
 }
 
