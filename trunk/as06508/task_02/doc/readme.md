@@ -81,7 +81,7 @@ TEST(NonlinearStepTest, IncludesSinAndSquareTerms) {
     double y_prev = 8.0, y_prev2 = 7.0, u = 3.0, u_prev = 2.0;
     double expected = params.a * y_prev - params.b * pow(y_prev2, 2)
                     + params.c * u + params.d * sin(u_prev);
-    EXPECT_NEAR(nonlinearStep(params, y_prev, y_prev2, u, u_prev), expected, 1e-9);
+    EXPECT_NEAR(nonlinearStep(y_prev, y_prev2, u, u_prev, params), expected, 1e-9);
 }
 
 TEST(SimulationTest, LinearProducesCorrectSequence) {
