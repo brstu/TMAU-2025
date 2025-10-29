@@ -38,6 +38,3 @@ target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 include(GoogleTest)
 gtest_discover_tests(runTests)
 
-# Автоматическое обнаружение тестов
-include(GoogleTest)
-gtest_discover_tests(runTests)
