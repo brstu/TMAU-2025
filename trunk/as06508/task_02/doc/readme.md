@@ -87,22 +87,22 @@ TEST(NonlinearStepTest, IncludesSinAndSquareTerms) {
 TEST(SimulationTest, LinearProducesCorrectSequence) {
     ModelParams params;
     std::vector<double> u(params.time_steps, 5.0);
-    auto y = simulateModel(params, u, true);
+    auto y = simulateLinear(params, u);
     EXPECT_EQ(y.size(), params.time_steps + 1);
 }
 
 TEST(SimulationTest, NonlinearFirstStepUsesE) {
     ModelParams params;
     std::vector<double> u(params.time_steps, 3.0);
-    auto y = simulateModel(params, u, false);
+    auto y = simulateNonlinear(params, u);
     EXPECT_DOUBLE_EQ(y[1], y[0] * params.INPUT_E);
 }
 
 TEST(SimulationTest, NonlinearHasDifferentDynamics) {
     ModelParams params;
     std::vector<double> u(params.time_steps, 2.0);
-    auto y_lin = simulateModel(params, u, true);
-    auto y_nonlin = simulateModel(params, u, false);
+    auto y_lin = simulateLinear(params, u);
+    auto y_nonlin = simulateNonlinear(params, u);
     EXPECT_NE(y_lin.back(), y_nonlin.back());
 }
  ```
