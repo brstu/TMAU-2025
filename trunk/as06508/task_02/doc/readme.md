@@ -73,7 +73,7 @@ TEST(LinearStepTest, BasicBehavior) {
     double y_prev = 10.0;
     double u = 2.0;
     double expected = params.a * y_prev + params.b * u;
-    EXPECT_DOUBLE_EQ(linearStep(params, y_prev, u), expected);
+    EXPECT_DOUBLE_EQ(linearStep(y_prev, u, params), expected);
 }
 
 TEST(NonlinearStepTest, IncludesSinAndSquareTerms) {
