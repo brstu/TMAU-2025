@@ -41,6 +41,6 @@ int main() {
         y_curr = y_next;
     }
 
-    system("pause");
+    std::cin.get();
     return 0;
 }
