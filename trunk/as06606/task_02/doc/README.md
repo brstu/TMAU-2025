@@ -75,12 +75,12 @@ TEST(nonlinear_step, test_u_zero) {
 }
 
 TEST(nonlinear_step, test_y_zero) {
-    EXPECT_NEAR(nonlinear_step(0, 5, 5), D * 5 + E * sin(5), 1e-9);
+    EXPECT_NEAR(nonlinear_step(0, 5, 5), C * 5 + D * sin(5), 1e-9);
 }
 
 TEST(nonlinear_step, test_default) {
     EXPECT_NEAR(nonlinear_step(18, 5, 5),
-                A * 18 - C * pow(18, 2) + D * 5 + E * sin(5),
+                A * 18 - C * pow(18, 2) + C * 5 + D * sin(5),
                 1e-9);
 }
 
