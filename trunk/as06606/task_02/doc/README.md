@@ -49,11 +49,11 @@ TEST(linear_step, test_u_zero) {
 }
 
 TEST(linear_step, test_y_zero) {
-    EXPECT_DOUBLE_EQ(linear_step(0, 5), B * 5);
+    EXPECT_DOUBLE_EQ(linear_step(0, 5), B_LIN * 5);
 }
 
 TEST(linear_step, test_default) {
-    EXPECT_DOUBLE_EQ(linear_step(18, 5), A * 18 + B * 5);
+    EXPECT_DOUBLE_EQ(linear_step(18, 5), A * 18 + B_LIN * 5);
 }
 
 TEST(nonlinear_step, test_zero) {
