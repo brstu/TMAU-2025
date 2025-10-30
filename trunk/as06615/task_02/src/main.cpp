@@ -15,7 +15,7 @@ int main() {
 
     std::vector<double> x1_lin = {0.0};
     std::vector<double> x2_lin = {0.0};
-    std::vector<double> u_lin = {0.0};
+    std::vector<double> u_lin = {};
     std::vector<double> err_lin = {x_ref};
 
     std::vector<double> x1_non = {0.0};
