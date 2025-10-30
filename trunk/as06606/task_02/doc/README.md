@@ -53,29 +53,24 @@ TEST(LinearModel, test_y_zero) {
     EXPECT_DOUBLE_EQ(model.step(0, 5), 0.2 * 5);
 }
 
-TEST(LinearModel, test_default) {
-    LinearModel model(0.9, 0.2);
-    EXPECT_DOUBLE_EQ(model.step(18, 5), 0.9 * 18 + 0.2 * 5);
+TEST(linear_step, test_default) {
+    EXPECT_DOUBLE_EQ(linear_step(0.9, 0.2, 18, 5), 0.9 * 18 + 0.2 * 5);
 }
 
-TEST(NonlinearModel, test_zero) {
-    NonlinearModel model(0.9, 0.01, 0.15, 0.05);
-    EXPECT_DOUBLE_EQ(model.step(0, 0, 0), 0);
+TEST(nonlinear_step, test_zero) {
+    EXPECT_DOUBLE_EQ(nonlinear_step(0.9, 0.01, 0.15, 0.05, 0, 0, 0), 0);
 }
 
-TEST(NonlinearModel, test_u_zero) {
-    NonlinearModel model(0.9, 0.01, 0.15, 0.05);
-    EXPECT_NEAR(model.step(18, 0, 0), 0.9 * 18 - 0.01 * pow(18, 2), 1e-9);
+TEST(nonlinear_step, test_u_zero) {
+    EXPECT_NEAR(nonlinear_step(0.9, 0.01, 0.15, 0.05, 18, 0, 0), 0.9 * 18 - 0.01 * pow(18, 2), 1e-9);
 }
 
-TEST(NonlinearModel, test_y_zero) {
-    NonlinearModel model(0.9, 0.01, 0.15, 0.05);
-    EXPECT_NEAR(model.step(0, 5, 5), 0.15 * 5 + 0.05 * sin(5), 1e-9);
+TEST(nonlinear_step, test_y_zero) {
+    EXPECT_NEAR(nonlinear_step(0.9, 0.01, 0.15, 0.05, 0, 5, 5), 0.15 * 5 + 0.05 * sin(5), 1e-9);
 }
 
-TEST(NonlinearModel, test_default) {
-    NonlinearModel model(0.9, 0.01, 0.15, 0.05);
-    EXPECT_NEAR(model.step(18, 5, 5),
+TEST(nonlinear_step, test_default) {
+    EXPECT_NEAR(nonlinear_step(0.9, 0.01, 0.15, 0.05, 18, 5, 5),
                 0.9 * 18 - 0.01 * pow(18, 2) + 0.15 * 5 + 0.05 * sin(5),
                 1e-9);
 }
