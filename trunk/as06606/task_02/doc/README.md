@@ -38,16 +38,6 @@
 #include <cmath>
 #include "../src/func.h"   // подключение тестируемого кода
 
-TEST(LinearModel, test_zero) {
-    LinearModel model(0.9, 0.2);
-    EXPECT_DOUBLE_EQ(model.step(0, 0), 0);
-}
-
-TEST(LinearModel, test_u_zero) {
-    LinearModel model(0.9, 0.2);
-    EXPECT_DOUBLE_EQ(model.step(18, 0), 0.9 * 18);
-}
-
 // Тесты для linear_step и nonlinear_step из func.h
 
 TEST(linear_step, test_zero) {
