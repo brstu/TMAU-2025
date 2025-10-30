@@ -59,12 +59,8 @@ TEST(NonLinear, test_different_yt_yt1) {
 }
 
 TEST(NonLinear, test_fractional_values) {
-    double yt = 2.5;
-    double yt1 = 1.5;
-    double ut = 3.7;
-    double ut1 = 0.5;
-    EXPECT_DOUBLE_EQ(nonlinear(yt, yt1, ut, ut1),
-        a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1));
+    EXPECT_DOUBLE_EQ(nonlinear(2.5, 1.5, 3.7, 0.5),
+        a * 2.5 - b * 1.5 * 1.5 + c * 3.7 + d * sin(0.5));
 }
 
 TEST(NonLinear, test_large_values) {
