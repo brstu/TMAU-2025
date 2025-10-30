@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <cmath>
+#include <array>  
 
 using namespace std;
 
@@ -21,7 +22,7 @@ double nonlinearModel(double y, double y_prev, double u, double u_prev) {
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    double u[N] = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
+    array<double, N> u = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
     double y = Y_START;
     double y_prev = Y_START;
 
