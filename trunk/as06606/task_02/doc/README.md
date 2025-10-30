@@ -48,50 +48,59 @@ TEST(LinearModel, test_u_zero) {
     EXPECT_DOUBLE_EQ(model.step(18, 0), 0.9 * 18);
 }
 
-TEST(LinearModel, test_y_zero) {
-    LinearModel model(0.9, 0.2);
-    EXPECT_DOUBLE_EQ(model.step(0, 5), 0.2 * 5);
+// Тесты для linear_step и nonlinear_step из func.h
+
+TEST(linear_step, test_zero) {
+    EXPECT_DOUBLE_EQ(linear_step(0, 0), 0);
+}
+
+TEST(linear_step, test_u_zero) {
+    EXPECT_DOUBLE_EQ(linear_step(18, 0), A * 18);
+}
+
+TEST(linear_step, test_y_zero) {
+    EXPECT_DOUBLE_EQ(linear_step(0, 5), B * 5);
 }
 
 TEST(linear_step, test_default) {
-    EXPECT_DOUBLE_EQ(linear_step(0.9, 0.2, 18, 5), 0.9 * 18 + 0.2 * 5);
+    EXPECT_DOUBLE_EQ(linear_step(18, 5), A * 18 + B * 5);
 }
 
 TEST(nonlinear_step, test_zero) {
-    EXPECT_DOUBLE_EQ(nonlinear_step(0.9, 0.01, 0.15, 0.05, 0, 0, 0), 0);
+    EXPECT_DOUBLE_EQ(nonlinear_step(0, 0, 0), 0);
 }
 
 TEST(nonlinear_step, test_u_zero) {
-    EXPECT_NEAR(nonlinear_step(0.9, 0.01, 0.15, 0.05, 18, 0, 0), 0.9 * 18 - 0.01 * pow(18, 2), 1e-9);
+    EXPECT_NEAR(nonlinear_step(18, 0, 0), A * 18 - C * pow(18, 2), 1e-9);
 }
 
 TEST(nonlinear_step, test_y_zero) {
-    EXPECT_NEAR(nonlinear_step(0.9, 0.01, 0.15, 0.05, 0, 5, 5), 0.15 * 5 + 0.05 * sin(5), 1e-9);
+    EXPECT_NEAR(nonlinear_step(0, 5, 5), D * 5 + E * sin(5), 1e-9);
 }
 
 TEST(nonlinear_step, test_default) {
-    EXPECT_NEAR(nonlinear_step(0.9, 0.01, 0.15, 0.05, 18, 5, 5),
-                0.9 * 18 - 0.01 * pow(18, 2) + 0.15 * 5 + 0.05 * sin(5),
+    EXPECT_NEAR(nonlinear_step(18, 5, 5),
+                A * 18 - C * pow(18, 2) + D * 5 + E * sin(5),
                 1e-9);
 }
 
 Test project D:/TiMAU/TMAU-2025/trunk/as06606/task_02/src/build
-    Start 1: LinearModel.test_zero
-1/8 Test #1: LinearModel.test_zero .............   Passed    0.01 sec
-    Start 2: LinearModel.test_u_zero
-2/8 Test #2: LinearModel.test_u_zero ..........   Passed    0.01 sec
-    Start 3: LinearModel.test_y_zero
-3/8 Test #3: LinearModel.test_y_zero ..........   Passed    0.01 sec
-    Start 4: LinearModel.test_default
-4/8 Test #4: LinearModel.test_default .........   Passed    0.01 sec
-    Start 5: NonlinearModel.test_zero
-5/8 Test #5: NonlinearModel.test_zero ........  Passed    0.01 sec
-    Start 6: NonlinearModel.test_u_zero
-6/8 Test #6: NonlinearModel.test_u_zero ........ Passed    0.01 sec
-    Start 7: NonlinearModel.test_y_zero
-7/8 Test #7: NonlinearModel.test_y_zero ........ Passed    0.01 sec
-    Start 8: NonlinearModel.test_default
-8/8 Test #8: NonlinearModel.test_default .....  Passed    0.01 sec
+    Start 1: linear_step.test_zero
+1/8 Test #1: linear_step.test_zero .............   Passed    0.01 sec
+    Start 2: linear_step.test_u_zero
+2/8 Test #2: linear_step.test_u_zero ..........   Passed    0.01 sec
+    Start 3: linear_step.test_y_zero
+3/8 Test #3: linear_step.test_y_zero ..........   Passed    0.01 sec
+    Start 4: linear_step.test_default
+4/8 Test #4: linear_step.test_default .........   Passed    0.01 sec
+    Start 5: nonlinear_step.test_zero
+5/8 Test #5: nonlinear_step.test_zero ........  Passed    0.01 sec
+    Start 6: nonlinear_step.test_u_zero
+6/8 Test #6: nonlinear_step.test_u_zero ........ Passed    0.01 sec
+    Start 7: nonlinear_step.test_y_zero
+7/8 Test #7: nonlinear_step.test_y_zero ........ Passed    0.01 sec
+    Start 8: nonlinear_step.test_default
+8/8 Test #8: nonlinear_step.test_default .....  Passed    0.01 sec
 
 100% tests passed, 0 tests failed out of 8
 
