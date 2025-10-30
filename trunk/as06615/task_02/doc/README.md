@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
 }
 
 
-Test project E:\Projects\TMAU-2025\trunk\as06615\task_02\src\build> ./runTests.exe
+Test project ./build> ./runTests.exe
 [==========] Running 8 tests from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 8 tests from DerivativeTest
