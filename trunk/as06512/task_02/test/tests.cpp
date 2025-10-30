@@ -2,10 +2,7 @@
 #include "functions.h"
 #include <cmath>
 
-// Константы из functions.h (должны быть определены там)
-// extern const double a, b, c, d;
 
-// Тесты для линейной модели
 TEST(Linear, test_zero) {
     EXPECT_EQ(linear(0, 0), 0);
 }
@@ -34,7 +31,7 @@ TEST(Linear, test_large_values) {
     EXPECT_EQ(linear(1000, 500), a * 1000 + b * 500);
 }
 
-// Тесты для нелинейной модели
+// Г’ГҐГ±ГІГ» Г¤Г«Гї Г­ГҐГ«ГЁГ­ГҐГ©Г­Г®Г© Г¬Г®Г¤ГҐГ«ГЁ
 TEST(NonLinear, test_zero) {
     EXPECT_EQ(nonlinear(0, 0, 0, 0), 0);
 }
@@ -62,7 +59,10 @@ TEST(NonLinear, test_different_yt_yt1) {
 }
 
 TEST(NonLinear, test_fractional_values) {
-    double yt = 2.5, yt1 = 1.5, ut = 3.7, ut1 = 0.5;
+    double yt = 2.5;
+    double yt1 = 1.5;
+    double ut = 3.7;
+    double ut1 = 0.5;
     EXPECT_DOUBLE_EQ(nonlinear(yt, yt1, ut, ut1),
         a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1));
 }
@@ -72,7 +72,7 @@ TEST(NonLinear, test_large_values) {
         a * 100 - b * 50 * 50 + c * 25 + d * sin(10));
 }
 
-// Тест на точность вычислений с плавающей точкой
+// Г’ГҐГ±ГІ Г­Г  ГІГ®Г·Г­Г®Г±ГІГј ГўГ»Г·ГЁГ±Г«ГҐГ­ГЁГ© Г± ГЇГ«Г ГўГ ГѕГ№ГҐГ© ГІГ®Г·ГЄГ®Г©
 TEST(NonLinear, test_precision) {
     double result = nonlinear(1.234567, 2.345678, 3.456789, 4.567890);
     double expected = a * 1.234567 - b * 2.345678 * 2.345678 + c * 3.456789 + d * sin(4.567890);
