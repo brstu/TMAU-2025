@@ -46,3 +46,13 @@ TEST(DerivativeTest, LongErrorSequence) {
     EXPECT_DOUBLE_EQ(compute_derivative(errors, 0.5), 1.0);
 }
 
+TEST(DerivativeTest, NearZeroDeltaTime) {
+    std::vector<double> errors = {1.0, 2.0};
+    double dt = std::numeric_limits<double>::epsilon() / 2;
+    EXPECT_DOUBLE_EQ(compute_derivative(errors, dt), 0.0);
+}
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}

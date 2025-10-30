@@ -24,7 +24,7 @@
 1. Использовать фреймворк для модульного тестирования – [Google Test](https://google.github.io/googletest/).  
 2. Написать модульные тесты для основных функций программы. Разместить тесты в каталоге: **trunk\as0xxyy\task_02\test**.  
 3. Исходный код программы – в каталоге: **trunk\as0xxyy\task_02\src**.  
-4. В файле `readme.md` отразить количество написанных тестов и процент покрытия кода тестами (например, с помощью [gcovr](https://gcovr.com/en/stable/)).
+4. В файле `readme.md` отразить количество написанных тестов и процент покрытия кода тестами (например, с помощью [gcovr](https://gcovr.com/en/stable/)).  Expand commentComment on line R27ResolvedCode has comments. Press enter to view.
 5. Также отметить выполнение работы в общем [`README.md`](https://github.com/brstu/TMAU-2025/blob/main/README.md).
 
 ---
@@ -82,16 +82,21 @@ TEST(DerivativeTest, LongErrorSequence) {
     EXPECT_DOUBLE_EQ(compute_derivative(errors, 0.5), 1.0);
 }
 
+TEST(DerivativeTest, NearZeroDeltaTime) {
+    std::vector<double> errors = {1.0, 2.0};
+    double dt = std::numeric_limits<double>::epsilon() / 2;
+    EXPECT_DOUBLE_EQ(compute_derivative(errors, dt), 0.0);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
 
-
-Test project ./build> ./runTests.exe
-[==========] Running 8 tests from 1 test suite.
+Test project E:\Projects\TMAU-2025\trunk\as06615\task_02\src\build> ./runTests.exe
+[==========] Running 9 tests from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 8 tests from DerivativeTest
+[----------] 9 tests from DerivativeTest
 [ RUN      ] DerivativeTest.EmptyErrors
 [       OK ] DerivativeTest.EmptyErrors (0 ms)
 [ RUN      ] DerivativeTest.SingleErrorValue
@@ -108,8 +113,10 @@ Test project ./build> ./runTests.exe
 [       OK ] DerivativeTest.SmallDeltaTime (0 ms)
 [ RUN      ] DerivativeTest.LongErrorSequence
 [       OK ] DerivativeTest.LongErrorSequence (0 ms)
-[----------] 8 tests from DerivativeTest (26 ms total)
+[ RUN      ] DerivativeTest.NearZeroDeltaTime
+[       OK ] DerivativeTest.NearZeroDeltaTime (0 ms)
+[----------] 9 tests from DerivativeTest (69 ms total)
 
 [----------] Global test environment tear-down
-[==========] 8 tests from 1 test suite ran. (37 ms total)
-[  PASSED  ] 8 tests.
+[==========] 9 tests from 1 test suite ran. (89 ms total)
+[  PASSED  ] 9 tests.
