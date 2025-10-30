@@ -59,7 +59,8 @@ TEST(SimulationTest, LinearAndNonlinearGrowAsExpected) {
 
 TEST(EdgeCases, ZeroSteps_NoCrash) {
     int n = 0;
-    double y0 = 1.0, u_val = 1.0;
+    double y0 = 1.0;
+    [[maybe_unused]] double u_val = 1.0;
 
     std::vector<double> y_lin(n + 1, y0);
     std::vector<double> y_nonlin(n + 1, y0);
