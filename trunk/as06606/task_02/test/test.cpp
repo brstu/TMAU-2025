@@ -1,11 +1,7 @@
 #include <gtest/gtest.h>
 #include <cmath>
 #include <vector>
-#include "../main.cpp" // ⚠️ Или включи заголовочный файл с классами LinearModel, NonlinearModel, ModelConfig
-
-// -------------------------
-// Тесты для LinearModel
-// -------------------------
+#include "../src/func.h"
 
 TEST(LinearModelTest, Step_PositiveValues) {
     LinearModel model(0.9, 0.2);
@@ -23,10 +19,6 @@ TEST(LinearModelTest, Step_ZeroValues) {
     LinearModel model(0.9, 0.2);
     EXPECT_DOUBLE_EQ(model.step(0.0, 0.0), 0.0);
 }
-
-// -------------------------
-// Тесты для NonlinearModel
-// -------------------------
 
 TEST(NonlinearModelTest, Step_BaseCase) {
     NonlinearModel model(0.9, 0.01, 0.15, 0.05);
@@ -48,10 +40,6 @@ TEST(NonlinearModelTest, Step_NegativeValues) {
     double expected = 0.9 * (-3.0) - 0.01 * 9.0 + 0.15 * (-2.0) + 0.05 * sin(-1.0);
     EXPECT_NEAR(result, expected, 1e-9);
 }
-
-// -------------------------
-// Интеграционные тесты — симуляция шагов
-// -------------------------
 
 TEST(SimulationTest, LinearAndNonlinearGrowAsExpected) {
     LinearModel linear{ModelConfig::a, ModelConfig::b_lin};
@@ -81,10 +69,6 @@ TEST(SimulationTest, LinearAndNonlinearGrowAsExpected) {
     }
 }
 
-// -------------------------
-// Граничные случаи
-// -------------------------
-
 TEST(EdgeCases, ZeroSteps_NoCrash) {
     int n = 0;
     double y0 = 1.0, u_val = 1.0;
@@ -98,10 +82,6 @@ TEST(EdgeCases, ZeroSteps_NoCrash) {
     EXPECT_EQ(y_lin.size(), 1);
     EXPECT_EQ(y_nonlin.size(), 1);
 }
-
-// -------------------------
-// Основная точка входа для Google Test
-// -------------------------
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
