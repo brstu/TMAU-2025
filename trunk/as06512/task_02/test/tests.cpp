@@ -31,7 +31,7 @@ TEST(Linear, test_large_values) {
     EXPECT_EQ(linear(1000, 500), a * 1000 + b * 500);
 }
 
-// Òåñòû äëÿ íåëèíåéíîé ìîäåëè
+// Тесты для нелинейной модели
 TEST(NonLinear, test_zero) {
     EXPECT_EQ(nonlinear(0, 0, 0, 0), 0);
 }
