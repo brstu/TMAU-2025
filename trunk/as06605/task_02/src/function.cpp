@@ -22,7 +22,7 @@ vector <double> nonlinear(double u)
 	temps[1] = a * temps[0] - b * temps[0] * temps[0] + c * u + d * sin(u);
 	for (int i = 2; i < iterations - 1; ++i)
 	{
-		temps[i + 1] = a * temps[i] - b * temps[i - 1] * temps[i - 1] + c * u + d * sin(u);
+		temps[i + 1] = a * temps[i] - b * temps[i] * temps[i] + c * u + d * sin(u);
 	}
 	return temps;
 }
