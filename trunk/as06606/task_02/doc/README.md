@@ -36,7 +36,7 @@
 ```cpp
 #include <gtest/gtest.h>
 #include <cmath>
-#include "../src/main.cpp"   // подключение тестируемого кода
+#include "../src/func.h"   // подключение тестируемого кода
 
 TEST(LinearModel, test_zero) {
     LinearModel model(0.9, 0.2);
