@@ -43,6 +43,6 @@ int main() {
         cout << "y" << i + 1 << " = " << y << endl;
     }
 
-    system("pause");
+    cin.get();
     return 0;
 }
