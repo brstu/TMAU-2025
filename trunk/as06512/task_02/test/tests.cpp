@@ -68,7 +68,7 @@ TEST(NonLinear, test_large_values) {
         a * 100 - b * 50 * 50 + c * 25 + d * sin(10));
 }
 
-// Òåñò íà òî÷íîñòü âû÷èñëåíèé ñ ïëàâàþùåé òî÷êîé
+// Тест на точность вычислений с плавающей точкой
 TEST(NonLinear, test_precision) {
     double result = nonlinear(1.234567, 2.345678, 3.456789, 4.567890);
     double expected = a * 1.234567 - b * 2.345678 * 2.345678 + c * 3.456789 + d * sin(4.567890);
