@@ -8,7 +8,7 @@ using std::endl;
 int main() {
     double y;
 
-    cout << "Ëèíåéíàÿ ìîäåëü:\n";
+    cout << "Ã‹Ã¨Ã­Ã¥Ã©Ã­Ã Ã¿ Ã¬Ã®Ã¤Ã¥Ã«Ã¼:\n";
     y = Y0;
     cout << "y0 = " << y << endl;
 
@@ -17,7 +17,7 @@ int main() {
         cout << "y" << i + 1 << " = " << y << endl;
     }
 
-    cout << "\nÍåëèíåéíàÿ ìîäåëü:\n";
+    cout << "\nĞĞµĞ»Ğ¸Ğ½ĞµĞ¹Ğ½Ğ°Ñ Ğ¼Ğ¾Ğ´ĞµĞ»ÑŒ:\n";
     double yt = Y0;
     double yt1 = Y0;
     cout << "y0 = " << yt << endl;
