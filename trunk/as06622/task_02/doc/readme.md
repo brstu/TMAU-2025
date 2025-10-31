@@ -60,7 +60,7 @@ TEST(NonLinear, test_zero) {
 }
 
 TEST(NonLinear, test_u_zero) {
-    EXPECT_EQ(nonlinear(18, 18, 0, 0), a * 18 - b * pow(18, 2));
+    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 0, 0), a * 18 - b * pow(18, 2));
 }
 
 TEST(NonLinear, test_y_zero) {
