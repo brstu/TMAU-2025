@@ -34,7 +34,6 @@ int main() {
         switch (i % 3) {
             case 0: input.push_back(5); break;
             case 1: input.push_back(7); break;
-            case 2: input.push_back(6); break;
             default: input.push_back(0); break; 
         }
     }
