@@ -32,7 +32,8 @@ void simulateLinear(const vector<double>& input) {
 }
 
 void simulateNonlinear(const vector<double>& input) {
-    double y = Y0, y_prev = Y0;
+    double y = Y0;
+    double y_prev = Y0;
     cout << "\n=== Нелинейная модель ===" << endl;
     cout << "y0 = " << Y0 << endl;
     for (int i = 1; i < STEPS; i++) {
