@@ -6,7 +6,13 @@
 
 int main() {
     int n = 30;
-    double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
+
+    double a = 0.8;
+    double b = 0.15;
+    double c = 0.05;
+    double d = 0.1;
+
+    Coeffs coeffs{a, b, c, d};
 
     std::vector<double> u(n, 1.0);
     std::vector<double> y_lin(n, 0.0);
@@ -19,7 +25,7 @@ int main() {
         y_lin[t] = linear_model(y_lin[t - 1], u[t - 1], a, b);
 
         if (t > 1) {
-            y_nonlin[t] = nonlinear_model(y_nonlin[t - 1], y_nonlin[t - 2], u[t - 1], u[t - 2], a, b, c, d);
+            y_nonlin[t] = nonlinear_model(y_nonlin[t - 1], y_nonlin[t - 2], u[t - 1], u[t - 2], coeffs);
         } else {
             y_nonlin[t] = linear_model(y_nonlin[t - 1], u[t - 1], a, b);
         }
