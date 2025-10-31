@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-set(COVERAGE_FLAGS "-O0 -g --coverage")
+set(COVERAGE_FLAGS -O0 -g --coverage)
 
 
 add_library(core STATIC model.cpp model.h)
