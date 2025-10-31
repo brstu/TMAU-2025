@@ -82,7 +82,7 @@ TEST(NonlinearModelTest, SinusoidalInput) {
         y_curr = y_next;
     }
 
-    EXPECT_TRUE(abs(y_curr) < 10.0);
+    EXPECT_TRUE(std::abs(y_curr) < 10.0);
 }
 
 TEST(NonlinearModelTest, StabilityCheck) {
