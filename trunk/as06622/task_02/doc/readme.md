@@ -64,11 +64,11 @@ TEST(NonLinear, test_u_zero) {
 }
 
 TEST(NonLinear, test_y_zero) {
-    EXPECT_EQ(nonlinear(0, 0, 5, 5), c * 5 + d * sin(5));
+    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 5, 5), c * 5 + d * std::sin(5));
 }
 
 TEST(NonLinear, test_default) {
-    EXPECT_EQ(nonlinear(18, 18, 5, 5), a * 18 - b * pow(18, 2) + c * 5 + d * sin(5));
+    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 5, 5), a * 18 - b * pow(18, 2) + c * 5 + d * std::sin(5));
 }
 
 
