@@ -1,4 +1,4 @@
-#include "model.h"
+#include "functions.h"
 #include <cmath>
 
 double linear(double y, double u_val) {
