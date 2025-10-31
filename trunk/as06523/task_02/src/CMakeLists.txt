@@ -39,7 +39,7 @@ gtest_discover_tests(tests)
 add_custom_target(coverage
     COMMAND gcovr -r ${CMAKE_SOURCE_DIR}
             --exclude '.*_deps/.*'
-            --markdown -o coverage.md
+            --xml coverage.xml
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
