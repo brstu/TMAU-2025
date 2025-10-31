@@ -40,19 +40,19 @@
 
 ```cpp
 TEST(Linear, test_zero) {
-    EXPECT_EQ(linear(0, 0), 0);
+    EXPECT_DOUBLE_EQ(linear(0, 0), 0);
 }
 
 TEST(Linear, test_u_zero) {
-    EXPECT_EQ(linear(18, 0), a * 18);
+    EXPECT_DOUBLE_EQ(linear(18, 0), a * 18);
 }
 
 TEST(Linear, test_y_zero) {
-    EXPECT_EQ(linear(0, 5), b * 5);
+    EXPECT_DOUBLE_EQ(linear(0, 5), b * 5);
 }
 
 TEST(Linear, test_default) {
-    EXPECT_EQ(linear(18, 5), a * 18 + b * 5);
+    EXPECT_DOUBLE_EQ(linear(18, 5), a * 18 + b * 5);
 }
 
 TEST(NonLinear, test_zero) {
