@@ -2,31 +2,42 @@
 #include <vector>
 #include "model.h"
 
-using namespace std;
-
 int main() {
-    double a = 0.8, b = 0.2, c = 0.1, d = 0.05;
+    double a = 0.8;
+    double b = 0.2;
+    double c = 0.1;
+    double d = 0.05;
     int N = 20;
 
-    vector<double> y(N + 1, 0.0);
-    vector<double> u(N + 1, 0.0);
+    std::vector<double> y(N + 1, 0.0);
+    std::vector<double> u(N + 1, 0.0);
 
     for (int t = 0; t <= N; t++) {
         u[t] = (t < 5) ? 0.0 : 1.0;
     }
 
-    cout << "Linear model:\n";
+    std::cout << "Linear model:\n";
     for (int t = 0; t < N; t++) {
         y[t + 1] = compute_linear_model(y[t], u[t], a, b);
-        cout << "t = " << t + 1 << "   y = " << y[t + 1] << endl;
+        std::cout << "t = " << t + 1 << "   y = " << y[t + 1] << std::endl;
     }
 
-    fill(y.begin(), y.end(), 0.0);
+    std::fill(y.begin(), y.end(), 0.0);
 
-    cout << "\nNonlinear model:\n";
+    std::cout << "\nNonlinear model:\n";
     for (int t = 1; t < N; t++) {
-        y[t + 1] = compute_nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], a, b, c, d);
-        cout << "t = " << t + 1 << "   y = " << y[t + 1] << endl;
+        NonlinearParams p;
+        p.y_curr = y[t];
+        p.y_prev = y[t - 1];
+        p.u_curr = u[t];
+        p.u_prev = u[t - 1];
+        p.a = a;
+        p.b = b;
+        p.c = c;
+        p.d = d;
+
+        y[t + 1] = compute_nonlinear_model(p);
+        std::cout << "t = " << t + 1 << "   y = " << y[t + 1] << std::endl;
     }
 
     return 0;

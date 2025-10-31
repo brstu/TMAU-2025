@@ -1,9 +1,10 @@
 #include "model.h"
+#include <cmath>
 
 double compute_linear_model(double y_prev, double u, double a, double b) {
     return a * y_prev + b * u;
 }
 
-double compute_nonlinear_model(double y_curr, double y_prev, double u_curr, double u_prev, double a, double b, double c, double d) {
-    return a * y_curr + b * u_curr + c * y_prev * u_prev + d * u_prev * u_prev;
+double compute_nonlinear_model(const NonlinearParams& p) {
+    return p.a * p.y_curr - p.b * p.y_prev * p.y_prev + p.c * p.u_curr + p.d * sin(p.u_prev);
 }
