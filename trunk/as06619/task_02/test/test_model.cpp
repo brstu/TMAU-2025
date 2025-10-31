@@ -115,11 +115,17 @@ TEST(NonlinearModelTest, StabilityCheck) {
 }
 
 TEST(NonlinearModelTest, SymmetryCheck) {
+    // Use named constants to clarify the intent of the test values.
+    const double TEST_Y_CURR = 1.0; // Arbitrary current output value
+    const double TEST_Y_PREV = 2.0; // Arbitrary previous output value
+    const double TEST_U_CURR = 3.0; // Arbitrary current input value
+    const double TEST_U_PREV = 4.0; // Arbitrary previous input value
+
     NonlinearParams p1;
-    p1.y_curr = 1;
-    p1.y_prev = 2;
-    p1.u_curr = 3;
-    p1.u_prev = 4;
+    p1.y_curr = TEST_Y_CURR;
+    p1.y_prev = TEST_Y_PREV;
+    p1.u_curr = TEST_U_CURR;
+    p1.u_prev = TEST_U_PREV;
     p1.a = 0.5;
     p1.b = 0.5;
     p1.c = 0.2;
