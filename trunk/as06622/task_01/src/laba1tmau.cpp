@@ -46,7 +46,20 @@ void simulateNonlinear(const vector<double>& input) {
 
 int main() {
     setlocale(LC_ALL, "Russian");
-    vector<double> input = { 5,7,6,5,7,6,5,7,6,5 };
+    // Initialize input vector with STEPS elements, e.g., repeating pattern 5,7,6
+    vector<double> input;
+    for (int i = 0; i < STEPS; ++i) {
+        switch (i % 3) {
+            case 0: input.push_back(5); break;
+            case 1: input.push_back(7); break;
+            case 2: input.push_back(6); break;
+        }
+    }
+    // Optional: runtime check
+    if (input.size() != STEPS) {
+        cerr << "Ошибка: размер входного вектора не совпадает с STEPS." << endl;
+        return 1;
+    }
     simulateLinear(input);
     simulateNonlinear(input);
     return 0;
