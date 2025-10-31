@@ -23,7 +23,7 @@ enable_testing()
 
 # Тесты
 add_executable(runTests
-    ${CMAKE_CURRENT_SOURCE_DIR}/../test/model_tests.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../test/tests.cpp
     functions.cpp
 )
 
