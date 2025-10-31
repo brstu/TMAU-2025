@@ -111,7 +111,7 @@ TEST(NonlinearModelTest, StabilityCheck) {
         y_curr = y_next;
     }
 
-    EXPECT_LT(abs(y_curr), 5.0);
+    EXPECT_LT(std::abs(y_curr), 5.0);
 }
 
 TEST(NonlinearModelTest, SymmetryCheck) {
