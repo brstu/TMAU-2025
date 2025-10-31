@@ -36,9 +36,11 @@ void simulateNonlinear(const vector<double>& input) {
     double y_prev = Y0;
     cout << "\n=== Нелинейная модель ===" << endl;
     cout << "y0 = " << Y0 << endl;
-    for (int i = 1; i < STEPS; i++) {
-        y = nonlinEq(y, y_prev, input[i], input[i - 1]);
-        cout << "Шаг " << i << ": y = " << y << endl;
+    for (int i = 0; i < STEPS; i++) {
+        double u_prev = (i == 0) ? input[0] : input[i - 1];
+        double y_prev_local = (i == 0) ? Y0 : y_prev;
+        y = nonlinEq(y, y_prev_local, input[i], u_prev);
+        cout << "Шаг " << i + 1 << ": y = " << y << endl;
         y_prev = y;
     }
 }
