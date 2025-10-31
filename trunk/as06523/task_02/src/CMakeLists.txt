@@ -1,50 +1,28 @@
-cmake_minimum_required(VERSION 3.14)
-project(task_02 LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.10)
+project(task_02)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
-set(COVERAGE_FLAGS -O0 -g --coverage)
-
-
-add_library(core STATIC model.cpp model.h)
-target_compile_options(core PRIVATE ${COVERAGE_FLAGS})
-target_link_options(core PRIVATE --coverage)
-
-
-add_executable(main_exec main.cpp)
-target_link_libraries(main_exec PRIVATE core)
-target_compile_options(main_exec PRIVATE ${COVERAGE_FLAGS})
-target_link_options(main_exec PRIVATE --coverage)
-
+add_executable(
+    main
+    main.cpp
+    model.cpp
+)
 
 include(FetchContent)
 FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
+
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-
-add_executable(tests ../test/tests.cpp)
-target_link_libraries(tests PRIVATE core GTest::gtest_main)
-target_compile_options(tests PRIVATE ${COVERAGE_FLAGS})
-target_link_options(tests PRIVATE --coverage)
+add_executable(runTests ../test/tests.cpp model.cpp)
+target_link_libraries(runTests GTest::gtest GTest::gtest_main)
+target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GoogleTest)
-gtest_discover_tests(tests)
-
-
-find_program(GCOVR_EXECUTABLE gcovr)
-if(GCOVR_EXECUTABLE)
-    add_custom_target(coverage
-        COMMAND ${GCOVR_EXECUTABLE}
-            -r ${CMAKE_SOURCE_DIR}
-            --exclude '.*_deps/.*'
-            --xml coverage.xml
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMENT "Generating coverage.xml for SonarQube"
-    )
-endif()
+gtest_discover_tests(runTests)
