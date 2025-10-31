@@ -18,7 +18,10 @@ TEST(LinearModelTest, NegativeInput) {
 
 
 TEST(NonlinearModelTest, BasicCalculation) {
-    double y_t = 2.0, y_prev = 1.0, u_t = 1.0, u_prev = 0.0;
+    double y_t = 2.0;
+    double y_prev = 1.0;
+    double u_t = 1.0;
+    double u_prev = 0.0;
     Coeffs coeffs = {0.8, 0.2, 0.1, 0.05};
     double expected = coeffs.a * y_t - coeffs.b * y_prev * y_prev + coeffs.c * u_t + coeffs.d * sin(u_prev);
     EXPECT_NEAR(nonlinear_model(y_t, y_prev, u_t, u_prev, coeffs), expected, 1e-9);
