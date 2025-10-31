@@ -56,7 +56,7 @@ TEST(Linear, test_default) {
 }
 
 TEST(NonLinear, test_zero) {
-    EXPECT_EQ(nonlinear(0, 0, 0, 0), 0);
+    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 0, 0), 0);
 }
 
 TEST(NonLinear, test_u_zero) {
