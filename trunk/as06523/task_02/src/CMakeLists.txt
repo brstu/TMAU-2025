@@ -5,21 +5,18 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    add_compile_options(--coverage -O0 -g)
-    link_libraries(gcov)
-endif()
+set(COVERAGE_FLAGS "-O0 -g --coverage")
 
 
-add_library(core STATIC
-    model.cpp
-    model.h
-)
-target_include_directories(core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(core STATIC model.cpp model.h)
+target_compile_options(core PRIVATE ${COVERAGE_FLAGS})
+target_link_options(core PRIVATE --coverage)
 
 
 add_executable(main_exec main.cpp)
 target_link_libraries(main_exec PRIVATE core)
+target_compile_options(main_exec PRIVATE ${COVERAGE_FLAGS})
+target_link_options(main_exec PRIVATE --coverage)
 
 
 include(FetchContent)
@@ -28,13 +25,13 @@ FetchContent_Declare(
     URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
 )
 FetchContent_MakeAvailable(googletest)
-
 enable_testing()
 
 
 add_executable(tests ../test/tests.cpp)
 target_link_libraries(tests PRIVATE core GTest::gtest_main)
-target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_options(tests PRIVATE ${COVERAGE_FLAGS})
+target_link_options(tests PRIVATE --coverage)
 
 include(GoogleTest)
 gtest_discover_tests(tests)
@@ -46,7 +43,6 @@ if(GCOVR_EXECUTABLE)
         COMMAND ${GCOVR_EXECUTABLE}
             -r ${CMAKE_SOURCE_DIR}
             --exclude '.*_deps/.*'
-            --exclude '.*CMakeFiles.*'
             --xml coverage.xml
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMENT "Generating coverage.xml for SonarQube"
