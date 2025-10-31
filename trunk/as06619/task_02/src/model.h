@@ -12,4 +12,4 @@ struct NonlinearParams {
 };
 
 double compute_linear_model(double y_prev, double u, double a, double b);
-double compute_nonlinear_model(const NonlinearParams& params);
+double compute_nonlinear_model(const NonlinearParams& p);
