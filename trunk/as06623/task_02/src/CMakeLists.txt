@@ -10,7 +10,7 @@ add_executable(run_model main.cpp model.cpp)
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.14.0.zip
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
