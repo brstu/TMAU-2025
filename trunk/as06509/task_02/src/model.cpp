@@ -13,7 +13,11 @@ std::vector<double> linear(const Constants& con, const std::vector<double>& u) {
 }
 
 std::vector<double> nonlinear(const Constants& con, const std::vector<double>& u) {
-    std::vector<double> y(con.n + 1, 0.0);
+    if (u.size() < con.n + 1) {
+        throw std::invalid_argument("Vector u is too small");
+    }
+	
+	std::vector<double> y(con.n + 1, 0.0);
     y[0] = 25;
     y[1] = y[0];
 
