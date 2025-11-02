@@ -10,11 +10,11 @@ int main() {
     auto y_nonlinear = nonlinear(con, u);
 
     std::cout << "Linear:\n";
-    for (int i = 0; i < y_linear.size(); ++i)
+    for (int i = 0; i < static_cast<int>(y_linear.size()); ++i)
         std::cout << "y" << i << ": " << y_linear[i] << std::endl;
 
     std::cout << "\nNonlinear:\n";
-    for (int i = 0; i < y_nonlinear.size(); ++i)
+    for (int i = 0; i < static_cast<int>(y_nonlinear.size()); ++i)
         std::cout << "y" << i << ": " << y_nonlinear[i] << std::endl;
 
     return 0;

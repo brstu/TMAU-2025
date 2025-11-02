@@ -23,7 +23,7 @@
 
 1. Использовать фреймворк для модульного тестирования — [Google Test](https://google.github.io/googletest/).  
 2. Написать тесты для основных функций программы, реализующих линейную и нелинейную модель.  
-3. Исходный код модифицированной программы разместить в каталоге **trunk/as06523/task_02**.  
+3. Исходный код модифицированной программы разместить в каталоге **trunk/as06509/task_02**.  
 4. Отразить количество тестов и процент покрытия кода тестами в файле `readme.md`.  
 5. Также выполнить проверку покрытия кода с помощью **OpenCppCoverage**.
 
@@ -35,29 +35,6 @@
 
 ```cpp
 #include <gtest/gtest.h>
-#include "../src/model.h"
-#include <cmath>
-
-TEST(LinearModelTest, BasicCalculation) {
-    double result = linear_model(2.0, 1.0, 0.5, 0.3);
-    EXPECT_DOUBLE_EQ(result, 0.5 * 2.0 + 0.3 * 1.0);
-}
-
-TEST(LinearModelTest, ZeroInput) {
-    EXPECT_DOUBLE_EQ(linear_model(0.0, 0.0, 0.8, 0.15), 0.0);
-}
-
-TEST(LinearModelTest, NegativeInput) {
-    double result = linear_model(-2.0, -1.0, 0.5, 0.3);
-    EXPECT_DOUBLE_EQ(result, 0.5 * -2.0 + 0.3 * -1.0);
-}
-
-
-TEST(NonlinearModelTest, BasicCalculation) {
-    double y_t = 2.0;
-    double y_prev = 1.0;
-    double u_t = 1.0;
-    double u_prev = 0.0;#include <gtest/gtest.h>
 #include "model.h"
 
 TEST(LinearModelTest, BaseValues) {

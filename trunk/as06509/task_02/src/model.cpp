@@ -1,6 +1,5 @@
 #include "model.h"
 #include <cmath>
-#include <iostream>
 
 std::vector<double> linear(const Constants& con, const std::vector<double>& u) {
     std::vector<double> y(con.n + 1, 0.0);

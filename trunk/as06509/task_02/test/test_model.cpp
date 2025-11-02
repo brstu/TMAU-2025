@@ -46,7 +46,7 @@ TEST(NonlinearModelTest, OutputChanges) {
     auto y = nonlinear(con, u);
 
     bool all_equal = true;
-    for (int i = 1; i < y.size(); ++i) {
+    for (int i = 1; i <  static_cast<int>(y.size()); ++i) {
         if (y[i] != y[0]) {
             all_equal = false;
             break;
