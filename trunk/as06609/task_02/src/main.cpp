@@ -1,5 +1,5 @@
 #include <iostream>
-#include <array>        
+#include <array>
 #include "func.h"
 using std::cout;
 using std::endl;
