@@ -12,7 +12,7 @@ int main() {
     cout << "Линейная модель" << endl;
     cout << "y0 = " << Y_START << endl;
 
-    for (size_t i = 0; i < u.size(); i++) {   
+    for (size_t i = 0; i < u.size(); i++) {
         y = linearModel(y, u[i]);
         cout << "y" << i + 1 << " = " << y << endl;
     }
