@@ -21,12 +21,10 @@ int main() {
     cout << "y0 = " << Y_START << endl;
 
     y = y_prev = Y_START;
-    for (size_t i = 0; i < u.size(); i++) {
-        y_prev = y;
-        double u_curr = u[i];
-        double u_prev = (i == 0) ? u[0] : u[i - 1];
-        y = nonlinearModel(y, y_prev, u_curr, u_prev);
+    for (size_t i = 0; i < u.size() - 1; i++) {
+        y = nonlinearModel(y, y_prev, u[i + 1], u[i]);
         cout << "y" << i + 1 << " = " << y << endl;
+        y_prev = y;
     }
     return 0;
 }
