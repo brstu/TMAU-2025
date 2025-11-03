@@ -22,13 +22,11 @@ int main() {
 
     y = y_prev = Y_START;
     for (size_t i = 0; i < u.size(); i++) {
+        y_prev = y;
         double u_curr = u[i];
         double u_prev = (i == 0) ? u[0] : u[i - 1];
-        double y_prev_local = (i == 0) ? Y_START : y_prev;
-        y = nonlinearModel(y, y_prev_local, u_curr, u_prev);
+        y = nonlinearModel(y, y_prev, u_curr, u_prev);
         cout << "y" << i + 1 << " = " << y << endl;
-        y_prev = y;
     }
-
     return 0;
 }
