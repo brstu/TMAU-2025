@@ -5,7 +5,7 @@ using std::cout;
 using std::endl;
 
 int main() {
-    std::array<double, N> u = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };  
+    std::array<double, N> u = { 5, 7, 6, 5, 7, 6, 5, 7, 6, 5 };
     double y = Y_START;
     double y_prev = Y_START;
 
