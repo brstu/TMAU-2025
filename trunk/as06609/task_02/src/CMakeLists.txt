@@ -18,7 +18,7 @@ enable_testing()
 
 # Тесты
 add_executable(runTests ../test/tests.cpp func.cpp)
-target_link_libraries(runTests GTest::gtest GTest::gtest_main)
+target_link_libraries(runTests GTest::gtest)
 target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GoogleTest)
