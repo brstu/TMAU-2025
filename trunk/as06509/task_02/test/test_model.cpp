@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <cmath>
 #include "model.h"
 
 TEST(LinearModelTest, BaseValues) {
