@@ -106,9 +106,9 @@ TEST(NonlinearModelTest, InsufficientInput) {
 ```
 Результат выполнения тестов:
 ```bash
-[==========] Running 5 tests from 2 test suites.
+[==========] Running 7 tests from 2 test suites.
 [----------] Global test environment set-up.
-[----------] 2 tests from LinearModelTest
+[----------] 3 tests from LinearModelTest
 [ RUN      ] LinearModelTest.BaseValues
 [       OK ] LinearModelTest.BaseValues (0 ms)
 [ RUN      ] LinearModelTest.ZeroInput
@@ -117,7 +117,7 @@ TEST(NonlinearModelTest, InsufficientInput) {
 [       OK ] LinearModelTest.InsufficientInput (0 ms)
 [----------] 3 tests from LinearModelTest (1 ms total)
 
-[----------] 3 tests from NonlinearModelTest
+[----------] 4 tests from NonlinearModelTest
 [ RUN      ] NonlinearModelTest.StartValues
 [       OK ] NonlinearModelTest.StartValues (0 ms)
 [ RUN      ] NonlinearModelTest.InputInfluence
