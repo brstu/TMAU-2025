@@ -113,7 +113,9 @@ TEST(NonlinearModelTest, InsufficientInput) {
 [       OK ] LinearModelTest.BaseValues (0 ms)
 [ RUN      ] LinearModelTest.ZeroInput
 [       OK ] LinearModelTest.ZeroInput (0 ms)
-[----------] 2 tests from LinearModelTest (1 ms total)
+[ RUN      ] LinearModelTest.InsufficientInput
+[       OK ] LinearModelTest.InsufficientInput (0 ms)
+[----------] 3 tests from LinearModelTest (1 ms total)
 
 [----------] 3 tests from NonlinearModelTest
 [ RUN      ] NonlinearModelTest.StartValues
@@ -122,11 +124,13 @@ TEST(NonlinearModelTest, InsufficientInput) {
 [       OK ] NonlinearModelTest.InputInfluence (0 ms)
 [ RUN      ] NonlinearModelTest.OutputChanges
 [       OK ] NonlinearModelTest.OutputChanges (0 ms)
-[----------] 3 tests from NonlinearModelTest (0 ms total)
+[ RUN      ] NonlinearModelTest.InsufficientInput
+[       OK ] NonlinearModelTest.InsufficientInput (0 ms)
+[----------] 4 tests from NonlinearModelTest (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 5 tests from 2 test suites ran. (2 ms total)
-[  PASSED  ] 5 tests.
+[==========] 7 tests from 2 test suites ran. (2 ms total)
+[  PASSED  ] 7 tests.
 ```
 
 # gcovr отчёт
@@ -138,4 +142,4 @@ src/model.cpp           28        26    93%       2       2  100%
 TOTAL                   28        26    93%       2       2  100%
 -------------------------------------------------------------------------------
 
-**Вывод:** В рамках лабораторной работы были успешно реализованы модульные тесты Google Tests для линейной и нелинейной модели САУ. Все 5 тестов успешно прошли, что подтверждает корректность основных функций. Покрытие кода по строкам составило 18%, при этом 100% функций в model.cpp были протестированы.
+**Вывод:** В рамках лабораторной работы были успешно реализованы модульные тесты Google Tests для линейной и нелинейной модели САУ. Все 7 тестов успешно прошли, что подтверждает корректность основных функций. Покрытие кода по строкам составило 93%, при этом 100% функций в model.cpp были протестированы.
