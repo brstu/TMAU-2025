@@ -54,7 +54,7 @@ TEST(NonlinearModelTest, OutputChanges) {
 
     bool all_equal = true;
     for (int i = 1; i < static_cast<int>(y.size()); ++i) {
-        if (y[i] != y[0]) {
+        if (std::fabs(y[i] - y[0]) > 1e-9) {
             all_equal = false;
             break;
         }

@@ -8,7 +8,7 @@ std::vector<double> linear(const Constants& con, const std::vector<double>& u) {
     }
 
     std::vector<double> y(con.n + 1, 0.0);
-    y[0] = 25;
+    y[0] = con.y0;
 
     for (int t = 0; t < con.n; ++t) {
         y[t + 1] = con.a * y[t] + con.b * u[t];
@@ -23,7 +23,7 @@ std::vector<double> nonlinear(const Constants& con, const std::vector<double>& u
     }
 
     std::vector<double> y(con.n + 1, 0.0);
-    y[0] = 25;
+    y[0] = con.y0;
     y[1] = y[0];
 
     for (int t = 1; t < con.n; ++t) {
