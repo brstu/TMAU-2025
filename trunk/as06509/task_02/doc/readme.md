@@ -55,6 +55,13 @@ TEST(LinearModelTest, ZeroInput) {
     EXPECT_NEAR(y[2], 25.0 * con.a * con.a, 1e-6);
 }
 
+TEST(LinearModelTest, InsufficientInput) {
+    Constants con;
+    std::vector<double> u(con.n - 1, 1.0); 
+    EXPECT_THROW(linear(con, u), std::invalid_argument);
+}
+
+
 TEST(NonlinearModelTest, StartValues) {
     Constants con;
     std::vector<double> u(10, 4.0);
@@ -89,6 +96,12 @@ TEST(NonlinearModelTest, OutputChanges) {
         }
     }
     EXPECT_FALSE(all_equal);
+}
+
+TEST(NonlinearModelTest, InsufficientInput) {
+    Constants con;
+    std::vector<double> u(con.n - 2, 1.0); 
+    EXPECT_THROW(nonlinear(con, u), std::invalid_argument);
 }
 ```
 Результат выполнения тестов:

@@ -21,7 +21,7 @@ std::vector<double> nonlinear(const Constants& con, const std::vector<double>& u
     if (static_cast<int>(u.size()) < con.n) {
         throw std::invalid_argument("Vector u is too small");
     }
-	
+
     std::vector<double> y(con.n + 1, 0.0);
     y[0] = 25;
     y[1] = y[0];
