@@ -42,7 +42,7 @@ TEST(NonlinearModelTest, InputInfluence) {
 
 TEST(NonlinearModelTest, OutputChanges) {
     Constants con;
-    std::vector<double> u = { 1,2,3,4,5,6,7,8,9,10 };
+    std::vector<double> u = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     auto y = nonlinear(con, u);
 
     bool all_equal = true;
