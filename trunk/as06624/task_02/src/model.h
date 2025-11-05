@@ -3,10 +3,10 @@
 
 // Состояние системы
 struct State {
-    double y;       
-    double y_prev; 
-    double u;       
-    double u_prev;  
+    double y;        // Current output
+    double y_prev;   // Previous output
+    double u;        // Current control input
+    double u_prev;   // Previous control input
 };
 
 // Параметры модели
