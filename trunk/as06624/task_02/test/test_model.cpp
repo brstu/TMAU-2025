@@ -32,7 +32,6 @@ TEST(NonlinearModelTest, ZeroInput) {
 TEST(NonlinearModelTest, StepInput) {
     State s{1.0, 1.0, 1.0, 0.0};
     NonlinearParams p{0.8, 0.2, 0.1, 0.05};
-    // 0.8*1 - 0.2*1^2 + 0.1*1 + 0.05*sin(0) = 0.7
     EXPECT_NEAR(nonlinear_model(s, p), 0.7, 1e-9);
 }
 
