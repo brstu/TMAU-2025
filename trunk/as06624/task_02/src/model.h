@@ -11,10 +11,10 @@ struct State {
 
 // Параметры модели
 struct NonlinearParams {
-    double a;
-    double b;
-    double c;
-    double d;
+    double a; // Nonlinear coefficient for output (y)
+    double b; // Nonlinear coefficient for input (u)
+    double c; // Nonlinear interaction term
+    double d; // Constant offset or bias
 };
 
 // Линейная модель
