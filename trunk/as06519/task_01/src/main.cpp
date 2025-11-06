@@ -35,7 +35,7 @@ void run_model(int steps) {
         y_lin[t] = linear_model(y_lin[t - 1], u[t - 1], lin);
 
         if (t < 2) {
-            y_nonlin[t] = linear_model(y_nonlin[t - 1], u[t - 1], {nonlin.a, nonlin.b});
+            y_nonlin[t] = linear_model(y_nonlin[t - 1], u[t - 1], {nonlin.a, nonlin.c});
         } else {
             y_nonlin[t] = nonlinear_model(y_nonlin[t - 1], y_nonlin[t - 2], u[t - 1], u[t - 2], nonlin);
         }
