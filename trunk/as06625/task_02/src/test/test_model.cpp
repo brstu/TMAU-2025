@@ -50,7 +50,7 @@ TEST(NonlinearModelTest, InputInfluence) {
 
 TEST(NonlinearModelTest, OutputChanges) {
     Params prm;
-    std::vector<double> input = { 1,2,3,4,5,6,7,8,9,10 };
+    std::vector<double> input = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     auto y = nonlin_model(prm, input);
 
     bool all_equal = true;
