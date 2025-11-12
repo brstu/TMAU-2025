@@ -132,17 +132,29 @@ Checking test dependency graph end
 7: Working Directory: D:/progr/TMAU-2025/trunk/as06625/task_02/src/cmake-build-debug
 7: Test timeout computed to be: 9999879
 7: Running main() from D:/progr/TMAU-2025/trunk/as06625/task_02/src/cmake-build-debug/_deps/googletest-src/googletest/src/gtest_main.cc
-7: Note: Google Test filter = NonlinearModelTest.InsufficientInput
-7: [==========] Running 1 test from 1 test suite.
+7: [==========] Running 6 tests from 2 test suites.
 7: [----------] Global test environment set-up.
-7: [----------] 1 test from NonlinearModelTest
+7: [----------] 3 tests from LinearModelTest
+7: [ RUN      ] LinearModelTest.CorrectOutput
+7: [       OK ] LinearModelTest.CorrectOutput (0 ms)
+7: [ RUN      ] LinearModelTest.ZeroInput
+7: [       OK ] LinearModelTest.ZeroInput (0 ms)
+7: [ RUN      ] LinearModelTest.NegativeInput
+7: [       OK ] LinearModelTest.NegativeInput (0 ms)
+7: [----------] 3 tests from LinearModelTest (0 ms total)
+7: 
+7: [----------] 3 tests from NonlinearModelTest
+7: [ RUN      ] NonlinearModelTest.OutputChanges
+7: [       OK ] NonlinearModelTest.OutputChanges (0 ms)
 7: [ RUN      ] NonlinearModelTest.InsufficientInput
 7: [       OK ] NonlinearModelTest.InsufficientInput (0 ms)
-7: [----------] 1 test from NonlinearModelTest (0 ms total)
+7: [ RUN      ] NonlinearModelTest.BoundaryValues
+7: [       OK ] NonlinearModelTest.BoundaryValues (0 ms)
+7: [----------] 3 tests from NonlinearModelTest (0 ms total)
 7: 
 7: [----------] Global test environment tear-down
-7: [==========] 1 test from 1 test suite ran. (0 ms total)
-7: [  PASSED  ] 1 test.
+7: [==========] 6 tests from 2 test suites ran. (0 ms total)
+7: [  PASSED  ] 6 tests.
 ```
 
 # gcovr отчёт
