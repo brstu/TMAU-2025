@@ -65,6 +65,6 @@ TEST(NonlinearModelTest, OutputChanges) {
 
 TEST(NonlinearModelTest, InsufficientInput) {
     Params prm;
-    std::vector<double> input(prm.steps - 2, 1.0);
+    std::vector<double> input(prm.steps - 1, 1.0);
     EXPECT_THROW(nonlin_model(prm, input), std::invalid_argument);
 }
