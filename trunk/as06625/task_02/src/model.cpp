@@ -22,7 +22,13 @@ std::vector<double> nonlin_model(const Params& prm, const std::vector<double>& u
 
     std::vector<double> y(static_cast<size_t>(prm.steps) + 1, 0.0);
     y[0] = prm.init_y;
-    if (prm.steps >= 1) y[1] = y[0];
+    if (prm.steps >= 1) {
+        // Compute y[1] using a simplified nonlinear equation (no y[-1], u[-1])
+        y[1] = prm.alpha * y[0]
+               - prm.beta * std::pow(y[0], 2)
+               + prm.gamma * u[0];
+        // The delta * sin(u[-1]) term is omitted for k=0
+    }
 
     for (int k = 1; k < prm.steps; ++k) {
         y[k + 1] = prm.alpha * y[k]
