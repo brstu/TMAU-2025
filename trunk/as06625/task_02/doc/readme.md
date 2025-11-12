@@ -85,7 +85,7 @@ TEST(NonlinearModelTest, InputInfluence) {
 
 TEST(NonlinearModelTest, OutputChanges) {
     Params prm;
-    std::vector<double> input = { 1,2,3,4,5,6,7,8,9,10 };
+    std::vector<double> input = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     auto y = nonlin_model(prm, input);
 
     bool all_equal = true;
@@ -117,17 +117,6 @@ Added 0 tests to meet fixture requirements
 Checking test dependency graph...
 Checking test dependency graph end
 
-6: [==========] Running 1 test from 1 test suite.
-6: [----------] Global test environment set-up.
-6: [----------] 1 test from NonlinearModelTest
-6: [ RUN      ] NonlinearModelTest.OutputChanges
-6: [       OK ] NonlinearModelTest.OutputChanges (0 ms)
-6: [----------] 1 test from NonlinearModelTest (0 ms total)
-6: 
-6: [----------] Global test environment tear-down
-6: [==========] 1 test from 1 test suite ran. (0 ms total)
-6: [  PASSED  ] 1 test.
-
 7: Test command: D:\progr\TMAU-2025\trunk\as06625\task_02\src\cmake-build-debug\runTests.exe "--gtest_filter=NonlinearModelTest.InsufficientInput" "--gtest_also_run_disabled_tests"
 7: Working Directory: D:/progr/TMAU-2025/trunk/as06625/task_02/src/cmake-build-debug
 7: Test timeout computed to be: 9999879
@@ -143,6 +132,8 @@ Checking test dependency graph end
 7: [----------] Global test environment tear-down
 7: [==========] 1 test from 1 test suite ran. (0 ms total)
 7: [  PASSED  ] 1 test.
+
+100% tests passed, 0 tests failed out of 7
 ```
 
 # gcovr отчёт
