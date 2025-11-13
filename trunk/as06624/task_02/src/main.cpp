@@ -25,7 +25,7 @@ int main() {
 
     std::fill(y.begin(), y.end(), 0.0);
 
-    std::cout << "\nnonlinear model" << std::endl;
+    std::cout << "\nnon linear model" << std::endl;
     for (int t = 0; t < N; t++) {
         double y_prev = (t == 0) ? 0.0 : y[t - 1];
         double u_prev = (t == 0) ? 0.0 : u[t - 1];
