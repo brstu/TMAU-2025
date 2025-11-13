@@ -3,12 +3,6 @@
 #include "lab1.h"
 using namespace std;
 
-// Forward declarations for functions implemented in lab1.cpp
-double linear(double y, double u);
-double nonlinear(double yt, double yt1, double ut, double ut1);
-
-const int N = 10; 
-const double start_value = 0.0;
 
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -21,7 +15,7 @@ int main() {
     for (int i = 0; i < N; i++) {
         y = linear(y, u[i]);
         cout << "y" << i + 1 << " = " << y << endl;
-    }
+    }  // ← ДОБАВИТЬ закрывающую скобку
 
     cout << "\nНелинейная модель:" << endl;
     cout << "y0 = " << start_value << endl;
