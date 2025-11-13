@@ -56,8 +56,8 @@ int main() {
     LinearModel linear{ModelConfig::a, ModelConfig::b_lin};
     NonlinearModel nonlinear{ModelConfig::a, ModelConfig::b_nonlin, ModelConfig::c, ModelConfig::d};
 
-    std::vector<double> y_lin(n + 1, 0.0);
-    std::vector<double> y_nonlin(n + 1, 0.0);
+    std::vector<double> y_lin(n + 1);
+    std::vector<double> y_nonlin(n + 1);
     std::vector<double> u(n + 1, u_val); // constant input, but expandable for varying input
 
     y_lin[0] = y0;
