@@ -1,23 +1,23 @@
 <p align="center"> Министерство образования Республики Беларусь</p>
-<p align="center">Учреждение образования</p>
-<p align="center">“Брестский Государственный Технический университет”</p>
-<p align="center">Кафедра ИИТ</p>
+<p align="center"> Учреждение образования</p>
+<p align="center">“ Брестский Государственный Технический университет ”</p>
+<p align="center"> Кафедра ИИТ</p>
 <br><br><br><br><br><br><br>
-<p align="center">Лабораторная работа №1</p>
-<p align="center">По дисциплине “Теория и методы автоматического управления”</p>
-<p align="center">Тема: “Моделирование управляемого объекта”</p>
+<p align="center"> Лабораторная работа №1</p>
+<p align="center"> По дисциплине “ Теория и методы автоматического управления ”</p>
+<p align="center"> Тема: “ Моделирование управляемого объекта ”</p>
 <br><br><br><br><br>
-<p align="right">Выполнила:</p>
-<p align="right">Студентка 3 курса</p>
-<p align="right">Группы АС-65</p>
-<p align="right">Рапин Е.Ю.</p>
-<p align="right">Проверил:</p>
-<p align="right">Иванюк Д.С.</p>
+<p align="right"> Выполнила:</p>
+<p align="right"> Студентка 3 курса</p>
+<p align="right"> Группы АС-65</p>
+<p align="right"> Рапин Е.Ю.</p>
+<p align="right"> Проверил:</p>
+<p align="right"> Иванюк Д.С.</p>
 <br><br><br><br><br><br><br><br>
-<p align="center">Брест 2025</p>
+<p align="center"> Брест 2025</p>
 
 ---
-## Task 1. Modeling controlled object
+## Задание 1. Моделирование объекта управления
 Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
@@ -44,7 +44,7 @@ double d = 0.02;
 vector<double> heatInput = {3, 4, 5, 6, 7, 8, 9, 10, 9, 8};
 double startTemp = 20.0;
 ```
-Исходя из таких констант мы получим итог выполнения нашей программы:
+Итог выполнения программы:
 ```
 Linear model results:
 Y1: 14.9
