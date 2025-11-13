@@ -46,7 +46,7 @@ TEST(LinearModel, OnlyU) {
 }
 
 TEST(LinearModel, GeneralCase) {
-    EXPECT_DOUBLE_EQ(linearModel(18,5), A*18 + B*5);
+    EXPECT_DOUBLE_EQ(linearModel(18, 5), A*18 + B*5);
 }
 
 TEST(NonlinearModel, ZeroInput) {
