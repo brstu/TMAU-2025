@@ -2,7 +2,7 @@
 #include "../src/functions.h"
 #include <cmath>
 
-// Тесты для линейной модели
+// Tests for linear model
 TEST(LinearModel, ZeroInput) {
     EXPECT_DOUBLE_EQ(linear(0.0, 0.0), 0.0);
 }
