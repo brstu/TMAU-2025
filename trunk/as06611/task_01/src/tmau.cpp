@@ -57,6 +57,8 @@ int main() {
         y_curr = y_next;
     }
 
+#ifdef PAUSE_ON_EXIT
     std::cin.get();
+#endif
     return 0;
 }
