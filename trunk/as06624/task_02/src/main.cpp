@@ -26,8 +26,10 @@ int main() {
     fill(y.begin(), y.end(), 0.0);
 
     cout << "\nnonlinear model" << endl;
-    for (int t = 1; t < N; t++) {
-        State s{y[t], y[t - 1], u[t], u[t - 1]};
+    for (int t = 0; t < N; t++) {
+        double y_prev = (t == 0) ? 0.0 : y[t - 1];
+        double u_prev = (t == 0) ? 0.0 : u[t - 1];
+        State s{y[t], y_prev, u[t], u_prev};
         y[t + 1] = nonlinear_model(s, params);
         cout << "t=" << t + 1 << "  y=" << y[t + 1] << endl;
     }
