@@ -42,8 +42,8 @@ int main() {
     // Для нелинейной модели нужны два предыдущих значения y
     double y_prev = Y_start;  // y_{τ-1}
     // Для первого шага используем полное уравнение модели, 
-    // используя Y_start для y_prev и U[0] для u_prev (или 0, если предпочтительнее).
-    double y_curr = nonlinearModel(Y_start, Y_start, U[0], 0);  // y_τ
+    // Используем Y_start для y_prev и U[0] для u_prev, чтобы начальное условие было согласовано с входной последовательностью.
+    double y_curr = nonlinearModel(Y_start, Y_start, U[0], U[0]);  // y_τ
 
     std::cout << "y1 = " << y_curr << std::endl;
 
