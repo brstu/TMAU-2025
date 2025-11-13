@@ -2,14 +2,9 @@
 #include <cmath>
 #include "lab1.h"
 using namespace std;
-double linear(double y, double u) {
-    return a * y + b * u;
-}
-
-double nonlinear(double yt, double yt1, double ut, double ut1) {
-    return a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1);
-}
-
+// Forward declarations for functions implemented in lab1.cpp
+double linear(double y, double u);
+double nonlinear(double yt, double yt1, double ut, double ut1);
 int main() {
     setlocale(LC_ALL, "Russian");
 
