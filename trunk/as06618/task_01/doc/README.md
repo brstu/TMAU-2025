@@ -50,7 +50,7 @@ vector<double> u(N + 1, 0.0);
 
 Имея данные параметры получим результат работы программы:
 bash
-linear model
+Linear model
 t=1  y=0
 t=2  y=0
 t=3  y=0
