@@ -9,7 +9,7 @@ add_executable(main
     main.cpp
 )
 
-# Подключение Google Test
+# Including Google Test
 include(FetchContent)
 FetchContent_Declare(
   googletest
