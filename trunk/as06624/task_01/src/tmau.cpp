@@ -52,7 +52,7 @@ int main() {
     fill(y.begin(), y.end(), 0.0);
 
     cout << "\nnonlinear model" << endl;
-    for (int t = 1; t < N; t++) {
+    for (int t = 1; t <= N; t++) {
         y[t + 1] = nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], params);
         cout << "t=" << t + 1 << "  y=" << y[t + 1] << endl;
     }
