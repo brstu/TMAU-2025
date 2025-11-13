@@ -8,7 +8,7 @@ const double a = 0.85;
 const double b = 0.05;       
 const double c = 0.35;       
 const double d = 0.12;      
-double start_value = 10.0;   
+const double start_value = 18;    
 
 double linear(double y, double u) {
     return a * y + b * u;
