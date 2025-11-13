@@ -121,3 +121,11 @@ PS C:\Users\Lenovo\Desktop\task_02\src\build> ./runTests.exe
 [----------] Global test environment tear-down
 [==========] 8 tests from 2 test suites ran. (64 ms total)
 [  PASSED  ] 8 tests.
+
+
+## Code Coverage
+
+Code Coverage Report:
+    Lines: 95.0% (57 out of 60)
+    Functions: 100.0% (10 out of 10)
+    Branches: 90.0% (18 out of 20)
