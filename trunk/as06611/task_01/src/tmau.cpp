@@ -1,12 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include <locale>
+#include <array>
 
 const int N = 15;
 const double A = 0.9;
 const double B = 0.01;
-const double C = 0.4;
-const double D = 0.1;
+const double C_val = 0.4;
+const double D_val = 0.1;
 const double Y_start = 20;
 
 double linearModel(double y, double u) {
@@ -14,13 +15,13 @@ double linearModel(double y, double u) {
 }
 
 double nonlinearModel(double y_curr, double y_prev, double u_curr, double u_prev) {
-    return A * y_curr - B * pow(y_prev, 2) + C * u_curr + D * sin(u_prev);
+    return A * y_curr - B * pow(y_prev, 2) + C_val * u_curr + D_val * sin(u_prev);
 }
 
 int main() {
-    std::setlocale(LC_ALL, "Russian");
+    std::setlocale(LC_ALL, "ru_RU.UTF-8");
     
-    double U[N] = {4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 5, 6};
+    std::array<double, N> U = {4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 5, 6};
 
     // Линейная модель
     std::cout << "Линейная модель:" << std::endl;
@@ -39,7 +40,7 @@ int main() {
     // Для нелинейной модели нужны два предыдущих значения y
     double y_prev = Y_start;  // y_{τ-1}
     // Для первого шага используем упрощенный расчет y₁
-    double y_curr = A * Y_start + C * U[0];  // y_τ
+    double y_curr = A * Y_start + C_val * U[0];  // y_τ
 
     std::cout << "y1 = " << y_curr << std::endl;
 
