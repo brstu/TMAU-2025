@@ -31,7 +31,7 @@ TEST(LinearModel, LargeValues) {
     EXPECT_DOUBLE_EQ(linear(1000.0, 500.0), a * 1000.0 + b * 500.0);
 }
 
-// Тесты для нелинейной модели
+// Tests for nonlinear model
 TEST(NonlinearModel, ZeroInput) {
     EXPECT_DOUBLE_EQ(nonlinear(0.0, 0.0, 0.0, 0.0), 0.0);
 }
