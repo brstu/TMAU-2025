@@ -34,7 +34,7 @@
 ### Тесты
 ```cpp
 TEST(LinearModel, ZeroInput) {
-    EXPECT_DOUBLE_EQ(linearModel(0,0), 0);
+    EXPECT_DOUBLE_EQ(linearModel(0, 0), 0);
 }
 
 TEST(LinearModel, OnlyY) {
