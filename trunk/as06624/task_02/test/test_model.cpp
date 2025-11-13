@@ -48,5 +48,3 @@ TEST(NonlinearModelTest, NegativeInputs) {
     double expected = 0.8*(-1.0) - 0.2*1.0 + 0.1*(-1.0) + 0.05*std::sin(-1.0);
     EXPECT_NEAR(nonlinear_model(s, p), expected, 1e-9);
 }
-
-// -------------------------
