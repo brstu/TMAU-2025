@@ -1,6 +1,6 @@
 #pragma once
 
-// Константы модели
+// Model constants
 inline constexpr int n = 10;        
 inline constexpr double a = 0.98;
 inline constexpr double b = 0.02;
