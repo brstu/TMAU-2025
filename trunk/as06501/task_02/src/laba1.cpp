@@ -1,13 +1,14 @@
 #include <iostream>
 #include <cmath>
 #include "lab1.h"
+#include <array>
 using namespace std;
 
 
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    double u[N] = { 5,7,6,5,7,6,5,7,6,5 };
+   std::array<double, N> u = { 5,7,6,5,7,6,5,7,6,5 };
 
     cout << "Линейная модель:" << endl;
     cout << "y0 = " << start_value << endl;
@@ -15,7 +16,7 @@ int main() {
     for (int i = 0; i < N; i++) {
         y = linear(y, u[i]);
         cout << "y" << i + 1 << " = " << y << endl;
-    }  // ← ДОБАВИТЬ закрывающую скобку
+    }  
 
     cout << "\nНелинейная модель:" << endl;
     cout << "y0 = " << start_value << endl;
