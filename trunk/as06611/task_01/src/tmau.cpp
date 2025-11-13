@@ -14,6 +14,18 @@ double linearModel(double y, double u) {
     return A * y + B * u;
 }
 
+/**
+ * Computes the next temperature value using a nonlinear model (equation 3 from the documentation).
+ *
+ * Parameters:
+ *   y_curr  - current temperature value (y_τ)
+ *   y_prev  - previous temperature value (y_{τ-1})
+ *   u_curr  - current control input (u_τ)
+ *   u_prev  - previous control input (u_{τ-1})
+ *
+ * Returns:
+ *   The next temperature value according to the nonlinear model.
+ */
 double nonlinearModel(double y_curr, double y_prev, double u_curr, double u_prev) {
     return A * y_curr - B * pow(y_prev, 2) + C_val * u_curr + D_val * sin(u_prev);
 }
