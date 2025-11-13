@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <cmath>
 #include "func.h"
 
 TEST(Linear, test_zero) {
@@ -6,7 +7,7 @@ TEST(Linear, test_zero) {
 }
 
 TEST(Linear, test_u0) {
-    EXPECT_EQ(linear(18,0), a*18);
+    EXPECT_EQ(linear(18,0), a * 18);
 }
 
 TEST(Linear, test_y0) {
@@ -14,7 +15,7 @@ TEST(Linear, test_y0) {
 }
 
 TEST(Linear, test_default) {
-    EXPECT_EQ(linear(18, 5),a*18+ b * 5);
+    EXPECT_EQ(linear(18, 5),a * 18 + b * 5);
 }
 
 TEST(NonLinear, test_zero) {
@@ -22,7 +23,7 @@ TEST(NonLinear, test_zero) {
 }
 
 TEST(NonLinear, test_u0) {
-    EXPECT_EQ(nonlinear(18, 18, 0, 0), a*18 - b * pow(18, 2));
+    EXPECT_EQ(nonlinear(18, 18, 0, 0), a * 18 - b * pow(18, 2));
 }
 
 TEST(NonLinear, test_y0) {
@@ -30,7 +31,7 @@ TEST(NonLinear, test_y0) {
 }
 
 TEST(NonLinear, test_default) {
-    EXPECT_EQ(nonlinear(18, 18, 5, 5), a * 18 - b * pow(18, 2)+c * 5 + d * sin(5));
+    EXPECT_EQ(nonlinear(18, 18, 5, 5), a * 18 - b * pow(18, 2) + c * 5 + d * sin(5));
 }
 
 int main(int argc, char** argv) {
