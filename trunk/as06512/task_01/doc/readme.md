@@ -4,7 +4,7 @@
 <p align="center">Кафедра ИИТ</p>
 <br><br><br><br><br><br><br>
 <p align="center">Лабораторная работа №1</p>
-<p align="center">По дисциплине “Теория и методы автоматического управления”</p>
+<p align="center">По дисциплине “ТиМАУ”</p>
 <p align="center">Тема: “Моделирование управляемого объекта”</p>
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
@@ -20,19 +20,19 @@
 ## Task 1. Modeling controlled object
 Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
 
-$$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
+dy(τ)/dτ = u(τ)/C + Y0−y(τ)/RC
 
-where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
+where τ – time; y(τ) – input temperature; u(τ) – input warm; Y0 – room temperature; C,RC – some constants.
 
 After transformation we get these linear (2) and nonlinear (3) models:
 
-$$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
+yτ+1 = ayτ+buτ
+ 
+yτ+1 = ayτ−by^2τ−1 + cuτ+dsin⁡(uτ−1)
 
-$$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
+where τ – time discrete moments (1,2,3…n); a,b,c,d – some constants.
 
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
-
-Task is to write program (**С++**), which simulates this object temperature.
+Task is to write program (С++), which simulates this object temperature.
 
 ## Выполнение работы
 Константы:  
