@@ -9,6 +9,6 @@ inline constexpr double d = 0.15;
 inline constexpr double Y0 = 20;
 inline constexpr double u = 8.0;
 
-// Function prototypes
+// Объявления функций
 double linear(double y, double u_val);
 double nonlinear(double yt, double yt1, double ut, double ut1);
