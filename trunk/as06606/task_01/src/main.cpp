@@ -65,7 +65,7 @@ int main() {
 
     for (int t = 0; t < n; ++t) {
         y_lin[t + 1] = linear.step(y_lin[t], u[t]);
-        // At t == 0, no previous input exists → INITIAL_PREV_U
+        // At t == 0, no previous input exists -> INITIAL_PREV_U
         double prev_u = (t > 0) ? u[t - 1] : ModelConfig::INITIAL_PREV_U;
         y_nonlin[t + 1] = nonlinear.step(y_nonlin[t], u[t], prev_u);
     }
