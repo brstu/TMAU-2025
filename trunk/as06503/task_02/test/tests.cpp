@@ -15,7 +15,7 @@ TEST(Linear, test_y0) {
 }
 
 TEST(Linear, test_default) {
-    EXPECT_EQ(linear(18, 5),a * 18 + b * 5);
+    EXPECT_EQ(linear(18, 5), a * 18 + b * 5);
 }
 
 TEST(NonLinear, test_zero) {
