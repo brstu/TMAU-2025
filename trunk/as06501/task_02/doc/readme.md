@@ -96,7 +96,7 @@ ctest
 Таким образом в итоге получим :
 
 ```bash
-T[==========] Running 9 tests from 2 test suites.
+[==========] Running 9 tests from 2 test suites.
 [----------] Global test environment set-up.
 [----------] 4 tests from LinearModel
 [ RUN      ] LinearModel.linear_all_zero
