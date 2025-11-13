@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <array>
 using namespace std;
 
 const int N = 10;
@@ -21,7 +22,7 @@ double nonlinear(double yt, double yt1, double ut, double ut1) {
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    double u[N] = { 3.0, 5.0, 4.0, 6.0, 5.0, 7.0, 4.0, 6.0, 5.0, 4.0 };
+    std::array<double, N> u = { 3.0, 5.0, 4.0, 6.0, 5.0, 7.0, 4.0, 6.0, 5.0, 4.0 };
 
     cout << fixed << setprecision(3);
     
