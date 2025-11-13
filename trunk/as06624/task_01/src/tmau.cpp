@@ -30,14 +30,17 @@ double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev,
 int main() {
     ModelParams params{ 0.8, 0.2, 0.1, 0.05 };
 
+    const int STEP_TIME = 5;
+    const double STEP_INPUT = 1.0;
+
     int N = 20;
 
     vector<double> y(N + 1, 0.0);
     vector<double> u(N + 1, 0.0);
 
     for (int t = 0; t <= N; t++) {
-        if (t < 5) u[t] = 0.0;
-        else u[t] = 1.0;
+        if (t < STEP_TIME) u[t] = 0.0;
+        else u[t] = STEP_INPUT;
     }
 
     cout << "linear model" << endl;
