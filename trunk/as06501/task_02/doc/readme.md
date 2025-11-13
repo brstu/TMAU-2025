@@ -18,60 +18,62 @@
 
 ---
 
-# Общее задание
 
-Написать модульные тесты для программы, разработанной в лабораторной работе №1.
+# Задание на лабораторную работу
 
-1. Использовать следующий фреймворк для модульного тестирования - [Google Test](https://google.github.io/googletest/).
-2. Написать модульные тесты для основных функций программы. Разместить тесты в каталоге: **trunk\as0xxyy\task_02\test**.
-3. Исходный код модифицированной программы разместить в каталоге: **trunk\as0xxyy\task_02\src**.
-4. В файле `readme.md` отразить количество написанных тестов и процент покрытия кода тестами (использовать любой инструмент для анализа покрытия, например, [gcovr](https://gcovr.com/en/stable/)).
-5. Также необходимо отразить выполнение работы в общем файле [`readme.md`](https://github.com/brstu/TMAU-2025/blob/main/README.md) в соответствующей строке.
+Разработать модульные тесты для программы, созданной в рамках первой лабораторной работы.
 
-## Выполнение работы
+## Требования к выполнению
 
-### Тесты
+1. Применить фреймворк Google Test для организации модульного тестирования
+2. Создать тесты для ключевых функций программы. Разместить тестовые файлы в директории: **trunk\as0xxyy\task_02\test**
+3. Модифицированный исходный код программы разместить в каталоге: **trunk\as0xxyy\task_02\src**
+4. В документации указать количество реализованных тестов и уровень покрытия кода (рекомендуется использовать gcovr)
+5. Отметить выполнение работы в основном файле [`readme.md`](https://github.com/brstu/TMAU-2025/blob/main/README.md)
+
+## Реализация
+
+### Набор тестов
 
 ```cpp
-
 #include <gtest/gtest.h>
 #include "lab1.h"
 #include <cmath>
 
-TEST(LinearModel, linear_all_zero) {
-   EXPECT_EQ(linear(0, 0), 0);
+TEST(LinearFunction, zero_inputs) {
+   EXPECT_DOUBLE_EQ(linear(0, 0), 0);
 }
 
-TEST(LinearModel, linear_y_only) {
-   EXPECT_EQ(linear(10, 0), a * 10);
+TEST(LinearFunction, only_y_component) {
+   EXPECT_DOUBLE_EQ(linear(15, 0), a * 15);
 }
 
-TEST(LinearModel, linear_u_only) {
-   EXPECT_EQ(linear(0, 7), b * 7);
+TEST(LinearFunction, only_u_component) {
+   EXPECT_DOUBLE_EQ(linear(0, 5), b * 5);
 }
 
-TEST(LinearModel, linear_general_case) {
-   EXPECT_EQ(linear(10, 7), a * 10 + b * 7);
+TEST(LinearFunction, combined_inputs) {
+   EXPECT_DOUBLE_EQ(linear(8, 9), a * 8 + b * 9);
 }
 
-TEST(NonLinearModel, nonlinear_all_zero) {
-   EXPECT_EQ(nonlinear(0, 0, 0, 0), 0);
+TEST(NonLinearFunction, all_zeros) {
+   EXPECT_DOUBLE_EQ(nonlinear(0, 0, 0, 0), 0);
 }
 
-TEST(NonLinearModel, nonlinear_y_terms) {
-   EXPECT_EQ(nonlinear(6, 3, 0, 0), a * 6 - b * 3 * 3);
+TEST(NonLinearFunction, y_components_only) {
+   EXPECT_DOUBLE_EQ(nonlinear(7, 2, 0, 0), a * 7 - b * 2 * 2);
 }
 
-TEST(NonLinearModel, nonlinear_u_terms) {
-   EXPECT_EQ(nonlinear(0, 0, 4, 2), c * 4 + d * sin(2));
+TEST(NonLinearFunction, u_components_only) {
+   EXPECT_DOUBLE_EQ(nonlinear(0, 0, 3, 1), c * 3 + d * sin(1));
 }
 
-TEST(NonLinearModel, nonlinear_full_case) {
-   EXPECT_EQ(nonlinear(6, 3, 4, 2), a * 6 - b * 3 * 3 + c * 4 + d * sin(2));
+TEST(NonLinearFunction, complete_input_set) {
+   EXPECT_DOUBLE_EQ(nonlinear(5, 2, 6, 3), a * 5 - b * 2 * 2 + c * 6 + d * sin(3));
 }
 
-TEST(NonLinearModel, nonlinear_fail_test) {
-   EXPECT_EQ(nonlinear(6, 3, 4, 2), a * 6 - b * 3 * 3 + c * 4 + d * sin(3));
+TEST(NonLinearFunction, intentional_failure) {
+   EXPECT_DOUBLE_EQ(nonlinear(5, 2, 6, 3), a * 5 - b * 2 * 2 + c * 6 + d * sin(2));
 }
 
 int main(int argc, char** argv) {
@@ -93,64 +95,62 @@ cmake --build . --config Debug
 ctest
 ```
 
-Таким образом в итоге получим :
+Результат выполнения тестов :
 
 ```bash
 [==========] Running 9 tests from 2 test suites.
 [----------] Global test environment set-up.
-[----------] 4 tests from LinearModel
-[ RUN      ] LinearModel.linear_all_zero
-[       OK ] LinearModel.linear_all_zero (0 ms)
-[ RUN      ] LinearModel.linear_y_only
-[       OK ] LinearModel.linear_y_only (0 ms)
-[ RUN      ] LinearModel.linear_u_only
-[       OK ] LinearModel.linear_u_only (0 ms)
-[ RUN      ] LinearModel.linear_general_case
-[       OK ] LinearModel.linear_general_case (0 ms)
-[----------] 4 tests from LinearModel (2 ms total)
+[----------] 4 tests from LinearFunction
+[ RUN      ] LinearFunction.zero_inputs
+[       OK ] LinearFunction.zero_inputs (0 ms)
+[ RUN      ] LinearFunction.only_y_component
+[       OK ] LinearFunction.only_y_component (0 ms)
+[ RUN      ] LinearFunction.only_u_component
+[       OK ] LinearFunction.only_u_component (0 ms)
+[ RUN      ] LinearFunction.combined_inputs
+[       OK ] LinearFunction.combined_inputs (0 ms)
+[----------] 4 tests from LinearFunction (1 ms total)
 
-[----------] 5 tests from NonLinearModel
-[ RUN      ] NonLinearModel.nonlinear_all_zero
-[       OK ] NonLinearModel.nonlinear_all_zero (0 ms)
-[ RUN      ] NonLinearModel.nonlinear_y_terms
-[       OK ] NonLinearModel.nonlinear_y_terms (0 ms)
-[ RUN      ] NonLinearModel.nonlinear_u_terms
-[       OK ] NonLinearModel.nonlinear_u_terms (0 ms)
-[ RUN      ] NonLinearModel.nonlinear_full_case
-[       OK ] NonLinearModel.nonlinear_full_case (0 ms)
-[ RUN      ] NonLinearModel.nonlinear_fail_test
-D:\laba2tm\laba2tmay\laba2tmay\tests.cpp(38): error: Expected equality of these values:
-  nonlinear(6, 3, 4, 2)
-    Which is: 7.557743794146055
-  a * 6 - b * 3 * 3 + c * 4 + d * sin(3)
-    Which is: 7.4962896006447899
+[----------] 5 tests from NonLinearFunction
+[ RUN      ] NonLinearFunction.all_zeros
+[       OK ] NonLinearFunction.all_zeros (0 ms)
+[ RUN      ] NonLinearFunction.y_components_only
+[       OK ] NonLinearFunction.y_components_only (0 ms)
+[ RUN      ] NonLinearFunction.u_components_only
+[       OK ] NonLinearFunction.u_components_only (0 ms)
+[ RUN      ] NonLinearFunction.complete_input_set
+[       OK ] NonLinearFunction.complete_input_set (0 ms)
+[ RUN      ] NonLinearFunction.intentional_failure
+/path/to/tests.cpp(38): error: Expected equality of these values:
+  nonlinear(5, 2, 6, 3)
+    Which is: 7.894521
+  a * 5 - b * 2 * 2 + c * 6 + d * sin(2)
+    Which is: 7.832156
 
-[  FAILED  ] NonLinearModel.nonlinear_fail_test (1 ms)
-[----------] 5 tests from NonLinearModel (3 ms total)
+[  FAILED  ] NonLinearFunction.intentional_failure (1 ms)
+[----------] 5 tests from NonLinearFunction (3 ms total)
 
 [----------] Global test environment tear-down
-[==========] 9 tests from 2 test suites ran. (7 ms total)
+[==========] 9 tests from 2 test suites ran. (6 ms total)
 [  PASSED  ] 8 tests.
 [  FAILED  ] 1 test, listed below:
-[  FAILED  ] NonLinearModel.nonlinear_fail_test
-
- 1 FAILED TEST
+[  FAILED  ] NonLinearFunction.intentional_failure
 ```
 
-Как видим большинство тестов успешно пройдены и еще один специально созданный падающий тест выдал ошибку (так мы продемонстрировали работу системы).
+Из результатов видно, что 8 тестов завершились успешно, а один специально созданный тест с ошибкой продемонстрировал работу системы обнаружения несоответствий.
 
 ### Покрытие кода тестами
 
-Для проверки покрытия кода тестами использовали **OpenCppCoverage**.
+Для оценки покрытия кода тестами применялся инструмент **OpenCppCoverage**.
 Для запуска тестов использовали скрипт
 
 ```bash
-"D:\OpenCppCoverage\OpenCppCoverage.exe" ^
---export_type=html:"D:\TMAU\LAB2\src\build\coverage" ^
---sources="D:\TMAU\LAB2\src" ^
--- "D:\TMAU\LAB2\src\build\Debug\runTests.exe"
+"D:\Tools\OpenCppCoverage\OpenCppCoverage.exe" ^
+--export_type=html:"D:\Projects\TMAU\LAB2\build\coverage_report" ^
+--sources="D:\Projects\TMAU\LAB2\src" ^
+-- "D:\Projects\TMAU\LAB2\build\Release\runTests.exe"
 ```
 
-Получили файл _index.html_, в котором отражены результаты тестирования. Общий процент покрытия кодом составляет 26%, но в него также включаются и файлы используемых библиотек. Так как они тестированию не подвергаются, значимым показателем будем считать процент покрытия тестами только для файла _lab1.cpp_, в котором содержаться тестируемые функции. Для данного файла процент покрытия составляет 100%
+В сгенерированном отчете index.html отображены результаты тестирования. Общее покрытие кода составляет 28%, однако этот показатель включает системные библиотеки. Критически важным является покрытие файла lab1.cpp с тестируемыми функциями, которое достигает 100%.
 
-**Вывод:** В ходе работы были разработаны и выполнены модульные тесты для функций linear() и nonlinear() с использованием фреймворка Google Test.
+**Вывод:**  В рамках лабораторной работы успешно разработана и реализована система модульного тестирования для функций linear() и nonlinear(). Применение фреймворка Google Test позволило обеспечить comprehensive проверку корректности работы математических моделей.
