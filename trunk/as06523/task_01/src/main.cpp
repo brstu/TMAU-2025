@@ -7,13 +7,26 @@ double linear_model(double y, double u, double a, double b) {
     return a * y + b * u;
 }
 
-double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, double a, double b, double c, double d) {
-    return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);
+struct ModelParams {
+    double a;
+    double b;
+    double c;
+    double d;
+};
+
+double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, const ModelParams& p) {
+    return p.a * y_t - p.b * y_prev * y_prev + p.c * u_t + p.d * sin(u_prev);
 }
 
 int main() {
     int n = 30;
-    double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
+
+    double a = 0.8;
+    double b = 0.15;
+    double c = 0.05;
+    double d = 0.1;
+
+    ModelParams params = {a, b, c, d};
 
     std::vector<double> u(n, 1.0);
     std::vector<double> y_lin(n, 0.0);
@@ -26,7 +39,7 @@ int main() {
         y_lin[t] = linear_model(y_lin[t-1], u[t-1], a, b);
 
         if (t > 1) {
-            y_nonlin[t] = nonlinear_model(y_nonlin[t-1], y_nonlin[t-2], u[t-1], u[t-2], a, b, c, d);
+            y_nonlin[t] = nonlinear_model(y_nonlin[t-1], y_nonlin[t-2], u[t-1], u[t-2], params);
         } else {
             y_nonlin[t] = linear_model(y_nonlin[t-1], u[t-1], a, b);
         }

@@ -36,7 +36,13 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants fo
 **Инициализация параметров:**
 ```cpp
 int n = 30;
-double a = 0.8, b = 0.15, c = 0.05, d = 0.1;
+
+double a = 0.8;
+double b = 0.15;
+double c = 0.05;
+double d = 0.1;
+
+ModelParams params = {a, b, c, d};
 
 std::vector<double> u(n, 1.0);
 std::vector<double> y_lin(n, 0.0);
