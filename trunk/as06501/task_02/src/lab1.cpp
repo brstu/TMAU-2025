@@ -1,7 +1,5 @@
 #include "lab1.h"
 #include <cmath>
-using namespace std;
-
 double linear(double y, double u) {
     return a * y + b * u;
 }
