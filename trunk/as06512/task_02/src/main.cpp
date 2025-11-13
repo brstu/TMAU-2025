@@ -8,7 +8,7 @@ using std::endl;
 int main() {
     double y;
 
-    cout << "Ëèíåéíàÿ ìîäåëü:\n";
+    cout << "Линейная модель:\n";
     y = Y0;
     cout << "y0 = " << y << endl;
 
