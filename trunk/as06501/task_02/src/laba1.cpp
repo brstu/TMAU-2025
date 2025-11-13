@@ -2,15 +2,20 @@
 #include <cmath>
 #include "lab1.h"
 using namespace std;
+
 // Forward declarations for functions implemented in lab1.cpp
 double linear(double y, double u);
 double nonlinear(double yt, double yt1, double ut, double ut1);
+
+const int N = 10; 
+const double start_value = 0.0;
+
 int main() {
     setlocale(LC_ALL, "Russian");
 
     double u[N] = { 5,7,6,5,7,6,5,7,6,5 };
 
-    cout << "Ëèíåéíàÿ ìîäåëü:" << endl;
+    cout << "Линейная модель:" << endl;
     cout << "y0 = " << start_value << endl;
     double y = start_value;
     for (int i = 0; i < N; i++) {
@@ -18,7 +23,7 @@ int main() {
         cout << "y" << i + 1 << " = " << y << endl;
     }
 
-    cout << "\nÍåëèíåéíàÿ ìîäåëü:" << endl;
+    cout << "\nНелинейная модель:" << endl;
     cout << "y0 = " << start_value << endl;
     double y_prev = start_value;
     double y_curr = start_value;
