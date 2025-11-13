@@ -38,7 +38,3 @@ TEST(NonLinearModel, nonlinear_fail_test) {
     EXPECT_DOUBLE_EQ(nonlinear(6, 3, 4, 2), a * 6 - b * 3 * 3 + c * 4 + d * sin(3));
 }
 
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
