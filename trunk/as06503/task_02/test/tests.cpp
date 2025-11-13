@@ -7,7 +7,7 @@ TEST(Linear, test_zero) {
 }
 
 TEST(Linear, test_u0) {
-    EXPECT_EQ(linear(18,0), a * 18);
+    EXPECT_EQ(linear(18, 0), a * 18);
 }
 
 TEST(Linear, test_y0) {
