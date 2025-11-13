@@ -1,14 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include "lab1.h"
 using namespace std;
-
-const int N = 10;
-const double a = 0.97;
-const double b = 0.015;
-const double c = 0.45;
-const double d = 0.08;
-double start_value = 18;
-
 double linear(double y, double u) {
     return a * y + b * u;
 }
@@ -22,7 +15,7 @@ int main() {
 
     double u[N] = { 5,7,6,5,7,6,5,7,6,5 };
 
-    cout << "Ëèíåéíàÿ ìîäåëü:" << endl;
+    cout << "Ã‹Ã¨Ã­Ã¥Ã©Ã­Ã Ã¿ Ã¬Ã®Ã¤Ã¥Ã«Ã¼:" << endl;
     cout << "y0 = " << start_value << endl;
     double y = start_value;
     for (int i = 0; i < N; i++) {
@@ -30,7 +23,7 @@ int main() {
         cout << "y" << i + 1 << " = " << y << endl;
     }
 
-    cout << "\nÍåëèíåéíàÿ ìîäåëü:" << endl;
+    cout << "\nÃÃ¥Ã«Ã¨Ã­Ã¥Ã©Ã­Ã Ã¿ Ã¬Ã®Ã¤Ã¥Ã«Ã¼:" << endl;
     cout << "y0 = " << start_value << endl;
     double y_prev = start_value;
     double y_curr = start_value;
