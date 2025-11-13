@@ -49,7 +49,7 @@ int main() {
         double new_y = nonlinear(yt, yt1, u, u);
         yt1 = yt;
         yt = new_y;
-        cout << "y" << i+1 << " = " << yt << endl;
+        cout << "y" << i + 1 << " = " << yt << endl;
     }
 
     return 0;
