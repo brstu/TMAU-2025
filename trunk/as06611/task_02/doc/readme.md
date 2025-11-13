@@ -157,7 +157,7 @@ TEST(NonlinearModel, PrecisionCheck) {
 ```
 
 ### Покрытие кода тестами
-Провели анализ покрытия кода тестами при помощи утилиты OpenCppCoverage. Суммарное покрытие — 27%. functions.cpp имеет 100% покрытие.
+Провели анализ покрытия кода тестами при помощи утилиты OpenCppCoverage. Суммарное покрытие — 27% (включая все файлы, такие как тестовый фреймворк и вспомогательные файлы), при этом functions.cpp (пользовательские функции) имеет 100% покрытие.
 ```bash
 "D:\0101\OpenCppCoverage\OpenCppCoverage.exe" ^
 --export_type=html:"C:\Users\Rostislav\TMAU-2025\trunk\as06611\task_02\coverage" ^
