@@ -19,7 +19,9 @@ double nonlinearModel(double y_curr, double y_prev, double u_curr, double u_prev
 }
 
 int main() {
-    std::setlocale(LC_ALL, "ru_RU.UTF-8");
+    if (!std::setlocale(LC_ALL, "ru_RU.UTF-8")) {
+        std::cerr << "Warning: Locale 'ru_RU.UTF-8' not available. Using default locale." << std::endl;
+    }
     
     std::array<double, N> U = {4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 5, 6};
 
