@@ -3,7 +3,7 @@
 using std::cout;
 using std::endl;
 
-//константы
+//constants
 const int n = 10;
 const double a_lin = 0.8;
 const double b_lin = 0.2;
@@ -45,6 +45,7 @@ int main() {
         yt_nonlin = yt_new;
     }
 
+    // Step response demonstration
     cout << "\nStep Response" << endl;
     cout << "y0 = 0" << endl;
     double yt_step = 0;
