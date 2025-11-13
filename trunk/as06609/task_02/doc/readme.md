@@ -58,7 +58,7 @@ TEST(NonlinearModel, OnlyY) {
 }
 
 TEST(NonlinearModel, OnlyU) {
-    EXPECT_DOUBLE_EQ(nonlinearModel(0,0,5,5), C*5 + D*sin(5));
+    EXPECT_DOUBLE_EQ(nonlinearModel(0, 0, 5, 5), C*5 + D*sin(5));
 }
 
 TEST(NonlinearModel, GeneralCase) {
