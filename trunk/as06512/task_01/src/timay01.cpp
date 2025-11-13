@@ -23,10 +23,11 @@ double nonlinear(double yt, double yt1, double ut, double ut1) {
     return a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1);
 }
 
-/** The program's main function displays the simulation results of both models and performs:
-1. Simulation of a linear system: yₖ₊₁ = a * yₖ + b * u
-2. Modeling of a nonlinear system: yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
-    */
+/**
+ * The program's main function displays the simulation results of both models and performs:
+ * 1. Simulation of a linear system: yₖ₊₁ = a * yₖ + b * u
+ * 2. Modeling of a nonlinear system: yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
+ */
 int main() {
     double y;
 
