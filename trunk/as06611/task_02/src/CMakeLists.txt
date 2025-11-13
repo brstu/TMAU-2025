@@ -3,7 +3,7 @@ project(TMAU02)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Основной исполняемый файл
+# Main executable
 add_executable(main
     functions.cpp
     main.cpp
