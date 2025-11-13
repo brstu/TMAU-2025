@@ -21,7 +21,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-# Тесты
+# Tests
 add_executable(runTests
     ${CMAKE_CURRENT_SOURCE_DIR}/../test/tests.cpp
     functions.cpp
