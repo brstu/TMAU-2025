@@ -1,9 +1,9 @@
 #pragma once
-const int N = 10;
-const double a = 0.97;
-const double b = 0.015;
-const double c = 0.45;
-const double d = 0.08;
+inline constexpr int N = 10;
+inline constexpr double a = 0.97;
+inline constexpr double b = 0.015;
+inline constexpr double c = 0.45;
+inline constexpr double d = 0.08;
 //double start_value = 18;
 
 double linear(double y, double u);
