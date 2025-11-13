@@ -10,6 +10,12 @@ const double C_val = 0.4;
 const double D_val = 0.1;
 const double Y_start = 20;
 
+/**
+ * Computes the next temperature value using a linear model (equation 2 from the documentation).
+ * @param y Current temperature value (y_τ).
+ * @param u Current control input (u_τ).
+ * @return Next temperature value (y_{τ+1}) calculated as A * y + B * u.
+ */
 double linearModel(double y, double u) {
     return A * y + B * u;
 }
