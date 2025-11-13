@@ -4,20 +4,24 @@
 
 class TemperatureModel {
 private:
-    double a, b, c, d;
-    double y_prev, y_prev2;
-    double u_prev;
+    double a;
+    double b;
+    double c;
+    double d;
+    double y_prev = 0;
+    double y_prev2 = 0;
+    double u_prev = 0;
     bool is_nonlinear;
 
 public:
     // Linear model constructor
     TemperatureModel(double a_val, double b_val)
-        : a(a_val), b(b_val), c(0), d(0), y_prev(0), y_prev2(0), u_prev(0), is_nonlinear(false) {
+        : a(a_val), b(b_val), c(0), d(0), is_nonlinear(false) {
     }
 
     // Nonlinear model constructor
     TemperatureModel(double a_val, double b_val, double c_val, double d_val)
-        : a(a_val), b(b_val), c(c_val), d(d_val), y_prev(0), y_prev2(0), u_prev(0), is_nonlinear(true) {
+        : a(a_val), b(b_val), c(c_val), d(d_val), is_nonlinear(true) {
     }
 
     void setInitialConditions(double y0, double y1 = 0, double u0 = 0) {
