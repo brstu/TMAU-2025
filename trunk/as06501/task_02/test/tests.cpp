@@ -33,8 +33,3 @@ TEST(NonLinearModel, nonlinear_u_terms) {
 TEST(NonLinearModel, nonlinear_full_case) {
     EXPECT_DOUBLE_EQ(nonlinear(6, 3, 4, 2), a * 6 - b * 3 * 3 + c * 4 + d * sin(2));
 }
-
-// TEST(NonLinearModel, nonlinear_fail_test) {
-//     EXPECT_DOUBLE_EQ(nonlinear(6, 3, 4, 2), a * 6 - b * 3 * 3 + c * 4 + d * sin(3));
-// }
-
