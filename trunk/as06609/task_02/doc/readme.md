@@ -62,7 +62,7 @@ TEST(NonlinearModel, OnlyU) {
 }
 
 TEST(NonlinearModel, GeneralCase) {
-    EXPECT_DOUBLE_EQ(nonlinearModel(18,18,5,5),
+    EXPECT_DOUBLE_EQ(nonlinearModel(18, 18, 5, 5),
                      A*18 - B*pow(18,2) + C*5 + D*sin(5));
 }
 ```
