@@ -3,7 +3,7 @@
 #include "func.h"
 
 TEST(Linear, test_zero) {
-    EXPECT_EQ(linear(0,0), 0);
+    EXPECT_EQ(linear(0, 0), 0);
 }
 
 TEST(Linear, test_u0) {
