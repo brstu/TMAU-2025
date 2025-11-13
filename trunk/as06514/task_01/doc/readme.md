@@ -1,7 +1,7 @@
 <p align="center"> Министерство образования Республики Беларусь</p>
 <p align="center"> Учреждение образования</p>
 <p align="center">“ Брестский Государственный Технический университет ”</p>
-<p align="center"> Кафедра ИИТ</p>
+<p align="center"> Кафедра интеллектуальных информационных технологий</p>
 <br><br><br><br><br><br><br>
 <p align="center"> Лабораторная работа №1</p>
 <p align="center"> По дисциплине “ Теория и методы автоматического управления ”</p>
@@ -10,7 +10,7 @@
 <p align="right"> Выполнила:</p>
 <p align="right"> Студентка 3 курса</p>
 <p align="right"> Группы АС-65</p>
-<p align="right"> Рапин Е.Ю.</p>
+<p align="right"> Pапин Е.Ю.</p>
 <p align="right"> Проверил:</p>
 <p align="right"> Иванюк Д.С.</p>
 <br><br><br><br><br><br><br><br>
@@ -35,7 +35,7 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some con
 Task is to write program (**С++**), which simulates this object temperature.
 
 ## Выполнение работы
-Константы программы
+Константы, которые заданы в программе:
 ```
 double a = 0.8;
 double b = 0.1;
@@ -44,9 +44,9 @@ double d = 0.02;
 vector<double> heatInput = {3, 4, 5, 6, 7, 8, 9, 10, 9, 8};
 double startTemp = 20.0;
 ```
-Итог выполнения программы:
+Итог работы программы:
 ```
-Linear model results:
+Results of the Linear model:
 Y1: 14.9
 Y2: 11.63
 Y3: 9.641
@@ -58,7 +58,7 @@ Y8: 8.83884
 Y9: 8.88719
 Y10: 8.62103
 
-Results of the nonlinear model:
+Results of the Nonlinear model:
 Y1: 20.15
 Y2: 20.3064
 Y3: 20.5019
@@ -70,4 +70,4 @@ Y8: 22.0928
 Y9: 22.4188
 Y10: 22.7251
 ```
-**Вывод:** зная функцию возможно смоделировать ее параметры модели в зависимости от времени.
+**Вывод:** имея функцию возможно смоделировать её параметры модели в зависимости от времени.
