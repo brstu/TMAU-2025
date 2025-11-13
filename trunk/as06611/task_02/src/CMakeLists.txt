@@ -13,7 +13,7 @@ add_executable(main
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
+  URL https://github.com/google/googletest/archive/refs/tags/v1.15.2.zip
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
