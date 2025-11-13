@@ -88,10 +88,8 @@ TEST(NonlinearModelTest, NegativeInputs) {
 // -------------------------
 // main для запуска тестов
 // -------------------------
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+> **Примечание:**  
+> В данном проекте функция `main` для запуска тестов не требуется, так как она предоставляется автоматически при линковке с `GTest::gtest_main` (см. строку 21 в `CMakeLists.txt`).  
 PS C:\Users\Lenovo\Desktop\task_02\src\build> ./runTests.exe
 [==========] Running 8 tests from 2 test suites.
 [----------] Global test environment set-up.
