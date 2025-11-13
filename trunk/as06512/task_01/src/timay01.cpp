@@ -18,7 +18,7 @@ double linear(double y, double u_val) {
     return a * y + b * u_val;
 }
 
-///Nonlinear mathematical model yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
+// Nonlinear mathematical model yₖ₊₁ = a * yₖ - b * yₖ₋₁² + c * uₖ + d * sin(uₖ₋₁)
 double nonlinear(double yt, double yt1, double ut, double ut1) {
     return a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1);
 }
