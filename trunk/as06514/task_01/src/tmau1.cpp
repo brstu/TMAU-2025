@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <array>
 using std::cout;
 using std::endl;
 
@@ -22,7 +23,7 @@ double nonlinear(double yt, double yt_1, double ut, double ut_1) {
 }
 
 int main() {
-    double u[n] = { 0, 0, 0, 0, 0, 5, 5, 5, 5, 5 };
+    std::array<double, n> u = { 0, 0, 0, 0, 0, 5, 5, 5, 5, 5 };
 
     cout << "Lin Mod" << endl;
     cout << "y0 = " << Y0 << endl;
