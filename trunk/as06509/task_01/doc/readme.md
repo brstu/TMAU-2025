@@ -1,12 +1,11 @@
-
-<p align="center"> Министерство образования Республики Беларусь</p>
+<p align="center">Министерство образования Республики Беларусь</p>
 <p align="center">Учреждение образования</p>
-<p align="center">“Брестский Государственный Технический университет”</p>
+<p align="center">"Брестский Государственный Технический университет"</p>
 <p align="center">Кафедра ИИТ</p>
 <br><br><br><br><br><br><br>
 <p align="center">Лабораторная работа №1</p>
-<p align="center">По дисциплине “Теория и методы автоматического управления”</p>
-<p align="center">Тема: “Моделирование управляемого объекта”</p>
+<p align="center">По дисциплине "Теория и методы автоматического управления"</p>
+<p align="center">Тема: "Моделирование динамики объекта управления"</p>
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
@@ -18,30 +17,28 @@
 <p align="center">Брест 2025</p>
 
 ---
-## Условие работы. (Task 1. Modeling controlled object)
-Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
+## Постановка задачи (Task 1. Modeling controlled object)
+Рассмотрим объект управления, требующий контроля температурного режима. Динамика температуры описывается дифференциальным уравнением:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
+где $\tau$ – время; $y(\tau)$ – температура объекта; $u(\tau)$ – тепловое воздействие; $Y_0$ – температура окружающей среды; $C, RC$ – постоянные коэффициенты.
 
-After transformation we get these linear (2) and nonlinear (3) models:
+После преобразований получаем дискретные модели: линейную (2) и нелинейную (3):
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 
 $$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
+где $\tau$ – дискретные моменты времени ($1,2,3{\dots}n$); $a,b,c,d$ – постоянные параметры.
 
-Task is to write program (**С++**), which simulates this object temperature.
+Цель работы: разработка программы на языке **С++** для имитации температурных характеристик объекта.
 
 ## Практическая часть
 Константы  
 ```
-
 struct Constants{
     const int n = 10;  
-
     const double a = 1.2;
     const double b = 0.01;
     const double c = 0.75;
@@ -61,7 +58,6 @@ y7: 90.0962
 y8: 108.155
 y9: 129.827
 y10: 155.832
-
 Nonlinear:
 y0: 25
 y1: 25
@@ -76,4 +72,3 @@ y9: 29.6426
 y10: 29.5273
 ```
 **Вывод:** Моделирование подтверждает, что математическая формализация системы в виде уравнений позволяет не просто описывать, но и предсказывать ее поведение в динамике. Это создает основу для целенаправленного влияния на характеристики системы через варьирование параметров модели и управляющих сигналов на различных временных интервалах.
-
