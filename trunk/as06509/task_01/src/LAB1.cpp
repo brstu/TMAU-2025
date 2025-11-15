@@ -13,7 +13,7 @@ struct Constants{
     const double d = 0.03;
 };
 
-void linear(Constants &con, vector<double> &u) {
+void linear(const Constants &con, vector<double> &u) {
     vector<double> y(con.n + 1, 0.0); 
     y[0] = 25;
 
@@ -27,7 +27,7 @@ void linear(Constants &con, vector<double> &u) {
     }
 }
 
-void Nonlinear(Constants &con, vector<double> &u) {
+void Nonlinear(const Constants &con, vector<double> &u) {
     vector<double> y(con.n + 1, 0.0); 
     y[0] = 25;
     y[1] = y[0];

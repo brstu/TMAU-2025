@@ -18,7 +18,7 @@
 <p align="center">Брест 2025</p>
 
 ---
-## Task 1. Modeling controlled object
+## Условие работы. (Task 1. Modeling controlled object)
 Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
@@ -35,7 +35,7 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some con
 
 Task is to write program (**С++**), which simulates this object temperature.
 
-## Выполнение работы
+## Практическая часть
 Константы  
 ```
 
@@ -48,7 +48,7 @@ struct Constants{
     const double d = 0.03;
 };
 ```
-Результат работы программы:
+Результат выполнения работы программы:
 ```Linear:
 y0: 25
 y1: 30.04
@@ -75,5 +75,5 @@ y8: 30.0353
 y9: 29.6426
 y10: 29.5273
 ```
-**Вывод:** зная функцию  отражающую систему, можно моделировать параметры модели в зависимости от времени или других параметров.
+**Вывод:** Моделирование подтверждает, что математическая формализация системы в виде уравнений позволяет не просто описывать, но и предсказывать ее поведение в динамике. Это создает основу для целенаправленного влияния на характеристики системы через варьирование параметров модели и управляющих сигналов на различных временных интервалах.
 
