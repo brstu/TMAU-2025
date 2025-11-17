@@ -38,8 +38,10 @@ int main() {
     fill(y.begin(), y.end(), 0.0);
 
     cout << "\nNonlinear model" << endl;
-    for (int t = 1; t < N; t++) {
-        y[t + 1] = nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], coeffs);
+    for (int t = 0; t < N; t++) {
+        double y_prev = (t == 0) ? 0.0 : y[t - 1];
+        double u_prev = (t == 0) ? 0.0 : u[t - 1];
+        y[t + 1] = nonlinear_model(y[t], y_prev, u[t], u_prev, coeffs);
         cout << "t=" << t + 1 << "  y=" << fixed << setprecision(4) << y[t + 1] << endl;
     }
 
