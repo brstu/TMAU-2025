@@ -19,8 +19,14 @@ double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, con
     return coeffs.a * y_t - coeffs.b * y_prev * y_prev + coeffs.c * u_t + coeffs.d * sin(u_prev);
 }
 
+// Model coefficients
+const double FEEDBACK_COEFF = 0.8;      // Feedback coefficient (a)
+const double PREV_OUTPUT_COEFF = 0.2;   // Previous output squared coefficient (b)
+const double INPUT_COEFF = 0.1;         // Input coefficient (c)
+const double NONLINEAR_COEFF = 0.05;    // Nonlinear (sin) coefficient (d)
+
 int main() {
-    Coeffs coeffs = {0.8, 0.2, 0.1, 0.05};
+    Coeffs coeffs = {FEEDBACK_COEFF, PREV_OUTPUT_COEFF, INPUT_COEFF, NONLINEAR_COEFF};
     int N = 20; 
     vector<double> y(N + 1, 0.0); 
     vector<double> u(N + 1, 0.0); 
