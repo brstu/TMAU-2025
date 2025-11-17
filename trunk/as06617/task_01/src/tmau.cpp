@@ -11,10 +11,27 @@ struct Coeffs {
     double d;
 };
 
+// Computes the next output of a linear model.
+// Parameters:
+//   y_t: Output (e.g., temperature) at time t
+//   u_t: Input at time t
+//   a: Coefficient for the previous output
+//   b: Coefficient for the input
+// Returns:
+//   The output at time t+1
 double linear_model(double y_t, double u_t, double a, double b) {
     return a * y_t + b * u_t;
 }
 
+// Computes the next output of a nonlinear model.
+// Parameters:
+//   y_t: Output at time t
+//   y_prev: Output at time t-1
+//   u_t: Input at time t
+//   u_prev: Input at time t-1
+//   coeffs: Struct containing coefficients a, b, c, d
+// Returns:
+//   The output at time t+1, including nonlinear effects
 double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, const Coeffs& coeffs) {
     return coeffs.a * y_t - coeffs.b * y_prev * y_prev + coeffs.c * u_t + coeffs.d * sin(u_prev);
 }
