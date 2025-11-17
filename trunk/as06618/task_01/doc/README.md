@@ -72,7 +72,7 @@ t=18  y=0.945024
 t=19  y=0.95602
 t=20  y=0.964816
 
- non linear model
+ nonlinear model
 t=1  y=0
 t=2  y=0
 t=3  y=0
