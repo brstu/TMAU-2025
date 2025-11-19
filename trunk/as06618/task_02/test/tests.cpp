@@ -1,36 +1,46 @@
-#include <gtest/gtest.h>
-#include "func.h"
 #include <cmath>
+#include <iostream>
 
-TEST(Linear, test_zero) {
-    EXPECT_DOUBLE_EQ(linear(0, 0), 0);
+#include "func.h"
+
+namespace {
+bool AlmostEqual(double lhs, double rhs, double eps = 1e-9) {
+    return std::fabs(lhs - rhs) <= eps;
 }
 
-TEST(Linear, test_u0) {
-    EXPECT_DOUBLE_EQ(linear(18, 0), a * 18);
+bool ExpectEqual(double lhs, double rhs, const char* description) {
+    if (AlmostEqual(lhs, rhs)) {
+        return true;
+    }
+    std::cerr << "Тест не пройден: " << description << "\n"
+              << "  Ожидалось: " << rhs << "\n"
+              << "  Получено : " << lhs << "\n";
+    return false;
 }
+}  // namespace
 
-TEST(Linear, test_y0) {
-    EXPECT_DOUBLE_EQ(linear(0, 5), b * 5);
-}
+int main() {
+    bool ok = true;
+    ok &= ExpectEqual(linear(0.0, 0.0), 0.0, "Linear zero input");
+    ok &= ExpectEqual(linear(18.0, 0.0), a * 18.0, "Linear zero control");
+    ok &= ExpectEqual(linear(0.0, 5.0), b * 5.0, "Linear zero state");
+    ok &= ExpectEqual(linear(18.0, 5.0), a * 18.0 + b * 5.0, "Linear generic");
 
-TEST(Linear, test_default) {
-    EXPECT_DOUBLE_EQ(linear(18, 5), a * 18 + b * 5);
-}
+    ok &= ExpectEqual(nonlinear(0.0, 0.0, 0.0, 0.0), 0.0, "Nonlinear zero input");
+    ok &= ExpectEqual(nonlinear(18.0, 18.0, 0.0, 0.0),
+                      a * 18.0 - b * std::pow(18.0, 2),
+                      "Nonlinear zero control");
+    ok &= ExpectEqual(nonlinear(0.0, 0.0, 5.0, 5.0),
+                      c * 5.0 + d * std::sin(5.0),
+                      "Nonlinear zero state");
+    ok &= ExpectEqual(nonlinear(18.0, 18.0, 5.0, 5.0),
+                      a * 18.0 - b * std::pow(18.0, 2) + c * 5.0 + d * std::sin(5.0),
+                      "Nonlinear generic");
 
-TEST(NonLinear, test_zero) {
-    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 0, 0), 0);
-}
+    if (!ok) {
+        return 1;
+    }
 
-TEST(NonLinear, test_u0) {
-    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 0, 0), a * 18 - b * std::pow(18, 2));
-}
-
-TEST(NonLinear, test_y0) {
-    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 5, 5), c * 5 + d * std::sin(5));
-}
-
-TEST(NonLinear, test_default) {
-    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 5, 5),
-                     a * 18 - b * std::pow(18, 2) + c * 5 + d * std::sin(5));
+    std::cout << "Все тесты пройдены" << std::endl;
+    return 0;
 }

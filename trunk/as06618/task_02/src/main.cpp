@@ -1,47 +1,54 @@
+#include <array>
+#include <iomanip>
 #include <iostream>
-#include <vector>
+
 #include "func.h"
-#include <windows.h>
-using namespace std;
 
-static void simulateLinear(const vector<double>& input) {
-    double y = Y0;
-    cout << "=== Линейная модель ===\n";
-    cout << "y0 = " << Y0 << '\n';
-    for (int i = 0; i < STEPS; ++i) {
-        y = linear(y, input[i]);
-        cout << "Шаг " << i + 1 << ": y = " << y << '\n';
-    }
-}
+namespace {
+using InputSequence = std::array<double, STEPS>;
 
-static void simulateNonlinear(const vector<double>& input) {
-    double y = Y0;
-    double y_prev = Y0;
-    cout << "\n=== Нелинейная модель ===\n";
-    cout << "y0 = " << Y0 << '\n';
-    for (int i = 0; i < STEPS; ++i) {
-        double u_prev = (i == 0) ? input[0] : input[i - 1];
-        y = nonlinear(y, y_prev, input[i], u_prev);
-        cout << "Шаг " << i + 1 << ": y = " << y << '\n';
-        y_prev = y;
-    }
-}
-
-int main() {
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-    vector<double> input;
-    input.reserve(STEPS);
-    for (int i = 0; i < STEPS; ++i) {
+InputSequence BuildInputSequence() {
+    InputSequence input{};
+    for (std::size_t i = 0; i < input.size(); ++i) {
         switch (i % 3) {
-            case 0: input.push_back(5); break;
-            case 1: input.push_back(7); break;
-            default: input.push_back(0); break; 
+            case 0: input[i] = 5.0; break;
+            case 1: input[i] = 7.0; break;
+            default: input[i] = 0.0; break;
         }
     }
-
-    simulateLinear(input);
-    simulateNonlinear(input);
-    return 0;
+    return input;
 }
 
+void SimulateLinear(const InputSequence& input) {
+    double y = Y0;
+    std::cout << "=== Линейная модель ===\n";
+    std::cout << "y0 = " << Y0 << '\n';
+    for (std::size_t i = 0; i < input.size(); ++i) {
+        y = linear(y, input[i]);
+        std::cout << "Шаг " << i + 1 << ": y = " << y << '\n';
+    }
+}
+
+void SimulateNonlinear(const InputSequence& input) {
+    double y_prev = Y0;
+    double y = Y0;
+    std::cout << "\n=== Нелинейная модель ===\n";
+    std::cout << "y0 = " << Y0 << '\n';
+    for (std::size_t i = 0; i < input.size(); ++i) {
+        const double u_prev = (i == 0) ? input[0] : input[i - 1];
+        const double y_new = nonlinear(y, y_prev, input[i], u_prev);
+        std::cout << "Шаг " << i + 1 << ": y = " << y_new << '\n';
+        y_prev = y;
+        y = y_new;
+    }
+}
+
+}  // namespace
+
+int main() {
+    std::cout << std::fixed << std::setprecision(4);
+    const auto input = BuildInputSequence();
+    SimulateLinear(input);
+    SimulateNonlinear(input);
+    return 0;
+}
