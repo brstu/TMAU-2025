@@ -3,6 +3,8 @@
 #include <cmath>
 #include <iomanip>
 
+
+
 // Линейная модель системы
 double linear_model(double current_y, double input_u, double param_a, double param_b) {
     double result = param_a * current_y + param_b * input_u;
