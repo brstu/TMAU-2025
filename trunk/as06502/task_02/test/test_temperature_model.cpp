@@ -6,7 +6,6 @@
 class TemperatureModelTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        // Общие тестовые данные
         testInputs[0] = 15.0;
         testInputs[1] = 16.5;
         testInputs[2] = 18.0;
@@ -17,7 +16,7 @@ protected:
     double initialTemp;
 };
 
-// Тесты для линейной модели
+// Тесты линейной 
 TEST_F(TemperatureModelTest, LinearModelBasicCalculation) {
     double result = TemperatureModel::calcLinear(20.0, 15.0);
     EXPECT_NEAR(result, (0.2 * 20.0) + (0.02 * 15.0), 0.001);
@@ -32,16 +31,14 @@ TEST_F(TemperatureModelTest, LinearModelSequence) {
     double results[3];
     TemperatureModel::calculateLinearModel(initialTemp, testInputs, 3, results);
     
-    // Проверяем первое значение
     double expected1 = (0.2 * 20.0) + (0.02 * 15.0);
     EXPECT_NEAR(results[0], expected1, 0.001);
     
-    // Проверяем второе значение
     double expected2 = (0.2 * expected1) + (0.02 * 16.5);
     EXPECT_NEAR(results[1], expected2, 0.001);
 }
 
-// Тесты для нелинейной модели
+// Тесты нелинейной
 TEST_F(TemperatureModelTest, NonlinearModelBasicCalculation) {
     double result = TemperatureModel::calcNonlinear(20.0, 20.0, 15.0, 14.0);
     
@@ -56,21 +53,17 @@ TEST_F(TemperatureModelTest, NonlinearModelSequence) {
     
     TemperatureModel::calculateNonlinearModel(initialTemp, localInputs, 3, results);
     
-    // Первое значение должно быть начальной температурой
     EXPECT_DOUBLE_EQ(results[0], initialTemp);
     
-    // Второе значение рассчитывается
     EXPECT_TRUE(results[1] != initialTemp);
 }
 
 TEST_F(TemperatureModelTest, NonlinearModelWithExtremeValues) {
-    // Проверяем работу с граничными значениями
     double result = TemperatureModel::calcNonlinear(100.0, 100.0, 50.0, 50.0);
     EXPECT_FALSE(std::isnan(result));
     EXPECT_FALSE(std::isinf(result));
 }
 
-// Тесты валидации входных данных
 TEST_F(TemperatureModelTest, InputValidationValid) {
     EXPECT_TRUE(TemperatureModel::validateInput(20.0));
     EXPECT_TRUE(TemperatureModel::validateInput(0.0));
@@ -82,8 +75,8 @@ TEST_F(TemperatureModelTest, InputValidationInvalid) {
     EXPECT_FALSE(TemperatureModel::validateInput(NAN));
     EXPECT_FALSE(TemperatureModel::validateInput(INFINITY));
     EXPECT_FALSE(TemperatureModel::validateInput(-INFINITY));
-    EXPECT_FALSE(TemperatureModel::validateInput(-101.0));  // Ниже допустимого
-    EXPECT_FALSE(TemperatureModel::validateInput(1001.0));  // Выше допустимого
+    EXPECT_FALSE(TemperatureModel::validateInput(-101.0)); 
+    EXPECT_FALSE(TemperatureModel::validateInput(1001.0));
 }
 
 TEST_F(TemperatureModelTest, InputArrayValidation) {
@@ -92,10 +85,10 @@ TEST_F(TemperatureModelTest, InputArrayValidation) {
     
     EXPECT_TRUE(TemperatureModel::validateInputArray(validInputs, 3));
     EXPECT_FALSE(TemperatureModel::validateInputArray(invalidInputs, 3));
-    EXPECT_FALSE(TemperatureModel::validateInputArray(validInputs, 0));  // Пустой массив
+    EXPECT_FALSE(TemperatureModel::validateInputArray(validInputs, 0));
 }
 
-// Тесты обработки ошибок
+// тесты на catch
 TEST_F(TemperatureModelTest, LinearModelInvalidInputThrows) {
     EXPECT_THROW(TemperatureModel::calcLinear(NAN, 10.0), std::invalid_argument);
     EXPECT_THROW(TemperatureModel::calcLinear(20.0, INFINITY), std::invalid_argument);
@@ -124,38 +117,33 @@ TEST_F(TemperatureModelTest, NonlinearModelInsufficientStepsThrows) {
                  std::invalid_argument);
 }
 
-// Тесты на постоянные значения
+// тесты констант
 TEST_F(TemperatureModelTest, ConstantsAreCorrect) {
     EXPECT_DOUBLE_EQ(TemperatureModel::A, 0.2);
     EXPECT_DOUBLE_EQ(TemperatureModel::B, 0.02);
     EXPECT_DOUBLE_EQ(TemperatureModel::C, 0.03);
     EXPECT_DOUBLE_EQ(TemperatureModel::D, 0.04);
-    //EXPECT_EQ(TemperatureModel::STEPS, 10);
 }
 
-// Тесты на граничные случаи
+// чекаем границы
 TEST_F(TemperatureModelTest, BoundaryCases) {
-    // Максимально допустимые значения
     EXPECT_NO_THROW(TemperatureModel::calcLinear(1000.0, 1000.0));
     EXPECT_NO_THROW(TemperatureModel::calcLinear(-100.0, -100.0));
     
-    // За границами - должны быть исключения
     EXPECT_THROW(TemperatureModel::calcLinear(1001.0, 10.0), std::invalid_argument);
     EXPECT_THROW(TemperatureModel::calcLinear(10.0, -101.0), std::invalid_argument);
 }
 
-// Тесты на математическую корректность
+
 TEST_F(TemperatureModelTest, MathematicalProperties) {
-    // Линейная модель должна быть линейной
     double result1 = TemperatureModel::calcLinear(10.0, 5.0);
     double result2 = TemperatureModel::calcLinear(20.0, 10.0);
     
-    // Проверяем линейность: result2 должен быть примерно равен 2 * result1
-    // с учетом того что у нас есть член A * y
+    // result2 должен быть примерно равен 2 * result1
     EXPECT_NEAR(result2, 2 * result1, 1.0);
 }
 
-// Тесты производительности (проверка на отсутствие падений)
+// проверка на отсутствие падений (Я ИЗ БУДУЩЕГО НЕ ЗАБУДЬ ВЫРЕЗАТЬ ЕСЛИ ПОПРОСЯТ СДЕЛАТЬ ПАДАЮЩИЕ)
 TEST_F(TemperatureModelTest, PerformanceNoCrash) {
     for (int i = 0; i < 100; ++i) {
         double temp = static_cast<double>(i);

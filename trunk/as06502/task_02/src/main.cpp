@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// Кроссплатформенная функция для паузы
+// для винды и с wsl
 void systemPause() {
     #ifdef _WIN32
         system("pause");
@@ -15,7 +15,7 @@ void systemPause() {
     #endif
 }
 
-// Кроссплатформенная установка кодировки (только для Windows)
+// та же шляпа что и прошлое
 void setConsoleEncoding() {
     #ifdef _WIN32
         system("chcp 6501 > nul");

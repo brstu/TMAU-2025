@@ -2,14 +2,11 @@
 #include <cmath>
 #include <stdexcept>
 
-// Определяем статические константы
 const double TemperatureModel::A = 0.2;
 const double TemperatureModel::B = 0.02;
 const double TemperatureModel::C = 0.03;
 const double TemperatureModel::D = 0.04;
 
-// Для целочисленной константы определение не требуется, но можно добавить если нужно
-// const int TemperatureModel::STEPS = 10;
 
 double TemperatureModel::calcLinear(double currentY, double inputU) {
     if (!validateInput(currentY) || !validateInput(inputU)) {
@@ -27,7 +24,6 @@ double TemperatureModel::calcNonlinear(double currentY, double prevY, double inp
 }
 
 bool TemperatureModel::validateInput(double temperature) {
-    // Проверяем на NaN, бесконечность и разумные пределы температуры
     return !std::isnan(temperature) && 
            !std::isinf(temperature) &&
            temperature >= -100.0 && 
@@ -69,7 +65,7 @@ void TemperatureModel::calculateNonlinearModel(double initialTemp, const double 
     
     double currentY = initialTemp;
     double previousY = initialTemp;
-    results[0] = initialTemp; // Первое значение - начальная температура
+    results[0] = initialTemp; 
     
     for (int t = 1; t < size; ++t) {
         double uCurr = inputs[t];

@@ -12,6 +12,7 @@ Makefile
 *.a
 *.so
 *.dll
+*.sh
 
 # Object files
 *.o
