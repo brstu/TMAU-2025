@@ -2,6 +2,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <vector>
+#include <algorithm>
 
 const double TemperatureModel::A = 0.2;
 const double TemperatureModel::B = 0.02;
@@ -33,12 +34,7 @@ bool TemperatureModel::validateInput(double temperature) {
 bool TemperatureModel::validateInputArray(const std::vector<double>& inputs) {
     if (inputs.empty()) return false;
     
-    for (const auto& input : inputs) {
-        if (!validateInput(input)) {
-            return false;
-        }
-    }
-    return true;
+    return std::all_of(inputs.begin(), inputs.end(), validateInput);
 }
 
 void TemperatureModel::calculateLinearModel(double initialTemp, const std::vector<double>& inputs, std::vector<double>& results) {
