@@ -1,0 +1,33 @@
+# Build outputs
+build/
+CMakeFiles/
+*.cmake
+CMakeCache.txt
+Makefile
+
+# Executables and libraries
+*.exe
+*.out
+*.app
+*.a
+*.so
+*.dll
+
+# Object files
+*.o
+*.obj
+
+# Coverage data
+*.gcda
+*.gcno
+*.gcov
+coverage_report*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
