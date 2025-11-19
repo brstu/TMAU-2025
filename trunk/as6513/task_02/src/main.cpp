@@ -35,7 +35,7 @@ int main() {
         }
     }
 
-    std::cout << "\nTime\tLinear\t\tNonlinear\n";
+    std::cout << "\nTimee\tLinearr\t\tNonlinearr\n";
     std::cout << "----\t------\t\t---------\n";
     for (int t = 0; t < n; ++t) {
         std::cout << t << "\t" << std::fixed << std::setprecision(5)
