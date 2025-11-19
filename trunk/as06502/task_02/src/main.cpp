@@ -1,46 +1,64 @@
 #include <iostream>
-#include <vector>
-#include "model_functions.h"
+#include <cstdlib>
+#include "temperature_model.h"
+
+using namespace std;
+
+// Кроссплатформенная функция для паузы
+void systemPause() {
+    #ifdef _WIN32
+        system("pause");
+    #else
+        cout << "Press Enter to continue...";
+        cin.ignore();
+        cin.get();
+    #endif
+}
+
+// Кроссплатформенная установка кодировки (только для Windows)
+void setConsoleEncoding() {
+    #ifdef _WIN32
+        system("chcp 6501 > nul");
+    #endif
+}
 
 int main() {
-    setlocale(LC_ALL, "ru_RU.UTF-8");
-    if (!setlocale(LC_ALL, "ru_RU.UTF-8")) {
-        std::cerr << "Warning: Не удалось установить русскую локаль. Вывод может отображаться некорректно." << std::endl;
-    }
+    setConsoleEncoding();
 
     double temperatureInitial = 20.0;
 
-    std::vector<double> inputs = {
+    double inputs[TemperatureModel::STEPS] = {
         15.0, 16.5, 18.0, 20.0, 22.5, 25.0, 24.0, 21.0, 18.0, 16.0
     };
 
-    std::cout << "Линейная модель\nНачальное значение: " << temperatureInitial << "\n";
+    cout << "Линейная модель\nНачальное значение: " << temperatureInitial << "\n";
 
-    double prevTemperature = temperatureInitial;
-    for (size_t t = 0; t < inputs.size(); ++t) {
-        double newTemperature = calcLinear(prevTemperature, inputs[t]);
-        std::cout << "y[" << t + 1 << "] = " << newTemperature << std::endl;
-        prevTemperature = newTemperature;
+    try {
+        double linearResults[TemperatureModel::STEPS];
+        TemperatureModel::calculateLinearModel(temperatureInitial, inputs, TemperatureModel::STEPS, linearResults);
+        
+        for (int t = 0; t < TemperatureModel::STEPS; ++t) {
+            cout << "y[" << t + 1 << "] = " << linearResults[t] << endl;
+        }
+    } catch (const exception& e) {
+        cerr << "Ошибка в линейной модели: " << e.what() << endl;
+        return 1;
     }
 
-    std::cout << "\nНелинейная модель\nНачальное значение: " << temperatureInitial << "\n";
+    cout << "\nНелинейная модель\nНачальное значение: " << temperatureInitial << "\n";
 
-    double currentY = temperatureInitial;
-    double previousY = temperatureInitial;
-
-    for (size_t t = 1; t < inputs.size(); ++t) {
-        double uCurr = inputs[t];
-        double uPrev = inputs[t - 1];
-
-        double newY = calcNonlinear(currentY, previousY, uCurr, uPrev);
-        std::cout << "y[" << t << "] = " << newY << std::endl;
-
-        previousY = currentY;
-        currentY = newY;
+    try {
+        double nonlinearResults[TemperatureModel::STEPS];
+        TemperatureModel::calculateNonlinearModel(temperatureInitial, inputs, TemperatureModel::STEPS, nonlinearResults);
+        
+        for (int t = 0; t < TemperatureModel::STEPS; ++t) {
+            cout << "y[" << t << "] = " << nonlinearResults[t] << endl;
+        }
+    } catch (const exception& e) {
+        cerr << "Ошибка в нелинейной модели: " << e.what() << endl;
+        return 1;
     }
 
-    std::cout << "Press Enter to continue...";
-    std::cin.get();
-
+    systemPause();
     return 0;
 }
