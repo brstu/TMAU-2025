@@ -4,26 +4,14 @@ project(task_02)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Приложение
-add_executable(main main.cpp func.cpp)
-target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(task02_lib func.cpp)
+target_include_directories(task02_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-# GoogleTest
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
-  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-)
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
+add_executable(task02_app main.cpp)
+target_link_libraries(task02_app PRIVATE task02_lib)
+
+add_executable(task02_tests ../test/tests.cpp)
+target_link_libraries(task02_tests PRIVATE task02_lib)
 
 enable_testing()
-
-# Тесты
-add_executable(runTests ../test/tests.cpp func.cpp)
-target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(runTests GTest::gtest GTest::gtest_main)
-
-include(GoogleTest)
-gtest_discover_tests(runTests)
+add_test(NAME task02_unit_tests COMMAND task02_tests)

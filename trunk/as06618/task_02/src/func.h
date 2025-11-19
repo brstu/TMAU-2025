@@ -1,14 +1,13 @@
 #pragma once
+
 #include <cmath>
 
-// Параметры модели (объявления)
-extern const int STEPS;
-extern const double a;
-extern const double b;
-extern const double c;
-extern const double d;
-extern const double Y0;
+inline constexpr int STEPS = 10;
+inline constexpr double a = 0.99;
+inline constexpr double b = 0.01;
+inline constexpr double c = 0.5;
+inline constexpr double d = 0.1;
+inline constexpr double Y0 = 18.0;
 
-// Прототипы функций модели
 double linear(double y, double u);
 double nonlinear(double y, double y_prev, double u, double u_prev);
