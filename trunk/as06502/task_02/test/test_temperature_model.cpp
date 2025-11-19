@@ -145,7 +145,7 @@ TEST_F(TemperatureModelTest, PerformanceNoCrash) {
         
         try {
             TemperatureModel::calcLinear(temp, input);
-        } catch (...) {
+        } catch (const std::invalid_argument&) {
             allPassed = false;
         }
     }
