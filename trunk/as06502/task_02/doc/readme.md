@@ -146,7 +146,6 @@ void TemperatureModel::calculateNonlinearModel(double initialTemp, const double 
 
 using namespace std;
 
-// для винды и с wsl
 void systemPause() {
     #ifdef _WIN32
         system("pause");
@@ -157,7 +156,7 @@ void systemPause() {
     #endif
 }
 
-// та же шляпа что и прошлое
+
 void setConsoleEncoding() {
     #ifdef _WIN32
         system("chcp 6501 > nul");
@@ -226,7 +225,7 @@ protected:
     double initialTemp;
 };
 
-// Тесты линейной 
+
 TEST_F(TemperatureModelTest, LinearModelBasicCalculation) {
     double result = TemperatureModel::calcLinear(20.0, 15.0);
     EXPECT_NEAR(result, (0.2 * 20.0) + (0.02 * 15.0), 0.001);
@@ -248,7 +247,7 @@ TEST_F(TemperatureModelTest, LinearModelSequence) {
     EXPECT_NEAR(results[1], expected2, 0.001);
 }
 
-// Тесты нелинейной
+
 TEST_F(TemperatureModelTest, NonlinearModelBasicCalculation) {
     double result = TemperatureModel::calcNonlinear(20.0, 20.0, 15.0, 14.0);
     
@@ -298,7 +297,7 @@ TEST_F(TemperatureModelTest, InputArrayValidation) {
     EXPECT_FALSE(TemperatureModel::validateInputArray(validInputs, 0));
 }
 
-// тесты на catch
+
 TEST_F(TemperatureModelTest, LinearModelInvalidInputThrows) {
     EXPECT_THROW(TemperatureModel::calcLinear(NAN, 10.0), std::invalid_argument);
     EXPECT_THROW(TemperatureModel::calcLinear(20.0, INFINITY), std::invalid_argument);
@@ -327,7 +326,7 @@ TEST_F(TemperatureModelTest, NonlinearModelInsufficientStepsThrows) {
                  std::invalid_argument);
 }
 
-// тесты констант
+
 TEST_F(TemperatureModelTest, ConstantsAreCorrect) {
     EXPECT_DOUBLE_EQ(TemperatureModel::A, 0.2);
     EXPECT_DOUBLE_EQ(TemperatureModel::B, 0.02);
@@ -335,7 +334,7 @@ TEST_F(TemperatureModelTest, ConstantsAreCorrect) {
     EXPECT_DOUBLE_EQ(TemperatureModel::D, 0.04);
 }
 
-// чекаем границы
+
 TEST_F(TemperatureModelTest, BoundaryCases) {
     EXPECT_NO_THROW(TemperatureModel::calcLinear(1000.0, 1000.0));
     EXPECT_NO_THROW(TemperatureModel::calcLinear(-100.0, -100.0));
@@ -349,11 +348,10 @@ TEST_F(TemperatureModelTest, MathematicalProperties) {
     double result1 = TemperatureModel::calcLinear(10.0, 5.0);
     double result2 = TemperatureModel::calcLinear(20.0, 10.0);
     
-    // result2 должен быть примерно равен 2 * result1
     EXPECT_NEAR(result2, 2 * result1, 1.0);
 }
 
-// проверка на отсутствие падений (Я ИЗ БУДУЩЕГО НЕ ЗАБУДЬ ВЫРЕЗАТЬ ЕСЛИ ПОПРОСЯТ СДЕЛАТЬ ПАДАЮЩИЕ)
+
 TEST_F(TemperatureModelTest, PerformanceNoCrash) {
     for (int i = 0; i < 100; ++i) {
         double temp = static_cast<double>(i);
