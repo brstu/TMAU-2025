@@ -3,7 +3,7 @@ project(TMAU02)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(main main.cpp functions.cpp)
+add_executable(as06512_task02_main main.cpp functions.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
