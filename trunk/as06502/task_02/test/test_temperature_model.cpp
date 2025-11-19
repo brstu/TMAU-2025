@@ -137,9 +137,18 @@ TEST_F(TemperatureModelTest, MathematicalProperties) {
 }
 
 TEST_F(TemperatureModelTest, PerformanceNoCrash) {
+    bool allPassed = true;
+    
     for (auto i = 0; i < 100; ++i) {
         auto temp = static_cast<double>(i);
         auto input = static_cast<double>(i * 2);
-        EXPECT_NO_THROW(TemperatureModel::calcLinear(temp, input));
+        
+        try {
+            TemperatureModel::calcLinear(temp, input);
+        } catch (...) {
+            allPassed = false;
+        }
     }
+    
+    EXPECT_TRUE(allPassed);
 }
