@@ -1,12 +1,12 @@
 #include "temperature_model.h"
 #include <cmath>
 #include <stdexcept>
+#include <vector>
 
 const double TemperatureModel::A = 0.2;
 const double TemperatureModel::B = 0.02;
 const double TemperatureModel::C = 0.03;
 const double TemperatureModel::D = 0.04;
-
 
 double TemperatureModel::calcLinear(double currentY, double inputU) {
     if (!validateInput(currentY) || !validateInput(inputU)) {
@@ -30,46 +30,48 @@ bool TemperatureModel::validateInput(double temperature) {
            temperature <= 1000.0;
 }
 
-bool TemperatureModel::validateInputArray(const double inputs[], int size) {
-    if (size <= 0) return false;
+bool TemperatureModel::validateInputArray(const std::vector<double>& inputs) {
+    if (inputs.empty()) return false;
     
-    for (int i = 0; i < size; ++i) {
-        if (!validateInput(inputs[i])) {
+    for (const auto& input : inputs) {
+        if (!validateInput(input)) {
             return false;
         }
     }
     return true;
 }
 
-void TemperatureModel::calculateLinearModel(double initialTemp, const double inputs[], int size, double results[]) {
-    if (!validateInput(initialTemp) || !validateInputArray(inputs, size) || size > STEPS) {
+void TemperatureModel::calculateLinearModel(double initialTemp, const std::vector<double>& inputs, std::vector<double>& results) {
+    if (!validateInput(initialTemp) || !validateInputArray(inputs) || inputs.size() > STEPS) {
         throw std::invalid_argument("Invalid input parameters for linear model");
     }
     
-    double prevTemperature = initialTemp;
+    results.resize(inputs.size());
+    auto prevTemperature = initialTemp;
     
-    for (int t = 0; t < size; ++t) {
+    for (auto t = 0; t < inputs.size(); ++t) {
         results[t] = calcLinear(prevTemperature, inputs[t]);
         prevTemperature = results[t];
     }
 }
 
-void TemperatureModel::calculateNonlinearModel(double initialTemp, const double inputs[], int size, double results[]) {
-    if (!validateInput(initialTemp) || !validateInputArray(inputs, size) || size > STEPS) {
+void TemperatureModel::calculateNonlinearModel(double initialTemp, const std::vector<double>& inputs, std::vector<double>& results) {
+    if (!validateInput(initialTemp) || !validateInputArray(inputs) || inputs.size() > STEPS) {
         throw std::invalid_argument("Invalid input parameters for nonlinear model");
     }
     
-    if (size < 2) {
+    if (inputs.size() < 2) {
         throw std::invalid_argument("Nonlinear model requires at least 2 steps");
     }
     
-    double currentY = initialTemp;
-    double previousY = initialTemp;
-    results[0] = initialTemp; 
+    results.resize(inputs.size());
+    auto currentY = initialTemp;
+    auto previousY = initialTemp;
+    results[0] = initialTemp;
     
-    for (int t = 1; t < size; ++t) {
-        double uCurr = inputs[t];
-        double uPrev = inputs[t-1];
+    for (auto t = 1; t < inputs.size(); ++t) {
+        auto uCurr = inputs[t];
+        auto uPrev = inputs[t-1];
         
         results[t] = calcNonlinear(currentY, previousY, uCurr, uPrev);
         previousY = currentY;

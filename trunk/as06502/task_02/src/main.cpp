@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 #include "temperature_model.h"
 
 using namespace std;
 
-// для винды и с wsl
 void systemPause() {
     #ifdef _WIN32
         system("pause");
@@ -15,7 +15,6 @@ void systemPause() {
     #endif
 }
 
-// та же шляпа что и прошлое
 void setConsoleEncoding() {
     #ifdef _WIN32
         system("chcp 6501 > nul");
@@ -25,19 +24,17 @@ void setConsoleEncoding() {
 int main() {
     setConsoleEncoding();
 
-    double temperatureInitial = 20.0;
+    auto temperatureInitial = 20.0;
 
-    double inputs[TemperatureModel::STEPS] = {
-        15.0, 16.5, 18.0, 20.0, 22.5, 25.0, 24.0, 21.0, 18.0, 16.0
-    };
+    vector<double> inputs = {15.0, 16.5, 18.0, 20.0, 22.5, 25.0, 24.0, 21.0, 18.0, 16.0};
 
     cout << "Линейная модель\nНачальное значение: " << temperatureInitial << "\n";
 
     try {
-        double linearResults[TemperatureModel::STEPS];
-        TemperatureModel::calculateLinearModel(temperatureInitial, inputs, TemperatureModel::STEPS, linearResults);
+        vector<double> linearResults(TemperatureModel::STEPS);
+        TemperatureModel::calculateLinearModel(temperatureInitial, inputs, linearResults);
         
-        for (int t = 0; t < TemperatureModel::STEPS; ++t) {
+        for (auto t = 0; t < TemperatureModel::STEPS; ++t) {
             cout << "y[" << t + 1 << "] = " << linearResults[t] << endl;
         }
     } catch (const exception& e) {
@@ -48,10 +45,10 @@ int main() {
     cout << "\nНелинейная модель\nНачальное значение: " << temperatureInitial << "\n";
 
     try {
-        double nonlinearResults[TemperatureModel::STEPS];
-        TemperatureModel::calculateNonlinearModel(temperatureInitial, inputs, TemperatureModel::STEPS, nonlinearResults);
+        vector<double> nonlinearResults(TemperatureModel::STEPS);
+        TemperatureModel::calculateNonlinearModel(temperatureInitial, inputs, nonlinearResults);
         
-        for (int t = 0; t < TemperatureModel::STEPS; ++t) {
+        for (auto t = 0; t < TemperatureModel::STEPS; ++t) {
             cout << "y[" << t << "] = " << nonlinearResults[t] << endl;
         }
     } catch (const exception& e) {
