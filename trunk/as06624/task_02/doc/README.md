@@ -24,7 +24,7 @@
 1. Использовать фреймворк для модульного тестирования – [Google Test](https://google.github.io/googletest/).  
 2. Написать модульные тесты для основных функций программы. Разместить тесты в каталоге: trunk\as0xxyy\task_02\test.  
 3. Исходный код программы – в каталоге: trunk\as0xxyy\task_02\src.  
-4. В файле readme.md отразить количество написанных тестов и процент покрытия кода тестами (например, с помощью [gcovr](https://gcovr.com/en/stable/)).  Expand commentComment on line R27ResolvedCode has comments. Press enter to view.
+4. В файле readme.md отразить количество написанных тестов и процент покрытия кода тестами (например, с помощью [gcovr](https://gcovr.com/en/stable/)).
 5. Также отметить выполнение работы в общем [README.md](https://github.com/brstu/TMAU-2025/blob/main/README.md).
 
 ---
