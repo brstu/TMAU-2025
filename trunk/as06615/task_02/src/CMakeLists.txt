@@ -18,7 +18,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(runTests_as06615 ../test/test_model.cpp model.cpp)
-target_link_libraries(runTests GTest::gtest)
+target_link_libraries(runTests_as06615 GTest::gtest)
 
 
 target_include_directories(runTests_as06615 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
