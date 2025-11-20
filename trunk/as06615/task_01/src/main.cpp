@@ -48,7 +48,7 @@ int main() {
         x1_lin.push_back(x1_next_lin);
         x2_lin.push_back(x2_next_lin);
 
-        // Нелинейная модель
+        // Nonlinear model
         double e_non = x_ref - x1_non.back();
         err_non.push_back(e_non);
         double de_non = compute_derivative(err_non, dt);
