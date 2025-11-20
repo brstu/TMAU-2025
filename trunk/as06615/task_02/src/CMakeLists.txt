@@ -4,7 +4,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(main main.cpp model.cpp)
+add_executable(main_as06615 main.cpp model.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -17,11 +17,11 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-add_executable(runTests ../test/test_model.cpp model.cpp)
+add_executable(runTests_as06615 ../test/test_model.cpp model.cpp)
 target_link_libraries(runTests GTest::gtest)
 
 
-target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(runTests_as06615 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(runTests_as06615)
