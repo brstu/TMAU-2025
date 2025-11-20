@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Приложение
-add_executable(main main.cpp func.cpp)
+add_executable(as06622_main main.cpp func.cpp)
 target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # GoogleTest
@@ -22,8 +22,8 @@ enable_testing()
 
 # Тесты
 add_executable(runTests ../test/tests.cpp func.cpp)
-target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(runTests GTest::gtest GTest::gtest_main)
+target_include_directories(as06622_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(as06622_tests GTest::gtest GTest::gtest_main)
 
 include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(as06622_tests)
