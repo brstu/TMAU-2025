@@ -36,7 +36,7 @@ int main() {
     out << "t,x1_linear,x2_linear,u_linear,x1_nonlinear,x2_nonlinear,u_nonlinear\n";
 
     for (int t = 0; t < steps; ++t) {
-        // Линейная модель
+        // Linear model
         double e_lin = x_ref - x1_lin.back();
         err_lin.push_back(e_lin);
         double de_lin = compute_derivative(err_lin, dt);
