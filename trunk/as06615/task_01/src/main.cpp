@@ -11,10 +11,10 @@ double compute_derivative(const std::vector<double>& errors, double dt) {
 int main() {
     const double dt = 0.1;
     const double x_ref = 10.0;
-    const double kp = 2.0;
-    const double d = 0.5;
-    const double c = 0.0001;
-    const double s = 0.01;
+    const double kp = 2.0;      // Proportional gain (Kp) for the controller
+    const double d = 0.5;       // Derivative gain (Kd) for the controller
+    const double c = 0.0001;    // Nonlinear quadratic coefficient
+    const double s = 0.01;      // Nonlinear sinusoidal coefficient
     const int steps = 100;
 
     std::vector<double> x1_lin = {0.0};
