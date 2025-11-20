@@ -4,7 +4,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Уникальные имена целей
 add_executable(main_as06624 main.cpp model.cpp)
 
 include(FetchContent)
@@ -25,4 +24,5 @@ target_include_directories(runTests_as06624 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GoogleTest)
 gtest_discover_tests(runTests_as06624)
+
 
