@@ -43,7 +43,7 @@ int main() {
     vector<double> y(N + 1, 0.0); 
     vector<double> u(N + 1, 0.0); 
 
-    for (int t = 0; t < N + 1; t++) {
+    for (int t = 0; t < N; t++) {
         u[t] = (t < 5) ? 0.0 : 1.0;
     }
 
