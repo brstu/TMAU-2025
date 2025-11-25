@@ -37,7 +37,13 @@ double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, con
 }
 
 int main() {
-    Coeffs coeffs = {0.8, 0.2, 0.1, 0.05};
+    // Coefficient definitions
+    const double LINEAR_OUTPUT_COEFF = 0.8;      // Coefficient for previous output (temperature decay)
+    const double NONLINEAR_FEEDBACK_COEFF = 0.2; // Coefficient for nonlinear feedback (y_prev^2)
+    const double INPUT_COEFF = 0.1;              // Coefficient for current input
+    const double SINE_INPUT_COEFF = 0.05;        // Coefficient for sine of previous input
+
+    Coeffs coeffs = {LINEAR_OUTPUT_COEFF, NONLINEAR_FEEDBACK_COEFF, INPUT_COEFF, SINE_INPUT_COEFF};
     const int SIMULATION_STEPS = 20;
     const int INPUT_ACTIVATION_TIME = 5;
     int N = SIMULATION_STEPS;
