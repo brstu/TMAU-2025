@@ -21,8 +21,11 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+target_link_libraries(as06620_task_02_runTests
+    GTest::gtest
+    GTest::gtest_main
+    pthread
+)
 
 add_executable(as06620_task_02_runTests
     ../test/tests.cpp
