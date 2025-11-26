@@ -3,14 +3,14 @@
 
 TEST(TemperatureModelTest, LinearInitialConditions) {
     TemperatureModel model(0.8, 0.2);
-    model.setInitialConditions(20.0);
+    model.setInitialConditions(20.0, 20.0, 0.0);
 
     EXPECT_DOUBLE_EQ(model.getCurrentTemperature(), 20.0);
 }
 
 TEST(TemperatureModelTest, LinearNextValueCalculation) {
     TemperatureModel model(0.8, 0.2);
-    model.setInitialConditions(20.0);
+    model.setInitialConditions(20.0, 20.0, 0.0);
 
     double y = model.calculateNext(10.0);
     EXPECT_NEAR(y, 0.8 * 20.0 + 0.2 * 10.0, 1e-9);
