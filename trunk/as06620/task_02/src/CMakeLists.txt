@@ -21,17 +21,15 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-target_link_libraries(as06620_task_02_runTests
-    GTest::gtest
-    GTest::gtest_main
-    pthread
-)
-
 add_executable(as06620_task_02_runTests
     ../test/tests.cpp
     temp_model.cpp
 )
 
-target_link_libraries(as06620_task_02_runTests GTest::gtest GTest::gtest_main pthread)
+target_link_libraries(as06620_task_02_runTests
+    GTest::gtest
+    GTest::gtest_main
+    pthread
+)
 
 add_test(NAME AllTests COMMAND as06620_task_02_runTests)
