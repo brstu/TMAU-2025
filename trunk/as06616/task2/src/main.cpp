@@ -8,12 +8,14 @@ const double c = 0.8;
 const double d = 0.5;
 
 int main() {
-    int time;
-    double inputtemperature;
-    double inputwarm;
+    int time = 0;
+    double inputtemperature = 0;
+    double inputwarm = 0;
 
     std::cout << "Введите количество шагов моделирования, начальную температуру y0 и начальный тепловой вход u0: ";
-    std::cin >> time >> inputtemperature >> inputwarm;
+    std::cin >> time 
+    std::cin >> inputtemperature;
+    std::cin >> inputwarm;
 
     double prevtemperature = inputtemperature;
     double prevwarm = inputwarm;
@@ -21,6 +23,7 @@ int main() {
     std::cout << "\nМоделирование линейной модели:\n";
     double y_linear = inputtemperature;
     for (int t = 1; t <= time; t++) {
+
         y_linear = linearmodel(y_linear, inputwarm);
         std::cout << "Шаг " << t << ": y = " << y_linear << std::endl;
     }
