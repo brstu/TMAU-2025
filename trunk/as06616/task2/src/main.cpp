@@ -7,21 +7,6 @@ const double b = 0.3;
 const double c = 0.8;
 const double d = 0.5;
 
-
-double linearmodel(double inputtemperature, double inputwarm) {
-    return a * inputtemperature + b * inputwarm;
-}
-
-
-double nonlinearmodel(double inputtemperature, double prevtemperature, double inputwarm, double prevwarm) {
-    return a * inputtemperature - b * pow(prevtemperature, 2) + c * inputwarm + d * sin(prevwarm);
-}
-
-
-double updateWarm(double baseWarm, int t) {
-    return baseWarm + 0.1 * sin(t);
-}
-
 int main() {
     int time;
     double inputtemperature;
