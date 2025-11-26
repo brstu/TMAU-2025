@@ -1,13 +1,13 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.15) 
 project(SimulationProject)
 
-# Устанавливаем стандарт C++
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Включаем тестирование
-enable_testing()
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/CMakeLists.txt")
+    add_subdirectory(src)
+endif()
 
-# Добавляем поддиректории
-add_subdirectory(src)
-add_subdirectory(test)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/test/CMakeLists.txt")
+    add_subdirectory(test)
+endif()
