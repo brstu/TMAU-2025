@@ -44,7 +44,8 @@ int main()
         } else if (i < 15) {
             u[i] = 10.0;
         } else {
-            u[i] = 10.0 + 5.0 * std::sin(0.2 * (i - 15));
+            // Явное преобразование в double чтобы избежать потери точности
+            u[i] = 10.0 + 5.0 * std::sin(0.2 * static_cast<double>(i - 15));
         }
     }
     std::vector<double> y_linear(n, 0.0);
