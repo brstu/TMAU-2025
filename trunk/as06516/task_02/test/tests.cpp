@@ -59,12 +59,15 @@ TEST(NonlinearModel, NegativeInputs) {
 }
 
 TEST(NonlinearModel, HighPrecision) {
-    double yt = 1.234567, yt1 = 9.876543, ut = 2.718281, ut1 = 3.141592;
+    double yt = 1.234567;
+    double yt1 = 9.876543;
+    double ut = 2.718281;
+    double ut1 = 3.141592;
+    
     double result = nonlinear(yt, yt1, ut, ut1);
     double expected = a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1);
     EXPECT_NEAR(result, expected, 1e-10);
 }
-
 
 TEST(SystemParameters, ValidRanges) {
     EXPECT_GT(a, 0.0);
@@ -75,7 +78,8 @@ TEST(SystemParameters, ValidRanges) {
 }
 
 TEST(ModelsComparison, DifferentResults) {
-    double yt = 10.0, ut = 5.0;
+    double yt = 10.0;
+    double ut = 5.0;
     double linear_result = linear(yt, ut);
     double nonlinear_result = nonlinear(yt, yt, ut, ut);
     EXPECT_NE(linear_result, nonlinear_result);
