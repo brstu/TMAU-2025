@@ -13,7 +13,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz
+  URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz
 )
 
 # Для Windows устанавливаем это значение ON чтобы избежать конфликта DLL
