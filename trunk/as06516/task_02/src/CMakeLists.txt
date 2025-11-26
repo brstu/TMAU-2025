@@ -16,10 +16,10 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-add_executable(as06512_task02_runTests ../test/tests.cpp functions.cpp)
+add_executable(as06512_task02_runTests tests.cpp functions.cpp)  
 target_link_libraries(as06512_task02_runTests GTest::gtest GTest::gtest_main)
 
-target_include_directories(as06512_task02_runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(as06512_task02_runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GoogleTest)
 gtest_discover_tests(as06512_task02_runTests)
