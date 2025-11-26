@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(as06516_task02_main main.cpp functions.cpp)
-
 target_compile_definitions(as06516_task02_main PRIVATE STANDALONE)
 
 enable_testing()
