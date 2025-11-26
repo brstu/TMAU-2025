@@ -1,68 +1,25 @@
-cmake_minimum_required(VERSION 3.14)
-project(Lab2_Testing)
+cmake_minimum_required(VERSION 3.10)
+project(TMAU02)
 
-# Настройка стандарта C++
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
 
-# Флаги для покрытия кода
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
+add_executable(as06512_task02_main main.cpp functions.cpp)
 
-# Включаем FetchContent для загрузки GoogleTest
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
-# Для Windows устанавливаем это значение ON чтобы избежать конфликта DLL
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+enable_testing()
 
-# Основная программа (если есть main.cpp)
-# add_executable(main main.cpp function.cpp)
+add_executable(as06512_task02_runTests ../test/tests.cpp functions.cpp)
+target_link_libraries(as06512_task02_runTests GTest::gtest GTest::gtest_main)
 
-# Тестовый исполняемый файл
-add_executable(
-    tests
-    test.cpp
-    function.cpp
-)
+target_include_directories(as06512_task02_runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Подключаем GoogleTest к тестам
-target_link_libraries(
-    tests
-    GTest::gtest_main
-)
-
-# Автоматическое обнаружение тестов
 include(GoogleTest)
-gtest_discover_tests(tests)
-
-# Цель для анализа покрытия кода
-add_custom_target(
-    coverage
-    COMMAND $<TARGET_FILE:tests>
-    COMMAND gcovr --exclude test.cpp --html --html-details -o coverage.html
-    COMMAND gcovr --exclude test.cpp
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS tests
-    COMMENT "Running tests and generating coverage report"
-)
-
-# Утилитарные цели
-add_custom_target(
-    run_tests
-    COMMAND $<TARGET_FILE:tests>
-    DEPENDS tests
-    COMMENT "Running tests"
-)
-
-add_custom_target(
-    clean_coverage
-    COMMAND find . -name "*.gcda" -delete
-    COMMAND find . -name "*.gcno" -delete
-    COMMAND rm -f coverage.html
-    COMMENT "Cleaning coverage data"
-)
+gtest_discover_tests(as06512_task02_runTests)
