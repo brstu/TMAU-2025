@@ -42,8 +42,12 @@ int main()
 
     std::vector<double> u(n, 0.0);
     for (std::size_t i = 0; i < n; ++i) {
-        if (i >= 5) {
+        if (i < 5) {
+            u[i] = 0.0;
+        } else if (i < 15) {
             u[i] = 10.0;
+        } else {
+            u[i] = 10.0 + 5.0 * std::sin(0.2 * (i - 15));
         }
     }
 
