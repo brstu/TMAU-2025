@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16...3.31)
 project(TMAU_02)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -18,7 +18,7 @@ enable_testing()
 
 add_executable(runTests_task2 test.cpp func.cpp)
 target_link_libraries(runTests_task2 GTest::gtest GTest::gtest_main)
-target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(runTests_task2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(runTests_task2)
