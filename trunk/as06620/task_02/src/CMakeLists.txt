@@ -14,6 +14,13 @@ add_executable(as06620_task_02_main
     temp_model.cpp
 )
 
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+)
+FetchContent_MakeAvailable(googletest)
+
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
@@ -22,6 +29,6 @@ add_executable(as06620_task_02_runTests
     temp_model.cpp
 )
 
-target_link_libraries(as06620_task_02_runTests GTest::GTest GTest::Main pthread)
+target_link_libraries(as06620_task_02_runTests GTest::gtest GTest::gtest_main pthread)
 
 add_test(NAME AllTests COMMAND as06620_task_02_runTests)
