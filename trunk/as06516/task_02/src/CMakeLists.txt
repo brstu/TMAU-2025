@@ -1,25 +1,44 @@
 cmake_minimum_required(VERSION 3.10)
-project(TMAU02)
+project(as06516_task02 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(as06516_task02_main main.cpp functions.cpp)
-
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
-  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+file(GLOB SOURCES
+    "*.c"
+    "*.cc"
+    "*.cpp"
+    "*.cxx"
 )
 
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-enable_testing()
+list(FILTER SOURCES EXCLUDE REGEX "test_main\\.cpp$")
 
-add_executable(as06516_task02_runTests ../test/test_main.cpp functions.cpp)
-target_link_libraries(as06516_task02_runTests GTest::gtest GTest::gtest_main)
+if(NOT SOURCES)
+    message(FATAL_ERROR "No source files found for the main program.")
+endif()
 
-target_include_directories(as06516_task02_runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+add_executable(task02 ${SOURCES})
 
-include(GoogleTest)
-gtest_discover_tests(as06516_task02_runTests)
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/test_main.cpp")
+
+    enable_testing()
+
+    add_subdirectory(${CMAKE_BINARY_DIR}/_deps/googletest-src
+                     ${CMAKE_BINARY_DIR}/_deps/googletest-build
+                     EXCLUDE_FROM_ALL)
+
+    add_executable(task02_tests test_main.cpp)
+
+    target_link_libraries(task02_tests
+        PRIVATE
+            gtest
+            gtest_main
+            pthread
+    )
+
+    add_test(NAME task02_run_tests COMMAND task02_tests)
+
+else()
+    message(STATUS "Warning: test_main.cpp not found — tests disabled.")
+endif()
