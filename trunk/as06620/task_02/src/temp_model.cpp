@@ -1,14 +1,10 @@
 #include "temp_model.h"
 
 TemperatureModel::TemperatureModel(double a_val, double b_val)
-    : a(a_val), b(b_val), c(0), d(0),
-      y_prev(0), y_prev2(0), u_prev(0),
-      is_nonlinear(false) {}
+    : a(a_val), b(b_val) {}
 
 TemperatureModel::TemperatureModel(double a_val, double b_val, double c_val, double d_val)
-    : a(a_val), b(b_val), c(c_val), d(d_val),
-      y_prev(0), y_prev2(0), u_prev(0),
-      is_nonlinear(true) {}
+    : a(a_val), b(b_val), c(c_val), d(d_val), is_nonlinear(true) {}
 
 void TemperatureModel::setInitialConditions(double y0, double y1, double u0) {
     y_prev = y0;
