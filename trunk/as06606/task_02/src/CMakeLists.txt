@@ -27,7 +27,6 @@ add_executable(task_02_tests
 
 target_link_libraries(task_02_tests
     GTest::gtest
-    GTest::gtest_main
 )
 
 target_include_directories(task_02_tests PRIVATE
