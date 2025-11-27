@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-project(TMAU02)
+project(ControlSystemsLab)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(as06512_task02_main main.cpp functions.cpp)
+# Основная программа
+add_executable(control_systems_main main.cpp function.cpp)
 
+# Загрузка GoogleTest через FetchContent
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -16,10 +18,20 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-add_executable(as06512_task02_runTests ../test/tests.cpp functions.cpp)
-target_link_libraries(as06512_task02_runTests GTest::gtest GTest::gtest_main)
+# Тестовый исполняемый файл
+add_executable(control_systems_tests test.cpp function.cpp)
+target_link_libraries(control_systems_tests GTest::gtest GTest::gtest_main)
 
-target_include_directories(as06512_task02_runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+# Добавляем include директории для тестов
+target_include_directories(control_systems_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+# Автоматическое обнаружение тестов
 include(GoogleTest)
-gtest_discover_tests(as06512_task02_runTests)
+gtest_discover_tests(control_systems_tests)
+
+# Дополнительная цель для удобного запуска тестов
+add_custom_target(run_all_tests
+    COMMAND control_systems_tests
+    DEPENDS control_systems_tests
+    COMMENT "Running all tests for Control Systems Lab"
+)
