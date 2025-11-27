@@ -22,7 +22,6 @@ int main() {
     std::cout << "Введите постоянное воздействие (нагрев) u: ";
     std::cin >> u_val;
 
-    // Создаём массивы для хранения значений
     std::vector<double> y_lin(n + 1, 0.0);
     std::vector<double> y_nonlin(n + 1, 0.0);
     std::vector<double> u(n + 1, u_val);
@@ -30,7 +29,6 @@ int main() {
     y_lin[0] = y0;
     y_nonlin[0] = y0;
 
-    // Моделирование
     for (int t = 0; t < n; ++t) {
         double prev_u = (t > 0) ? u[t - 1] : INITIAL_PREV_U;
 
@@ -38,7 +36,6 @@ int main() {
         y_nonlin[t + 1] = nonlinear_step(y_nonlin[t], u[t], prev_u);
     }
 
-    // Вывод результатов
     std::cout << "\nРезультаты моделирования:\n";
     std::cout << "Шаг\tЛинейная\tНелинейная\n";
     std::cout << "---------------------------------\n";
