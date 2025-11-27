@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <cmath>
 #include <vector>
-#include "../src/func.h"  
+#include "../src/func.h"
 
 TEST(LinearStepTest, PositiveValues) {
     double y_next = linear_step(10.0, 5.0);
