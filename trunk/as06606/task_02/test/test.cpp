@@ -32,7 +32,7 @@ TEST(NonlinearStepTest, WithPreviousInput) {
 
 TEST(NonlinearStepTest, NegativeValues) {
     double result = nonlinear_step(-3.0, -2.0, -1.0);
-    double expected = A*(-3.0) - B_NONLIN*9.0 + C*(-2.0) + D*sin(-1.0);
+    double expected = A*(-3.0) - B_NONLIN*(-3.0)*(-3.0) + C*(-2.0) + D*sin(-1.0);
     EXPECT_NEAR(result, expected, 1e-9);
 }
 
