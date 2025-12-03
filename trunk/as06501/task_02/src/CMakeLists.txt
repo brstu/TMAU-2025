@@ -3,7 +3,7 @@ project(task_02)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(as06609_main
+add_executable(as06501_main
     main.cpp
     func.cpp
 )
@@ -20,17 +20,17 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(as06609_tests
+add_executable(as06501_tests
     ../test/tests.cpp
     func.cpp
 )
 
-target_link_libraries(as06609_tests
+target_link_libraries(as06501_tests
     GTest::gtest
     GTest::gtest_main
 )
 
-target_include_directories(as06609_tests PRIVATE
+target_include_directories(as06501_tests PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
