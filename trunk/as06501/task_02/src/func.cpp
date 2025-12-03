@@ -1,9 +1,9 @@
 #include "func.h"
 
-double linearModel(double y, double u) {
-    return A * y + B * u;
+double linear(double y, double u) {
+    return a * y + b * u;
 }
 
-double nonlinearModel(double yt, double yt_prev, double ut, double ut_prev) {
-    return A * yt - B * pow(yt_prev, 2) + C * ut + D * sin(ut_prev);
+double nonlinear(double yt, double yt1, double ut, double ut1) {
+    return a * yt - b * pow(yt1, 2) + c * ut + d * sin(ut1);
 }
