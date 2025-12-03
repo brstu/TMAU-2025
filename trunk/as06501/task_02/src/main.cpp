@@ -1,34 +1,42 @@
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 #include <array>
+#include <vector>
 #include "func.h"
-using std::cout;
-using std::endl;
+
+using namespace std;
 
 int main() {
-    std::array<double, N> u = { 2.0, 4.0, 3.0, 5.0, 4.0, 6.0, 3.0, 5.0 };
+    setlocale(LC_ALL, "Russian");
 
-    double y = Y_START;
-    double y_prev = Y_START;
+    array<double, N> u = { 2.0, 4.0, 3.0, 5.0, 4.0, 6.0, 3.0, 5.0 };
 
-    cout << "Линейная модель" << endl;
-    cout << "y0 = " << Y_START << endl;
+    cout << fixed << setprecision(4);
 
-    for (size_t i = 0; i < u.size(); i++) {
-        y = linearModel(y, u[i]);
+    cout << "=== МОДЕЛЬ 1 — Линейная ===" << endl;
+    cout << "y0 = " << start_value << endl;
+
+    double y = start_value;
+    for (int i = 0; i < N; i++) {
+        y = linear(y, u[i]);
         cout << "y" << i + 1 << " = " << y << endl;
     }
 
-    cout << "\nНелинейная модель" << endl;
-    cout << "y0 = " << Y_START << endl;
+    cout << "\n=== Нелинейная модель ===" << endl;
+    cout << "y0 = " << start_value << endl;
 
-    y = y_prev = Y_START;
-    for (size_t i = 0; i < u.size() - 1; i++) {
-        double y_next = nonlinearModel(y, y_prev, u[i + 1], u[i]);
+    vector<double> results = { start_value };
+
+    for (int i = 0; i < N - 1; i++) {
+        double y_next = nonlinear(results[i],
+                                  (i > 0 ? results[i - 1] : start_value),
+                                  u[i],
+                                  u[i]);
+        results.push_back(y_next);
         cout << "y" << i + 1 << " = " << y_next << endl;
-
-        y_prev = y;
-        y = y_next;
     }
 
+    cout << "\nРасчет завершен." << endl;
     return 0;
 }
