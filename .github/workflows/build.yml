@@ -32,5 +32,5 @@ jobs:
         with:
           args: >
             --define sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
-            --define sonar.pullrequest.key=${{ github.event.pull_request.number }}
+            ${{ github.event.pull_request.number && format('--define sonar.pullrequest.key={0}', github.event.pull_request.number) || '' }}
             --define sonar.scm.revision=${{ github.event.pull_request.head.sha || github.sha }}
