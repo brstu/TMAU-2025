@@ -22,7 +22,7 @@ add_library(temperature_model temperature_model.cpp)
 target_include_directories(temperature_model PUBLIC .)
 
 # Основное приложение
-add_executable(temperature_app main.cpp)
+add_executable(temperature_app as06521_task_02_main.cpp)
 target_link_libraries(temperature_app temperature_model)
 
 # Тесты
@@ -74,4 +74,5 @@ add_custom_target(coverage_summary
         --print-summary
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Showing coverage summary"
+
 )
