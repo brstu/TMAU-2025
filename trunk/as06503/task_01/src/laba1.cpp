@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include <array>
+
 using std::cout;
 using std::endl;
 // constants
@@ -23,7 +25,7 @@ double nonlinear(double yt, double yt_1, double ut, double ut_1) {
 int main() { 
     cout << "Linear model" << endl;
     cout << "y0 = " << Y0 << endl;
-    double u[n] = { 5,7,6,5,7,6,5,7,6,5 };
+    std::array<double, n> u = { 5,7,6,5,7,6,5,7,6,5 };
     double yt = Y0;
     for (int i = 0; i < n; i++) {
         yt = linear(yt, u[i]);
