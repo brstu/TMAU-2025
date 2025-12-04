@@ -1,6 +1,6 @@
 #include "model.h"
-#include <limits>
 #include <cmath>
+#include <limits>
 
 double compute_derivative(const std::vector<double>& errors, double dt) {
     if (errors.size() < 2) return 0.0;
