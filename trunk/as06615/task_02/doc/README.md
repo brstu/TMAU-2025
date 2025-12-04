@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
     return RUN_ALL_TESTS();
 }
 
-Test project E:\Projects\TMAU-2025\trunk\as06615\task_02\src\build> ./runTests.exe
+Test project ./build> ./runTests.exe
 [==========] Running 9 tests from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 9 tests from DerivativeTest
