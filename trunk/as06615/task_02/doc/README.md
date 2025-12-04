@@ -93,7 +93,6 @@ int main(int argc, char **argv) {
     return RUN_ALL_TESTS();
 }
 
-
 ```bash
 $ ./runTests.exe
 [==========] Running 9 tests from 1 test suite.
