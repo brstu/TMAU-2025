@@ -93,7 +93,9 @@ int main(int argc, char **argv) {
     return RUN_ALL_TESTS();
 }
 
-Test project ./build> ./runTests.exe
+
+```bash
+$ ./runTests.exe
 [==========] Running 9 tests from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 9 tests from DerivativeTest
