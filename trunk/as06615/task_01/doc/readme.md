@@ -37,12 +37,12 @@ Task is to write program (**С++**), which simulates this object temperature.
 ## Выполнение работы
 Инициализация параметров  
 ```
-const double dt = 0.1;         // шаг дискретизации  
-const double x_ref = 10.0;     // целевое положение  
-const double kp = 2.0;         // пропорциональный коэффициент  
-const double d = 0.5;          // дифференциальный коэффициент  
-const double c = 0.0001;       // нелинейный коэффициент u^2  
-const double s = 0.01;         // коэффициент sin(u_prev)  
+const double dt = 0.1;
+const double x_ref = 10.0;
+const double kp = 2.0;
+const double d = 0.5;
+const double c = 0.0001;
+const double s = 0.01;
 const int steps = 100;
 ```
 Имея данные параметры получим результат работы программы:
