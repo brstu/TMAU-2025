@@ -63,6 +63,6 @@ int main() {
     }
 
     out.close();
-    std::cout << "Simulation complete. Data saved to trajectory.csv\n";
+    std::cout << "Simulation complete, trajectory.csv\n";
     return 0;
 }
