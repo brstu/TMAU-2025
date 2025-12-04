@@ -2,8 +2,11 @@ name: Check branch name
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+  merge_group:
+    types: [checks_requested]
 jobs:
   check:
+    name: Check for branch name
     runs-on: ubuntu-latest
     steps:
       - name: Get branch names
