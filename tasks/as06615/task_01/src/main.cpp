@@ -38,17 +38,17 @@ int main() {
         u_lin.push_back(u_t_lin);
 
         double x1_next_lin = x1_lin.back() + dt * x2_lin.back();
-        double x2_next_lin = x2_lin.back() + dt * u_t_lin;
-        x1_lin.push_back(x1_next_lin);
-        x2_lin.push_back(x2_next_lin);
+        double x2_next_lin = x2_lin.back() + dt * u_t_lin;      // новое ускорение линейной модели
+        x1_lin.push_back(x1_next_lin);                          // обновление положения линейной модели
+        x2_lin.push_back(x2_next_lin);                          // обновление ускорения линейной модели
 
         // Нелинейное управление
-        double e_non = x_ref - x1_non.back();
-        err_non.push_back(e_non);
-        double de_non = (err_non[t+1] - err_non[t]) / dt;
-        double u_prev = (t == 0) ? 0.0 : u_non[t];
-        double u_t_non = kp * e_non + d * de_non + c * std::pow(u_prev, 2) + s * std::sin(u_prev);
-        u_non.push_back(u_t_non);
+        double e_non = x_ref - x1_non.back();                   // ошибка положения нелинейной модели
+        err_non.push_back(e_non);                              // сохранение ошибки для нелинейной модели
+        double de_non = (err_non[t+1] - err_non[t]) / dt;      // производная ошибки нелинейной модели
+        double u_prev = (t == 0) ? 0.0 : u_non[t];             // предыдущее управление нелинейной модели
+        double u_t_non = kp * e_non + d * de_non + c * std::pow(u_prev, 2) + s * std::sin(u_prev); // управление нелинейной модели
+        u_non.push_back(u_t_non);                              // сохранение управления нелинейной модели
 
         double x1_next_non = x1_non.back() + dt * x2_non.back();
         double x2_next_non = x2_non.back() + dt * u_t_non;
