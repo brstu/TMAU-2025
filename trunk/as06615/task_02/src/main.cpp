@@ -9,7 +9,9 @@ int main() {
     const double x_ref = 10.0;
     const double kp = 2.0;
     const double d = 0.5;
+    // Quadratic nonlinearity coefficient in the nonlinear control law
     const double c = 0.0001;
+    // Sinusoidal nonlinearity coefficient in the nonlinear control law
     const double s = 0.01;
     const int steps = 100;
 
