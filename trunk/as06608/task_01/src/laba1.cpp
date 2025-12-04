@@ -41,7 +41,7 @@ int main() {
 
     for (int i = 0; i < N; ++i) {
         double u_curr = u[i];
-        double u_prev = (i == 0) ? 0.0 : u[i - 1];
+        double u_prev = (i == 0) ? u[0] : u[i - 1];
 
         double y_next = nonlinearModel(y_curr, y_prev, u_curr, u_prev);
         std::cout << "y(" << i + 1 << ") = " << y_next << std::endl;
