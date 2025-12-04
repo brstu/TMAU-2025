@@ -17,7 +17,7 @@ int main() {
     };
 
     auto nonlinearModel = [](double y_now, double y_prev, double u_now, double u_prev) {
-        return A * y_now - B * std::pow(y_prev, 2.0) + C * u_now + D * std::sin(u_prev);
+        return A * y_now - B * (y_prev * y_prev) + C * u_now + D * std::sin(u_prev);
     };
 
     // --- Управляющее воздействие ---
