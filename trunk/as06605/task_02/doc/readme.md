@@ -91,7 +91,7 @@ Total Test time (real) =   0.02 sec
 "B:\tmau2\OpenCppCoverage\OpenCppCoverage.exe" ^
 --export_type=html:"B:\tmau2\asd\coverage" ^
 --sources="B:\tmau2\asd\src" ^
--- "B:\tmau2\asd\src\build\Debug\runTests.exe"
+-- "B:\tmau2\asd\src\build\Debug\as06605_tests.exe"
 ```
 В результате тестирования был сформирован файл index.html, содержащий отчёт о покрытии кода. Общий уровень покрытия составляет 26%, однако в этот показатель входят также файлы сторонних библиотек, которые не являются объектом тестирования. function.cpp имеет 100% покрытие.
 
