@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 
-project(TMAU)
+project(TMAU_task06616)
 
-add_executable (TMAU ConsoleApplication1.cpp)
+add_executable(TMAU_task06616 ConsoleApplication1.cpp)
