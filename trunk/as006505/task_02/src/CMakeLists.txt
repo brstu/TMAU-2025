@@ -38,6 +38,7 @@ add_executable(
 target_link_libraries(
   runTests_egorenkov
   GTest::gtest_main
+  gcov
 )
 
 include(GoogleTest)
