@@ -1,28 +1,38 @@
 #include "function.h"
 #include <vector>
 #include <cmath>
-using namespace std;
+#include <iostream> // добавим вывод для различия
 
-vector <double> linear(double u)
-{
-	vector <double> temps(iterations);
-	temps[0] = InpTemp;
-	for (int i = 0; i < iterations - 1; ++i)
-	{
-		temps[i + 1] = a * temps[i] + b * u;
-	}
-	return temps;
+using std::vector;
+
+static double computeLinearStep(double prev, double u) {
+    return a * prev + b * u;
 }
 
-vector <double> nonlinear(double u)
+static double computeNonlinearStep(double prev, double prev2, double u) {
+    return a * prev - b * prev2 * prev2 + c * u + d * sin(u);
+}
+
+vector<double> linear(double u)
 {
-	vector <double> temps(iterations);
-	temps[0] = InpTemp;
-	// Initialize temps[1] separately to avoid out-of-bounds access for temps[i-1]
-	temps[1] = a * temps[0] - b * temps[0] * temps[0] + c * u + d * sin(u);
-	for (int i = 2; i < iterations - 1; ++i)
-	{
-		temps[i + 1] = a * temps[i] - b * temps[i] * temps[i] + c * u + d * sin(u);
-	}
-	return temps;
+    vector<double> temps(iterations);
+    temps.at(0) = InpTemp;
+    for (int i = 0; i < iterations - 1; ++i) {
+        temps.at(i + 1) = computeLinearStep(temps.at(i), u);
+    }
+    return temps;
+}
+
+vector<double> nonlinear(double u)
+{
+    vector<double> temps(iterations);
+    temps.at(0) = InpTemp;
+
+    // первая итерация отдельно
+    temps.at(1) = computeNonlinearStep(temps.at(0), temps.at(0), u);
+
+    for (int i = 1; i < iterations - 1; ++i) {
+        temps.at(i + 1) = computeNonlinearStep(temps.at(i), temps.at(i - 1), u);
+    }
+    return temps;
 }
