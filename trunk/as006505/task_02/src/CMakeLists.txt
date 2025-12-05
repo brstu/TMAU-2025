@@ -23,22 +23,22 @@ enable_testing()
 
 # Основная программа
 add_executable(
-  main
+  main_egorenkov
   task_02.cpp
   model.cpp
 )
 
 # Тесты
 add_executable(
-  runTests
+  runTests_egorenkov
   model.cpp
   ../test/testmodel.cpp
 )
 
 target_link_libraries(
-  runTests
+  runTests_egorenkov
   GTest::gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(runTests_egorenkov)
