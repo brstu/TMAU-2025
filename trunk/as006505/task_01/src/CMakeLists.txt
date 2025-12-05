@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required (VERSION 3.0.0)
 
-project(lab1)
-
-add_executable (tmau_lab_1 main.cpp)
+project (lab_01_as006505)
+add_executable ( ${PROJECT_NAME} tmau1.cpp)
