@@ -14,7 +14,7 @@ const double temperatureCoeff = 0.6;
 const double prevTemperatureCoeff = 0.3;
 const double warmCoeff = 0.8;
 const double prevWarmCoeffSin = 0.5;
-
+}
 
 double linearmodel(double inputtemperature, double inputwarm) {
     return temperatureCoeff * inputtemperature + prevTemperatureCoeff * inputwarm;
