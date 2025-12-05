@@ -120,7 +120,7 @@ TEST_F(TemperatureModelTest, MathematicalConsistencyNonlinear) {
     
     
     ASSERT_EQ(results.size(), 1);
-    EXPECT_NEAR(results[0], 1.0, 0.001);
+    EXPECT_NEAR(results[2], 1.0, 0.001);
 }
 
 TEST_F(TemperatureModelTest, CompareLinearAndNonlinear) {
