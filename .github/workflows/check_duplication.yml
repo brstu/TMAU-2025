@@ -1,7 +1,9 @@
 name: Check code duplication
-
-on: pull_request_target
-
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  merge_group:
+    types: [checks_requested]
 jobs:
   duplicate-code-check:
     name: Check for duplicate code
