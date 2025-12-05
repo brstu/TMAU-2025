@@ -3,7 +3,7 @@ project(TMAU_02)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(main1 main.cpp func.cpp)
+add_executable(task2_exe main.cpp func.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -16,6 +16,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
+# Тестовый исполняемый файл для task2
 add_executable(runTests_task2 ../test/test.cpp func.cpp)
 
 target_link_libraries(runTests_task2 GTest::gtest GTest::gtest_main)
