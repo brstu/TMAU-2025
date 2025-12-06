@@ -1,46 +1,46 @@
 #include <iostream>
+#include <vector>
 #include <cmath>
-using std::cout;
-using std::endl;
-// constants
-const int n = 10; // time steps
-const double a = 0.99;
-const double b = 0.01;
-const double c = 0.5;
-const double d = 0.1;
-const double Y0 = 18;
 
-// linear model
-double linear(double yt, double ut) {
-    return a * yt + b * ut;
+namespace model {
+    const double a = 0.99;
+    const double b = 0.01;
+    const double c = 0.5;
+    const double d = 0.1;
+
+    double linear(double y, double u) {
+        return a * y + b * u;
+    }
+
+    double nonlinear(double y, double y_prev, double u, double u_prev) {
+        return a * y - b * std::pow(y_prev, 2) + c * u + d * std::sin(u_prev);
+    }
 }
 
-// nonlinear model
-double nonlinear(double yt, double yt_1, double ut, double ut_1) {
-    return a * yt - b * pow(yt_1, 2) + c * ut + d * sin(ut_1);
-}
+int main() {
+    const int steps = 10;
+    const double Y0 = 18.0;
 
-int main() { 
-    cout << "Linear model" << endl;
-    cout << "y0 = " << Y0 << endl;
-    double u[n] = { 5,7,6,5,7,6,5,7,6,5 };
-    double yt = Y0;
-    for (int i = 0; i < n; i++) {
-        yt = linear(yt, u[i]);
-        cout << "y" << i + 1 << " = " << yt << endl;
+    std::vector<double> inputs = {5,7,6,5,7,6,5,7,6,5};
+
+    std::cout << "Linear model\n";
+    double y_lin = Y0;
+    for (int i = 0; i < steps; ++i) {
+        y_lin = model::linear(y_lin, inputs[i]);
+        std::cout << "y" << i+1 << " = " << y_lin << "\n";
     }
-    cout << "\n";
-    double yt_1 = Y0;
-    yt = Y0;
-    cout << "Nonlinear model" << endl;
-    cout << "y0 = " << Y0 << endl;
-    for (int i = 0; i < n; i++) {
-        double ut = u[i];
-        double ut_1 = (i == 0) ? u[0] : u[i - 1];
-        double yt_new = nonlinear(yt, yt_1, ut, ut_1);
-        cout << "y" << i + 1 << " = " << yt_new << endl;
-        yt_1 = yt;
-        yt = yt_new;
+
+    std::cout << "\nNonlinear model\n";
+    double y_prev = Y0;
+    double y_nonlin = Y0;
+    for (int i = 0; i < steps; ++i) {
+        double u = inputs[i];
+        double u_prev = (i == 0) ? inputs[0] : inputs[i-1];
+        double y_new = model::nonlinear(y_nonlin, y_prev, u, u_prev);
+        std::cout << "y" << i+1 << " = " << y_new << "\n";
+        y_prev = y_nonlin;
+        y_nonlin = y_new;
     }
+
     return 0;
 }
