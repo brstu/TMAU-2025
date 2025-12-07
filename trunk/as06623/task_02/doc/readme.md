@@ -85,7 +85,7 @@ Total Test time (real) =   0.02 sec
 
 Процент покрытия тестов
 Для проверки покрытия кода тестами использовалась программа OpenCppCoverage.
-Для запуска тестов использовался скрипт 
+Для запуска тестов  использовался скрипт 
 ```bash
 "C:\TMAU-2025\OpenCppCoverage\OpenCppCoverage.exe" ^
 --export_type=html:"C:\TMAU-2025\trunk\as06623\task_02\coverage" ^
