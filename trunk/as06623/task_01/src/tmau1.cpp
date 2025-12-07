@@ -1,12 +1,18 @@
 ﻿#include <iostream>
 #include <cmath>
+#include <array>
 
-const int N = 10;
-const double COEFF_A = 0.7;
-const double COEFF_B = 0.05;
-const double COEFF_C = 0.3;
-const double COEFF_D = 0.2;
-const double INITIAL_VALUE = 15.0;
+constexpr std::size_t N = 10;
+constexpr double COEFF_A = 0.7;
+constexpr double COEFF_B = 0.05;
+constexpr double COEFF_C = 0.3;
+constexpr double COEFF_D = 0.2;
+constexpr double INITIAL_VALUE = 15.0;
+
+const std::array<double, N> inputSequence{
+    12.0, 9.0, 14.0, 11.0, 13.0,
+    10.0, 8.0, 15.0, 12.0, 11.0
+};
 
 // Линейная модель: y_{k+1} = a * y_k + b * u_k
 double linearModel(double currentY, double inputU) {
@@ -26,18 +32,13 @@ double nonlinearModel(double currentY,
 }
 
 int main() {
-    const double inputSequence[N] = {
-        12.0, 9.0, 14.0, 11.0, 13.0,
-        10.0, 8.0, 15.0, 12.0, 11.0
-    };
-
     // Линейная модель
     std::cout << "Линейная модель" << std::endl;
     std::cout << "y0 = " << INITIAL_VALUE << std::endl;
 
     double currentY = INITIAL_VALUE;
 
-    for (int step = 0; step < N; ++step) {
+    for (std::size_t step = 0; step < N; ++step) {
         currentY = linearModel(currentY, inputSequence[step]);
         std::cout << "y" << step + 1 << " = " << currentY << std::endl;
     }
@@ -49,7 +50,7 @@ int main() {
     double previousY = INITIAL_VALUE;
     currentY = INITIAL_VALUE;
 
-    for (int step = 0; step < N - 1; ++step) {
+    for (std::size_t step = 0; step < N - 1; ++step) {
         double temporaryY = currentY;
         currentY = nonlinearModel(
             currentY,
