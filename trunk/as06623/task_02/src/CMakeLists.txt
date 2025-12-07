@@ -1,28 +1,24 @@
 cmake_minimum_required(VERSION 3.10)
-project(control_lab_02)
 
-set(CMAKE_CXX_STANDARD 17)
+project(as06623_task_02)
 
-# Основной исполняемый файл
-add_executable(run_model main.cpp model.cpp)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Подключение Google Test
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
-  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-)
+add_library(model_as06623 STATIC model.cpp)
 
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
+add_executable(runTests_as06623 main.cpp)
+target_link_libraries(runTests_as06623 model_as06623)
+
+# Тесты
+include(GoogleTest)
 enable_testing()
 
-# Тестовый исполняемый файл
-add_executable(runTests ../test/model_tests.cpp model.cpp)
-target_link_libraries(runTests GTest::gtest GTest::gtest_main)
+add_executable(model_tests_as06623 ../test/model_tests.cpp)
+target_link_libraries(model_tests_as06623
+    model_as06623
+    GTest::gtest
+    GTest::gtest_main
+)
 
-target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-
-include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(model_tests_as06623)
