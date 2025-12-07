@@ -1,8 +1,9 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
-project(TMAU)
+project(as06623_task_01)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(TMAU tmau1.cpp)
+add_executable(${PROJECT_NAME} tmau1.cpp)
+
