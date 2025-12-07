@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
-project(TMAU02)
+project(as06611_task_02)  # ← Изменили имя проекта
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Main executable
-add_executable(main
+# Main executable - добавили префикс
+add_executable(as06611_main  # ← Изменили имя
     functions.cpp
     main.cpp
 )
@@ -21,20 +21,20 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-# Tests
-add_executable(runTests
+# Tests - добавили префикс
+add_executable(as06611_tests  # ← Изменили имя
     ${CMAKE_CURRENT_SOURCE_DIR}/../test/tests.cpp
     functions.cpp
 )
 
-target_link_libraries(runTests
+target_link_libraries(as06611_tests
     GTest::gtest
     GTest::gtest_main
 )
 
-target_include_directories(runTests PRIVATE
+target_include_directories(as06611_tests PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(as06611_tests)  # ← Исправили имя
