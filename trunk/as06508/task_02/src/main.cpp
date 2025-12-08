@@ -7,7 +7,7 @@ int main() {
     ModelParams params;
     std::vector<double> u(params.time_steps);
 
-    // формируем входной сигнал
+    // generate an input signal
     for (int t = 0; t < params.time_steps; ++t) {
         u[t] = params.INPUT_OFFSET + params.INPUT_AMPLITUDE * std::sin(t * params.INPUT_FREQUENCY);
     }
@@ -29,3 +29,4 @@ int main() {
 
     return 0;
 }
+
