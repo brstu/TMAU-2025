@@ -38,15 +38,15 @@ TEST(SimulationTest, NonlinearHasDifferentDynamics) {
     auto y_lin = simulateLinear(params, u);
     auto y_nonlin = simulateNonlinear(params, u);
 
-    // Проверим, что обе модели дают ожидаемые значения на последнем шаге
-    // Для линейной модели: y[n] = ... (расчет по формуле)
+    // Check that both models yield the expected values ​​at the final step
+    // For the linear model: y[n] = ... (calculated using the formula)
     double expected_lin = params.initial_temp;
     for (int i = 0; i < params.time_steps; ++i) {
         expected_lin = params.a * expected_lin + params.b * u[i];
     }
     EXPECT_NEAR(y_lin.back(), expected_lin, 1e-9);
 
-    // Для нелинейной модели: y[n] = ... (расчет по формуле)
+    // For a nonlinear model: y[n] = ... (calculated using the formula)
     double expected_nonlin = params.initial_temp;
     for (int i = 0; i < params.time_steps; ++i) {
         if (i == 0) {
@@ -65,3 +65,4 @@ int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+
