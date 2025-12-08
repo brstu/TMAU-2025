@@ -29,12 +29,12 @@ enable_testing()
 # Исполняемый файл для тестов
 add_executable(runTests_as06508 func.cpp ../test/tests.cpp)
 
-target_link_libraries(runTests GTest::gtest_main)
-target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(runTests_as06508 GTest::gtest_main)
+target_include_directories(runTests_as06508 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Автоматическое обнаружение тестов
 include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(runTests_as06508)
 
 
 
