@@ -95,7 +95,7 @@ TEST(SimulationTest, NonlinearFirstStepUsesE) {
     ModelParams params;
     std::vector<double> u(params.time_steps, 3.0);
     auto y = simulateNonlinear(params, u);
-    EXPECT_DOUBLE_EQ(y[1], y[0] * params.INPUT_E);
+    EXPECT_NEAR(y[1], params.initial_temp * params.INPUT_E, 1e-9);
 }
 
 TEST(SimulationTest, NonlinearHasDifferentDynamics) {
