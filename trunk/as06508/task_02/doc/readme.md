@@ -135,10 +135,10 @@ Total Test time (real) =   0.21 sec
 Команда запуска:
 ```bash
 "D:\OpenCppCoverage\OpenCppCoverage\OpenCppCoverage.exe" ^
---export_type=html:"D:\TMAU_Lab2\tmau2\build\coverage" ^
---sources="D:\TMAU_Lab2\tmau2" ^
+--export_type=html:"D:\TMAU_Lab2\task_02\build\coverage" ^
+--sources="D:\TMAU_Lab2\task_02" ^
 --excluded_sources="*googletest*;*build*;*CMakeFiles*" ^
--- "D:\TMAU_Lab2\tmau2\build\Debug\runTests.exe"
+-- "D:\TMAU_Lab2\task_02\build\Debug\runTests.exe"
 ```
 
 
