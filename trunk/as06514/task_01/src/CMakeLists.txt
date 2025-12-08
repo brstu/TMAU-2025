@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(main)
+project(Main1)
 
-add_executable(main tmau1.cpp)
+add_executable(Main1 tmau1.cpp)
