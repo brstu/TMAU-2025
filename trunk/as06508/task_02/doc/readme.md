@@ -88,7 +88,7 @@ TEST(SimulationTest, LinearProducesCorrectSequence) {
     ModelParams params;
     std::vector<double> u(params.time_steps, 5.0);
     auto y = simulateLinear(params, u);
-    EXPECT_EQ(y.size(), params.time_steps + 1);
+    ASSERT_EQ(y.size(), params.time_steps + 1);
 }
 
 TEST(SimulationTest, NonlinearFirstStepUsesE) {
