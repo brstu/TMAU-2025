@@ -10,7 +10,7 @@ if(MSVC)
     add_compile_options(/utf-8)
 endif()
 
-# Исполняемый файл основной программы
+# Main program executable
 add_executable(main_as06508 main.cpp func.cpp)
 
 # Подключение GoogleTest
