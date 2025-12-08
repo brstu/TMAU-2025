@@ -16,6 +16,16 @@ struct ModelParams {
 
 // Calculations for models
 double linearStep(double y, double u, const ModelParams& params);
+/**
+ * Computes the next step in the nonlinear model.
+ *
+ * @param y       Current output value.
+ * @param y_prev  Previous output value.
+ * @param u       Current input value.
+ * @param u_prev  Previous input value.
+ * @param params  Model parameters.
+ * @return        The next output value computed by the nonlinear model.
+ */
 double nonlinearStep(double y, double y_prev, double u, double u_prev, const ModelParams& params);
 
 // Main simulation
