@@ -38,37 +38,28 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants fo
 Инициализация параметров  
 ```cpp
 // Linear model parameters
-double a = 0.9;
-double b_lin = 0.2;
+double a = 0.8;
+double b_lin = 0.3;
 // Nonlinear model parameters
-double b_nonlin = 0.01;
-double c = 0.15;
-double d = 0.05;
-Enter initial temperature y0: 20   
-Enter constant heating u: 2
+double b_nonlin = 0.06;
+double c = 0.52;
+double d = 0.13;
+Enter number of steps n: 10
+Enter initial temperature y0: 21
+Enter constant heating u: 5 
 
 Simulation results:
-Step    Linear          Nonlinear  
----------------------------------  
-0       20.0000         20.0000    
-1       18.4000         14.3000    
-2       16.9600         11.1706    
-3       15.6640         9.1512     
-4       14.4976         7.7441     
-5       13.4478         6.7154     
-6       12.5031         5.9384     
-7       11.6528         5.3374     
-8       10.8875         4.8642     
-9       10.1987         4.4867     
-10      9.5789          4.1822     
-11      9.0210          3.9345     
-12      8.5189          3.7317     
-13      8.0670          3.5647     
-14      7.6603          3.4267     
-15      7.2943          3.3120     
-16      6.9648          3.2166     
-17      6.6683          3.1369     
-18      6.4015          3.0703     
-19      6.1614          3.0145     
-20      5.9452          2.9676
+Step    Linear          Nonlinear
+---------------------------------
+0       21.0000         21.0000
+1       18.3000         -7.0600
+2       16.1400         -6.1633
+3       14.4120         -4.7344
+4       13.0296         -2.6571
+5       11.9237         -0.0740
+6       11.0389         2.4158
+7       10.3312         4.0578
+8       9.7649          4.7336
+9       9.3119          4.9178
+10      8.9496          4.9585  
 ```

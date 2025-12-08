@@ -4,11 +4,11 @@
 #include <iomanip>
 
 struct ModelConfig {
-    static constexpr double a = 0.9;
-    static constexpr double b_lin = 0.2;
-    static constexpr double b_nonlin = 0.01;
-    static constexpr double c = 0.15;
-    static constexpr double d = 0.05;
+    static constexpr double a = 0.8;
+    static constexpr double b_lin = 0.3;
+    static constexpr double b_nonlin = 0.06;
+    static constexpr double c = 0.52;
+    static constexpr double d = 0.13;
 
     static constexpr double INITIAL_PREV_U = 0.0;
 };
