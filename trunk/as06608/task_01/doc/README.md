@@ -17,22 +17,22 @@
 <p align="center">Брест 2025</p>
 
 ---
-## Task 1. Modeling controlled object
-Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
+## Задание 1. Моделирование управляемого объекта
+Рассмотрим управляемый объект, температуру которого требуется регулировать. Его поведение можно описать следующим дифференциальным уравнением:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – output (controlled) temperature; $u(\tau)$ – input heat; $Y_0$ – room temperature; $C,RC$ – some constants.
+где $\tau$ – время; $y(\tau)$ – выходная (управляемая) температура; $u(\tau)$ – входное тепло; $Y_0$ – температура окружающей среды; $C,RC$ – некоторые константы.
 
-After transformation we get these linear (2) and nonlinear (3) models:
+После преобразования получаем следующие линейную (2) и нелинейную (3) модели:
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 
 $$\Large y_{\tau+1}=ay_{\tau}-b_{nl}y_{\tau}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants for the linear model; $a,b_{nl},c,d$ – constants for the nonlinear model.
+где $\tau$ – дискретные моменты времени ($1,2,3{\dots}n$); $a,b$ – константы для линейной модели; $a,b_{nl},c,d$ – константы для нелинейной модели.
 
-> **Note:** In the nonlinear model, the quadratic term uses a separate parameter $b_{nl}$, which may differ from $b$ in the linear model.
+> **Примечание:** В нелинейной модели квадратичный член использует отдельный параметр $b_{nl}$, который может отличаться от $b$ в линейной модели.
 
 ## Выполнение работы
 Инициализация параметров  
