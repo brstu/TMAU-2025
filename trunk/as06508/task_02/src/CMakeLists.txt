@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.31.6)
 project(task_02 LANGUAGES CXX)
 
-# Используем C++17
+# Use C++17
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
