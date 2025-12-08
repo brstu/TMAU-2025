@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.16...3.27)
 project(task_02 LANGUAGES CXX)
 
 # Используем C++17
@@ -37,4 +37,5 @@ target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 # Автоматическое обнаружение тестов
 include(GoogleTest)
 gtest_discover_tests(runTests)
+
 
