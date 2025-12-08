@@ -56,8 +56,8 @@ int main() {
     LinearModel linear{ModelConfig::a, ModelConfig::b_lin};
     NonlinearModel nonlinear{ModelConfig::a, ModelConfig::b_nonlin, ModelConfig::c, ModelConfig::d};
 
-    std::vector<double> y_lin(n + 1);
-    std::vector<double> y_nonlin(n + 1);
+    std::vector<double> y_lin(n + 1, 0.0);
+    std::vector<double> y_nonlin(n + 1, 0.0);
     std::vector<double> u(n + 1, u_val); // constant input, but expandable for varying input
 
     y_lin[0] = y0;
@@ -65,7 +65,7 @@ int main() {
 
     for (int t = 0; t < n; ++t) {
         y_lin[t + 1] = linear.step(y_lin[t], u[t]);
-        // At t == 0, no previous input exists -> INITIAL_PREV_U
+        // At t == 0, no previous input exists → INITIAL_PREV_U
         double prev_u = (t > 0) ? u[t - 1] : ModelConfig::INITIAL_PREV_U;
         y_nonlin[t + 1] = nonlinear.step(y_nonlin[t], u[t], prev_u);
     }

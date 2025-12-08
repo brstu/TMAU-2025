@@ -28,7 +28,7 @@ After transformation we get these linear (2) and nonlinear (3) models:
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 
-$$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau})$$ (3)
+$$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
 where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
 
@@ -46,7 +46,7 @@ const int iterations = 50;
 ```
 Имея данные параметры получим результат работы программы:
 ```bash
-i       Linear          Nonlinear
+i       Линейная        Нелинейная
 0       20              20
 1       6               0
 2       4.6             -73.94
@@ -98,4 +98,5 @@ i       Linear          Nonlinear
 48      4.44444         -inf
 49      4.44444         -inf
 ```
+
 **Вывод:** зная функцию, можно моделировать параметры модели в зависимости от времени.
