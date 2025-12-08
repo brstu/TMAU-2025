@@ -13,7 +13,7 @@ endif()
 # Main program executable
 add_executable(main_as06508 main.cpp func.cpp)
 
-# Подключение GoogleTest
+# Connecting GoogleTest
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -23,18 +23,19 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Включаем тестирование
+# Enable testing
 enable_testing()
 
-# Исполняемый файл для тестов
+# Executable file for tests
 add_executable(runTests_as06508 func.cpp ../test/tests.cpp)
 
 target_link_libraries(runTests_as06508 GTest::gtest_main)
 target_include_directories(runTests_as06508 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Автоматическое обнаружение тестов
+# Automatic test detection
 include(GoogleTest)
 gtest_discover_tests(runTests_as06508)
+
 
 
 
