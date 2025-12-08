@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...3.27)
+cmake_minimum_required(VERSION 4.0)
 project(task_02 LANGUAGES CXX)
 
 # Используем C++17
@@ -11,7 +11,7 @@ if(MSVC)
 endif()
 
 # Исполняемый файл основной программы
-add_executable(main main.cpp func.cpp)
+add_executable(main_as06508 main.cpp func.cpp)
 
 # Подключение GoogleTest
 include(FetchContent)
@@ -27,15 +27,14 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # Исполняемый файл для тестов
-add_executable(runTests
-    func.cpp
-    ../test/tests.cpp
-)
+add_executable(runTests_as06508 func.cpp ../test/tests.cpp)
+
 target_link_libraries(runTests GTest::gtest_main)
 target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Автоматическое обнаружение тестов
 include(GoogleTest)
 gtest_discover_tests(runTests)
+
 
 
