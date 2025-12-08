@@ -14,10 +14,11 @@ struct ModelParams {
     double initial_temp = 24.0;
 };
 
-// Вычисления для моделей
+// Calculations for models
 double linearStep(double y, double u, const ModelParams& params);
 double nonlinearStep(double y, double y_prev, double u, double u_prev, const ModelParams& params);
 
-// Основная симуляция
+// Main simulation
 std::vector<double> simulateLinear(const ModelParams& params, const std::vector<double>& u);
 std::vector<double> simulateNonlinear(const ModelParams& params, const std::vector<double>& u);
+
