@@ -5,7 +5,7 @@ project(task_02 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Принудительно UTF-8 для компилятора MSVC
+# Force UTF-8 for MSVC compiler
 if(MSVC)
     add_compile_options(/utf-8)
 endif()
