@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(tmau)
+project(laba1)
 
-add_executable (TMAU1 tmau.cpp)
+add_executable (TMAU_Laba1 laba1.cpp)
