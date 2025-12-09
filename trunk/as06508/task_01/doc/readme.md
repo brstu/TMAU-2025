@@ -9,8 +9,8 @@
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
-<p align="right">Группы АС-66</p>
-<p align="right">Янчук А.Ю.</p>
+<p align="right">Группы АС-65</p>
+<p align="right">Кисель М.С.</p>
 <p align="right">Проверил:</p>
 <p align="right">Иванюк Д.С.</p>
 <br><br><br><br><br><br><br><br>
@@ -35,61 +35,49 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some con
 Task is to write program (**С++**), which simulates this object temperature.
 
 ## Выполнение работы
-Инициализация параметров  
+Константы  
 ```
-double a = 0.8;
-double b = 0.2;
-double c = 0.1;
-double d = 0.05;
-
-int N = 20; 
-
-vector<double> y(N + 1, 0.0); 
-vector<double> u(N + 1, 0.0); 
-
+const double INPUT_OFFSET = 10.0;
+const double INPUT_AMPLITUDE = 2.0;
+const double INPUT_FREQUENCY = 0.5;
+const double INPUT_E = 0.95;
+const double a = 0.85;
+const double b = 0.002;
+const double c = 0.6;
+const double d = 0.025;
+int time_steps = 10;
+double initial_temp = 24.0;
 ```
-Имея данные параметры получим результат работы программы:
-```bash
-linear model
-t=1  y=0
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.2
-t=7  y=0.36
-t=8  y=0.488
-t=9  y=0.5904
-t=10  y=0.67232
-t=11  y=0.737856
-t=12  y=0.790285
-t=13  y=0.832228
-t=14  y=0.865782
-t=15  y=0.892626
-t=16  y=0.914101
-t=17  y=0.931281
-t=18  y=0.945024
-t=19  y=0.95602
-t=20  y=0.964816
+Имея такие константы мы сможем получить такой результат работы программы:
 
- non linear model
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.1
-t=7  y=0.222074
-t=8  y=0.317732
-t=9  y=0.386396
-t=10  y=0.431
-t=11  y=0.457013
-t=12  y=0.470532
-t=13  y=0.476727
-t=14  y=0.479175
-t=15  y=0.47996
-t=16  y=0.48012
-t=17  y=0.480097
-t=18  y=0.480048
-t=19  y=0.480013
-t=20  y=0.479995
+Linear Model Results:
+Time    Temperature
+----------------
+0       24
+1       20.42
+2       17.3789
+3       14.7954
+4       12.6001
+5       10.7337
+6       9.14607
+7       7.79473
+8       6.64411
+9       5.66447
+10      4.83089
+
+Nonlinear Model Results:
+Time    Temperature
+----------------
+0       24
+1       22.8
+2       24.7897
+3       27.0164
+4       28.9125
+5       30.1935
+6       30.6938
+7       30.4113
+8       29.5255
+9       28.342
+10      27.1943
 ```
+**Вывод:** Если мы знаем функцию, то мы можем моделировать параметры модели в зависимости от времени.
