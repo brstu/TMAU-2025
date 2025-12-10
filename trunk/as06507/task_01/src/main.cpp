@@ -3,54 +3,53 @@
 #include <cmath>
 #include <iomanip>
 
-struct LinearCfg {
+struct LinearParams {
     double a, b;
 };
 
-struct NonlinearCfg {
-    double a, b, c, d;
+struct NonlinearParams {
+    double a, bnl, c, d;
 };
 
-double calc_linear(double prev_y, double prev_u, const LinearCfg& cfg) {
-    return cfg.a * prev_y + cfg.b * prev_u;
+double linear_step(double y_prev, double u_prev, const LinearParams& p) {
+    return p.a * y_prev + p.b * u_prev;
 }
 
-double calc_nonlinear(double y1, double y2, double u1, double u2, const NonlinearCfg& cfg) {
-    return cfg.a * y1 - cfg.b * y2 * y2 + cfg.c * u1 + cfg.d * std::sin(u2);
+double nonlinear_step(double y_prev, double y_prev2, double u_prev, double u_prev2, const NonlinearParams& p) {
+    return p.a * y_prev - p.bnl * y_prev2 * y_prev2 + p.c * u_prev + p.d * std::sin(u_prev2);
 }
 
-void simulate_model(int total_steps) {
+void run_simulation(int steps) {
+    LinearParams lp{0.75, 0.18};
+    NonlinearParams np{0.75, 0.18, 0.07, 0.12};
 
-    LinearCfg lin {0.75, 0.18};
-    NonlinearCfg nonlin {0.75, 0.18, 0.07, 0.12};
+    std::vector<double> u(steps, 1.0);
+    std::vector<double> y_lin(steps);
+    std::vector<double> y_non(steps);
 
-    std::vector<double> u(total_steps, 1.0);
-    std::vector<double> y_lin(total_steps, 0.0);
-    std::vector<double> y_non(total_steps, 0.0);
+    y_lin[0] = 0.0;
+    y_non[0] = 0.0;
 
-    for (int i = 1; i < total_steps; ++i) {
+    for (int t = 1; t < steps; ++t) {
+        y_lin[t] = linear_step(y_lin[t-1], u[t-1], lp);
 
-        y_lin[i] = calc_linear(y_lin[i - 1], u[i - 1], lin);
-
-        if (i == 1) {
-            y_non[i] = calc_linear(y_non[i - 1], u[i - 1], {nonlin.a, nonlin.c});
+        if (t == 1) {
+            y_non[t] = linear_step(y_non[t-1], u[t-1], {np.a, np.c});
         } else {
-            y_non[i] = calc_nonlinear(y_non[i - 1], y_non[i - 2], u[i - 1], u[i - 2], nonlin);
+            y_non[t] = nonlinear_step(y_non[t-1], y_non[t-2], u[t-1], u[t-2], np);
         }
     }
 
     std::cout << std::fixed << std::setprecision(4);
-    std::cout << "Step | Linear   | Nonlinear\n";
-    std::cout << "---------------------------\n";
+    std::cout << "  t |     lin |     nonlin\n";
+    std::cout << "===========================\n";
 
-    for (int i = 0; i < total_steps; ++i) {
-        std::cout << std::setw(3) << i << " | "
-                  << std::setw(8) << y_lin[i] << " | "
-                  << std::setw(10) << y_non[i] << "\n";
+    for (int t = 0; t < steps; ++t) {
+        std::cout << std::setw(3) << t << " | " << std::setw(7) << y_lin[t] << " | " << std::setw(10) << y_non[t] << "\n";
     }
 }
 
 int main() {
-    simulate_model(30);
+    run_simulation(25);
     return 0;
 }
