@@ -4,11 +4,15 @@
 #include <iomanip>
 
 struct LinearParams {
-    double a, b;
+    double a;
+    double b;
 };
 
 struct NonlinearParams {
-    double a, bnl, c, d;
+    double a;
+    double bnl;
+    double c;
+    double d;
 };
 
 double linear_step(double y_prev, double u_prev, const LinearParams& p) {
