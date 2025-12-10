@@ -11,49 +11,49 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_library(temperature_model temperature_model.cpp)
-target_include_directories(temperature_model PUBLIC .)
+add_library(temperature_model_rapin temperature_model.cpp)
+target_include_directories(temperature_model_rapin PUBLIC .)
 
-add_executable(temperature_app main.cpp)
-target_link_libraries(temperature_app temperature_model)
+add_executable(temperature_app_rapin main.cpp)
+target_link_libraries(temperature_app_rapin temperature_model_rapin)
 
-add_executable(temperature_tests 
+add_executable(temperature_tests_rapin 
     ../test/test_temperature_model.cpp
     ../test/test_main.cpp
 )
-target_link_libraries(temperature_tests 
-    PRIVATE temperature_model 
+target_link_libraries(temperature_tests_rapin 
+    PRIVATE temperature_model_rapin 
     gtest_main
 )
-target_include_directories(temperature_tests PRIVATE . ../test)
+target_include_directories(temperature_tests_rapin PRIVATE . ../test)
 
 include(GoogleTest)
-gtest_discover_tests(temperature_tests)
+gtest_discover_tests(temperature_tests_rapin)
 
-add_library(temperature_model_coverage temperature_model.cpp)
-target_include_directories(temperature_model_coverage PUBLIC .)
-target_compile_options(temperature_model_coverage PRIVATE -fprofile-arcs -ftest-coverage)
+add_library(temperature_model_rapin_coverage temperature_model.cpp)
+target_include_directories(temperature_model_rapin_coverage PUBLIC .)
+target_compile_options(temperature_model_rapin_coverage PRIVATE -fprofile-arcs -ftest-coverage)
 
-add_executable(temperature_tests_coverage 
+add_executable(temperature_tests_rapin_coverage 
     ../test/test_temperature_model.cpp
     ../test/test_main.cpp
 )
-target_compile_options(temperature_tests_coverage PRIVATE -fprofile-arcs -ftest-coverage)
-target_link_libraries(temperature_tests_coverage 
-    PRIVATE temperature_model_coverage 
+target_compile_options(temperature_tests_rapin_coverage PRIVATE -fprofile-arcs -ftest-coverage)
+target_link_libraries(temperature_tests_rapin_coverage 
+    PRIVATE temperature_model_rapin_coverage 
     gtest_main
     gcov  
 )
-target_include_directories(temperature_tests_coverage PRIVATE . ../test)
+target_include_directories(temperature_tests_rapin_coverage PRIVATE . ../test)
 
 find_program(GCOVR_PATH gcovr)
 
 if(GCOVR_PATH)
     add_custom_target(coverage
-        COMMAND ./temperature_tests_coverage
+        COMMAND ./temperature_tests_rapin_coverage
         COMMAND ${GCOVR_PATH} --print-summary --exclude=".*googletest.*" --exclude=".*test.*" --root=${CMAKE_SOURCE_DIR}
         COMMAND ${GCOVR_PATH} --html-nested -o coverage_report.html --exclude=".*googletest.*" --exclude=".*test.*" --root=${CMAKE_SOURCE_DIR}
-        DEPENDS temperature_tests_coverage
+        DEPENDS temperature_tests_rapin_coverage
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMENT "Running coverage analysis for project files only"
     )
@@ -62,8 +62,8 @@ else()
 endif()
 
 add_custom_target(run_coverage_tests
-    COMMAND ./temperature_tests_coverage
-    DEPENDS temperature_tests_coverage
+    COMMAND ./temperature_tests_rapin_coverage
+    DEPENDS temperature_tests_rapin_coverage
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Running tests with coverage instrumentation"
 )
