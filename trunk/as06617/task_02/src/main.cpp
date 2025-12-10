@@ -27,9 +27,10 @@ static void simulateNonlinear(const vector<double>& input) {
     cout << "y0 = " << Y0 << '\n';
     for (int i = 0; i < STEPS; ++i) {
         double u_prev = (i == 0) ? input[0] : input[i - 1];
+        double y_old = y;
         y = nonlinear(y, y_prev, input[i], u_prev);
         cout << "Шаг " << i + 1 << ": y = " << y << '\n';
-        y_prev = y;
+        y_prev = y_old;
     }
 }
 
