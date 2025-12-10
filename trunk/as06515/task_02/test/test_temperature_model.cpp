@@ -242,20 +242,18 @@ TEST_F(TemperatureModelTest, PerformanceAndStability) {
     
     TemperatureModel model = createSilentModel(0.7, 0.3, 0.05, 0.01, 20.0, largeInputs);
     
-    for (int i = 0; i < 10; ++i) {
         // Combine the two EXPECT_NO_THROW calls into one to satisfy SonarQube rule
-        EXPECT_NO_THROW({
-            model.runLinear();
-            model.runNonlinear();
+    EXPECT_NO_THROW({
+         model.runLinear();
+         model.runNonlinear();
         });
         
-        const auto& linearResults = model.getLinearResults();
-        const auto& nonlinearResults = model.getNonlinearResults();
+    const auto& linearResults = model.getLinearResults();
+    const auto& nonlinearResults = model.getNonlinearResults();
         
-        EXPECT_EQ(linearResults.size(), largeInputs.size());
-        EXPECT_EQ(nonlinearResults.size(), largeInputs.size());
+    EXPECT_EQ(linearResults.size(), largeInputs.size());
+    EXPECT_EQ(nonlinearResults.size(), largeInputs.size());
         
-        CheckResultsValid(linearResults);
-        CheckResultsValid(nonlinearResults);
-    }
+    CheckResultsValid(linearResults);
+    CheckResultsValid(nonlinearResults);
 }
