@@ -22,11 +22,12 @@ double nonlinear_model(double y_t, double y_prev, double u_t, double u_prev, con
 int main() {
     Coeffs coeffs = {0.8, 0.2, 0.1, 0.05};
     int N = 20; 
+    const int INPUT_CHANGE_TIME = 5;
     vector<double> y(N + 1, 0.0); 
     vector<double> u(N + 1, 0.0); 
 
     for (int t = 0; t <= N; t++) {
-        u[t] = (t < 5) ? 0.0 : 1.0;
+        u[t] = (t < INPUT_CHANGE_TIME) ? 0.0 : 1.0;
     }
 
     cout << "Linear Model" << endl;
