@@ -18,12 +18,20 @@ target_link_libraries(6604t1_main_app model)
 
 enable_testing()
 
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+)
+FetchContent_MakeAvailable(googletest)
 
 add_executable(6604t1test_model
     ${CMAKE_SOURCE_DIR}/../test/tests.cpp
 )
-target_link_libraries(6604t1test_model model GTest::GTest GTest::Main)
+target_link_libraries(6604t1test_model
+    model
+    GTest::gtest
+    GTest::gtest_main
+)
 
 add_test(NAME test_model COMMAND 6604t1test_model)
