@@ -20,8 +20,8 @@ double nonlinear_step(double y_prev, double y_prev2, double u_prev, double u_pre
 }
 
 void run_simulation(int steps) {
-    LinearParams lp{0.75, 0.18};
-    NonlinearParams np{0.75, 0.18, 0.07, 0.12};
+    LinearParams lp{0.86, 0.23};
+    NonlinearParams np{0.69, 0.15, 0.10, 0.21};
 
     std::vector<double> u(steps, 1.0);
     std::vector<double> y_lin(steps);
