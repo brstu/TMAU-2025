@@ -14,7 +14,7 @@
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
 <p align="right">Группы АС-66</p>
-<p align="right">Савинец М. Д.</p>
+<p align="right">Осовец А.О.</p>
 <p align="right">Проверил:</p>
 <p align="right">Иванюк Д.С.</p>
 
