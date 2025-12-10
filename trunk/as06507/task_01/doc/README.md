@@ -6,35 +6,38 @@
 <p align="center">Лабораторная работа №1</p>
 <p align="center">По дисциплине “Теория и методы автоматического управления”</p>
 <p align="center">Тема: “Моделирование управляемого объекта”</p>
-<br><br><br><br><br>
+<br><br><br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
 <p align="right">Группы АС-65</p>
 <p align="right">Касьяник К.А.</p>
 <p align="right">Проверил:</p>
 <p align="right">Иванюк Д.С.</p>
-<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 <p align="center">Брест 2025</p>
 
 ---
-## Task 1. Modeling controlled object
+## Task 1. Modeling controlled object ##
 Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – output (controlled) temperature; $u(\tau)$ – input heat; $Y_0$ – room temperature; $C,RC$ – some constants.
+where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
 
 After transformation we get these linear (2) and nonlinear (3) models:
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 
-$$\Large y_{\tau+1}=ay_{\tau}-b_{nl}y_{\tau}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
+$$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants for the linear model; $a,b_{nl},c,d$ – constants for the nonlinear model.
+where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
+
+Task is to write program (**С++**), which simulates this object temperature.
+
 
 ## Ход работы
 
-__Задание параметров и начальных условий:__
+__Задание пaрaмeтров и начальных условий:__
 ```cpp
 LinearParams lp{0.75, 0.18};
 NonlinearParams np{0.75, 0.18, 0.07, 0.12};
