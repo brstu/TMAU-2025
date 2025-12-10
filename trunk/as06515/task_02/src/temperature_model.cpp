@@ -1,4 +1,3 @@
-#include <gtest/gtest.h>
 #include <cmath>
 #include <stdexcept>
 #include <vector>
