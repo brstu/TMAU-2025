@@ -7,14 +7,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
 set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} --coverage")
 
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
 set(SRC_FILES
     model.cpp
 )
-
-# add_executable(simulator model.cpp main.cpp)
-
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(as06507_task_02_run_tests
     ../test/tests.cpp
@@ -22,10 +26,9 @@ add_executable(as06507_task_02_run_tests
 )
 
 target_link_libraries(as06507_task_02_run_tests
-    GTest::GTest
-    GTest::Main
+    gtest
+    gtest_main
     pthread
 )
 
-enable_testing()
 add_test(NAME ModelUnitTests COMMAND as06507_task_02_run_tests)
