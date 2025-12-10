@@ -18,15 +18,17 @@ target_link_libraries(6604t1_main_app model)
 
 enable_testing()
 
+# --- вместо find_package используем FetchContent ---
 include(FetchContent)
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
 )
+# Скачиваем и подключаем
 FetchContent_MakeAvailable(googletest)
 
 add_executable(6604t1test_model
-    ${CMAKE_SOURCE_DIR}/../test/tests.cpp
+    ../test/tests.cpp
 )
 target_link_libraries(6604t1test_model
     model
