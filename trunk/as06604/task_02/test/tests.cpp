@@ -29,7 +29,10 @@ TEST(NonlinearModel, ZeroAll) {
 
 TEST(NonlinearModel, NoSinEffect) {
     ParamsNonlin p{0.86, 0.15, 0.10, 0.11};
-    double y1 = 5.0, y2 = 1.0, u1 = 2.0, u2 = 0.0;
+    double y1 = 5.0;
+    double y2 = 1.0;
+    double u1 = 2.0;
+    double u2 = 0.0;
     double expected = 0.86 * y1 - 0.15 * (y2 * y2) + 0.10 * u1 + 0.11 * std::sin(0.0);
     EXPECT_NEAR(model_nonlinear(y1, y2, u1, u2, p), expected, 1e-9);
 }
