@@ -29,7 +29,7 @@ int main() {
         u[t] = (t < 5) ? 0.0 : 1.0;
     }
 
-    cout << "Linear model" << endl;
+    cout << "Linear Model" << endl;
     for (int t = 0; t < N; t++) {
         y[t + 1] = linear_model(y[t], u[t], coeffs.a, coeffs.b);
         cout << "t=" << t + 1 << "  y=" << fixed << setprecision(4) << y[t + 1] << endl;
