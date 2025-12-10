@@ -2,6 +2,8 @@
 #include <cmath>
 #include "model.h"
 
+// ========= ЛИНЕЙНАЯ МОДЕЛЬ =========
+
 TEST(LinearModelTest, ZeroInputs) {
     EXPECT_DOUBLE_EQ(linearModel(0.0, 0.0, 0.8, 0.15), 0.0);
 }
