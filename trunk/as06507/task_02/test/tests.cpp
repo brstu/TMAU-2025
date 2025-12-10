@@ -21,7 +21,10 @@ TEST(LinearStepTest, WorksWithNegativeValues) {
 
 TEST(NonlinearStepTest, NonlinearIncludesSinCorrectly) {
     NonlinearParams p{0.69, 0.15, 0.10, 0.21};
-    double y1 = 1.0, y2 = 1.0, u1 = 1.0, u2 = 0.0;
+    double y1 = 1.0;
+    double y2 = 1.0;
+    double u1 = 1.0;
+    double u2 = 0.0;
 
     double expected = p.a * y1 - p.bnl * (y2 * y2) + p.c * u1 + p.d * std::sin(u2);
 
