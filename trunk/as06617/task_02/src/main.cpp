@@ -2,13 +2,13 @@
 #include <vector>
 #include "func.h"
 
-#ifdef _WIN32         // <-- добавлено условие
+#ifdef _WIN32
 #include <windows.h>
 #endif
 
 using namespace std;
 
-// ------------------- Симуляции -------------------
+
 
 static void simulateLinear(const vector<double>& input) {
     double y = Y0;
@@ -33,11 +33,10 @@ static void simulateNonlinear(const vector<double>& input) {
     }
 }
 
-// ------------------- main -------------------
 
 int main() {
 
-#ifdef _WIN32         // <-- Windows код срабатывает только на Win
+#ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 #endif
