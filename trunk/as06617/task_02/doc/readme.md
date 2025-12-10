@@ -47,7 +47,7 @@ TEST(Linear, test_u_zero) {
     EXPECT_DOUBLE_EQ(linear(18, 0), a * 18);
 }
 
-TEST(Linear, test_y_zero) {
+TEST(Linear, test_y0) {
     EXPECT_DOUBLE_EQ(linear(0, 5), b * 5);
 }
 
