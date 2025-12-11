@@ -1,69 +1,57 @@
-cmake_minimum_required(VERSION 3.14)
-project(TemperatureModel_Rapin)
+cmake_minimum_required(VERSION 3.10)
+project(task_02_as06515)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Debug)
 
+cmake_policy(SET CMP0079 NEW)
+
+# --- Настройка Google Test ---
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG release-1.12.1
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_library(temperature_model_Rapin temperature_model.cpp)
-target_include_directories(temperature_model_Rapin PUBLIC .)
+enable_testing()
 
-add_executable(temperature_app_Rapin main.cpp)
-target_link_libraries(temperature_app_Rapin temperature_model_Rapin)
+# --- Сборка тестового исполняемого файла ---
+add_executable(runTests_as06515 ../test/test.cpp module.cpp)
+add_executable(main_as06515 main.cpp module.cpp)
 
-add_executable(temperature_tests_Rapin 
-    ../test/test_temperature_model.cpp
-    ../test/test_main.cpp
-)
-target_link_libraries(temperature_tests_Rapin 
-    PRIVATE temperature_model_Rapin 
-    gtest_main
-)
-target_include_directories(temperature_tests_Rapin PRIVATE . ../test)
-
-include(GoogleTest)
-gtest_discover_tests(temperature_tests_Rapin)
-
-add_library(temperature_model_Rapin_coverage temperature_model.cpp)
-target_include_directories(temperature_model_Rapin_coverage PUBLIC .)
-target_compile_options(temperature_model_Rapin_coverage PRIVATE -fprofile-arcs -ftest-coverage)
-
-add_executable(temperature_tests_Rapin_coverage 
-    ../test/test_temperature_model.cpp
-    ../test/test_main.cpp
-)
-target_compile_options(temperature_tests_Rapin_coverage PRIVATE -fprofile-arcs -ftest-coverage)
-target_link_libraries(temperature_tests_Rapin_coverage 
-    PRIVATE temperature_model_Rapin_coverage 
-    gtest_main
-    gcov  
-)
-target_include_directories(temperature_tests_Rapin_coverage PRIVATE . ../test)
-
-find_program(GCOVR_PATH gcovr)
-
-if(GCOVR_PATH)
-    add_custom_target(coverage_Rapin
-        COMMAND ./temperature_tests_Rapin_coverage
-        COMMAND ${GCOVR_PATH} --print-summary --exclude=".*googletest.*" --exclude=".*test.*" --root=${CMAKE_SOURCE_DIR}
-        COMMAND ${GCOVR_PATH} --html-nested -o coverage_report.html --exclude=".*googletest.*" --exclude=".*test.*" --root=${CMAKE_SOURCE_DIR}
-        DEPENDS temperature_tests_Rapin_coverage
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMENT "Running coverage analysis for project files only"
+# Установка опций покрытия для GCC/Clang для ОБОИХ целей
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    # Для тестов
+    target_compile_options(runTests_as06515 PRIVATE 
+        -fprofile-arcs 
+        -ftest-coverage 
+        -g 
+        -O0
     )
-else()
-    message(WARNING "gcovr not found, coverage target will not be available")
+    target_link_options(runTests_as06515 PRIVATE 
+        -fprofile-arcs 
+        -ftest-coverage
+    )
+    
+    # Для main (если нужно)
+    target_compile_options(main_as06515 PRIVATE 
+        -fprofile-arcs 
+        -ftest-coverage 
+        -g 
+        -O0
+    )
+    target_link_options(main_as06515 PRIVATE 
+        -fprofile-arcs 
+        -ftest-coverage
+    )
 endif()
 
-add_custom_target(run_coverage_tests_Rapin
-    COMMAND ./temperature_tests_Rapin_coverage
-    DEPENDS temperature_tests_Rapin_coverage
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Running tests with coverage instrumentation"
-)
+target_link_libraries(runTests_as06515 gtest gtest_main)
+target_include_directories(runTests_as06515 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+include(GoogleTest)
+gtest_discover_tests(runTests_as06515)
