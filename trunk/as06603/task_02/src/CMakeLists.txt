@@ -10,7 +10,7 @@ set(TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../test)
 
 # Приложение
 add_executable(main_as06603
-    ${SRC_DIR}/main.cpp
+    ${SRC_DIR}/main_as06603.cpp
     ${SRC_DIR}/func.cpp
 )
 target_include_directories(main_as06603 PRIVATE ${SRC_DIR})
