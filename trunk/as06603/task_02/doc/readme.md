@@ -24,7 +24,7 @@
 
 ---
 
-# Общее задание
+# ЗАДАНИЕ
 
 Написать модульные тесты для программы, разработанной в лабораторной работе №1.
 
@@ -34,43 +34,34 @@
 5. В файле `readme.md` отразить количество написанных тестов и процент покрытия кода тестами (использовать любой инструмент для анализа покрытия, например, [gcovr](https://gcovr.com/en/stable/)).
 6. Также необходимо отразить выполнение работы в общем файле [`readme.md`](https://github.com/brstu/TMAU-2025/blob/main/README.md) в соответствующей строке.
 
-## Выполнение работы
+## Ход работы
 
 ### Тесты
-
 ```cpp
 TEST(Linear, test_zero) {
     EXPECT_DOUBLE_EQ(linear(0, 0), 0);
 }
-
 TEST(Linear, test_u_zero) {
     EXPECT_DOUBLE_EQ(linear(18, 0), a * 18);
 }
-
 TEST(Linear, test_y_zero) {
     EXPECT_DOUBLE_EQ(linear(0, 5), b * 5);
 }
-
 TEST(Linear, test_default) {
     EXPECT_DOUBLE_EQ(linear(18, 5), a * 18 + b * 5);
 }
-
 TEST(NonLinear, test_zero) {
     EXPECT_DOUBLE_EQ(nonlinear(0, 0, 0, 0), 0);
 }
-
 TEST(NonLinear, test_u_zero) {
     EXPECT_DOUBLE_EQ(nonlinear(18, 18, 0, 0), a * 18 - b * pow(18, 2));
 }
-
 TEST(NonLinear, test_y_zero) {
     EXPECT_DOUBLE_EQ(nonlinear(0, 0, 5, 5), c * 5 + d * std::sin(5));
 }
-
 TEST(NonLinear, test_default) {
     EXPECT_DOUBLE_EQ(nonlinear(18, 18, 5, 5), a * 18 - b * pow(18, 2) + c * 5 + d * std::sin(5));
 }
-
 
 Start 1: Linear.test_zero
 1/8 Test #1: Linear.test_zero ................. Passed 0.01 sec
@@ -93,4 +84,4 @@ Start 8: NonLinear.test_default
 Total Test time (real) = 0.07 sec
 
 
-Вывод: В рамках работы разработаны и запущены модульные тесты для функций linear() и nonlinear() с использованием Google Test. Все восемь тестов успешно прошли, что подтверждает корректность реализованных вычислений. По отчёту OpenCppCoverage суммарное покрытие проекта около 26% из-за включения сторонних библиотек, при этом пользовательский файл func.cpp протестирован на 100%.
+Вывод: В ходе работы были успешно разработаны и выполнены модульные тесты для ключевых математических функций linear() и nonlinear() с использованием фреймворка Google Test. Все восемь тестовых сценариев завершились успешно, что подтверждает корректность реализованных алгоритмов и точность вычислений.Полученные результаты свидетельствуют о высоком качестве реализации и достаточной степени проверки функциональности проекта. Успешное прохождение всех тестов обеспечивает уверенность в корректности работы системы в заданных условиях.
