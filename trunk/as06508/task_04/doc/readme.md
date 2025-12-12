@@ -194,9 +194,9 @@ admin@axcf2152:~$ cd opt/main
 -sh: cd: opt/main: No such file or directory 
 admin@axcf2152:~$ cd /opt/main
 admin@axcf2152:/opt/main$ ls
-main. io. lua main. plua  main.modbus_srv. lua
-nvr am. txt  shared. lua  main.profibus. lua
-main. objects. lua  main.restrictions.lua  prg. lua
+main.io.lua  main.plua  main.modbus_srv.lua
+nvr am.txt  shared.lua  main.profibus.lua
+main.objects.lua  main.restrictions.lua  prg.lua
 ptusa_main  spec sys
 admin@axcf2152:/opt/main$ ./ptusa_main main.plua sys_path ./sys/
 ```
