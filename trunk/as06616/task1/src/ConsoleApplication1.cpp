@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <cmath>
-using namespace std;
 
 const double temperatureCoeff = 0.6;
 const double prevTemperatureCoeff = 0.3;
@@ -19,8 +18,8 @@ int main() {
     int time;
     double inputtemperature, inputwarm;
 
-    cout << "Enter simulation time steps, initial temperature y0, and initial warm input u0: ";
-    cin >> time >> inputtemperature >> inputwarm;
+    std::cout << "Введите количество шагов моделирования, начальную температуру y0 и начальный тепловой вход u0: ";
+    std::cin >> time >> inputtemperature >> inputwarm;
 
     double prevtemperature = inputtemperature; 
     double prevwarm = inputwarm;              
