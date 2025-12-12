@@ -37,3 +37,4 @@ out/
 build/
 .idea/
 cmake-build-debug/
+/trunk/as006505/task_01

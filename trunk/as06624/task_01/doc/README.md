@@ -1,6 +1,6 @@
 <p align="center"> Министерство образования Республики Беларусь</p>
 <p align="center">Учреждение образования</p>
-<p align="center">“Брестский государственный Технический университет”</p>
+<p align="center">“Брестский Государственный Технический университет”</p>
 <p align="center">Кафедра ИИТ</p>
 <br><br><br><br><br><br><br>
 <p align="center">Лабораторная работа №1</p>
@@ -22,7 +22,7 @@ Let's get some object to be controlled. We want to control its temperature, whic
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – output temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
+where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
 
 After transformation we get these linear (2) and nonlinear (3) models:
 
@@ -72,7 +72,7 @@ t=18  y=0.945024
 t=19  y=0.95602
 t=20  y=0.964816
 
-nonlinear model
+ non linear model
 t=2  y=0
 t=3  y=0
 t=4  y=0
