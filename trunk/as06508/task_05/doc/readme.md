@@ -114,8 +114,8 @@
 
    - Вывод  в консоль после отладки будет следующий:
 
-     ```
-     2025-12-12 15.59.46 INFO   (6) -> Program started (version 2025.12.1.0).
+```
+2025-12-12 15.59.46 INFO   (6) -> Program started (version 2025.12.1.0).
 DEBUG ON.
 2025-12-12 15.59.46 WARNING(4) -> Bus couplers are disabled.
 2025-12-12 15.59.46 DEBUG  (7) -> Init Lua...
@@ -232,7 +232,7 @@ G_CURRENT_PROTOCOL_VERSION = 104, host =[T1-PLCnext-Demo]
 Max buffer use 94
 Max buffer use 791
 2025-12-12 16.00.00 INFO   (6) -> Main control cycle performance : avg = 109, max =  126, tresh =  300 ms (  97 cycles, Lua mem = 345058 b).
-     ```
+```
 
 
 ## Измененный файл `main.plua`
