@@ -16,7 +16,8 @@ double nonlinearmodel(double inputtemperature, double prevtemperature, double in
 
 int main() {
     int time;
-    double inputtemperature, inputwarm;
+    double prevtemperature = inputtemperature;
+    double prevwarm = inputwarm;
 
     std::cout << "Введите количество шагов моделирования, начальную температуру y0 и начальный тепловой вход u0: ";
     std::cin >> time >> inputtemperature >> inputwarm;
@@ -24,21 +25,22 @@ int main() {
     double prevtemperature = inputtemperature; 
     double prevwarm = inputwarm;              
 
-    cout << "\nLinear Model Simulation:\n";
+    std::cout << "\nМоделирование линейной модели:\n";
     double y_linear = inputtemperature;
     for (int t = 1; t <= time; t++) {
         y_linear = linearmodel(y_linear, inputwarm);
-        cout << "Step " << t << ": y = " << y_linear << endl;
+        std::cout << "Шаг " << t << ": y = " << y_linear << std::endl;
     }
 
-    cout << "\nNonlinear Model Simulation:\n";
+    std::cout << "\nМоделирование нелинейной модели:\n";
     double y_nl = inputtemperature;
     for (int t = 1; t <= time; t++) {
-        double next = nonlinearmodel(y_nl, prevtemperature, inputwarm, prevwarm);
-        cout << "Step " << t << ": y = " << next << endl;
+        double currentWarm = updateWarm(inputwarm, t);
+        double next = nonlinearmodel(y_nl, prevtemperature, currentWarm, prevwarm);
+        std::cout << "Шаг " << t << ": y = " << next << std::endl;
         prevtemperature = y_nl;
         y_nl = next;
-        prevwarm = inputwarm;
+        prevwarm = currentWarm;
     }
 
     return 0;
