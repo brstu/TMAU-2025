@@ -190,7 +190,8 @@ git clone --recurse-submodules https://github.com/savushkin-r-d/T1-PLCnext-Demo
 ```
 admin@axcf2152:~$ cd opt/main
 -sh: cd: opt/main: No such file or directory 
-admin@axcf2152:~$ cd /opt/main admindaxct2152:/opt/mains ls
+admin@axcf2152:~$ cd /opt/main
+admin@axcf2152:/opt/main$ ls
 main. io. lua main. plua  main.modbus_srv. lua
 nvr am. txt  shared. lua  main.profibus. lua
 main. objects. lua  main.restrictions.lua  prg. lua
