@@ -103,34 +103,36 @@ ptusa_main/CMakePresets.json
 Дополнительно проверьте чтобы в конце блока configurePresets блоки windows-AXCF-default и AXCF-default выглядели похожим образом:
 
 ```
-{
-      "name": "windows-AXCF-default",
-      "hidden": true,
-      "inherits": "AXCF-default",
-      "generator": "MinGW Makefiles",
-      "environment": {
-        "PLCNEXT_SDK_ROOT": "D:/PLCnextSDK/$env{ARP_DEVICE}_$env{ARP_DEVICE_SHORT_VERSION}"
-      },
-      "cacheVariables": {
-    "CMAKE_MAKE_PROGRAM": "D:/PLCnextSDK/$env{ARP_DEVICE}_$env{ARP_DEVICE_SHORT_VERSION}/sysroots/$env{ARP_SDK_PACKAGE_NAME}/usr/bin/make.exe"
-       }
+[
+  {
+    "name": "windows-AXCF-default",
+    "hidden": true,
+    "inherits": "AXCF-default",
+    "generator": "MinGW Makefiles",
+    "environment": {
+      "PLCNEXT_SDK_ROOT": "D:/PLCnextSDK/$env{ARP_DEVICE}_$env{ARP_DEVICE_SHORT_VERSION}"
     },
-    {
-      "name": "AXCF-default",
-      "hidden": true,
-      "generator": "MinGW Makefiles",
-      "binaryDir": "${sourceDir}/bin/build/$env{ARP_DEVICE}_$env{ARP_DEVICE_SHORT_VERSION}",
-      "cacheVariables": {
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/bin/install",
-        "CMAKE_TOOLCHAIN_FILE": {
-    "value": "D:/PLCnextSDK/AXCF2152_2024_6/toolchain.cmake",
-    "type": "FILEPATH"
-  	},
-        "ARP_DEVICE": "AXCF2152",
-	"ARP_DEVICE_VERSION": "2024.6.0 (24.6.0.81)",
-  	"ARP_DEVICE_SHORT_VERSION": "2024_6",
-      }
+    "cacheVariables": {
+      "CMAKE_MAKE_PROGRAM": "D:/PLCnextSDK/$env{ARP_DEVICE}_$env{ARP_DEVICE_SHORT_VERSION}/sysroots/$env{ARP_SDK_PACKAGE_NAME}/usr/bin/make.exe"
     }
+  },
+  {
+    "name": "AXCF-default",
+    "hidden": true,
+    "generator": "MinGW Makefiles",
+    "binaryDir": "${sourceDir}/bin/build/$env{ARP_DEVICE}_$env{ARP_DEVICE_SHORT_VERSION}",
+    "cacheVariables": {
+      "CMAKE_INSTALL_PREFIX": "${sourceDir}/bin/install",
+      "CMAKE_TOOLCHAIN_FILE": {
+        "value": "D:/PLCnextSDK/AXCF2152_2024_6/toolchain.cmake",
+        "type": "FILEPATH"
+      },
+      "ARP_DEVICE": "AXCF2152",
+      "ARP_DEVICE_VERSION": "2024.6.0 (24.6.0.81)",
+      "ARP_DEVICE_SHORT_VERSION": "2024_6"
+    }
+  }
+]
 ```
 
 
