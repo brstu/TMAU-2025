@@ -148,7 +148,7 @@ ptusa_main/CMakePresets.json
 
 <p>4. Генерация CMake в Visual Studio</p>
 
-Открой VS2022 → Открыть папку → выберите:
+Откройте VS2022 → Открыть папку → выберите:
 
 ```
 D:\TMAU\TMAU_Lab4\ptusa_main\
