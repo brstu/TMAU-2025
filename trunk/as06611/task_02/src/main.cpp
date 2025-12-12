@@ -1,36 +1,32 @@
 #include <iostream>
 #include "functions.h"
 
-using std::cout;
-using std::endl;
-
-void runLinearModel() {
-    double y = Y0;
-    cout << "Линейная модель:\n";
-    cout << "y0 = " << y << endl;
-
-    for (int i = 0; i < n; i++) {
-        y = linear(y, u);
-        cout << "y" << i + 1 << " = " << y << endl;
-    }
-}
-
-void runNonlinearModel() {
-    double yt = Y0;
-    double yt1 = Y0;
-    cout << "\nНелинейная модель:\n";
-    cout << "y0 = " << yt << endl;
-
-    for (int i = 0; i < n; i++) {
-        double new_y = nonlinear(yt, yt1, u, u);
-        yt1 = yt;
-        yt = new_y;
-        cout << "y" << i + 1 << " = " << yt << endl;
-    }
-}
-
 int main() {
-    runLinearModel();
-    runNonlinearModel();
+    // Линейная модель
+    std::cout << "Линейная модель:" << std::endl;
+    std::cout << "y0 = " << Y_start << std::endl;
+    
+    double y = Y_start;
+    for (int i = 0; i < N; i++) {
+        y = linearModel(y, U[i]);
+        std::cout << "y" << i + 1 << " = " << y << std::endl;
+    }
+    
+    // Нелинейная модель
+    std::cout << "\nНелинейная модель:" << std::endl;
+    std::cout << "y0 = " << Y_start << std::endl;
+    
+    double y_prev = Y_start;
+    double y_curr = nonlinearModel(Y_start, Y_start, U[0], U[0]);
+    std::cout << "y1 = " << y_curr << std::endl;
+    
+    for (int i = 1; i < N; i++) {
+        double y_next = nonlinearModel(y_curr, y_prev, U[i], U[i - 1]);
+        std::cout << "y" << i + 1 << " = " << y_next << std::endl;
+        
+        y_prev = y_curr;
+        y_curr = y_next;
+    }
+    
     return 0;
 }
