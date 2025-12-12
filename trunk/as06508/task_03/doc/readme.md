@@ -32,6 +32,7 @@
 D:\TMAU_Lab3\PLCnext_Toolchain
 ```
 
+Проверить:
 ```powershell
 plcncli --version
 ```
@@ -57,7 +58,7 @@ cmake\
 toolchain.cmake
 ```
 
-
+Установить SDK для AXCF2152:
 ```powershell
 plcncli install sdk -d "D:\PLCnextSDK\AXCF2152_2024_6" -p "D:\TMAU_Lab3\AXC_F_2152_SDK_2024_6\axcf2152-mingw_sdk-2024.6.0-24.6.0.81.tar.xz"
 ```
