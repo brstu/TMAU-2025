@@ -6,7 +6,6 @@ const double prevTemperatureCoeff = 0.3;
 const double warmCoeff = 0.8;
 const double prevWarmCoeffSin = 0.5;
 
-// Объявление функции updateWarm перед использованием
 double updateWarm(double warm, int t);
 
 double linearmodel(double inputtemperature, double inputwarm) {
@@ -17,21 +16,20 @@ double nonlinearmodel(double inputtemperature, double prevtemperature, double in
     return temperatureCoeff * inputtemperature - prevTemperatureCoeff * pow(prevtemperature, 2) + warmCoeff * inputwarm + prevWarmCoeffSin * sin(prevwarm);
 }
 
-// Реализация функции updateWarm
-double updateWarm(double warm, int t) {
-    // Простая модель изменения теплового входа со временем
-    return warm * (0.9 + 0.1 * sin(t * 0.1));
+double updateWarm(double baseWarm, int t) {
+    return baseWarm + 0.1 * sin(t);
 }
 
 int main() {
-    double inputtemperature, inputwarm;
+    
     int time;
-
+    double inputtemperature;
+    double inputwarm;
+    
     std::cout << "Введите количество шагов моделирования, начальную температуру y0 и начальный тепловой вход u0: ";
     std::cin >> time >> inputtemperature >> inputwarm;
 
-    // Объявляем переменные один раз
-    double prevtemperature = inputtemperature; 
+    double prevtemperature = inputtemperature;
     double prevwarm = inputwarm;
 
     std::cout << "\nМоделирование линейной модели:\n";
