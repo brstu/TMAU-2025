@@ -9,10 +9,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
 
 enable_testing()
 
-add_executable(as06620_task_02_main
-    main.cpp
-    temp_model.cpp
-)
 
 include(FetchContent)
 FetchContent_Declare(
