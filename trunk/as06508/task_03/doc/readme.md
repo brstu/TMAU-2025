@@ -85,6 +85,7 @@ plcncli get targets
 ```
 
 <p>3. Клонировать шаблон проекта:</p>
+
 ```powershell
 git clone https://github.com/savushkin-r-d/PLCnext-howto
 ```
@@ -101,6 +102,7 @@ D:\PLCnext-howto\
 ```
 
 <p>4. Настроить <em>CMakePresets.json</em> для SDK 2024.6:</p>
+
 ```json
 {
     "name": "build-windows-AXCF2152-2024.6",
@@ -125,6 +127,7 @@ D:\PLCnext-howto\
 * **ARP_DEVICE_VERSION = "2024.6.0 (24.6.0.81)"**, а не "24.6.0.81" и не просто "2024.6.0".
 
 <p>5. Сборка проекта:</p>
+
 ```powershell
 cmake --preset build-windows-AXCF2152-2024.6 .
 cmake --build --preset build-windows-AXCF2152-2024.6 --target all
@@ -132,9 +135,11 @@ cmake --build --preset build-windows-AXCF2152-2024.6 --target install
 ```
 
 <p>6. Итоговый бинарный файл:</p>
+
 ```
 D:\PLCnext-howto\HowTo build program Hello PLCnext\Hello-PLCnext\deploy\
       AXCF2152_24.6.0.81\Release\bin\hello_PLCnext
+      
 ```
 <p>Это исполняемый ELF-файл, который можно запускать на контроллере AXCF2152 под PLCnext OS.</p>
 
