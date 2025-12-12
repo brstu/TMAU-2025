@@ -206,7 +206,7 @@ admin@axcf2152:/opt/main$ ./ptusa_main main.plua sys_path ./sys/
 admin@axcf2152:/opt/main$ \
 ```
 
-Проблема в том что необходимо установить библиотеку libncurses.so.5 с интернета. Что и было успешно сделано и при повторном запуске:
+Проблема в том, что необходимо установить библиотеку libncurses.so.5 с интернета. Что и было выполнено, и при повторном запуске:
 
 ```
 admin@axcf2152:/opt/main$ ./ptusa_main main.plua sys_path ./sys/
