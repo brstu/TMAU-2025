@@ -209,7 +209,7 @@ admin@axcf2152:/opt/main$ \
 Проблема в том что необходимо установить библиотеку libncurses.so.5 с интернета. Что и было успешно сделано и при повторном запуске:
 
 ```
-admin@axcf2152:/opt/main$ •/ptusa main main.plua sys path ./ sys/
+admin@axcf2152:/opt/main$ ./ptusa_main main.plua sys_path ./sys/
 2023-12-20 03.54.14 INFO(6) -> Program started (version 2025.12.1.0) .
 2023-12-20 03.54.14 WARNING (4) -> Bus couplers are enabled.
 2023-12-20 03.54.14 NOTICE (5) -> script name = "main plua"
