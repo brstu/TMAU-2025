@@ -1,10 +1,12 @@
 #include "functions.h"
 #include <cmath>
 
-double linear(double y, double u_val) {
-    return a * y + b * u_val;
+const std::array<double, N> U = {4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 5, 6};
+
+double linearModel(double y, double u) {
+    return A * y + B * u;
 }
 
-double nonlinear(double yt, double yt1, double ut, double ut1) {
-    return a * yt - b * yt1 * yt1 + c * ut + d * sin(ut1);
+double nonlinearModel(double y_curr, double y_prev, double u_curr, double u_prev) {
+    return A * y_curr - B * pow(y_prev, 2) + C_val * u_curr + D_val * sin(u_prev);
 }
