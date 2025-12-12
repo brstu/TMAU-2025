@@ -35,7 +35,9 @@ D:\PLCnextSDK\AXCF2152_2024_6\
 ```
 
 Visual Studio 2022 + workloads:
+
 Desktop development with C++
+
 C++ for Linux Development
 
 Git
