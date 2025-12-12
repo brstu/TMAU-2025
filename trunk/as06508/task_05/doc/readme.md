@@ -108,7 +108,7 @@
 
 ![](../img/monitor_done.png)
 
-  - В **EasyServer** появяться:
+  - В **EasyServer** появятся:
 
 ![](../img/lua.png)  
 
