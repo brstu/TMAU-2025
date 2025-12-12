@@ -217,7 +217,7 @@ admin@axcf2152:/opt/main$ ./ptusa_main main.plua sys_path ./sys/
 2023-12-20 03.54.14 NOTICE (5) -> script name = "main plua"
 2023-12-20 03.54.14 NOTICE (5) -> current working directory: "/opt/main"
 2023-12-20 03.54.14 NOTICE (5) -> path = ".", sys_path = "./sys", extra paths =
-"./ dairy-sys"
+"./dairy-sys"
 Check shared devices
 2023-12-20 03.54.14 DEBUG (7) -> Total memory used: 492 of 30720 bytes[ 1.60% ]
 2023-12-20 03.54.14 INFO (6) -> Starting main loop! Sleep time is 2 ms.
