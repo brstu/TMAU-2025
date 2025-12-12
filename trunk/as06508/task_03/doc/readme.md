@@ -190,7 +190,7 @@ admin@axcf2152: ~$
 Перед запуском файл был переименован с hello_PLCnext на hello_PLCnext_Bel, с целью избежания дублирования файлов в папке(файл с названием hello_PLCnext до этого уже присуствовал в папке)
 
 ```
-admin@axcf2152:/opt/plcnext$ -/hello_PLCnext_Bel
+admin@axcf2152:/opt/plcnext$ ./hello_PLCnext_Bel
 Hello PLCnext from as006508!
 admin@axcf2152:/opt/plcnext$
 ```
