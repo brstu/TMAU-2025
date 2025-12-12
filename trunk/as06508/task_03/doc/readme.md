@@ -187,7 +187,7 @@ admin@axcf2152: ~$
 
 <p>Запускаем проект и получаем следующий вывод.</p>
 
-Перед запуском файл был переименован с hello_PLCnext на hello_PLCnext_Bel
+Перед запуском файл был переименован с hello_PLCnext на hello_PLCnext_Bel, с целью избежания дублирования файлов в папке(файл с названием hello_PLCnext до этого уже присуствовал в папке)
 
 ```
 admin@axcf2152:/opt/plcnext$ -/hello_PLCnext_Bel
