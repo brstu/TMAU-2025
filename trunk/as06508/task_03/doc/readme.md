@@ -146,7 +146,9 @@ D:\PLCnext-howto\HowTo build program Hello PLCnext\Hello-PLCnext\deploy\
 <p>7. Подключаемся к контроллеру и настраиваем сеть.</p>
 При невозможности подключения контроллера по Ethernet ввиду отсуствия у автора отчета необходимого разъема. Работа выполнялась при помощи компьютера коллеги 
 
+
 ![](images/connect.png) 
+
 Важно: IP-адрес не 192.168.1.1, а 192.168.1.10!!!
 
 <p>Проверяем подключение к контроллеру.</p>
@@ -158,6 +160,7 @@ D:\PLCnext-howto\HowTo build program Hello PLCnext\Hello-PLCnext\deploy\
 ![](images/PuTTY_connect.png) 
 
 <p>Вводим логин и пароль для подключенияя к контроллеру.</p>
+
 ```
 login as: admin
 Pre-authentication banner message from server:
