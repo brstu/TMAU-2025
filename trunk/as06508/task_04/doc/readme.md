@@ -214,7 +214,7 @@ admin@axcf2152:/opt/main$ \
 admin@axcf2152:/opt/main$ ./ptusa_main main.plua sys_path ./sys/
 2023-12-20 03.54.14 INFO(6) -> Program started (version 2025.12.1.0) .
 2023-12-20 03.54.14 WARNING (4) -> Bus couplers are enabled.
-2023-12-20 03.54.14 NOTICE (5) -> script name = "main plua"
+2023-12-20 03.54.14 NOTICE (5) -> script name = "main.plua"
 2023-12-20 03.54.14 NOTICE (5) -> current working directory: "/opt/main"
 2023-12-20 03.54.14 NOTICE (5) -> path = ".", sys_path = "./sys", extra paths =
 "./dairy-sys"
