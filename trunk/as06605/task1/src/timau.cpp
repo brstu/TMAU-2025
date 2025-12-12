@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//Constants
+//constants
 const double a = 0.1;
 const double b = 0.2;
 const double c = 0.3;
@@ -27,8 +27,6 @@ vector <double> nonlinear(double u)
 {
 	vector <double> temps(iterations);
 	temps[0] = InpTemp;
-	// Initialize temps[1] separately to avoid out-of-bounds access for temps[i-1]
-	temps[1] = a * temps[0] - b * temps[0] * temps[0] + c * u + d * sin(u);
 	for (int i = 1; i < iterations - 1; ++i)
 	{
 		temps[i + 1] = a * temps[i] - b * temps[i - 1] * temps[i - 1] + c * u + d * sin(u);
@@ -38,12 +36,12 @@ vector <double> nonlinear(double u)
 
 int main()
 {
+	setlocale(0, "");
 	vector <double> linearT = linear(20);
 	vector <double> nonlinearT = nonlinear(20);
-	cout << "i" << "\t" << "Linear" << "\t" << "Nonlinear" << endl;
+	cout << "i" << "\t" << "Линейная" << "\t" << "Нелинейная" << endl;
 	for (int i = 0; i < iterations; ++i)
 	{
 		cout << i << "\t" << linearT[i] << "\t\t" << nonlinearT[i] << endl;
 	}
-	return 0;
 }
