@@ -64,6 +64,7 @@ plcncli install sdk -d "D:\PLCnextSDK\AXCF2152_2024_6" -p "D:\TMAU_Lab3\AXC_F_21
 ```
 
 <p>Проверка:</p>
+
 ```powershell
 plcncli get targets
 ```
