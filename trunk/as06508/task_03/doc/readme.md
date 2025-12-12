@@ -159,7 +159,7 @@ D:\PLCnext-howto\HowTo build program Hello PLCnext\Hello-PLCnext\deploy\
 
 ![](images/PuTTY_connect.png) 
 
-<p>Вводим логин и пароль для подключенияя к контроллеру.</p>
+<p>Вводим логин и пароль для подключения к контроллеру.</p>
 
 ```
 login as: admin
