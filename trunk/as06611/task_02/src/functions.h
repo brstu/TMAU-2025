@@ -1,14 +1,16 @@
 #pragma once
+#include <array>
 
-// Model constants
-inline constexpr int n = 10;        
-inline constexpr double a = 0.98;
-inline constexpr double b = 0.02;
-inline constexpr double c = 0.4;
-inline constexpr double d = 0.15;
-inline constexpr double Y0 = 20;
-inline constexpr double u = 8.0;
+// Константы из вашей лабораторной работы
+const int N = 15;
+const double A = 0.9;
+const double B = 0.01;
+const double C_val = 0.4;
+const double D_val = 0.1;
+const double Y_start = 20;
+
+extern const std::array<double, N> U;  // Массив управляющих воздействий
 
 // Объявления функций
-double linear(double y, double u_val);
-double nonlinear(double yt, double yt1, double ut, double ut1);
+double linearModel(double y, double u);
+double nonlinearModel(double y_curr, double y_prev, double u_curr, double u_prev);
