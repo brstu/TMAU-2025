@@ -114,7 +114,7 @@ admin@axcf2152:/opt/plcnext$ ./hello_PLCnextFrom21
 Prosnulsya utrom Bethoven, umyl Glazunova, pomyl Borodina,
 syel Myaskovskogo v Smetane, zakusil Khrennikovym, zapil Chaykovskim s Bize.
 Tut yego stalo Puchchini… a potom Paganini… 
-On nadel Shalyapina, nakinal Shubertа, vyshel na Dvorzhaka,
+On nadel Shalyapina, nakinal Shuberta, vyshel na Dvorzhaka,
 prisel u Musorgskogo baka… i vdrug Bakh!
 Bethoven sorval Lista, vyter Shopenа, posmotrel na Guno, prisypal Glinkoy…
 
