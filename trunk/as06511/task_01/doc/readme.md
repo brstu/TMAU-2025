@@ -2,22 +2,23 @@
 <p align="center">Учреждение образования</p>
 <p align="center">“Брестский Государственный Технический университет”</p>
 <p align="center">Кафедра ИИТ</p>
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 <p align="center">Лабораторная работа №1</p>
 <p align="center">По дисциплине “Теория и методы автоматического управления”</p>
 <p align="center">Тема: “Моделирование управляемого объекта”</p>
-<br><br><br><br><br>
+<br><br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
-<p align="right">Группы АС-66</p>
-<p align="right">Янчук А.Ю.</p>
+<p align="right">Группы АС-65</p>
+<p align="right">Макарский А. Э.</p>
 <p align="right">Проверил:</p>
-<p align="right">Иванюк Д.С.</p>
-<br><br><br><br><br><br><br><br>
+<p align="right">Иванюк Д. С.</p>
+<br><br><br><br><br><br><br>
 <p align="center">Брест 2025</p>
 
 ---
-## Task 1. Modeling controlled object
+
+## Task 1. Modeling controlled object ##
 Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
@@ -34,62 +35,43 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some con
 
 Task is to write program (**С++**), which simulates this object temperature.
 
-## Выполнение работы
-Инициализация параметров  
+
+## Ход работы
+
+__Параметры__
+```cpp
+Lin lp{0.80, 0.22};
+Nonlin np{0.76, 0.18, 0.09, 0.14};
+
+std::vector<double> u(N, 1.0);
+std::vector<double> yL(N, 0.0);
+std::vector<double> yN(N, 0.0);
 ```
-double a = 0.8;
-double b = 0.2;
-double c = 0.1;
-double d = 0.05;
 
-int N = 20; 
-
-vector<double> y(N + 1, 0.0); 
-vector<double> u(N + 1, 0.0); 
-
-```
-Имея данные параметры получим результат работы программы:
+__Имея данные параметры получим результат работы программы:__
 ```bash
-linear model
-t=1  y=0
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.2
-t=7  y=0.36
-t=8  y=0.488
-t=9  y=0.5904
-t=10  y=0.67232
-t=11  y=0.737856
-t=12  y=0.790285
-t=13  y=0.832228
-t=14  y=0.865782
-t=15  y=0.892626
-t=16  y=0.914101
-t=17  y=0.931281
-t=18  y=0.945024
-t=19  y=0.95602
-t=20  y=0.964816
-
- non linear model
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.1
-t=7  y=0.222074
-t=8  y=0.317732
-t=9  y=0.386396
-t=10  y=0.431
-t=11  y=0.457013
-t=12  y=0.470532
-t=13  y=0.476727
-t=14  y=0.479175
-t=15  y=0.47996
-t=16  y=0.48012
-t=17  y=0.480097
-t=18  y=0.480048
-t=19  y=0.480013
-t=20  y=0.479995
+t       linear          nonlinear
+----------------------------------
+0       0.000000        0.000000
+1       0.220000        0.090000
+2       0.396000        0.276206
+3       0.536800        0.416264
+4       0.649440        0.510435
+5       0.739552        0.564547
+6       0.811642        0.589964
+7       0.869313        0.598810
+8       0.915451        0.600251
+9       0.952360        0.599454
+10      0.981888        0.598536
+11      1.005511        0.598012
+12      1.024409        0.597810
+13      1.039527        0.597771
+14      1.051621        0.597784
+15      1.061297        0.597802
+16      1.069038        0.597813
+17      1.075230        0.597818
+18      1.080184        0.597819
+19      1.084147        0.597819
 ```
+
+**Вывод:** зная функцию, можно моделировать поведение модели в зависимости от времени.

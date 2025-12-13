@@ -9,14 +9,15 @@
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
-<p align="right">Группы АС-66</p>
-<p align="right">Янчук А.Ю.</p>
+<p align="right">Группы АС-65</p>
+<p align="right">Дацкевич М. Г.</p>
 <p align="right">Проверил:</p>
-<p align="right">Иванюк Д.С.</p>
+<p align="right">Иванюк Д. С.</p>
 <br><br><br><br><br><br><br><br>
 <p align="center">Брест 2025</p>
 
 ---
+
 ## Task 1. Modeling controlled object
 Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
 
@@ -34,62 +35,44 @@ where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some con
 
 Task is to write program (**С++**), which simulates this object temperature.
 
+
+
 ## Выполнение работы
-Инициализация параметров  
+
+Параметры
+```cpp
+LinearCfg linCfg{0.65, 0.25};
+NonlinearCfg nonlinCfg{0.65, 0.25, 0.05, 0.20};
+
+std::vector<double> control(nSteps, 1.0);
+std::vector<double> yLinear(nSteps, 0.0);
+std::vector<double> yNonlinear(nSteps, 0.0);
 ```
-double a = 0.8;
-double b = 0.2;
-double c = 0.1;
-double d = 0.05;
 
-int N = 20; 
-
-vector<double> y(N + 1, 0.0); 
-vector<double> u(N + 1, 0.0); 
-
+Результат работы программы:
 ```
-Имея данные параметры получим результат работы программы:
-```bash
-linear model
-t=1  y=0
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.2
-t=7  y=0.36
-t=8  y=0.488
-t=9  y=0.5904
-t=10  y=0.67232
-t=11  y=0.737856
-t=12  y=0.790285
-t=13  y=0.832228
-t=14  y=0.865782
-t=15  y=0.892626
-t=16  y=0.914101
-t=17  y=0.931281
-t=18  y=0.945024
-t=19  y=0.95602
-t=20  y=0.964816
-
- non linear model
-t=2  y=0
-t=3  y=0
-t=4  y=0
-t=5  y=0
-t=6  y=0.1
-t=7  y=0.222074
-t=8  y=0.317732
-t=9  y=0.386396
-t=10  y=0.431
-t=11  y=0.457013
-t=12  y=0.470532
-t=13  y=0.476727
-t=14  y=0.479175
-t=15  y=0.47996
-t=16  y=0.48012
-t=17  y=0.480097
-t=18  y=0.480048
-t=19  y=0.480013
-t=20  y=0.479995
+=== Temperature Simulation ===
+Step | Linear    | Nonlinear
+-------------------------------
+  0 |   0.0000 |     0.0000
+  1 |   0.2500 |     0.0500
+  2 |   0.4125 |     0.2508
+  3 |   0.5181 |     0.3807
+  4 |   0.5868 |     0.4500
+  5 |   0.6314 |     0.4746
+  6 |   0.6604 |     0.4761
+  7 |   0.6793 |     0.4715
+  8 |   0.6915 |     0.4681
+  9 |   0.6995 |     0.4670
+ 10 |   0.7047 |     0.4671
+ 11 |   0.7080 |     0.4674
+ 12 |   0.7102 |     0.4675
+ 13 |   0.7116 |     0.4676
+ 14 |   0.7126 |     0.4676
+ 15 |   0.7132 |     0.4676
+ 16 |   0.7136 |     0.4676
+ 17 |   0.7138 |     0.4675
+ 18 |   0.7140 |     0.4676
+ 19 |   0.7141 |     0.4676
 ```
+**Вывод:** Заданные функции моделируют изменение температуры во времени и показывают поведение объекта при разных режимах управления.
