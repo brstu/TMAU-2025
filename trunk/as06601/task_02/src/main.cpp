@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <cmath>
 
 using namespace std;
@@ -27,11 +26,9 @@ int main() {
     }
 
     // Константы (можно менять)
-    // double a = 0.8;
     double a = 1.1;
-    double b = 0.1;      // коэффициент для линейной модели
-    // double b_nl = 0.12;  // коэффициент для нелинейной модели
-    double b_nl = 0.0012;  // коэффициент для нелинейной модели
+    double b = 0.1;       // коэффициент для линейной модели
+    double b_nl = 0.0012; // коэффициент для нелинейной модели
     double c = 0.05;
     double d = 0.02;
 
@@ -39,9 +36,10 @@ int main() {
     double y0 = 20.0;    // начальная температура объекта
     double u0 = 5.0;     // начальное управляющее воздействие
 
-    vector<double> y_linear(n + 1);
-    vector<double> y_nonlinear(n + 1);
-    vector<double> u(n + 1);
+    // --- Динамические массивы ---
+    double* y_linear = new double[n + 1];
+    double* y_nonlinear = new double[n + 1];
+    double* u = new double[n + 1];
 
     // Заполняем вход (например, постоянное воздействие u = u0)
     for (int t = 0; t <= n; t++) {
@@ -65,9 +63,15 @@ int main() {
     cout << "\n--- Нелинейная модель ---\n";
     for (int t = 0; t < n; t++) {
         double u_prev = (t > 0) ? u[t - 1] : u[0];
-        y_nonlinear[t + 1] = nonlinearModel(a, b_nl, c, d, y_nonlinear[t], u[t], u_prev);
+        y_nonlinear[t + 1] =
+            nonlinearModel(a, b_nl, c, d, y_nonlinear[t], u[t], u_prev);
         cout << "t=" << t + 1 << "  y=" << y_nonlinear[t + 1] << '\n';
     }
+
+    // --- Освобождение памяти ---
+    delete[] y_linear;
+    delete[] y_nonlinear;
+    delete[] u;
 
     return 0;
 }
