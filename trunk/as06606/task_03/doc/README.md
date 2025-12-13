@@ -49,7 +49,7 @@
 
 2 . Изучить [ руководство ] ( https://github.com/savushkin-rd/PLCnext-howto/tree/master/HowTo%20build%20program%20Hello%20PLCnext ) .
 
-3 .Используя **Visual Studio** создать тестовый проект *"Hello PLCnext from AS0xxyy!"*, собрать его и продемонстрировать работоспособность на тестовом контроллере.
+3 . Используя **Visual Studio** создать тестовый проект *"Hello PLCnext from AS0xxyy!"*, собрать его и продемонстрировать работоспособность на тестовом контроллере.
 
 4 . Написать отчет по выполненной работе в .md формате (readme.md) и с помощью pull request разместить его в следующем каталоге: trunk\as000xxyy\task_03\doc.## 
 
