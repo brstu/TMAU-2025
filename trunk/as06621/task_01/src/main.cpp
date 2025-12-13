@@ -3,7 +3,6 @@
 #include <cmath>
 #include <iomanip>
 
-// Конфигурационные параметры модели
 struct Config {
     static constexpr double A = 0.9;
     static constexpr double B_lin = 0.2;
@@ -11,10 +10,9 @@ struct Config {
     static constexpr double C = 0.15;
     static constexpr double D = 0.05;
 
-    static constexpr double ZERO_PREV_INPUT = 0.0; // prev_u при t=0
+    static constexpr double ZERO_PREV_INPUT = 0.0; 
 };
 
-// Линейная модель
 class Linear {
 public:
     Linear(double a, double b) : a_(a), b_(b) {}
@@ -26,7 +24,6 @@ private:
     double b_;
 };
 
-// Нелинейная модель
 class Nonlinear {
 public:
     Nonlinear(double a, double b, double c, double d)
@@ -43,21 +40,24 @@ private:
 };
 
 int main() {
+    system ("chcp 1251");
+    setlocale(LC_ALL, "RUS");
+    system ("cls");
     int steps;
     double y_init;
     double u_const;
 
-    std::cout << "Введите количество шагов моделирования: ";
+    std::cout << "������� ���������� ����� �������������: ";
     std::cin >> steps;
     if (steps <= 0) {
-        std::cerr << "Ошибка: число шагов должно быть положительным.\n";
+        std::cerr << "������: ����� ����� ������ ���� �������������.\n";
         return 1;
     }
 
-    std::cout << "Введите начальную температуру y0: ";
+    std::cout << "������� ��������� ����������� y0: ";
     std::cin >> y_init;
 
-    std::cout << "Введите постоянное нагревание u: ";
+    std::cout << "������� ���������� ���������� u: ";
     std::cin >> u_const;
 
     Linear lin(Config::A, Config::B_lin);
@@ -65,8 +65,6 @@ int main() {
 
     std::vector<double> y_l(steps + 1, 0.0);
     std::vector<double> y_nl(steps + 1, 0.0);
-    // Используем u_const напрямую, вместо вектора u, поскольку в данной реализации предполагается постоянный вход (нагревание) на протяжении всей симуляции.
-    // Если потребуется моделировать переменный вход, следует использовать вектор u.
 
     y_l[0] = y_init;
     y_nl[0] = y_init;
@@ -77,8 +75,8 @@ int main() {
         y_nl[t + 1] = nonlin.next(y_nl[t], u_const, prev_u);
     }
 
-    std::cout << "\nРезультаты моделирования:\n";
-    std::cout << "t\tЛинейная\tНелинейная\n";
+    std::cout << "\n���������� �������������:\n";
+    std::cout << "t\t��������\t����������\n";
     std::cout << "---------------------------------\n";
 
     for (int t = 0; t <= steps; ++t) {
