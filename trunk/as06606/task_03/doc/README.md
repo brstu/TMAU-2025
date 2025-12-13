@@ -1,21 +1,21 @@
 
-< p  align = " center " > Министерство образования Республики Беларусь</ p >
-< p  align = " center " >Учреждение образования</ p >
-< p  align = " center " >“Брестский государственный технический университет”</ p >
-< p  align = " center " >Кафедра ИИТ</ p >
-< br > < br >< br >< br >< br >< br >< br >
-< p  align = " center " >Лабораторная работа №3</ p >
-< p  align = " center " >По дисциплине «Теория и методы автоматического управления»</ p >
-< p  align = " center " >Тема: “Работа с контроллером AXC F 2152”</ p >
-<br> <br> <br> <br> <br> <br>​​​​​
-< p  align = " right " >Выполнил:</ p >
-< p  align = " right " >Студент 3 курса</ p >
-< p  align = " right " >Группы АС-65</ p >
-< p  align = " right " >Езепчук А.С.</ p >
-< p  align = " right " >Проверил:</ p >
-< p  align = " right " >Дворанинович Д.А.</ p >
-< br > < br >< br >< br >< br >< br >< br >< br >
-< p  align = " center " >Брест 2025</ p >
+<p align="center">Министерство образования Республики Беларусь</p>
+<p align="center">Учреждение образования</p>
+<p align="center">“Брестский государственный технический университет”</p>
+<p align="center">Кафедра ИИТ</p>
+<br><br><br><br><br><br><br>
+<p align="center">Лабораторная работа №3</p>
+<p align="center">По дисциплине «Теория и методы автоматического управления»</p>
+<p align="center">Тема: “Работа с контроллером AXC F 2152”</p>
+<br><br><br><br><br><br>​​​​​
+<p align="right">Выполнил:</p>
+<p align="right">Студент 3 курса</p>
+<p align="right">Группы АС-65</p>
+<p align="right">Езепчук А.С.</p>
+<p align="right">Проверил:</p>
+<p align="right">Дворанинович Д.А.</p>
+<br><br><br><br><br><br><br><br>
+<p align="center">Брест 2025</p>
 
 ---
 
