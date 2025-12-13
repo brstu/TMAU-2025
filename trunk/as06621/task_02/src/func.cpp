@@ -1,14 +1,15 @@
 #include "func.h"
 
-// linear model
-double linear(double yt, double ut) {
-    return a * yt + b * ut;
+// Линейная модель
+double linear(double currentTemperature, double controlSignal) {
+    return LINEAR_A * currentTemperature + LINEAR_B * controlSignal;
 }
 
-// nonlinear model
-double nonlinear(double yt, double yt_1, double ut, double ut_1) {
-    return a * yt
-           - b * (yt_1 * yt_1)
-           + c * ut
-           + d * std::sin(ut_1);
+// Нелинейная модель
+double nonlinear(double currentTemperature, double previousTemperature,
+                 double currentControlSignal, double previousControlSignal) {
+    return NONLINEAR_A * currentTemperature 
+           - NONLINEAR_B * (previousTemperature * previousTemperature) 
+           + NONLINEAR_C * currentControlSignal 
+           + NONLINEAR_D * std::sin(previousControlSignal);
 }

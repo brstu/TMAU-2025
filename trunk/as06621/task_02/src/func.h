@@ -1,13 +1,19 @@
 #pragma once
 #include <cmath>
 
-constexpr double a = 0.9;
-constexpr double b = 0.01;
-constexpr double c = 0.15;
-constexpr double d = 0.05;
+// Коэффициенты моделей
+constexpr double LINEAR_A = 0.9;
+constexpr double LINEAR_B = 0.01;
+constexpr double NONLINEAR_A = 0.9;
+constexpr double NONLINEAR_B = 0.01;
+constexpr double NONLINEAR_C = 0.15;
+constexpr double NONLINEAR_D = 0.05;
 
 constexpr double ZERO_PREV_INPUT = 0.0;
 
-// тесты ожидают 2 аргумента для linear и 4 аргумента для nonlinear
-double linear(double yt, double ut);
-double nonlinear(double yt, double yt_1, double ut, double ut_1);
+// Линейная модель
+double linear(double currentTemperature, double controlSignal);
+
+// Нелинейная модель
+double nonlinear(double currentTemperature, double previousTemperature,
+                 double currentControlSignal, double previousControlSignal);
