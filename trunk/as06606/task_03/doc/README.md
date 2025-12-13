@@ -44,7 +44,7 @@
 
 
 
-# Общее задание #
+# Общее задание
 1 . Ознакомиться с общей информацией о платформе ** PLCnext **  [ здесь ] ( https://www.plcnext.help/te/About/Home.htm ) .
 
 2 . Изучить [ руководство ] ( https://github.com/savushkin-rd/PLCnext-howto/tree/master/HowTo%20build%20program%20Hello%20PLCnext ) .
