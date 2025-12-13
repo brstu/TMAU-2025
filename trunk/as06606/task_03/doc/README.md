@@ -63,7 +63,7 @@ PLCnext Technology – это часть экосистемы Phoenix Contact д
 ## 3.
 ### Клонирование репозитория
 Сборка проекта выполнялась с использованием
-** Visual Studio ** . Необходимо было сrjgbhjdfnm
+** Visual Studio ** . Необходимо было клонировать
 ( https://github.com/savushkin-rd/PLCnext-howto.git ) , для этого нужно было прочесть * Как собрать программу Hello PLCnext\Hello-PLCnext * .
 ### Установка SDK. 
 При помощи установщика необходимо установить PLCnext_Toolchain.
