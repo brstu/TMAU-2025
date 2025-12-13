@@ -28,8 +28,23 @@ After transformation we get these linear (2) and nonlinear (3) models:
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 
+
 $$\Large y_{\tau+1}=ay_{\tau}-b_{nl}y_{\tau}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
 where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b$ – constants for the linear model; $a,b_{nl},c,d$ – constants for the nonlinear model.
 
 > **Note:** In the nonlinear model, the quadratic term uses a separate parameter $b_{nl}$, which may differ from $b$ in the linear model.
+>
+> Введите количество шагов моделирования: 5
+Введите начальную температуру y0: 2
+Введите постоянное нагревание u: 3
+
+Результаты моделирования:
+t       Линейная        Нелинейная
+--------------------------------- 
+0       2.0000          2.0000    
+1       2.4000          2.2100    
+2       2.7600          2.3972    
+3       3.0840          2.5571    
+4       3.3756          2.6930    
+5       3.6380          2.8083
