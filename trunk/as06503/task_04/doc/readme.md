@@ -66,7 +66,7 @@
 ```bash
 git clone --recurse-submodules https://github.com/savushkin-r-d/ptusa_main.git
 ```
-На компьютере распологаем проект на диске D:. 
+На компьютере располагаем проект на диске D:. 
 
 Для того, чтобы проект можно было собрать необходима установка [SDK](https://www.phoenixcontact.com/en-fr/products/controller-axc-f-2152-2404267?type=softw&utm_source=qr&utm_medium=print&utm_campaign=product_detection#downloads-link-target).
 Перейдя по ссылке нужно спуститься вниз, выбрать пункт Software, где выбрать требуемую версию.
