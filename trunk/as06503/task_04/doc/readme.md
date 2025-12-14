@@ -124,7 +124,7 @@ git clone --recurse-submodules https://github.com/savushkin-r-d/ptusa_main.git
 ***Build AXCF2152 (SDK 2024.6)***. Выполним сборку проекта (Ctrl+Shift+B). 
 
 При успешном выполнении получим следующую структуру папок *D:\ptusa_main\bin\build\AXCF2152_2024_6\Release*. 
-В ней и будет распологаться собранный бинарный файл ptusa_main.
+В ней и будет располагаться собранный бинарный файл ptusa_main.
 ### Запуск на контроллере
 Подключение к контроллеру описано в [отчете по заданию №3](https://github.com/Ivan160927777/TMAU-2025/blob/task_03/trunk/as06503/task_03/doc/readme.md). 
 Здесь оно выполняется аналогично.
