@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <iostream>
 #include <vector>
-#include <string>
 
 struct Coeffs {
     double a{};
