@@ -14,6 +14,9 @@ double inputSignal(std::size_t t) {
     return (t >= 5) ? 10.0 : 0.0;
 }
 
+// Calculates the next state of the linear model using the formula:
+// y_{t+1} = a*y_t + b*u_t,
+// where y_t is the current temperature and u_t is the control input.
 double nextLinear(double y_t, double u_t, const Coeffs& k) {
     return k.a * y_t + k.b * u_t;
 }
