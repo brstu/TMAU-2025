@@ -23,13 +23,10 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(googletest)
 
-enable_testing()
-
 add_executable(runTests_task02_06624
     ${CMAKE_CURRENT_LIST_DIR}/../test/test_model.cpp
     model.cpp
 )
-
 
 target_link_libraries(runTests_task02_06624
     GTest::gtest
@@ -38,10 +35,4 @@ target_link_libraries(runTests_task02_06624
 
 target_include_directories(runTests_task02_06624 PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-include(GoogleTest)
-
-gtest_discover_tests(runTests_task02_06624
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
