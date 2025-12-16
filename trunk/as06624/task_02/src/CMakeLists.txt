@@ -26,9 +26,10 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(runTests_task02_06624
-    ${CMAKE_SOURCE_DIR}/../test/test_model.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/../test/test_model.cpp
     model.cpp
 )
+
 
 target_link_libraries(runTests_task02_06624
     GTest::gtest
