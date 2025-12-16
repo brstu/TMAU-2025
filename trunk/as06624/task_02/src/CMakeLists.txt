@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
-project(task_0267)
+project(task_02)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(main67 main.cpp model.cpp)
+add_executable(main main.cpp model.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
