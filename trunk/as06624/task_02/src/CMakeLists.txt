@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...3.31)
+cmake_minimum_required(VERSION 3.16)
 
 project(TMAU_02_task06624 LANGUAGES CXX)
 
@@ -15,7 +15,7 @@ include(FetchContent)
 
 FetchContent_Declare(
     googletest
-    URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
+    URL https://github.com/google/googletest/archive/refs/tags/v1.15.0.zip
     DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
