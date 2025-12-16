@@ -9,7 +9,7 @@ TEST(Linear, ZeroInputZeroState) {
 TEST(Linear, NegativeValues) {
     double y = -10;
     double u = -3;
-    EXPECT_DOUBLE_EQ(linear(y, u), a * y + b * u);
+    EXPECT_DOUBLE_EQ(linear(y, u), LINEAR_A * y + LINEAR_B * u);
 }
 
 TEST(Linear, MonotonicityIncreaseInput) {
@@ -44,7 +44,7 @@ TEST(NonLinear, OnlyTemperature) {
 
     EXPECT_DOUBLE_EQ(
         nonlinear(y, y1, 0, 0),
-        a * y - b * y1 * y1
+        NONLINEAR_A * y - NONLINEAR_B * y1 * y1
     );
 }
 
@@ -55,7 +55,7 @@ TEST(NonLinear, OnlyHeating) {
 
     EXPECT_NEAR(
         nonlinear(0, 0, ut, ut1),
-        c * ut + d * std::sin(ut1),
+        NONLINEAR_C * ut + NONLINEAR_D * std::sin(ut1),
         1e-12
     );
 }
@@ -66,7 +66,10 @@ TEST(NonLinear, NegativeInputs) {
     double ut = -2;
     double ut1 = -3;
 
-    double expected = a * y - b * y1 * y1 + c * ut + d * std::sin(ut1);
+    double expected = NONLINEAR_A * y 
+                     - NONLINEAR_B * y1 * y1 
+                     + NONLINEAR_C * ut 
+                     + NONLINEAR_D * std::sin(ut1);
 
     EXPECT_NEAR(nonlinear(y, y1, ut, ut1), expected, 1e-12);
 }
@@ -79,9 +82,4 @@ TEST(NonLinear, SensitivityToPreviousInput) {
     double r2 = nonlinear(y, y1, ut, 1);
 
     EXPECT_NE(r1, r2);
-}
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }
