@@ -25,22 +25,22 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(runTests_task2
+add_executable(runTests_task02_06624
     ${CMAKE_SOURCE_DIR}/test/test_model.cpp
     model.cpp
 )
 
-target_link_libraries(runTests_task2
+target_link_libraries(runTests_task02_06624
     GTest::gtest
     GTest::gtest_main
 )
 
-target_include_directories(runTests_task2 PRIVATE
+target_include_directories(runTests_task02_06624 PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 include(GoogleTest)
 
-gtest_discover_tests(runTests_task2
+gtest_discover_tests(runTests_task02_06624
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
