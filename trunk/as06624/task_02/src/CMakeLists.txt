@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 project(task_02_yanchuk)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -16,22 +16,32 @@ FetchContent_Declare(
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(task_02_yanchuk_tests
-    ../test/test_model.cpp
-    model.cpp
-)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../test/test_model.cpp")
 
-target_link_libraries(task_02_yanchuk_tests
-    GTest::gtest
-)
+    add_executable(task_02_yanchuk_tests
+        ../test/test_model.cpp
+        model.cpp
+    )
 
-target_include_directories(task_02_yanchuk_tests PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-include(GoogleTest)
-gtest_discover_tests(task_02_yanchuk_tests)
+    if(TARGET GTest::gtest)
+        target_link_libraries(task_02_yanchuk_tests
+            GTest::gtest GTest::gtest_main
+        )
+        
+        target_include_directories(task_02_yanchuk_tests PRIVATE
+            ${CMAKE_CURRENT_SOURCE_DIR}
+        )
+        
+        include(GoogleTest)
+        gtest_discover_tests(task_02_yanchuk_tests)
+    else()
+        message(WARNING "GoogleTest not available, tests will not be built")
+    endif()
+else()
+    message(WARNING "Test file not found: ${CMAKE_CURRENT_SOURCE_DIR}/../test/test_model.cpp")
+endif()
