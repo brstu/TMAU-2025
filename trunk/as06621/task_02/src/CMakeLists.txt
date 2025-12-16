@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(task_02)
+project(task_02_67)
 
 set(CMAKE_CXX_STANDARD 17)
 
