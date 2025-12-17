@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "func.h"
-#ifdef _WIN32Expand commentComment on line R5ResolvedCode has comments. Press enter to view.
+#ifdef _WIN32
 #include <windows.h>
 #endif
 

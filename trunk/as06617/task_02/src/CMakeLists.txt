@@ -11,21 +11,19 @@ add_executable(main
 )
 target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+# Найти Google Test через find_package
+find_package(GTest REQUIRED)
+
 # Тесты
 add_executable(runTests
     tests.cpp
     func.cpp
 )
 
-# Пути Homebrew GTest
-target_include_directories(runTests PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    /usr/local/include
-)
+target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(runTests
-    /usr/local/lib/libgtest.a
-    /usr/local/lib/libgtest_main.a
-    pthread
+    GTest::gtest
+    GTest::gtest_main
 )
 
 enable_testing()
