@@ -11,8 +11,24 @@ add_executable(main
 )
 target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Найти Google Test через find_package
-find_package(GTest REQUIRED)
+# Попытаться найти Google Test локально
+find_package(GTest QUIET)
+
+# Если не найден - загрузить автоматически
+if(NOT GTest_FOUND)
+    include(FetchContent)
+    FetchContent_Declare(
+      googletest
+      URL https://github.com/google/googletest/archive/release-1.12.1.zip
+      DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+    )
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
+    
+    # Создаём алиасы для совместимости
+    add_library(GTest::gtest ALIAS gtest)
+    add_library(GTest::gtest_main ALIAS gtest_main)
+endif()
 
 # Тесты
 add_executable(runTests
