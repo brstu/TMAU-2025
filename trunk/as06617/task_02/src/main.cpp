@@ -1,14 +1,11 @@
 #include <iostream>
 #include <vector>
 #include "func.h"
-
-#ifdef _WIN32
+#ifdef _WIN32Expand commentComment on line R5ResolvedCode has comments. Press enter to view.
 #include <windows.h>
 #endif
 
 using namespace std;
-
-
 
 static void simulateLinear(const vector<double>& input) {
     double y = Y0;
@@ -19,7 +16,6 @@ static void simulateLinear(const vector<double>& input) {
         cout << "Шаг " << i + 1 << ": y = " << y << '\n';
     }
 }
-
 static void simulateNonlinear(const vector<double>& input) {
     double y = Y0;
     double y_prev = Y0;
@@ -27,9 +23,10 @@ static void simulateNonlinear(const vector<double>& input) {
     cout << "y0 = " << Y0 << '\n';
     for (int i = 0; i < STEPS; ++i) {
         double u_prev = (i == 0) ? input[0] : input[i - 1];
+        double y_old = y;
         y = nonlinear(y, y_prev, input[i], u_prev);
         cout << "Шаг " << i + 1 << ": y = " << y << '\n';
-        y_prev = y;
+        y_prev = y_old;
     }
 }
 
