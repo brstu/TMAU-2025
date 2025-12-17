@@ -11,20 +11,22 @@ add_executable(main
 )
 target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+# GoogleTest через FetchContent
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.17.0.zip
+)
+FetchContent_MakeAvailable(googletest)
+
 # Тесты
 add_executable(runTests
     tests.cpp
     func.cpp
 )
-
-target_include_directories(runTests PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    /usr/local/Cellar/googletest/1.17.0/include
-)
-
 target_link_libraries(runTests
-    /usr/local/Cellar/googletest/1.17.0/lib/libgtest.a
-    /usr/local/Cellar/googletest/1.17.0/lib/libgtest_main.a
+    GTest::gtest
+    GTest::gtest_main
     pthread
 )
 
