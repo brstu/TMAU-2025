@@ -23,7 +23,7 @@ target_include_directories(temperature_model_hvisuk PUBLIC .)
 
 # Основное приложение
 add_executable(temperature_app_hvisuk main.cpp)
-target_link_libraries(temperature_app_hvisuk temperature_model)
+target_link_libraries(temperature_app_hvisuk temperature_model_hvisuk)
 
 # Тесты
 add_executable(temperature_tests_hvisuk  
@@ -45,7 +45,7 @@ include(GoogleTest)
 gtest_discover_tests(temperature_tests_hvisuk)
 
 # Простая цель для coverage
-add_custom_target(coverage
+add_custom_target(coverage_hvisuk
     COMMAND echo "=== Running tests to generate coverage data ==="
     COMMAND ${CMAKE_BINARY_DIR}/bin/temperature_tests_hvisuk || echo "Tests completed"
     COMMAND echo "=== Generating coverage report ==="
@@ -65,7 +65,7 @@ add_custom_target(coverage
 )
 
 # Цель для быстрого просмотра coverage
-add_custom_target(coverage_summary
+add_custom_target(coverage__hvisuk_summary
     COMMAND echo "=== Coverage summary ==="
     COMMAND gcovr -r ${CMAKE_SOURCE_DIR} 
         --filter="src/.*\.cpp$" 
