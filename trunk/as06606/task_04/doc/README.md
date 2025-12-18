@@ -130,7 +130,7 @@ admin@axcf2152:/opt/task4$ \
 На контроллере отсутствовала библиотека libncurses.so.5.
 Для ее получения необходимо было поискать в интернете. В конечном счете был найден репозиторий на GitHub в котором она была. Мы вставили ее в проект и все стало работать корректно.
 ```
-admin@axcf2152:/opt/task4$ ./ptusa_main_Artem  main.plua  sys_path ./sys/
+admin@axcf2152:/opt/task4$ ./ptusa_main  main.plua  sys_path ./sys/
 2023-12-20 03.36.25 INFO   (6) -> Program started (version 2025.12.1.0).
 2023-12-20 03.36.25 WARNING(4) -> Bus couplers are enabled.
 2023-12-20 03.36.25 NOTICE (5) -> script_name = "main.plua"
