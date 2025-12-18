@@ -1,8 +1,8 @@
-﻿
-add_executable (CMakeProject2 "CMakeProject2.cpp" "CMakeProject2.h")
+﻿cmake_minimum_required(VERSION 3.10)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET CMakeProject2 PROPERTY CXX_STANDARD 20)
-endif()
+project(lab1_as06625 LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_executable(${PROJECT_NAME} main.cpp)

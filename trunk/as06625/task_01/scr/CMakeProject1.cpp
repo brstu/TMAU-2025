@@ -1,51 +1,82 @@
 ﻿#include <iostream>
-#include <vector>
+#include <iomanip>
 #include <cmath>
 
-using namespace std;
+namespace model {
 
-// Функция для линейной модели
-double computeLinear(double current_y, double current_u, double factor_a, double factor_b) {
-    return factor_a * current_y + factor_b * current_u;
+struct LinearParams {
+    double a;
+    double b;
+};
+
+struct NonlinearParams {
+    double a;
+    double b;
+    double c;
+    double d;
+};
+
+double linear_step(double state, double control, const LinearParams& p) {
+    return p.a * state + p.b * control;
 }
 
-// Функция для нелинейной модели
-double computeNonlinear(double current_y, double previous_y, double current_u, double previous_u,
-    double factor_a, double factor_b, double factor_c, double factor_d) {
-    return factor_a * current_y - factor_b * previous_y * previous_y + factor_c * current_u + factor_d * sin(previous_u);
+double nonlinear_step(double state,
+                      double control,
+                      double prev_control,
+                      const NonlinearParams& p) {
+    return p.a * state
+         - p.b * state * state
+         + p.c * control
+         + p.d * std::sin(prev_control - 1.0);
 }
+
+double control_policy(double temperature) {
+    if (temperature < 18.0) return 1.5;
+    if (temperature > 28.0) return 0.0;
+    return 1.0;
+}
+
+} // namespace model
 
 int main() {
-    const double factor_a = 0.6; 
-    const double factor_b = 0.3;
-    const double factor_c = 0.15; 
-    const double factor_d = 0.08; 
+    using namespace model;
 
-    const int steps = 20;
+    const LinearParams lin{0.8, 0.2};
+    const NonlinearParams nonlin{0.7, 0.005, 0.25, 0.1};
 
-    vector<double> temperature(steps + 1, 0.0); // Вектор для температуры
-    vector<double> input(steps + 1, 0.0); // Вектор для входных значений
+    double linear_state   = 20.0;
+    double nonlinear_state = 20.0;
 
-    // Инициализация входных значений
-    for (int time = 0; time <= steps; ++time) {
-        input[time] = (time < 5) ? 0.0 : 1.0; // Установка значений на основе времени
-    }
+    double u = 1.0;
+    double u_prev = u;
 
-    cout << "Results of the Linear Model:" << endl;
-    // Вычисление линейной модели
-    for (int time = 0; time < steps; ++time) {
-        temperature[time + 1] = computeLinear(temperature[time], input[time], factor_a, factor_b);
-        cout << "Time=" << time + 1 << "  Temperature=" << temperature[time + 1] << endl;
-    }
+    constexpr int horizon = 30;
 
-    fill(temperature.begin(), temperature.end(), 0.0); // Очистка вектора температуры для следующей модели
+    std::cout << "Эволюция температурных моделей\n";
+    std::cout << "----------------------------------------------\n";
+    std::cout << std::setw(6)  << "t"
+              << std::setw(14) << "Linear"
+              << std::setw(14) << "Nonlinear"
+              << std::setw(14) << "Control\n";
 
-    cout << "\nResults of the Nonlinear Model:" << endl;
-    // Вычисление нелинейной модели
-    for (int time = 1; time < steps; ++time) {
-        temperature[time + 1] = computeNonlinear(temperature[time], temperature[time - 1], input[time], input[time - 1],
-            factor_a, factor_b, factor_c, factor_d);
-        cout << "Time=" << time + 1 << "  Temperature=" << temperature[time + 1] << endl;
+    for (int step = 0; step < horizon; ++step) {
+
+        std::cout << std::setw(6)  << step
+                  << std::setw(14) << std::fixed << std::setprecision(2) << linear_state
+                  << std::setw(14) << nonlinear_state
+                  << std::setw(14) << u << '\n';
+
+        const double next_linear =
+            linear_step(linear_state, u, lin);
+
+        const double next_nonlinear =
+            nonlinear_step(nonlinear_state, u, u_prev, nonlin);
+
+        u_prev = u;
+        u = control_policy(next_linear);
+
+        linear_state = next_linear;
+        nonlinear_state = next_nonlinear;
     }
 
     return 0;
