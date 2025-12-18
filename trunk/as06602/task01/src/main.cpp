@@ -132,31 +132,18 @@ public:
 int main() {
     setlocale(LC_ALL, "Russian");
     
-    std::cout << "Лабораторная работа №1: Моделирование объекта управления\n";
-    std::cout << "========================================================\n\n";
     
     TemperatureModel model(0.98, 0.05, 0.03, 0.02, 25.0, 20.0);
     
     int simulation_steps = 100;
     
-    std::cout << "Выполняется расчет по линейной модели...\n";
     model.calculateLinear(simulation_steps);
     
-    std::cout << "Выполняется расчет по нелинейной модели...\n";
     model.calculateNonlinear(simulation_steps);
     
     model.printResults();
     model.printStatistics();
     model.saveToFile("simulation_results.csv");
-    
-    std::cout << "\n=============================================\n";
-    std::cout << "Информация для анализа:\n";
-    std::cout << "=============================================\n";
-    std::cout << "Для построения графиков используйте данные из файла simulation_results.csv\n";
-    std::cout << "Рекомендуемые инструменты:\n";
-    std::cout << "1. Microsoft Excel\n";
-    std::cout << "2. Python с библиотеками matplotlib/pandas\n";
-    std::cout << "3. GNUPlot\n";
     
     return 0;
 }
