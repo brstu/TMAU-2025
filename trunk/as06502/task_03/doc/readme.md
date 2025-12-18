@@ -12,7 +12,7 @@
 <p align="right">Группы АС-65</p>
 <p align="right">Грущинский Д.Д</p>
 <p align="right">Проверил:</p>
-<p align="right">Иванюк Д. С.</p>
+<p align="right">Дворанович Д.Д.</p>
 <br><br><br><br><br>
 <p align="center">Брест 2025</p>
 
