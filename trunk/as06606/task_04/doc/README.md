@@ -72,7 +72,7 @@ json
   }
 }
 ```
-Сборка в Visual Studio:
+#### Сборка в Visual Studio
 1) Открыть проект в Visual Studio.
 
 2) В качестве пресета выбрать: Build AXCF2152 (SDK 2021.6).
