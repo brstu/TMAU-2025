@@ -46,7 +46,7 @@ git clone --recurse-submodules https://github.com/savushkin-r-d/ptusa_main.git
 D:\PLCnextSDK\AXCF2152_2021_6.
 ```
 
-Настройка CMakePresets.json
+#### Настройка CMakePresets.json
 В корне проекта изменен файл CMakePresets.json.
 Пример конфигурации для SDK 2021.6:
 ```
