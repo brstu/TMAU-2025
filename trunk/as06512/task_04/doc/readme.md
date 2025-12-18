@@ -26,7 +26,7 @@
 
 <p align="right"><strong>Проверил:</strong></p>
 
-<p align="right">Дворанович Д. А.</p>
+<p align="right">Дворанинович Д. А.</p>
 
 <br><br><br><br><br>
 
