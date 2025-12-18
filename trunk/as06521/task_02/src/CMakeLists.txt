@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(TemperatureModel)
+project(TemperatureModel_Hvisuk)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -18,36 +18,36 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # Основная библиотека
-add_library(temperature_model temperature_model.cpp)
-target_include_directories(temperature_model PUBLIC .)
+add_library(temperature_model_hvisuk temperature_model.cpp)
+target_include_directories(temperature_model_hvisuk PUBLIC .)
 
 # Основное приложение
-add_executable(temperature_app as06521_task_02_main.cpp)
-target_link_libraries(temperature_app temperature_model)
+add_executable(temperature_app_hvisuk main.cpp)
+target_link_libraries(temperature_app_hvisuk temperature_model)
 
 # Тесты
-add_executable(temperature_tests 
+add_executable(temperature_tests_hvisuk  
     ../test/test_main.cpp
     ../test/test_temperature_model.cpp
 )
-target_link_libraries(temperature_tests 
-    temperature_model 
+target_link_libraries(temperature_tests_hvisuk  
+    temperature_model_hvisuk 
     gtest_main
 )
-target_include_directories(temperature_tests PRIVATE .)
+target_include_directories(temperature_tests_hvisuk PRIVATE .)
 
 # Coverage флаги только для тестов
-target_compile_options(temperature_tests PRIVATE --coverage)
-target_link_options(temperature_tests PRIVATE --coverage)
+target_compile_options(temperature_tests_hvisuk PRIVATE --coverage)
+target_link_options(temperature_tests_hvisuk PRIVATE --coverage)
 
 # Включение тестов в CTest
 include(GoogleTest)
-gtest_discover_tests(temperature_tests)
+gtest_discover_tests(temperature_tests_hvisuk)
 
 # Простая цель для coverage
 add_custom_target(coverage
     COMMAND echo "=== Running tests to generate coverage data ==="
-    COMMAND ${CMAKE_BINARY_DIR}/bin/temperature_tests || echo "Tests completed"
+    COMMAND ${CMAKE_BINARY_DIR}/bin/temperature_tests_hvisuk || echo "Tests completed"
     COMMAND echo "=== Generating coverage report ==="
     COMMAND gcovr -r ${CMAKE_SOURCE_DIR} 
         --filter="src/.*\.cpp$" 
@@ -74,5 +74,4 @@ add_custom_target(coverage_summary
         --print-summary
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Showing coverage summary"
-
 )
