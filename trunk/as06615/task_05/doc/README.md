@@ -11,7 +11,7 @@
 <p align="right">Студент 3-го курса</p>
 <p align="right">Группы АС-66</p>
 <p align="right">Неруш Е. С.</p>
-<p align="right">Проверила:</p>
+<p align="right">Проверил:</p>
 <p align="right">Иванюк Д.С.</p>
 <br><br><br><br><br>
 <p align="center">Брест 2025</p>
