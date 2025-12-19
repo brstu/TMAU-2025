@@ -4,7 +4,6 @@
 
 using namespace std;
 
-// Линейная модель
 static void runLinear(const vector<double>& input) {
     double y = Y0;
     cout << "=== Симуляция линейной модели ===\n";
@@ -15,7 +14,6 @@ static void runLinear(const vector<double>& input) {
     }
 }
 
-// Нелинейная модель
 static void runNonlinear(const vector<double>& input) {
     double y = Y0;
     double y_prev = Y0;
@@ -30,7 +28,6 @@ static void runNonlinear(const vector<double>& input) {
 }
 
 int main() {
-    // Входная последовательность (шаблон)
     vector<double> input;
     vector<double> pattern = {5, 7, 0};
     for (int i = 0; i < STEPS; ++i) {
