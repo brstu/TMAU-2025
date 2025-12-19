@@ -14,7 +14,7 @@
 <p align="right">Проверила:</p>
 <p align="right">Иванюк Д.С.</p>
 <br><br><br><br><br>
-<p align="center">Брест 2024</p>
+<p align="center">Брест 2025</p>
 
 ---
 
