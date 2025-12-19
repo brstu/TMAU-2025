@@ -73,7 +73,6 @@ Init Lua Ok.
 INFO    -> Starting main loop! Sleep time is 2 ms.
 Accepted connection from 127.0.0.1
 G_CURRENT_PROTOCOL_VERSION = 104, host =[T1-PLCnext-Demo]
-Expand commentComment on lines R64 to R80ResolvedCode has comments. Press enter to view.
 
 Данный вывод подтверждает успешную загрузку проекта, корректную инициализацию устройств и запуск основного цикла.
 
