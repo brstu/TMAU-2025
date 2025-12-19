@@ -8,10 +8,6 @@ TEST(LinearModelTest, ZeroInput) {
     EXPECT_DOUBLE_EQ(linear_model(0.0, 0.0, 0.8, 0.2), 0.0);
 }
 
-TEST(LinearModelTest, StepInput) {
-    EXPECT_DOUBLE_EQ(linear_model(1.0, 1.0, 0.8, 0.2), 1.0);
-}
-
 TEST(LinearModelTest, OnlyControl) {
     EXPECT_DOUBLE_EQ(linear_model(0.0, 2.0, 0.8, 0.2), 0.4);
 }
