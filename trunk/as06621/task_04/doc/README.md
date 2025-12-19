@@ -131,23 +131,23 @@ admin@axcf2152:/opt/task4$ \
 Библиотеку искали в интернете. В конечном счёте был найден репозиторий на GitHub. Вставляем её в проект для корректной работы.
 ```
 admin@axcf2152:/opt/task4$ ./ptusa_main  main.plua  sys_path ./sys/
-2023-12-20 03.37.30 INFO   (6) -> Program started (version 2025.12.1.0).
-2023-12-20 03.37.30 WARNING(4) -> Bus couplers are enabled.
-2023-12-20 03.37.30 NOTICE (5) -> script_name = "main.plua"
-2023-12-20 03.37.30 NOTICE (5) -> current working directory: "/opt/main"
-2023-12-20 03.37.30 NOTICE (5) -> path = ".", sys_path = "./sys", extra_paths = "./dair
+2025-12-20 03.37.30 INFO   (6) -> Program started (version 2025.12.1.0).
+2025-12-20 03.37.30 WARNING(4) -> Bus couplers are enabled.
+2025-12-20 03.37.30 NOTICE (5) -> script_name = "main.plua"
+2025-12-20 03.37.30 NOTICE (5) -> current working directory: "/opt/main"
+2025-12-20 03.37.30 NOTICE (5) -> path = ".", sys_path = "./sys", extra_paths = "./dair
 y-sys"
 Check shared devices
-2023-12-20 03.37.30 DEBUG  (7) -> Total memory used: 492 of 30720 bytes[ 1.60% ].
-2023-12-20 03.37.30 INFO   (6) -> Starting main loop! Sleep time is 2 ms.
-2023-12-20 03.37.30 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't conn
+2025-12-20 03.37.30 DEBUG  (7) -> Total memory used: 492 of 30720 bytes[ 1.60% ].
+2025-12-20 03.37.30 INFO   (6) -> Starting main loop! Sleep time is 2 ms.
+2025-12-20 03.37.30 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't conn
 ect : timeout (100 ms).
-2023-12-20 03.37.34 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't conn
+2025-12-20 03.37.34 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't conn
 ect : timeout (100 ms).
-2023-12-20 03.36.36 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't conn
+2025-12-20 03.36.36 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't conn
 ect : timeout (100 ms).
-2023-12-20 03.37.30 ERROR  (3) -> 1-5-5 : Нет связи с EasyServer.
-2023-12-20 03.37.35 ERROR  (3) -> 1-1-2 : Нет связи с узлом I/O 'A100' ('192.168.1.11',
+2025-12-20 03.37.30 ERROR  (3) -> 1-5-5 : Нет связи с EasyServer.
+2025-12-20 03.37.35 ERROR  (3) -> 1-1-2 : Нет связи с узлом I/O 'A100' ('192.168.1.11',
 'T1-PLCnext-Demo')
 ```
 ### Итог
