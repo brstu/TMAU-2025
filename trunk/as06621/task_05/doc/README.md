@@ -23,7 +23,7 @@
 
 git clone --recurse-submodules https://github.com/savushkin-r-d/T1-PLCnext-Demo
 
-2. Установка Git LFS, необходимый для корректной загрузки бинарных файлов проекта.
+2. Установка Git LFS, необходимого для корректной загрузки бинарных файлов проекта.
 
 3. Клонирование SCADA-компонентов (EasyServer, Monitor и DbEditorXML):
 
