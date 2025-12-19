@@ -20,35 +20,23 @@
 ---
 
 ### Ход работы
-1. Клонирование репозитория проекта
-
-Клонируем репозиторий T1-PLCnext-Demo вместе с подмодулями:
+1. Клонируем репозиторий T1-PLCnext-Demo вместе с подмодулями:
 
 git clone --recurse-submodules https://github.com/savushkin-r-d/T1-PLCnext-Demo
 
-2. Установка Git LFS
+2. Установка Git LFS, необходимый для корректной загрузки бинарных файлов проекта.
 
-Устанавливаем Git LFS, необходимый для корректной загрузки бинарных файлов проекта.
-
-3. Клонирование SCADA-компонентов
-
-Клонируем репозиторий с компонентами EasyServer, Monitor и DbEditorXML:
+3. Клонирование SCADA-компонентов (EasyServer, Monitor и DbEditorXML):
 
 git clone --recurse-submodules https://github.com/savushkin-r-d/SCADA-ptusa-bin
 
-4. Настройка SCADA-компонентов
-
-Выполняем настройку следующих компонентов:
+4. Настройка SCADA-компонентов:
 
 DbEditorXML
-
 EasyServer
-
 Monitor
 
-5. Запуск проекта
-
-Запуск осуществляется из PowerShell следующей командой:
+5. Запуск проекта осуществляется из PowerShell следующей командой:
 
 .\ptusa_main.exe `
   --script d:/T1-PLCnext-Demo/main.plua `
@@ -57,9 +45,9 @@ Monitor
   --path d:/T1-PLCnext-Demo `
   --debug
 
-6. Результат выполнения
+6. Результаты выполнения
 
-В процессе запуска происходит инициализация Lua-скриптов, загрузка конфигурации и переход в основной цикл:
+При запуске происходит инициализация Lua-скриптов, загрузка конфигурации и переход в основной цикл:
 
 INFO    -> Program started (version 2025.12.1.0)
 DEBUG   -> Init Lua...
@@ -78,7 +66,6 @@ INFO    -> Starting main loop! Sleep time is 2 ms.
 Accepted connection from 127.0.0.1
 G_CURRENT_PROTOCOL_VERSION = 104, host =[T1-PLCnext-Demo]
 
-
 Этот вывод подтверждает успешную загрузку проекта, корректную инициализацию устройств и запуск основного цикла.
 
 7. Изменение логики запуска ламп
@@ -88,7 +75,7 @@ G_CURRENT_PROTOCOL_VERSION = 104, host =[T1-PLCnext-Demo]
 function user_init()
     local TIME = 150
     local now = get_millisec()
-
+    
     A5HL8_info.start_time = now
     A5HL6_info.start_time = now
     A5HL4_info.start_time = now - TIME * 3
@@ -99,5 +86,5 @@ function user_init()
     A5HL1_info.start_time = now
 end
 
-
-В результате была изменена последовательность включения ламп, что отразилось на поведении системы в мониторе.
+# Заключение
+В ходе лабораторной работы была изменена последовательность включения ламп, что отразилось на поведении системы в мониторе.
