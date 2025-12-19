@@ -2,6 +2,9 @@
 #include "func.h"
 #include <cmath>
 
+using Model::linearModel;
+using Model::nonlinearModel;
+
 TEST(LinearModel, zero_case) {
     EXPECT_DOUBLE_EQ(linearModel(0, 0), 0);
 }

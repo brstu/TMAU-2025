@@ -1,15 +1,15 @@
 #pragma once
 #include <cmath>
 
-// Константы модели управления
-// Эти значения задаются в func.cpp
+// Константы модели управления (определяются в func.cpp)
 extern const int    STEPS;   // количество шагов моделирования
 extern const double a;       // коэффициент при y
 extern const double b;       // коэффициент при u или y^2
 extern const double c;       // коэффициент при управляющем воздействии
 extern const double d;       // коэффициент при синусе
-extern const double Y0;      // начальное значение температуры
+extern const double Y0;      // начальное значение состояния
 
+// Пространство имён для функций модели
 namespace Model {
     // Линейная модель: y_{t+1} = a*y_t + b*u_t
     double linearModel(double y, double u);
