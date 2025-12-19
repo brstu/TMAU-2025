@@ -9,12 +9,14 @@ const double c = 0.45;
 const double d = 0.15;
 const double Y0 = 20.0;
 
-// Линейная модель
+namespace Model {
+
 double linearModel(double y, double u) {
     return a * y + b * u;
 }
 
-// Нелинейная модель
 double nonlinearModel(double y, double y_prev, double u, double u_prev) {
     return a * y - b * std::pow(y_prev, 2) + c * u + d * std::sin(u_prev);
 }
+
+} // namespace Model

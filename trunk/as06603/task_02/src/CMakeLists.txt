@@ -4,11 +4,9 @@ project(task_02)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Пути
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TEST_DIR ${SRC_DIR}/../test)
 
-# Приложение
 add_executable(main_as06603
     ${SRC_DIR}/main.cpp
     ${SRC_DIR}/func.cpp
@@ -22,12 +20,10 @@ FetchContent_Declare(
   URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-# Тесты
 add_executable(runTests_as06603
     ${TEST_DIR}/tests.cpp
     ${SRC_DIR}/func.cpp
