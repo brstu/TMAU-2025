@@ -49,8 +49,7 @@ D:\PLCnextSDK\AXCF2152_2021_6.
 #### Настройка CMakePresets.json
 В корне проекта изменен файл CMakePresets.json.
 Пример конфигурации для SDK 2021.6:
-```
-json
+```json
 {
   "name": "build-windows-AXCF2152-2021-LTS-Release",
   "displayName": "Build AXCF2152 (SDK 2021.6)",
