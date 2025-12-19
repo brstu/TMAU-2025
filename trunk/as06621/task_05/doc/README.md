@@ -5,7 +5,7 @@
 <br><br><br><br>
 <p align="center">Лабораторная работа №5</p>
 <p align="center">По дисциплине: «ТИМАУ»</p>
-<p align="center">Тема:</strong> “Работа с контроллером AXC F 2152”</p>
+<p align="center"><strong>Тема:</strong> “Работа с контроллером AXC F 2152”</p>
 <br><br><br>
 <p align="right">Выполнил</p> 
 <p align="right">Студент 3-го курса</p>
