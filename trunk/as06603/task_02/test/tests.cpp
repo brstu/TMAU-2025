@@ -2,35 +2,35 @@
 #include "func.h"
 #include <cmath>
 
-TEST(Linear, test_zero) {
-    EXPECT_DOUBLE_EQ(linear(0, 0), 0);
+TEST(LinearModel, zero_case) {
+    EXPECT_DOUBLE_EQ(linearModel(0, 0), 0);
 }
 
-TEST(Linear, test_u0) {
-    EXPECT_DOUBLE_EQ(linear(18, 0), a * 18);
+TEST(LinearModel, only_y) {
+    EXPECT_DOUBLE_EQ(linearModel(10, 0), a * 10);
 }
 
-TEST(Linear, test_y0) {
-    EXPECT_DOUBLE_EQ(linear(0, 5), b * 5);
+TEST(LinearModel, only_u) {
+    EXPECT_DOUBLE_EQ(linearModel(0, 4), b * 4);
 }
 
-TEST(Linear, test_default) {
-    EXPECT_DOUBLE_EQ(linear(18, 5), a * 18 + b * 5);
+TEST(LinearModel, mixed) {
+    EXPECT_DOUBLE_EQ(linearModel(10, 4), a * 10 + b * 4);
 }
 
-TEST(NonLinear, test_zero) {
-    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 0, 0), 0);
+TEST(NonlinearModel, zero_case) {
+    EXPECT_DOUBLE_EQ(nonlinearModel(0, 0, 0, 0), 0);
 }
 
-TEST(NonLinear, test_u0) {
-    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 0, 0), a * 18 - b * std::pow(18, 2));
+TEST(NonlinearModel, with_y) {
+    EXPECT_DOUBLE_EQ(nonlinearModel(10, 10, 0, 0), a * 10 - b * std::pow(10, 2));
 }
 
-TEST(NonLinear, test_y0) {
-    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 5, 5), c * 5 + d * std::sin(5));
+TEST(NonlinearModel, with_u) {
+    EXPECT_DOUBLE_EQ(nonlinearModel(0, 0, 4, 4), c * 4 + d * std::sin(4));
 }
 
-TEST(NonLinear, test_default) {
-    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 5, 5),
-                     a * 18 - b * std::pow(18, 2) + c * 5 + d * std::sin(5));
+TEST(NonlinearModel, mixed) {
+    EXPECT_DOUBLE_EQ(nonlinearModel(10, 10, 4, 4),
+                     a * 10 - b * std::pow(10, 2) + c * 4 + d * std::sin(4));
 }

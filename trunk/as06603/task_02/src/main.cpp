@@ -4,42 +4,40 @@
 
 using namespace std;
 
-static void simulateLinear(const vector<double>& input) {
+// Линейная модель
+static void runLinear(const vector<double>& input) {
     double y = Y0;
-    cout << "=== Линейная модель ===\n";
-    cout << "y0 = " << Y0 << '\n';
+    cout << "=== Симуляция линейной модели ===\n";
+    cout << "Начальное значение y0 = " << Y0 << '\n';
     for (int i = 0; i < STEPS; ++i) {
-        y = linear(y, input[i]);
-        cout << "Шаг " << i + 1 << ": y = " << y << '\n';
+        y = linearModel(y, input[i]);
+        cout << "[Линейный шаг " << i + 1 << "] y = " << y << '\n';
     }
 }
 
-static void simulateNonlinear(const vector<double>& input) {
+// Нелинейная модель
+static void runNonlinear(const vector<double>& input) {
     double y = Y0;
     double y_prev = Y0;
-    cout << "\n=== Нелинейная модель ===\n";
-    cout << "y0 = " << Y0 << '\n';
+    cout << "\n=== Симуляция нелинейной модели ===\n";
+    cout << "Начальное значение y0 = " << Y0 << '\n';
     for (int i = 0; i < STEPS; ++i) {
         double u_prev = (i == 0) ? input[0] : input[i - 1];
-        y = nonlinear(y, y_prev, input[i], u_prev);
-        cout << "Шаг " << i + 1 << ": y = " << y << '\n';
+        y = nonlinearModel(y, y_prev, input[i], u_prev);
+        cout << "[Нелинейный шаг " << i + 1 << "] y = " << y << '\n';
         y_prev = y;
     }
 }
 
 int main() {
+    // Входная последовательность (шаблон)
     vector<double> input;
-    input.reserve(STEPS);
+    vector<double> pattern = {5, 7, 0};
     for (int i = 0; i < STEPS; ++i) {
-        switch (i % 3) {
-            case 0: input.push_back(5); break;
-            case 1: input.push_back(7); break;
-            default: input.push_back(0); break; 
-        }
+        input.push_back(pattern[i % pattern.size()]);
     }
 
-    simulateLinear(input);
-    simulateNonlinear(input);
+    runLinear(input);
+    runNonlinear(input);
     return 0;
 }
-
