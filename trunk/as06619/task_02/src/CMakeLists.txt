@@ -4,7 +4,7 @@ project(task_02)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(as06619_task_02_main main.cpp model.cpp)
+add_executable(as06619_task_02_main as06619_task_02_mai model.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
