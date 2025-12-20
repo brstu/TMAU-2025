@@ -163,3 +163,8 @@ TEST(NonlinearModelTest, ParameterSensitivity) {
 
     EXPECT_LT(y_low, y_high);
 }
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
