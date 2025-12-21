@@ -4,21 +4,26 @@
 
 using namespace std;
 
-double compute_linear_model(double y_t, double u_t, double a, double b) {
-    return a * y_t + b * u_t;
+struct ModelCoeffs {
+    double a;
+    double b;
+    double c;
+    double d;
+};
+
+double compute_linear_model(double y_t, double u_t, const ModelCoeffs& coeffs) {
+    return coeffs.a * y_t + coeffs.b * u_t;
 }
 
 double compute_nonlinear_model(double y_t, double y_prev, 
                                double u_t, double u_prev,
-                               double a, double b, double c, double d) {  // Добавил d как параметр
-    return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);  // Используем d вместо 0.05
+                               const ModelCoeffs& coeffs) {
+    return coeffs.a * y_t - coeffs.b * y_prev * y_prev 
+           + coeffs.c * u_t + coeffs.d * sin(u_prev);
 }
 
 int main() {
-    double a = 0.8;
-    double b = 0.2;
-    double c = 0.1;
-    double d = 0.05;  // Теперь эта переменная будет использоваться!
+    ModelCoeffs coeffs = {0.8, 0.2, 0.1, 0.05};
 
     int N = 20;
 
@@ -31,7 +36,7 @@ int main() {
 
     cout << "Linear model:" << endl;
     for (int t = 0; t < N; t++) {
-        y[t + 1] = compute_linear_model(y[t], u[t], a, b);
+        y[t + 1] = compute_linear_model(y[t], u[t], coeffs);
         cout << "t = " << t + 1 << "   y = " << y[t + 1] << endl;
     }
 
@@ -39,7 +44,7 @@ int main() {
 
     cout << "\nNonlinear model:" << endl;
     for (int t = 1; t < N; t++) {
-        y[t + 1] = compute_nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], a, b, c, d);  // Передаем d
+        y[t + 1] = compute_nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], coeffs);
         cout << "t = " << t + 1 << "   y = " << y[t + 1] << endl;
     }
 
