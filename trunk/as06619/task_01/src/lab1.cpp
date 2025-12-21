@@ -8,9 +8,10 @@ double compute_linear_model(double y_t, double u_t, double a, double b) {
     return a * y_t + b * u_t;
 }
 
-double compute_nonlinear_model(double y_t, double y_prev, double u_t, double u_prev,
-    double a, double b, double c, double d) {
-    return a * y_t - b * y_prev * y_prev + c * u_t + d * sin(u_prev);
+double compute_nonlinear_model(double y_t, double y_prev, 
+                               double u_t, double u_prev,
+                               double a, double b, double c) {
+    return a * y_t - b * y_prev * y_prev + c * u_t + 0.05 * sin(u_prev);
 }
 
 int main() {
@@ -38,7 +39,7 @@ int main() {
 
     cout << "\nNonlinear model:" << endl;
     for (int t = 1; t < N; t++) {
-        y[t + 1] = compute_nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], a, b, c, d);
+        y[t + 1] = compute_nonlinear_model(y[t], y[t - 1], u[t], u[t - 1], a, b, c);
         cout << "t = " << t + 1 << "   y = " << y[t + 1] << endl;
     }
 
