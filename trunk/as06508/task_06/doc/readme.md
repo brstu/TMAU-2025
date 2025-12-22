@@ -103,19 +103,19 @@ https://github.com/savushkin-r-d/ptusa_main/blob/master/docs/russian_readme/read
 
 В документации указано, что необходимо загрузить:
 
-PLCnext Technology C++ Toolchain (2023.0 LTS)
+- PLCnext Technology C++ Toolchain (2023.0 LTS)
 
-SDK для Windows 64 bit (2022.0.4 LTS)
+- SDK для Windows 64 bit (2022.0.4 LTS)
 
 Однако в таком виде описание вводит в заблуждение, так как перепутаны сущности инструментов.
 
 На практике существует разделение между:
 
-прошивкой контроллера (PLCnext Control firmware),
+- прошивкой контроллера (PLCnext Control firmware),
 
-инструментами сборки (Toolchain),
+- инструментами сборки (Toolchain),
 
-и SDK.
+- SDK.
 
 Совместимость SDK определяется не напрямую с Toolchain, а через версию прошивки контроллера, что подтверждается официальной таблицей соответствий Phoenix Contact.
 
