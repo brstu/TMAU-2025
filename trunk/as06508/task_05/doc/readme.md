@@ -379,25 +379,19 @@ end
 
 Для запуска на контроллере необходим файл _ptusa_main_ - результат Лабораторной работы №4. Там же указана инструкция для сборки и подключения.
 
+Также необходимо включить EasyServer:
+
 ```
-^Cadmin@axcf2152:/opt/main$ ./ptusa main main.plua sys path ./ sys/
-2023-12-20 03.57.35 INFO (6) -> Program started (version 2025.12.1.0).
-2023-12-20 03.57.35 WARNING (4) -> Bus couplers are enabled.
-2023-12-20 03.57.35 NOTICE (5) -﻿> script name = "main plua"
-2023-12-20 03.57.35 NOTICE (5) -﻿> current working directory: "/opt/main"
-2023-12-20 03.57.35 NOTICE (5) -> path = ".", sys_path = "./sys", extra_paths = "./dairy-sys"
-Check shared devices
-2023-12-20 03.57.35 DEBUG (7) -> Total memory used: 492 of 30720 bytes[ 1.60% ].
-2023-12-20 03.57.35 INFO (6) -> Starting main loop! Sleep time is 2 ms.
-2023-12-20 03.57.36 CRITIC (2) -> Network device : s7->"A100": "192.168.1.11" can't connect: timeout(100 ms).
-2023-12-20 03.57.37 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't connect : timeout(100 ms).
-2023-12-20 03.57.39 CRITIC (2) -> Network device : s7->"A100":"192.168.1.11" can't connect : timeout (100 ms).
-2023-12-20 03.57.40 ERROR (3) -> 1-5-5 : Нет связи с EasyServer.
-2023-12-20 03.57.41 ERROR (3) -> 1-1-2 : Нет связи с узлом I/0 'A100' ('192.168.1.11', 'T1-PLCnext-Demo' )
+Max buffer use 7
+G_CURRENT_PROTOCOL_VERSION = 104, host =[T1-PLCnext-Demo]
+Max buffer use 94
+2025-12-18 11.18.39 INFO   (6) -> 1-5-5 : Есть связь с EasyServer.
+Max buffer use 795
 ```
 
-Перед ошибками шла попытка соединения, а потом вышло время и получились ошибки
+Далее необходимо переподключиться к монитору и можем убедиться в том, что лампочки моргают так, как это предусматривалось.
 
+![1](../img/1.png)
 
 ### Заключение
 Локально проект собрался и запустился, Lua-скрипты выполняются, изменения (A3AO2, blink_fast) работают. На контроллере проект также запускается, но появляются ошибки связи: "Нет связи с EasyServer" — означает, что сервер мониторинга не был запущен или не установлено соединение. "Нет связи с узлом I/O 'A100'" — связано с отсутствием реального модуля ввода-вывода по адресу 192.168.1.11.
