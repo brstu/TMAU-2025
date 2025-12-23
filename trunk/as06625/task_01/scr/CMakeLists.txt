@@ -1,8 +1,11 @@
-﻿cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.10)
 
-project(lab1_as06625 LANGUAGES CXX)
+project(lab2_as06625 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_executable(CMakeProject2
+    CMakeProject2.cpp
+    CMakeProject2.h
+)
 
-add_executable(${PROJECT_NAME} main.cpp)
+set_property(TARGET CMakeProject2 PROPERTY CXX_STANDARD 20)
+set_property(TARGET CMakeProject2 PROPERTY CXX_STANDARD_REQUIRED ON)
