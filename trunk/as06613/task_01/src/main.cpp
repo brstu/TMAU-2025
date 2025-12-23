@@ -52,10 +52,10 @@ public:
     }
 };
 
-void runSimulation(ITemperatureModel& model, const std::vector<double>& control_inputs, int steps, double timestep) {
+void runSimulation(ITemperatureModel& model, const std::vector<double>& control_inputs, std::size_t steps, double timestep) {
     std::cout << std::setw(4) << "Time" << std::setw(8) << "Control" << std::setw(12) << "Temperature" << std::endl;
 
-    for (int t = 0; t < steps; ++t) {
+    for (std::size_t t = 0; t < steps; ++t) {
         double u = (t < control_inputs.size()) ? control_inputs[t] : 0;
         double y = model.calculateNext(u);
         std::cout << std::fixed << std::setprecision(1) << std::setw(4) << t << std::setw(8) << u << std::setw(12) << y << std::endl;
