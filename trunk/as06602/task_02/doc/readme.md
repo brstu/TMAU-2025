@@ -31,6 +31,28 @@
 
 ## Выполнение работы
 
+### Сборка и запуск
+
+#### Сборка программы
+```bash
+cd src
+mkdir build
+cd build
+cmake ..
+make
+./Modeling_as06602
+```
+
+#### Сборка и запуск тестов
+```bash
+cd test
+mkdir build
+cd build
+cmake ..
+make
+./ModelTests
+```
+
 ### Тесты
 
 ```cpp
