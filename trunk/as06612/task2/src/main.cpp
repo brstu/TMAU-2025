@@ -18,15 +18,17 @@ int main() {
     cout << "\nModel lineynoy modeli:\n";
     double y_linear = inputtemperature;
     for (int t = 1; t <= time; t++) {
-        y_linear = linearmodel(y_linear, inputwarm);
+        // Используйте правильные имена функций из func.h
+        y_linear = computeLinearModel(y_linear, inputwarm);
         cout << "Shag " << t << ": y = " << y_linear << endl;
     }
 
     cout << "\nModel nelineynoy modeli:\n";
     double y_nl = inputtemperature;
     for (int t = 1; t <= time; t++) {
-        double currentWarm = updateWarm(inputwarm, t);
-        double next = nonlinearmodel(y_nl, prevtemperature, currentWarm, prevwarm);
+        // Используйте правильные имена функций из func.h
+        double currentWarm = adjustWarmInput(inputwarm, t);
+        double next = computeNonLinearModel(y_nl, prevtemperature, currentWarm, prevwarm);
         cout << "Shag " << t << ": y = " << next << endl;
         prevtemperature = y_nl;
         y_nl = next;
