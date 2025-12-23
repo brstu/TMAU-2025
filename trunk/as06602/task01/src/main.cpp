@@ -38,7 +38,7 @@ public:
      * @param room_temp Room temperature value.
      * @param init_temp Initial temperature value.
      */
-    explicit TemperatureModel(double a_val = 0.98, double b_val = 0.05,
+    TemperatureModel(double a_val = 0.98, double b_val = 0.05,
                      double c_val = 0.03, double d_val = 0.02,
                      double room_temp = 25.0, double init_temp = 20.0)
         : a(a_val), b(b_val), c(c_val), d(d_val),
@@ -66,8 +66,8 @@ public:
         double y_current = initialTemp;
         linear_temps.push_back(y_current);
         
-        for (int tau = 0; tau < steps; tau++) {
-            double u = generateControlSignal(tau);
+        for (int step = 0; step < steps; step++) {
+            double u = generateControlSignal(step);
             control_signals.push_back(u);
             y_current = a * y_current + b * u;
             linear_temps.push_back(y_current);
@@ -89,10 +89,10 @@ public:
         
         double u_prev = 0.0;
         
-        for (int tau = 0; tau < steps; tau++) {
-            double u_current = (tau < control_signals.size()) ?
-                              control_signals[tau] :
-                              generateControlSignal(tau);
+        for (int step = 0; step < steps; step++) {
+            double u_current = (step < control_signals.size()) ?
+                              control_signals[step] :
+                              generateControlSignal(step);
             
             double y_current = a * y_prev1 - b * pow(y_prev2, 2) +
                              c * u_current + d * sin(u_prev);
@@ -110,6 +110,12 @@ public:
      * Safely accesses vectors with bounds checks to avoid out-of-bounds errors.
      */
     void printResults() const {
+        if (linear_temps.size() != nonlinear_temps.size() || linear_temps.size() != control_signals.size()) {
+            std::cerr << "Warning: Vector sizes do not match. Linear: " << linear_temps.size()
+                      << ", Nonlinear: " << nonlinear_temps.size()
+                      << ", Control: " << control_signals.size() << std::endl;
+        }
+        
         std::cout << "=============================================\n";
         std::cout << "Результаты моделирования объекта управления\n";
         std::cout << "=============================================\n";
