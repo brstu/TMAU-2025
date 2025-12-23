@@ -1,73 +1,70 @@
 <p align="center"> Министерство образования Республики Беларусь</p>
 <p align="center">Учреждение образования</p>
-<p align="center">“Брестский Государственный Технический университет”</p>
+<p align="center">"Брестский Государственный Технический университет"</p>
 <p align="center">Кафедра ИИТ</p>
 <br><br><br><br><br><br><br>
 <p align="center">Лабораторная работа №1</p>
-<p align="center">По дисциплине “Теория и методы автоматического управления”</p>
-<p align="center">Тема: “Моделирование управляемого объекта”</p>
+<p align="center">По дисциплине "Теория и методы автоматического управления"</p>
+<p align="center">Тема: "Моделирование управляемого объекта"</p>
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 3 курса</p>
 <p align="right">Группы АС-66</p>
-<p align="right">Николова М.С.</p>
+<p align="right">Ляшук В.И.</p>
 <p align="right">Проверил:</p>
-<p align="right">Иванюк Д.С.</p>
+<p align="right">Дворанинович Д.А.</p>
 <br><br><br><br><br><br><br><br>
 <p align="center">Брест 2025</p>
 
 ---
-## Task 1. Modeling controlled object
-Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
+## Задание 1. Моделирование управляемого объекта
+Рассмотрим объект управления, температурой которого мы хотим управлять. Температура объекта описывается дифференциальным уравнением:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
+где $\tau$ – время; $y(\tau)$ – температура объекта; $u(\tau)$ – тепловой поток; $Y_0$ – температура окружающей среды; $C,RC$ – некоторые константы.
 
-After transformation we get these linear (2) and nonlinear (3) models:
+После преобразования получаем линейную (2) и нелинейную (3) модели:
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 
 $$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
+где $\tau$ – дискретные моменты времени ($1,2,3{\dots}n$); $a,b,c,d$ – некоторые константы.
 
-Task is to write program (**С++**), which simulates this object temperature.
+Задача: написать программу на языке **С++**, моделирующую температуру объекта.
 
 ## Выполнение работы
-Константы  
-```
-const double a = 0.6;
-const double b = 0.3;
-const double c = 0.8;
-const double d = 0.5;
-```
-Имея данные параметры получим результат работы программы:
-```bash
-Linear Model Simulation:
-Step 1: y = 7.5
-Step 2: y = 7.2
-Step 3: y = 7.02
-Step 4: y = 6.912
-Step 5: y = 6.8472
-Step 6: y = 6.80832
-Step 7: y = 6.78499
-Step 8: y = 6.771
-Step 9: y = 6.7626
-Step 10: y = 6.75756
-Step 11: y = 6.75453
 
-Nonlinear Model Simulation:
-Step 1: y = -6.99394
-Step 2: y = -15.9903
-Step 3: y = -16.8627
-Step 4: y = -79.4185
-Step 5: y = -125.55
-Step 6: y = -1960.11
-Step 7: y = -5897.51
-Step 8: y = -1.15615e+06
-Step 9: y = -1.11279e+07
-Step 10: y = -4.01008e+11
-Step 11: y = -3.73894e+13
-```
-**Вывод:** зная функцию, можно моделировать параметры модели в зависимости от времени.
+### Константы модели
+```cpp
+const double coeff_temp = 0.6;      // a
+const double coeff_prev_temp = 0.3; // b  
+const double coeff_warm = 0.8;      // c
+const double coeff_prev_warm = 0.5; // d
+
+Введите количество итераций, стартовую температуру T0 и стартовый тепловой поток W0: 10 10 5
+
+Результаты линейного расчета:
+Итерация 1: T = 7.5
+Итерация 2: T = 5.25
+Итерация 3: T = 3.675
+Итерация 4: T = 2.5725
+Итерация 5: T = 1.80075
+Итерация 6: T = 1.26053
+Итерация 7: T = 0.882368
+Итерация 8: T = 0.617658
+Итерация 9: T = 0.43236
+Итерация 10: T = 0.302652
+
+Результаты нелинейного расчета:
+Итерация 1: T = 3.70907
+Итерация 2: T = -5.70008
+Итерация 3: T = -12.2724
+Итерация 4: T = -31.4642
+Итерация 5: T = -68.1025
+Итерация 6: T = -104.427
+Итерация 7: T = -669.954
+Итерация 8: T = -2003.55
+Итерация 9: T = -1.32245e+06
+Итерация 10: T = -2.30688e+07
