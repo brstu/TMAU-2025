@@ -52,7 +52,7 @@ public:
         double y_prev1 = y0;
         nonlinear_temps.push_back(y_prev1);
         
-        double u_prev = generateControlSignal(-1);
+        double u_prev = 0.0;
         
         for (int tau = 0; tau < steps; tau++) {
             double u_current = (tau < control_signals.size()) ?
