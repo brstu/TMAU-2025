@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(tmau)
+project(tmau_yanchuk)
 
-add_executable (TMAU1 tmau.cpp)
+add_executable (tmau_yanchuk tmau.cpp)

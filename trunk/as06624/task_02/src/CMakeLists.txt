@@ -24,5 +24,3 @@ target_include_directories(runTests_as06624 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GoogleTest)
 gtest_discover_tests(runTests_as06624)
-
-
