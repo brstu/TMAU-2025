@@ -10,5 +10,5 @@ project (TMAU)
 # endforeach()
 
 # Build only specific student project (local development)
-add_subdirectory(trunk/as06617/task_01/src)
+# add_subdirectory(trunk/as06617/task_01/src)
 add_subdirectory(trunk/as06617/task_02/src)
