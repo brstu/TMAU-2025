@@ -133,7 +133,11 @@ public:
 };
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    // More robust locale handling: try UTF-8, fallback to Russian, then default
+    if (setlocale(LC_ALL, "ru_RU.UTF-8") == nullptr && setlocale(LC_ALL, "Russian") == nullptr) {
+        std::cerr << "Warning: Locale not supported, using default." << std::endl;
+        setlocale(LC_ALL, "");
+    }
     
     std::cout << "Лабораторная работа №1: Моделирование объекта управления\n";
     std::cout << "========================================================\n\n";
