@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <iomanip>
 #include <cmath>
 
@@ -21,13 +21,14 @@ double linear_step(double state, double control, const LinearParams& p) {
 }
 
 double nonlinear_step(double state,
+                      double prev_state,
                       double control,
                       double prev_control,
                       const NonlinearParams& p) {
     return p.a * state
-         - p.b * state * state
+         - p.b * prev_state * prev_state
          + p.c * control
-         + p.d * std::sin(prev_control - 1.0);
+         + p.d * std::sin(prev_control);
 }
 
 double control_policy(double temperature) {
@@ -41,36 +42,40 @@ double control_policy(double temperature) {
 int main() {
     using namespace model;
 
-    const LinearParams lin{0.8, 0.2};
-    const NonlinearParams nonlin{0.7, 0.005, 0.25, 0.1};
+    const LinearParams lin{0.6, 0.3};
+    const NonlinearParams nonlin{0.6, 0.3, 0.15, 0.08};
 
-    double linear_state   = 20.0;
+    double linear_state = 20.0;
     double nonlinear_state = 20.0;
 
     double u = 1.0;
     double u_prev = u;
 
-    constexpr int horizon = 30;
+    constexpr int steps = 20;
 
-    std::cout << "Эволюция температурных моделей\n";
-    std::cout << "----------------------------------------------\n";
+    std::cout << "Results of the Linear and Nonlinear Models\n";
+    std::cout << "-----------------------------------------------\n";
     std::cout << std::setw(6)  << "t"
               << std::setw(14) << "Linear"
               << std::setw(14) << "Nonlinear"
               << std::setw(14) << "Control\n";
 
-    for (int step = 0; step < horizon; ++step) {
+    for (int t = 0; t < steps; ++t) {
 
-        std::cout << std::setw(6)  << step
+        std::cout << std::setw(6)  << t
                   << std::setw(14) << std::fixed << std::setprecision(2) << linear_state
                   << std::setw(14) << nonlinear_state
                   << std::setw(14) << u << '\n';
 
-        const double next_linear =
+        double next_linear =
             linear_step(linear_state, u, lin);
 
-        const double next_nonlinear =
-            nonlinear_step(nonlinear_state, u, u_prev, nonlin);
+        double next_nonlinear =
+            nonlinear_step(nonlinear_state,
+                           nonlinear_state,
+                           u,
+                           u_prev,
+                           nonlin);
 
         u_prev = u;
         u = control_policy(next_linear);

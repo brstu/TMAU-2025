@@ -24,7 +24,6 @@ double compute_nonlinear_model(double y_t, double y_prev,
 
 int main() {
     ModelCoeffs coeffs = {0.8, 0.2, 0.1, 0.05};
-
     int N = 20;
 
     vector<double> y(N + 1, 0.0);
