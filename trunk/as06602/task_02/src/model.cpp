@@ -1,6 +1,7 @@
 #include "model.h"
 #include <vector>
 #include <cmath>
+#include <cassert>
 
 double nonlinearModel(double a, double b_nl, double c, double d,
                       double y_t, double u_t, double u_prev) {
@@ -12,6 +13,7 @@ double linearModel(double a, double b, double y_t, double u_t) {
 }
 
 std::vector<double> simulateLinear(int n, double a, double b, double y0, double u0) {
+    assert(n > 0 && "n must be positive");
     std::vector<double> y(n + 1);
     y[0] = y0;
     for (int t = 0; t < n; t++) {
@@ -21,6 +23,7 @@ std::vector<double> simulateLinear(int n, double a, double b, double y0, double 
 }
 
 std::vector<double> simulateNonlinear(int n, double a, double b_nl, double c, double d, double y0, double u0) {
+    assert(n > 0 && "n must be positive");
     std::vector<double> y(n + 1);
     y[0] = y0;
     for (int t = 0; t < n; t++) {
