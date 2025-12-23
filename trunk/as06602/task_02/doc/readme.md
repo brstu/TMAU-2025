@@ -55,31 +55,39 @@ make
 
 ### Результаты тестирования
 
-Test project /Users/motorolla/trash/mihail_pornohub/TMAU-2025/trunk/as06602/task_02/test/build
-    Start 1: LinearModelTest.BasicCalculation
-1/10 Test #1: LinearModelTest.BasicCalculation ...   Passed    0.00 sec
-    Start 2: LinearModelTest.ZeroValues
-2/10 Test #2: LinearModelTest.ZeroValues .........   Passed    0.00 sec
-    Start 3: LinearModelTest.NegativeValues
-3/10 Test #3: LinearModelTest.NegativeValues ......   Passed    0.00 sec
-    Start 4: NonlinearModelTest.BasicCalculation
-4/10 Test #4: NonlinearModelTest.BasicCalculation    Passed    0.00 sec
-    Start 5: NonlinearModelTest.ZeroValues
-5/10 Test #5: NonlinearModelTest.ZeroValues ........   Passed    0.00 sec
-    Start 6: NonlinearModelTest.SinZero
-6/10 Test #6: NonlinearModelTest.SinZero ...........   Passed    0.00 sec
-    Start 7: SimulateLinearTest.SingleStep
-7/10 Test #7: SimulateLinearTest.SingleStep ........   Passed    0.00 sec
-    Start 8: SimulateLinearTest.MultipleSteps
-8/10 Test #8: SimulateLinearTest.MultipleSteps .....   Passed    0.00 sec
-    Start 9: SimulateNonlinearTest.SingleStep
-9/10 Test #9: SimulateNonlinearTest.SingleStep ......   Passed    0.00 sec
-    Start 10: SimulateNonlinearTest.MultipleSteps
-10/10 Test #10: SimulateNonlinearTest.MultipleSteps ...   Passed    0.00 sec
+Running main() from /tmp/googletest-20250207-4735-e28tfc/googletest-1.16.0/googletest/src/gtest_main.cc
+[==========] Running 12 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 12 tests from ModelTest
+[ RUN      ] ModelTest.LinearModelBasicCalculation
+[       OK ] ModelTest.LinearModelBasicCalculation (0 ms)
+[ RUN      ] ModelTest.LinearModelZeroValues
+[       OK ] ModelTest.LinearModelZeroValues (0 ms)
+[ RUN      ] ModelTest.LinearModelNegativeValues
+[       OK ] ModelTest.LinearModelNegativeValues (0 ms)
+[ RUN      ] ModelTest.NonlinearModelBasicCalculation
+[       OK ] ModelTest.NonlinearModelBasicCalculation (0 ms)
+[ RUN      ] ModelTest.NonlinearModelZeroValues
+[       OK ] ModelTest.NonlinearModelZeroValues (0 ms)
+[ RUN      ] ModelTest.NonlinearModelSinZero
+[       OK ] ModelTest.NonlinearModelSinZero (0 ms)
+[ RUN      ] ModelTest.SimulateLinearSingleStep
+[       OK ] ModelTest.SimulateLinearSingleStep (0 ms)
+[ RUN      ] ModelTest.SimulateLinearMultipleSteps
+[       OK ] ModelTest.SimulateLinearMultipleSteps (0 ms)
+[ RUN      ] ModelTest.SimulateNonlinearSingleStep
+[       OK ] ModelTest.SimulateNonlinearSingleStep (0 ms)
+[ RUN      ] ModelTest.SimulateNonlinearMultipleSteps
+[       OK ] ModelTest.SimulateNonlinearMultipleSteps (0 ms)
+[ RUN      ] ModelTest.SimulateLinearEdgeCaseNZero
+[       OK ] ModelTest.SimulateLinearEdgeCaseNZero (35 ms)
+[ RUN      ] ModelTest.SimulateNonlinearEdgeCaseNZero
+[       OK ] ModelTest.SimulateNonlinearEdgeCaseNZero (14 ms)
+[----------] 12 tests from ModelTest (50 ms total)
 
-100% tests passed, 0 tests failed out of 10
-
-Total Test time (real) = 0.01 sec
+[----------] Global test environment tear-down
+[==========] 12 tests from 1 test suite ran. (50 ms total)
+[  PASSED  ] 12 tests.
 
 ### Покрытие кода
 
