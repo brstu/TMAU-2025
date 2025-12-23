@@ -1,20 +1,19 @@
 cmake_minimum_required(VERSION 3.16)
-project(task_02)
+project(as06617_task_02)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Основное приложение
-add_executable(main
+add_executable(as06617_task_02
     main.cpp
     func.cpp
 )
-target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(as06617_task_02 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Попытаться найти Google Test локально
+# GoogleTest
 find_package(GTest QUIET)
 
-# Если не найден - загрузить автоматически
 if(NOT GTest_FOUND)
     include(FetchContent)
     FetchContent_Declare(
@@ -24,24 +23,20 @@ if(NOT GTest_FOUND)
     )
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     FetchContent_MakeAvailable(googletest)
-    
-    # Создаём алиасы для совместимости
-    add_library(GTest::gtest ALIAS gtest)
-    add_library(GTest::gtest_main ALIAS gtest_main)
 endif()
 
 # Тесты
-add_executable(runTests
+add_executable(as06617_task_02_tests
     tests.cpp
     func.cpp
 )
 
-target_include_directories(runTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(runTests
+target_include_directories(as06617_task_02_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(as06617_task_02_tests
     GTest::gtest
     GTest::gtest_main
 )
 
 enable_testing()
 include(GoogleTest)
-gtest_discover_tests(runTests)
+gtest_discover_tests(as06617_task_02_tests)
