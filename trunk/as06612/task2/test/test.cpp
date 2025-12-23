@@ -15,25 +15,25 @@ TEST(LinearModelTest, ZeroInputs) {
 }
 
 TEST(LinearModelTest, PositiveValues) {
-    double result = computeLinearModel(15.0, 8.0);
+    auto result = computeLinearModel(15.0, 8.0);
     EXPECT_GT(result, 0.0);
     EXPECT_LT(result, 15.0); // Результат должен быть меньше входной температуры
 }
 
 TEST(LinearModelTest, NegativeValues) {
-    double result = computeLinearModel(-10.0, -3.0);
+    auto result = computeLinearModel(-10.0, -3.0);
     EXPECT_LT(result, 0.0);
 }
 
 TEST(LinearModelTest, MixedSignValues) {
-    double result = computeLinearModel(10.0, -5.0);
+    auto result = computeLinearModel(10.0, -5.0);
     // Проверяем ожидаемый результат
     EXPECT_NEAR(result, 10.0 * TEMP_COEFF + (-5.0) * PREV_TEMP_COEFF, 1e-10);
 }
 
 // Тесты для функции computeNonLinearModel
 TEST(NonLinearModelTest, BasicCalculation) {
-    double expected = TEMP_COEFF * 12.0 
+    auto expected = TEMP_COEFF * 12.0 
                     - PREV_TEMP_COEFF * std::pow(10.0, 2)
                     + WARM_COEFF * 4.0
                     + PREV_WARM_COEFF * std::sin(3.0);
@@ -48,15 +48,15 @@ TEST(NonLinearModelTest, ZeroInputs) {
 
 TEST(NonLinearModelTest, PreviousTemperatureEffect) {
     // Тестируем влияние квадрата предыдущей температуры
-    double result1 = computeNonLinearModel(5.0, 2.0, 0.0, 0.0);
-    double result2 = computeNonLinearModel(5.0, 4.0, 0.0, 0.0);
+    auto result1 = computeNonLinearModel(5.0, 2.0, 0.0, 0.0);
+    auto result2 = computeNonLinearModel(5.0, 4.0, 0.0, 0.0);
     EXPECT_LT(result2, result1); // Большая предыдущая температура уменьшает результат
 }
 
 TEST(NonLinearModelTest, SineFunctionEffect) {
     // Тестируем влияние синуса предыдущего теплового потока
-    double result1 = computeNonLinearModel(5.0, 5.0, 0.0, 0.0); // sin(0) = 0
-    double result2 = computeNonLinearModel(5.0, 5.0, 0.0, M_PI/2); // sin(π/2) = 1
+    auto result1 = computeNonLinearModel(5.0, 5.0, 0.0, 0.0); // sin(0) = 0
+    auto result2 = computeNonLinearModel(5.0, 5.0, 0.0, M_PI/2); // sin(π/2) = 1
     
     EXPECT_GT(result2, result1);
     EXPECT_NEAR(result2 - result1, PREV_WARM_COEFF, 1e-10);
@@ -64,7 +64,7 @@ TEST(NonLinearModelTest, SineFunctionEffect) {
 
 TEST(NonLinearModelTest, LargeValues) {
     // Тест с большими значениями
-    double result = computeNonLinearModel(100.0, 50.0, 20.0, 10.0);
+    auto result = computeNonLinearModel(100.0, 50.0, 20.0, 10.0);
     EXPECT_TRUE(std::isfinite(result)); // Результат должен быть конечным числом
 }
 
@@ -88,18 +88,18 @@ TEST(WarmInputTest, BaseZero) {
 TEST(WarmInputTest, SinePeriodicity) {
     // Проверка периодичности синуса
     // Исправлено: приведение к целому числу через static_cast
-    const int period_steps = static_cast<int>(2 * M_PI);
-    double result1 = adjustWarmInput(5.0, 0);
-    double result2 = adjustWarmInput(5.0, period_steps);
+    const auto period_steps = static_cast<int>(2 * M_PI);
+    auto result1 = adjustWarmInput(5.0, 0);
+    auto result2 = adjustWarmInput(5.0, period_steps);
     
     EXPECT_NEAR(result1, result2, 1e-10);
 }
 
 TEST(WarmInputTest, RangeCheck) {
     // Проверяем, что результат находится в ожидаемом диапазоне
-    double base = 10.0;
-    int time = 5;
-    double result = adjustWarmInput(base, time);
+    auto base = 10.0;
+    auto time = 5;
+    auto result = adjustWarmInput(base, time);
     
     // sin(t) ∈ [-1, 1], поэтому результат ∈ [base - 0.1, base + 0.1]
     EXPECT_GE(result, base - WARM_MODULATION);
@@ -109,34 +109,34 @@ TEST(WarmInputTest, RangeCheck) {
 // Интеграционные тесты
 TEST(IntegrationTest, MultipleSteps) {
     // Тест нескольких шагов моделирования
-    double temp = 10.0;
-    double prev_temp = 10.0;
-    double warm = 5.0;
-    double prev_warm = 5.0;
+    auto temp = 10.0;
+    auto prev_temp = 10.0;
+    auto warm = 5.0;
+    auto prev_warm = 5.0;
     
     // Первый шаг
-    double result1 = computeNonLinearModel(temp, prev_temp, 
-                                          adjustWarmInput(warm, 1), 
-                                          prev_warm);
+    auto result1 = computeNonLinearModel(temp, prev_temp, 
+                                         adjustWarmInput(warm, 1), 
+                                         prev_warm);
     EXPECT_TRUE(std::isfinite(result1));
     
     // Второй шаг (используем результат первого как текущую температуру)
-    double result2 = computeNonLinearModel(result1, temp,
-                                          adjustWarmInput(warm, 2),
-                                          adjustWarmInput(warm, 1));
+    auto result2 = computeNonLinearModel(result1, temp,
+                                         adjustWarmInput(warm, 2),
+                                         adjustWarmInput(warm, 1));
     EXPECT_TRUE(std::isfinite(result2));
 }
 
 TEST(IntegrationTest, ConsistencyCheck) {
     // Проверка согласованности между функциями
-    double temp = 8.0;
-    double warm = 3.0;
+    auto temp = 8.0;
+    auto warm = 3.0;
     
-    double linear_result = computeLinearModel(temp, warm);
+    auto linear_result = computeLinearModel(temp, warm);
     
     // Если предыдущие значения равны текущим и sin(prev_warm) = 0,
     // то нелинейная модель должна давать другой результат
-    double nonlinear_result = computeNonLinearModel(temp, temp, warm, 0);
+    auto nonlinear_result = computeNonLinearModel(temp, temp, warm, 0);
     
     EXPECT_NE(linear_result, nonlinear_result); // Результаты должны отличаться
 }
