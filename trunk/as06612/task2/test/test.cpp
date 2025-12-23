@@ -87,8 +87,11 @@ TEST(WarmInputTest, BaseZero) {
 
 TEST(WarmInputTest, SinePeriodicity) {
     // Проверка периодичности синуса
+    // Исправлено: приведение к целому числу через static_cast
+    const int period_steps = static_cast<int>(2 * M_PI);
     double result1 = adjustWarmInput(5.0, 0);
-    double result2 = adjustWarmInput(5.0, 2*M_PI);
+    double result2 = adjustWarmInput(5.0, period_steps);
+    
     EXPECT_NEAR(result1, result2, 1e-10);
 }
 
