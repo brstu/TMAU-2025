@@ -152,9 +152,11 @@ public:
         
         outfile << "Step,u(tau),Linear_Model,Nonlinear_Model\n";
         for (size_t i = 0; i < linear_temps.size(); i++) {
-            outfile << i << ","
-                    << ((i < control_signals.size()) ? control_signals[i] : 0.0) << ","
-                    << linear_temps[i] << ","
+            outfile << i << ",";
+            if (i < control_signals.size()) {
+                outfile << control_signals[i];
+            }
+            outfile << "," << linear_temps[i] << ","
                     << (i < nonlinear_temps.size() ? nonlinear_temps[i] : 0.0)  // Bounds check
                     << "\n";
         }
