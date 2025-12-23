@@ -83,7 +83,7 @@ public:
     void calculateNonlinear(int steps) {
         nonlinear_temps.clear();
         
-        double y_prev2 = initialTemp;
+        double y_prev2 = roomTemp;
         double y_prev1 = initialTemp;
         nonlinear_temps.push_back(y_prev1);
         
