@@ -38,7 +38,7 @@ public:
      * @param room_temp Room temperature value.
      * @param init_temp Initial temperature value.
      */
-    TemperatureModel(double a_val = 0.98, double b_val = 0.05,
+    explicit TemperatureModel(double a_val = 0.98, double b_val = 0.05,
                      double c_val = 0.03, double d_val = 0.02,
                      double room_temp = 25.0, double init_temp = 20.0)
         : a(a_val), b(b_val), c(c_val), d(d_val),
