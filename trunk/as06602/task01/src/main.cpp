@@ -4,37 +4,66 @@
 #include <vector>
 #include <iomanip>
 
+/**
+ * @class TemperatureModel
+ * @brief A model for simulating temperature dynamics using linear and nonlinear approaches.
+ *
+ * This class generates control signals, calculates temperature responses based on linear and nonlinear models,
+ * and provides methods for printing results to console and saving to file.
+ */
 class TemperatureModel {
 private:
     double a;
     double b;
     double c;
     double d;
-    double Y0;
-    double y0;
+    double roomTemp;  // Y0 -> roomTemp
+    double initialTemp;  // y0 -> initialTemp
     std::vector<double> linear_temps;
     std::vector<double> nonlinear_temps;
     std::vector<double> control_signals;
+
+    // Constants for control signal generation (moved from magic numbers)
+    static constexpr double BASE_SIGNAL = 10.0;
+    static constexpr double AMPLITUDE = 5.0;
+    static constexpr double FREQUENCY = 0.1;
     
 public:
+    /**
+     * @brief Constructor for TemperatureModel.
+     * @param a_val Coefficient for linear model.
+     * @param b_val Coefficient for linear model.
+     * @param c_val Coefficient for nonlinear model.
+     * @param d_val Coefficient for nonlinear model.
+     * @param room_temp Room temperature value.
+     * @param init_temp Initial temperature value.
+     */
     explicit TemperatureModel(double a_val = 0.98, double b_val = 0.05,
                      double c_val = 0.03, double d_val = 0.02,
                      double room_temp = 25.0, double init_temp = 20.0)
         : a(a_val), b(b_val), c(c_val), d(d_val),
-          Y0(room_temp), y0(init_temp) {}
+          roomTemp(room_temp), initialTemp(init_temp) {}
     
+    /**
+     * @brief Generates control signals using a sinusoidal function.
+     * @param step The current step number.
+     * @return The control signal value at the given step.
+     */
     double generateControlSignal(int step) const {
-        double base_signal = 10.0;
-        double amplitude = 5.0;
-        double frequency = 0.1;
-        return base_signal + amplitude * sin(frequency * step);
+        return BASE_SIGNAL + AMPLITUDE * sin(FREQUENCY * step);
     }
     
+    /**
+     * @brief Calculates linear temperature response.
+     * @param steps Number of simulation steps.
+     *
+     * Computes linear temperature dynamics: y[k+1] = a * y[k] + b * u[k].
+     */
     void calculateLinear(int steps) {
         linear_temps.clear();
         control_signals.clear();
         
-        double y_current = y0;
+        double y_current = initialTemp;
         linear_temps.push_back(y_current);
         
         for (int tau = 0; tau < steps; tau++) {
@@ -45,14 +74,20 @@ public:
         }
     }
     
+    /**
+     * @brief Calculates nonlinear temperature response.
+     * @param steps Number of simulation steps.
+     *
+     * Computes nonlinear temperature dynamics: y[k+1] = a * y[k] - b * y[k-1]^2 + c * u[k] + d * sin(u[k-1]).
+     */
     void calculateNonlinear(int steps) {
         nonlinear_temps.clear();
         
-        double y_prev2 = y0;
-        double y_prev1 = y0;
+        double y_prev2 = initialTemp;
+        double y_prev1 = initialTemp;
         nonlinear_temps.push_back(y_prev1);
         
-        double u_prev = generateControlSignal(-1);
+        double u_prev = 0.0;
         
         for (int tau = 0; tau < steps; tau++) {
             double u_current = (tau < control_signals.size()) ?
@@ -69,6 +104,11 @@ public:
         }
     }
     
+    /**
+     * @brief Prints simulation results to console.
+     *
+     * Safely accesses vectors with bounds checks to avoid out-of-bounds errors.
+     */
     void printResults() const {
         std::cout << "=============================================\n";
         std::cout << "Результаты моделирования объекта управления\n";
@@ -86,10 +126,17 @@ public:
                       << std::setw(16) << std::fixed << std::setprecision(2)
                       << linear_temps[i]
                       << std::setw(16) << std::fixed << std::setprecision(2)
-                      << nonlinear_temps[i] << std::endl;
+                      << (i < nonlinear_temps.size() ? nonlinear_temps[i] : 0.0)  // Bounds check
+                      << std::endl;
         }
     }
     
+    /**
+     * @brief Saves simulation results to a CSV file.
+     * @param filename Name of the output file.
+     *
+     * Safely accesses vectors with bounds checks to avoid out-of-bounds errors.
+     */
     void saveToFile(const std::string& filename) const {
         std::ofstream outfile(filename);
         if (!outfile) {
@@ -102,13 +149,19 @@ public:
             outfile << i << ","
                     << ((i < control_signals.size()) ? control_signals[i] : 0.0) << ","
                     << linear_temps[i] << ","
-                    << nonlinear_temps[i] << "\n";
+                    << (i < nonlinear_temps.size() ? nonlinear_temps[i] : 0.0)  // Bounds check
+                    << "\n";
         }
         
         outfile.close();
         std::cout << "\nРезультаты сохранены в файл: " << filename << std::endl;
     }
     
+    /**
+     * @brief Prints simulation statistics.
+     *
+     * Displays initial conditions, final temperatures, and differences.
+     */
     void printStatistics() const {
         if (linear_temps.empty() || nonlinear_temps.empty()) {
             std::cout << "Нет данных для анализа!" << std::endl;
@@ -121,8 +174,8 @@ public:
         std::cout << "\n=============================================\n";
         std::cout << "Статистика моделирования:\n";
         std::cout << "=============================================\n";
-        std::cout << "Температура помещения (Y₀): " << Y0 << "°C\n";
-        std::cout << "Начальная температура: " << y0 << "°C\n";
+        std::cout << "Температура помещения (Y₀): " << roomTemp << "°C\n";
+        std::cout << "Начальная температура: " << initialTemp << "°C\n";
         std::cout << "Установившаяся температура (линейная модель): "
                   << linear_final << "°C\n";
         std::cout << "Установившаяся температура (нелинейная модель): "
@@ -134,9 +187,11 @@ public:
 
 int main() {
     // More robust locale handling: try UTF-8, fallback to Russian, then default
-    if (setlocale(LC_ALL, "ru_RU.UTF-8") == nullptr && setlocale(LC_ALL, "Russian") == nullptr) {
-        std::cerr << "Warning: Locale not supported, using default." << std::endl;
-        setlocale(LC_ALL, "");
+    if (setlocale(LC_ALL, "ru_RU.UTF-8") == nullptr) {
+        if (setlocale(LC_ALL, "Russian") == nullptr) {
+            std::cerr << "Warning: Locale not supported, using default." << std::endl;
+            setlocale(LC_ALL, "");
+        }
     }
     
     std::cout << "Лабораторная работа №1: Моделирование объекта управления\n";

@@ -83,5 +83,5 @@ task_01/
 
 
 **Файлы программы:**  
-- Исходный код: `trunk\as0xxyy\task_01\src\main.cpp`  
-- Отчет: `trunk\as0xxyy\task_01\doc\readme.md`  
+- Исходный код: `trunk\as06602\task01\src\main.cpp`  
+- Отчет: `trunk\as06602\task01\doc\readme.md`  
