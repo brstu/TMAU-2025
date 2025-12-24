@@ -9,29 +9,28 @@ file(GLOB SRC_FILES
     "${CMAKE_SOURCE_DIR}/*.cpp"
 )
 
-add_library(model STATIC
+add_library(6604t1_model STATIC
     t_model.cpp
 )
 
 add_executable(6604t1_main_app main.cpp)
-target_link_libraries(6604t1_main_app model)
+target_link_libraries(6604t1_main_app 6604t1_model)
 
 enable_testing()
 
-# --- вместо find_package используем FetchContent ---
 include(FetchContent)
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
 )
-# Скачиваем и подключаем
+
 FetchContent_MakeAvailable(googletest)
 
 add_executable(6604t1test_model
     ../test/tests.cpp
 )
 target_link_libraries(6604t1test_model
-    model
+    6604t1_model
     GTest::gtest
     GTest::gtest_main
 )
