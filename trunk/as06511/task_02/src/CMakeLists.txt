@@ -11,7 +11,7 @@ enable_testing()
 
 
 add_executable(
-    as06611_task_02_main
+    as06511_task_02_main
     main.cpp
     temp_model.cpp
 )
@@ -26,14 +26,14 @@ FetchContent_MakeAvailable(googletest)
 
 
 add_executable(
-    as06611_task_02_runTests
+    as06511_task_02_runTests
     temp_model.cpp
     ../test/tests.cpp
 )
 
 
 target_link_libraries(
-    as06611_task_02_runTests
+    as06511_task_02_runTests
     GTest::gtest
     GTest::gtest_main
     pthread
