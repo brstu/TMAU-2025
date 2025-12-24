@@ -2,35 +2,59 @@
 #include "func.h"
 #include <cmath>
 
-TEST(Linear, test_zero) {
-    EXPECT_DOUBLE_EQ(linear(0, 0), 0);
+using namespace model_params;
+
+// ===== Linear model tests =====
+
+TEST(LinearModel, ZeroInput) {
+    EXPECT_DOUBLE_EQ(linear(0.0, 0.0), 0.0);
 }
 
-TEST(Linear, test_u0) {
-    EXPECT_DOUBLE_EQ(linear(18, 0), a * 18);
+TEST(LinearModel, ZeroControl) {
+    const double y = INITIAL_Y;
+    EXPECT_DOUBLE_EQ(linear(y, 0.0), A * y);
 }
 
-TEST(Linear, test_y0) {
-    EXPECT_DOUBLE_EQ(linear(0, 5), b * 5);
+TEST(LinearModel, ZeroState) {
+    const double u = 5.0;
+    EXPECT_DOUBLE_EQ(linear(0.0, u), B * u);
 }
 
-TEST(Linear, test_default) {
-    EXPECT_DOUBLE_EQ(linear(18, 5), a * 18 + b * 5);
+TEST(LinearModel, TypicalValues) {
+    const double y = INITIAL_Y;
+    const double u = 5.0;
+    EXPECT_DOUBLE_EQ(linear(y, u), A * y + B * u);
 }
 
-TEST(NonLinear, test_zero) {
-    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 0, 0), 0);
+// ===== Nonlinear model tests =====
+
+TEST(NonLinearModel, ZeroInput) {
+    EXPECT_DOUBLE_EQ(nonlinear(0.0, 0.0, 0.0, 0.0), 0.0);
 }
 
-TEST(NonLinear, test_u0) {
-    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 0, 0), a * 18 - b * std::pow(18, 2));
+TEST(NonLinearModel, ZeroControlSignal) {
+    const double y = INITIAL_Y;
+    EXPECT_DOUBLE_EQ(
+        nonlinear(y, y, 0.0, 0.0),
+        A * y - B * (y * y)
+    );
 }
 
-TEST(NonLinear, test_y0) {
-    EXPECT_DOUBLE_EQ(nonlinear(0, 0, 5, 5), c * 5 + d * std::sin(5));
+TEST(NonLinearModel, ZeroStateValue) {
+    const double u = 5.0;
+    EXPECT_DOUBLE_EQ(
+        nonlinear(0.0, 0.0, u, u),
+        C * u + D * std::sin(u)
+    );
 }
 
-TEST(NonLinear, test_default) {
-    EXPECT_DOUBLE_EQ(nonlinear(18, 18, 5, 5),
-                     a * 18 - b * std::pow(18, 2) + c * 5 + d * std::sin(5));
+TEST(NonLinearModel, TypicalValues) {
+    const double y = INITIAL_Y;
+    const double u = 5.0;
+
+    const double expected =
+        A * y - B * (y * y) +
+        C * u + D * std::sin(u);
+
+    EXPECT_DOUBLE_EQ(nonlinear(y, y, u, u), expected);
 }
