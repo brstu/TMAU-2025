@@ -14,18 +14,18 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_library(model
+add_library(as06607_task_02_model
     model.cpp
 )
 
-target_include_directories(model PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(as06607_task_02_model PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(as06607_task_02_tests
     ../test/tests.cpp
 )
 
 target_link_libraries(as06607_task_02_tests
-    model
+    as06607_task_02_model
     gtest
     gtest_main
 )
